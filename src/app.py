@@ -34,8 +34,26 @@ institutions_db = InstitutionsDatabase()
 
 @app.route("/")
 def home():
-    """Homepage - redirects to Atlas for now."""
-    return atlas()
+    """Homepage - Landing page with value proposition."""
+    stats = institutions_db.get_stats()
+
+    # Format total enrollment for display (e.g., "1.2M")
+    total_enrollment = stats["total_enrollment"]
+    if total_enrollment >= 1_000_000:
+        enrollment_display = f"{total_enrollment / 1_000_000:.1f}M"
+    elif total_enrollment >= 1_000:
+        enrollment_display = f"{total_enrollment / 1_000:.0f}K"
+    else:
+        enrollment_display = str(total_enrollment)
+
+    return render_template(
+        "home.html",
+        total_institutions=stats["total_institutions"],
+        states_count=stats["states_represented"],
+        avg_readiness=stats["average_readiness_score"],
+        total_enrollment=stats["total_enrollment"],
+        total_enrollment_display=enrollment_display
+    )
 
 
 @app.route("/atlas")

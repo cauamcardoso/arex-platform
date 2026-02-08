@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Readiness Atlas — Navigate the Future of AI in Higher Education</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: rgba(37, 99, 235, 0.08);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: white;
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            height: 64px;
+        }
+
+        .header-brand { display: flex; align-items: center; gap: 1rem; }
+        .header-brand h1 { font-size: 1.25rem; font-weight: 700; color: var(--gray-900); }
+        .header-brand span { font-size: 0.75rem; color: var(--gray-500); background: var(--gray-100); padding: 0.25rem 0.5rem; border-radius: 4px; }
+
+        .header-nav { display: flex; gap: 1.5rem; align-items: center; }
+        .header-nav a { color: var(--gray-600); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+        .header-nav a:hover, .header-nav a.active { color: var(--primary); }
+
+        /* ============================================================
+           HERO
+           ============================================================ */
+        .hero {
+            margin-top: 64px;
+            background: linear-gradient(160deg, #0f172a 0%, #1e3a5f 40%, #1d4ed8 100%);
+            padding: 6rem 2rem 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 60% 60%, rgba(139, 92, 246, 0.15) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        /* Grid pattern overlay */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content { color: white; }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(4px);
+        }
+
+        .hero-badge-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: #10b981;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, #60a5fa, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-desc {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            max-width: 520px;
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.875rem 1.75rem;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--gray-900);
+        }
+
+        .btn-white:hover {
+            background: var(--gray-100);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+        .btn-secondary { background: var(--gray-100); color: var(--gray-700); }
+        .btn-secondary:hover { background: var(--gray-200); }
+
+        /* Hero Stats */
+        .hero-stats-card {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(12px);
+        }
+
+        .hero-stats-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1;
+            margin-bottom: 0.25rem;
+        }
+
+        .hero-stat-label {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+        }
+
+        .hero-stats-divider {
+            grid-column: 1 / -1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-stats-bottom {
+            grid-column: 1 / -1;
+            text-align: center;
+        }
+
+        .hero-stats-bottom .hero-stat-number {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #60a5fa, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ============================================================
+           FEATURES
+           ============================================================ */
+        .features {
+            padding: 5rem 2rem;
+            background: var(--gray-50);
+        }
+
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-header p {
+            font-size: 1.05rem;
+            color: var(--gray-500);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+        }
+
+        .feature-link {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+
+        /* ============================================================
+           PILLARS
+           ============================================================ */
+        .pillars {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+        }
+
+        .pillar-card {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 14px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+        }
+
+        .pillar-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin: 0 auto 1rem;
+        }
+
+        .pillar-card h3 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 0.375rem;
+        }
+
+        .pillar-card p {
+            font-size: 0.7rem;
+            color: var(--gray-500);
+            line-height: 1.5;
+        }
+
+        /* ============================================================
+           NETWORK / HOW IT WORKS
+           ============================================================ */
+        .how-it-works {
+            padding: 5rem 2rem;
+            background: var(--gray-50);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+
+        .step h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 0.5rem;
+        }
+
+        .step p {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+           NETWORK STATS BAR
+           ============================================================ */
+        .network-bar {
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #0f172a, #1e3a5f);
+            color: white;
+        }
+
+        .network-bar-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .network-bar-text {
+            max-width: 500px;
+        }
+
+        .network-bar-text h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.375rem;
+        }
+
+        .network-bar-text p {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .network-bar-logos {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .network-logo {
+            padding: 0.5rem 1.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.8);
+            letter-spacing: 0.05em;
+        }
+
+        /* ============================================================
+           CTA
+           ============================================================ */
+        .cta {
+            padding: 5rem 2rem;
+            background: white;
+            text-align: center;
+        }
+
+        .cta-inner {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            font-size: 1.05rem;
+            color: var(--gray-500);
+            margin-bottom: 2rem;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .footer {
+            padding: 3rem 2rem;
+            background: var(--gray-900);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-brand h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.25rem;
+        }
+
+        .footer-brand p { font-size: 0.75rem; }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: white; }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 1024px) {
+            .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+            .hero h1 { font-size: 2.75rem; }
+            .pillars-grid { grid-template-columns: repeat(3, 1fr); }
+            .steps-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .hero { padding: 4rem 1.5rem 3rem; }
+            .hero h1 { font-size: 2.25rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+            .steps-grid { grid-template-columns: 1fr; }
+            .network-bar-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
+            .footer-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
+            .hero-stats-card { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-brand">
+            <h1>AI Readiness Atlas</h1>
+            <span>HACU + CAHSI Network</span>
+        </div>
+        <nav class="header-nav">
+            <a href="/" class="active">Home</a>
+            <a href="/atlas">Atlas</a>
+            <a href="/toolkit">Toolkit</a>
+            <a href="/assessment">Assessment</a>
+        </nav>
+    </header>
+
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <div class="hero-badge-dot"></div>
+                    Open-source platform &middot; {{ total_institutions }} institutions
+                </div>
+
+                <h1>Map Your Institution's <span class="highlight">AI Readiness</span></h1>
+
+                <p class="hero-desc">
+                    The AI Readiness Atlas helps universities benchmark, assess, and strengthen their AI integration strategy — across teaching, policy, ethics, research, and infrastructure.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="/atlas" class="btn btn-white">Explore the Atlas &rarr;</a>
+                    <a href="/assessment" class="btn btn-outline">Take the Assessment</a>
+                </div>
+            </div>
+
+            <div class="hero-stats-card">
+                <div class="hero-stats-title">Network at a Glance</div>
+                <div class="hero-stats-grid">
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">{{ total_institutions }}</div>
+                        <div class="hero-stat-label">Institutions</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">{{ states_count }}</div>
+                        <div class="hero-stat-label">States</div>
+                    </div>
+                    <div class="hero-stats-divider"></div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">{{ total_enrollment_display }}</div>
+                        <div class="hero-stat-label">Students Enrolled</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">5</div>
+                        <div class="hero-stat-label">Readiness Pillars</div>
+                    </div>
+                    <div class="hero-stats-divider"></div>
+                    <div class="hero-stats-bottom">
+                        <div class="hero-stat-number">{{ avg_readiness }}/5</div>
+                        <div class="hero-stat-label">Network Avg Readiness</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         FEATURES
+         ============================================================ -->
+    <section class="features">
+        <div class="section-inner">
+            <div class="section-header">
+                <h2>One platform, four powerful tools</h2>
+                <p>Everything your institution needs to navigate AI adoption — from benchmarking to action planning.</p>
+            </div>
+
+            <div class="features-grid">
+                <a href="/atlas" class="feature-card">
+                    <div class="feature-icon" style="background: #eff6ff;">🗺️</div>
+                    <h3>Interactive Atlas</h3>
+                    <p>Explore an interactive map of institutions with AI readiness data. Filter by state, readiness level, and network membership to find collaboration partners.</p>
+                    <div class="feature-link">Explore the map <span>&rarr;</span></div>
+                </a>
+
+                <a href="/assessment" class="feature-card">
+                    <div class="feature-icon" style="background: #f5f3ff;">📊</div>
+                    <h3>Self-Assessment</h3>
+                    <p>Answer 25 questions across 5 pillars to understand where your institution stands. Get a personalized readiness profile with actionable next steps.</p>
+                    <div class="feature-link">Start the assessment <span>&rarr;</span></div>
+                </a>
+
+                <a href="/toolkit" class="feature-card">
+                    <div class="feature-icon" style="background: #ecfdf5;">🧰</div>
+                    <h3>Resource Toolkit</h3>
+                    <p>Curated guides, templates, frameworks, and workshop materials — organized by pillar so you can take action on your weakest areas immediately.</p>
+                    <div class="feature-link">Browse resources <span>&rarr;</span></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         5 PILLARS
+         ============================================================ -->
+    <section class="pillars">
+        <div class="section-inner">
+            <div class="section-header">
+                <h2>AI readiness across five pillars</h2>
+                <p>A comprehensive framework for evaluating institutional preparedness for AI integration.</p>
+            </div>
+
+            <div class="pillars-grid">
+                <div class="pillar-card">
+                    <div class="pillar-icon" style="background: #eff6ff;">📚</div>
+                    <h3>Teaching & Learning</h3>
+                    <p>AI in curriculum, faculty development, and student preparation</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon" style="background: #f5f3ff;">📋</div>
+                    <h3>Policy & Governance</h3>
+                    <p>Institutional strategy, AI policies, and leadership support</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon" style="background: #ecfdf5;">⚖️</div>
+                    <h3>Ethics & Equity</h3>
+                    <p>Responsible AI, bias mitigation, and equitable access</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon" style="background: #fffbeb;">🔬</div>
+                    <h3>Research & Innovation</h3>
+                    <p>AI research activity, partnerships, and community impact</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon" style="background: #fef2f2;">🖥️</div>
+                    <h3>Infrastructure</h3>
+                    <p>Computing resources, data governance, and technical capacity</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         HOW IT WORKS
+         ============================================================ -->
+    <section class="how-it-works">
+        <div class="section-inner">
+            <div class="section-header">
+                <h2>How it works</h2>
+                <p>A simple path from understanding to action.</p>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Assess</h3>
+                    <p>Take the 25-question self-assessment to understand your institution's AI readiness across all five pillars.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Benchmark</h3>
+                    <p>See how your profile compares with peer institutions on the interactive Atlas. Identify strengths and growth areas.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Act</h3>
+                    <p>Use the Toolkit to find targeted resources — policy templates, workshop guides, infrastructure checklists — for your priority areas.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Collaborate</h3>
+                    <p>Connect with institutions at similar stages or with complementary strengths. Shared learning accelerates everyone's AI journey.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         NETWORK BAR
+         ============================================================ -->
+    <section class="network-bar">
+        <div class="network-bar-inner">
+            <div class="network-bar-text">
+                <h3>Built for the HACU & CAHSI network</h3>
+                <p>Serving 500+ member institutions focused on broadening participation in computing and advancing AI education.</p>
+            </div>
+            <div class="network-bar-logos">
+                <div class="network-logo">HACU</div>
+                <div class="network-logo">CAHSI</div>
+                <div class="network-logo">UTEP AAII</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         CTA
+         ============================================================ -->
+    <section class="cta">
+        <div class="cta-inner">
+            <h2>Ready to map your AI journey?</h2>
+            <p>Whether you're just getting started or already innovating, the Atlas helps you find your path forward — and the partners to walk it with.</p>
+            <div class="cta-actions">
+                <a href="/assessment" class="btn btn-primary">Take the Assessment &rarr;</a>
+                <a href="/atlas" class="btn btn-secondary">Explore the Atlas</a>
+                <a href="/toolkit" class="btn btn-secondary">Browse the Toolkit</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h3>AI Readiness Atlas</h3>
+                <p>Institute for Applied AI Innovation &middot; UTEP</p>
+            </div>
+            <div class="footer-links">
+                <a href="/atlas">Atlas</a>
+                <a href="/assessment">Assessment</a>
+                <a href="/toolkit">Toolkit</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
