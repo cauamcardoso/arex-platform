@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Readiness Assessment | AI Readiness Atlas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: rgba(37, 99, 235, 0.08);
+            --success: #10b981;
+            --success-light: rgba(16, 185, 129, 0.08);
+            --warning: #f59e0b;
+            --warning-light: rgba(245, 158, 11, 0.08);
+            --danger: #ef4444;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--gray-50);
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            border-bottom: 1px solid var(--gray-200);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            height: 64px;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header-brand h1 { font-size: 1.25rem; font-weight: 700; color: var(--gray-900); }
+        .header-brand span { font-size: 0.75rem; color: var(--gray-500); background: var(--gray-100); padding: 0.25rem 0.5rem; border-radius: 4px; }
+
+        .header-nav { display: flex; gap: 1.5rem; }
+        .header-nav a { color: var(--gray-600); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+        .header-nav a:hover, .header-nav a.active { color: var(--primary); }
+
+        /* Hero */
+        .hero {
+            margin-top: 64px;
+            background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.75rem; }
+        .hero p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto 0.5rem; }
+        .hero .subtitle { font-size: 0.875rem; opacity: 0.7; }
+
+        /* Progress Bar */
+        .progress-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            background: white;
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 64px;
+            z-index: 100;
+        }
+
+        .progress-bar-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .progress-track {
+            flex: 1;
+            height: 8px;
+            background: var(--gray-200);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 4px;
+            transition: width 0.4s ease;
+            width: 0%;
+        }
+
+        .progress-text {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .step-indicators {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.75rem;
+        }
+
+        .step-indicator {
+            font-size: 0.65rem;
+            color: var(--gray-400);
+            font-weight: 500;
+            text-align: center;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .step-indicator.active { color: var(--primary); font-weight: 700; }
+        .step-indicator.completed { color: var(--success); }
+
+        /* Main Content */
+        .main-content {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Section */
+        .assessment-section {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+
+        .assessment-section.active { display: block; }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .section-header h2 { font-size: 1.25rem; font-weight: 700; color: var(--gray-900); }
+
+        .section-description {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* Questions */
+        .question {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .question:last-of-type { border-bottom: none; margin-bottom: 1rem; }
+
+        .question-number {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gray-400);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .question-text {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 1rem;
+        }
+
+        .options { display: flex; flex-direction: column; gap: 0.5rem; }
+
+        .option {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        .option:hover { border-color: var(--primary); background: var(--primary-light); }
+
+        .option.selected {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .option-radio {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--gray-300);
+            flex-shrink: 0;
+            margin-top: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .option.selected .option-radio {
+            border-color: var(--primary);
+            background: var(--primary);
+        }
+
+        .option.selected .option-radio::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white;
+        }
+
+        .option-content { flex: 1; }
+        .option-label { font-size: 0.875rem; font-weight: 500; color: var(--gray-700); }
+        .option-desc { font-size: 0.75rem; color: var(--gray-500); margin-top: 0.125rem; }
+
+        /* Navigation */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-dark); }
+        .btn-secondary { background: var(--gray-100); color: var(--gray-600); border: 1px solid var(--gray-200); }
+        .btn-secondary:hover { background: var(--gray-200); }
+        .btn-success { background: var(--success); color: white; font-size: 1rem; padding: 1rem 2rem; }
+        .btn-success:hover { background: #059669; }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* Results */
+        .results-container { display: none; }
+        .results-container.active { display: block; }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .results-header h2 { font-size: 1.75rem; font-weight: 800; color: var(--gray-900); margin-bottom: 0.5rem; }
+        .results-header p { color: var(--gray-500); font-size: 0.95rem; }
+
+        .overall-score-card {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid var(--gray-200);
+            padding: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .overall-score-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gray-500);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .overall-score-number {
+            font-size: 5rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 0.25rem;
+        }
+
+        .overall-score-max { font-size: 1.1rem; color: var(--gray-400); margin-bottom: 0.75rem; }
+
+        .overall-journey-label {
+            display: inline-block;
+            padding: 0.375rem 1rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .pillar-results {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .pillar-result {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .pillar-result-score { font-size: 2rem; font-weight: 800; }
+        .pillar-result-max { font-size: 0.7rem; color: var(--gray-400); margin-bottom: 0.5rem; }
+        .pillar-result-name { font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); }
+
+        .pillar-result-bar { width: 100%; height: 6px; background: var(--gray-200); border-radius: 3px; margin-top: 0.75rem; overflow: hidden; }
+        .pillar-result-bar-fill { height: 100%; border-radius: 3px; }
+
+        .recommendations {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .recommendations h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; }
+
+        .rec-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .rec-item:last-child { border-bottom: none; }
+
+        .rec-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .rec-content h4 { font-size: 0.875rem; font-weight: 600; color: var(--gray-800); margin-bottom: 0.125rem; }
+        .rec-content p { font-size: 0.8rem; color: var(--gray-500); }
+
+        .results-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.75rem; }
+            .pillar-results { grid-template-columns: repeat(2, 1fr); }
+            .step-indicators { display: none; }
+        }
+
+        @media (max-width: 480px) {
+            .pillar-results { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-brand">
+            <h1>AI Readiness Atlas</h1>
+            <span>HACU + CAHSI Network</span>
+        </div>
+        <nav class="header-nav">
+            <a href="/">Home</a>
+            <a href="/atlas">Atlas</a>
+            <a href="/toolkit">Toolkit</a>
+            <a href="/assessment" class="active">Assessment</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>AI Readiness Self-Assessment</h1>
+        <p>Understand where your institution stands on its AI integration journey and discover collaboration opportunities.</p>
+        <div class="subtitle">25 questions across 5 pillars &middot; Takes ~10 minutes</div>
+    </section>
+
+    <!-- Progress -->
+    <div class="progress-container" id="progressContainer">
+        <div class="progress-bar-wrapper">
+            <div class="progress-track">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">0 / 25</div>
+        </div>
+        <div class="step-indicators">
+            <div class="step-indicator active" data-step="0">Teaching & Learning</div>
+            <div class="step-indicator" data-step="1">Policy & Governance</div>
+            <div class="step-indicator" data-step="2">Ethics & Equity</div>
+            <div class="step-indicator" data-step="3">Research & Innovation</div>
+            <div class="step-indicator" data-step="4">Infrastructure</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Assessment Sections will be rendered by JS -->
+        <div id="assessmentSections"></div>
+
+        <!-- Results (hidden until complete) -->
+        <div class="results-container" id="resultsContainer">
+            <div class="results-header">
+                <h2>Your AI Readiness Profile</h2>
+                <p>Here's where your institution stands on its AI integration journey</p>
+            </div>
+
+            <div class="overall-score-card">
+                <div class="overall-score-label">Overall AI Readiness</div>
+                <div class="overall-score-number" id="overallScore">-</div>
+                <div class="overall-score-max">out of 5</div>
+                <div class="overall-journey-label" id="journeyLabel">-</div>
+            </div>
+
+            <div class="pillar-results" id="pillarResults"></div>
+
+            <div class="recommendations" id="recommendations">
+                <h3>Recommended Next Steps</h3>
+                <div id="recList"></div>
+            </div>
+
+            <div class="results-actions">
+                <a href="/atlas" class="btn btn-primary">Find Collaboration Partners on the Atlas</a>
+                <a href="/toolkit" class="btn btn-secondary">Explore the AI Toolkit</a>
+                <button class="btn btn-secondary" onclick="resetAssessment()">Retake Assessment</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================================
+        // Assessment Data - 5 questions per pillar
+        // ============================================================
+        const pillars = [
+            {
+                id: 'teaching',
+                name: 'Teaching & Learning',
+                icon: '📚',
+                color: '#3b82f6',
+                description: 'How is your institution integrating AI into teaching practices, curriculum, and student learning experiences?',
+                questions: [
+                    {
+                        text: 'How does your institution approach AI tools (e.g., ChatGPT, Copilot) in coursework?',
+                        options: [
+                            { label: 'No formal position', desc: 'AI tools are not discussed or addressed', score: 1 },
+                            { label: 'General awareness', desc: 'Faculty are aware but no guidelines exist', score: 2 },
+                            { label: 'Guidelines in development', desc: 'Working on policies for classroom use', score: 3 },
+                            { label: 'Clear integration guidelines', desc: 'Faculty have resources and training for AI in teaching', score: 4 },
+                            { label: 'Embedded across curriculum', desc: 'AI literacy is woven into courses across disciplines', score: 5 }
+                        ]
+                    },
+                    {
+                        text: 'Does your institution offer AI-related courses or programs?',
+                        options: [
+                            { label: 'None available', desc: 'No AI-specific courses exist', score: 1 },
+                            { label: 'One or two electives', desc: 'A few CS/data science AI courses', score: 2 },
+                            { label: 'Growing offerings', desc: 'Multiple courses and a minor or certificate', score: 3 },
+                            { label: 'Established programs', desc: 'AI degree programs or concentrations available', score: 4 },
+                            { label: 'Comprehensive ecosystem', desc: 'Cross-disciplinary AI programs with industry partnerships', score: 5 }
+                        ]
+                    },
+                    {
+                        text: 'What professional development exists for faculty around AI?',
+                        options: [
+                            { label: 'Nothing available', desc: 'No training or workshops on AI', score: 1 },
+                            { label: 'Ad hoc sessions', desc: 'Occasional workshops, not structured', score: 2 },
+                            { label: 'Regular workshops', desc: 'Scheduled training sessions each semester', score: 3 },
+                            { label: 'Structured program', desc: 'Ongoing PD with incentives and support', score: 4 },
+                            { label: 'Faculty learning community', desc: 'Peer-led communities of practice around AI pedagogy', score: 5 }
+                        ]
+                    },
+                    {
+                        text: 'How are students being prepared for AI in the workforce?',
+                        options: [
+                            { label: 'Not a focus', desc: 'No specific workforce AI preparation', score: 1 },
+                            { label: 'Career services awareness', desc: 'Career center mentions AI skills', score: 2 },
+                            { label: 'Capstone integration', desc: 'Some programs include AI projects or tools', score: 3 },
+                            { label: 'Industry partnerships', desc: 'Internships and projects with AI-using employers', score: 4 },
+                            { label: 'Full pipeline', desc: 'Research, internships, certifications, and placement programs', score: 5 }
+                        ]
+                    },
+                    {
+                        text: 'Is AI being used to support student success (tutoring, advising, early alerts)?',
+                        options: [
+                            { label: 'No AI tools in use', desc: 'Student services do not use AI', score: 1 },
+                            { label: 'Exploring options', desc: 'Piloting or researching AI tools', score: 2 },
+                            { label: 'One or two tools piloted', desc: 'An AI chatbot or early alert system in use', score: 3 },
+                            { label: 'Integrated tools', desc: 'Multiple AI-powered student success tools deployed', score: 4 },
+                            { label: 'Data-driven ecosystem', desc: 'Comprehensive AI student success platform with analytics', score: 5 }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'policy',
+                name: 'Policy & Governance',
+                icon: '📋',
+                color: '#8b5cf6',
+                description: 'How is your institution governing AI use, establishing policies, and planning strategically for AI adoption?',
+                questions: [
+                    {
+                        text: 'Does your institution have a formal AI strategy or plan?',
+                        options: [
+                            { label: 'No strategy', desc: 'AI is not part of institutional planning', score: 1 },
+                            { label: 'Informal discussions', desc: 'Leadership has discussed AI but no formal plan', score: 2 },
+                            { label: 'Strategy in development', desc: 'A committee is working on an AI plan', score: 3 },
+                            { label: 'Approved strategy', desc: 'Formal AI strategy adopted by leadership', score: 4 },
+                            { label: 'Integrated into strategic plan', desc: 'AI is embedded in the institutional strategic plan with funding', score: 5 }
+                        ]
+                    },
+                    {
+                        text: 'Are there institutional policies governing AI use (academic integrity, procurement)?',
+                        options: [
+                            { label: 'No policies', desc: 'No guidance on AI use exists', score: 1 },
+                            { label: 'Department-level only', desc: 'Individual departments have created policies', score: 2 },
+                            { label: 'Institution-wide guidelines', desc: 'Basic guidelines exist but are not comprehensive', score: 3 },
+                            { label: 'Comprehensive policies', desc: 'Policies cover academic integrity, procurement, and data use', score: 4 },
+                            { label: 'Living governance framework', desc: 'Regularly updated policies with a standing AI governance committee', score: 5 }
+                        ]
+                    },
+                    {
+                        text: 'How does leadership support AI adoption?',
+                        options: [
+                            { label: 'No visible support', desc: 'Leadership has not engaged with AI', score: 1 },
+                            { label: 'Verbal support', desc: 'Leadership talks about AI but no resources allocated', score: 2 },
+                            { label: 'Some funding allocated', desc: 'Pilot projects or positions funded', score: 3 },
+                            { label: 'Dedicated resources', desc: 'Budget lines, positions, and offices devoted to AI', score: 4 },
+                            { label: 'Transformational commitment', desc: 'AI is a top institutional priority with significant investment', score: 5 }
+                        ]
+                    },
+                    {
+                        text: 'Is there a designated person or team responsible for AI initiatives?',
+                        options: [
+                            { label: 'No one assigned', desc: 'AI is nobody\'s specific responsibility', score: 1 },
+                            { label: 'Informal champion', desc: 'A faculty member or admin advocates informally', score: 2 },
+                            { label: 'Committee formed', desc: 'An AI task force or committee exists', score: 3 },
+                            { label: 'Dedicated role', desc: 'A specific position (director, coordinator) handles AI', score: 4 },
+                            { label: 'Full team or center', desc: 'An AI center, institute, or office with staff', score: 5 }
+                        ]
+                    },
+                    {
+                        text: 'How does your institution handle AI vendor selection and procurement?',
+                        options: [
+                            { label: 'No process', desc: 'Departments adopt tools independently', score: 1 },
+                            { label: 'Basic IT review', desc: 'IT security reviews tools but no AI-specific criteria', score: 2 },
+                            { label: 'Emerging process', desc: 'Developing criteria for AI tool evaluation', score: 3 },
+                            { label: 'Formal framework', desc: 'AI procurement checklist covering bias, privacy, and accessibility', score: 4 },
+                            { label: 'Mature governance', desc: 'Vendor evaluation with ongoing monitoring and community input', score: 5 }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'ethics',
+                name: 'Ethics & Equity',
+                icon: '⚖️',
+                color: '#10b981',
+                description: 'How does your institution address fairness, bias, transparency, and equitable access in AI adoption?',
+                questions: [
+                    {
+                        text: 'Does your institution have guidelines for responsible AI use?',
+                        options: [
+                            { label: 'None exist', desc: 'No responsible AI guidelines', score: 1 },
+                            { label: 'Awareness only', desc: 'People know about AI ethics but no formal guidelines', score: 2 },
+                            { label: 'Draft principles', desc: 'Working on responsible AI principles', score: 3 },
+                            { label: 'Published guidelines', desc: 'Responsible AI principles adopted and shared', score: 4 },
+                            { label: 'Embedded in practice', desc: 'Ethics reviews required for AI projects, ongoing audits', score: 5 }
+                        ]
+                    },
+                    {
+                        text: 'How is bias and fairness in AI tools addressed?',
+                        options: [
+                            { label: 'Not considered', desc: 'Bias in AI is not discussed', score: 1 },
+                            { label: 'General awareness', desc: 'People know bias exists but no action taken', score: 2 },
+                            { label: 'Training available', desc: 'Workshops on AI bias offered to some groups', score: 3 },
+                            { label: 'Active mitigation', desc: 'Bias reviews conducted before deploying AI tools', score: 4 },
+                            { label: 'Systematic approach', desc: 'Ongoing bias audits, diverse teams, and community input', score: 5 }
+                        ]
+                    },
+                    {
+                        text: 'Is AI literacy accessible to all students, including underserved populations?',
+                        options: [
+                            { label: 'Not a priority', desc: 'No focus on equitable AI access', score: 1 },
+                            { label: 'Some awareness', desc: 'Recognizes the need but limited action', score: 2 },
+                            { label: 'Targeted programs', desc: 'Some programs for underrepresented students', score: 3 },
+                            { label: 'Comprehensive access', desc: 'AI literacy across disciplines with support for all students', score: 4 },
+                            { label: 'Equity-centered approach', desc: 'AI access designed around diverse student needs with measurable outcomes', score: 5 }
+                        ]
+                    },
+                    {
+                        text: 'How does your institution handle AI-related data privacy and transparency?',
+                        options: [
+                            { label: 'No specific policies', desc: 'Standard data policies, nothing AI-specific', score: 1 },
+                            { label: 'Basic compliance', desc: 'Follows FERPA but no AI-specific data guidance', score: 2 },
+                            { label: 'Developing policies', desc: 'Creating AI data use and transparency policies', score: 3 },
+                            { label: 'Clear framework', desc: 'AI data governance with transparency requirements', score: 4 },
+                            { label: 'Full transparency', desc: 'Public AI use disclosures, student consent processes, and audit trails', score: 5 }
+                        ]
+                    },
+                    {
+                        text: 'Are diverse perspectives included in AI decision-making at your institution?',
+                        options: [
+                            { label: 'Not considered', desc: 'AI decisions made by small groups without diversity focus', score: 1 },
+                            { label: 'Informal input', desc: 'Some diverse voices heard but not systematically', score: 2 },
+                            { label: 'Advisory input', desc: 'Diverse advisory groups consulted occasionally', score: 3 },
+                            { label: 'Standing committee', desc: 'Diverse AI governance committee with regular meetings', score: 4 },
+                            { label: 'Community-centered', desc: 'Student, faculty, staff, and community voices shape AI strategy', score: 5 }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'research',
+                name: 'Research & Innovation',
+                icon: '🔬',
+                color: '#f59e0b',
+                description: 'How active is your institution in AI research, scholarly work, and innovation partnerships?',
+                questions: [
+                    {
+                        text: 'How much AI-related research is happening at your institution?',
+                        options: [
+                            { label: 'None', desc: 'No AI research activity', score: 1 },
+                            { label: 'Individual projects', desc: 'A few faculty members working on AI', score: 2 },
+                            { label: 'Growing portfolio', desc: 'Multiple funded AI research projects', score: 3 },
+                            { label: 'Established program', desc: 'AI research center or lab with sustained funding', score: 4 },
+                            { label: 'Major research hub', desc: 'Multi-institutional AI research with significant grant funding', score: 5 }
+                        ]
+                    },
+                    {
+                        text: 'Are students involved in AI research opportunities?',
+                        options: [
+                            { label: 'No opportunities', desc: 'Students are not involved in AI research', score: 1 },
+                            { label: 'Occasional projects', desc: 'A few students assist on AI projects', score: 2 },
+                            { label: 'Structured program', desc: 'Undergraduate research experiences in AI', score: 3 },
+                            { label: 'Robust pipeline', desc: 'REUs, thesis projects, and mentored research in AI', score: 4 },
+                            { label: 'Comprehensive ecosystem', desc: 'Students publish, present, and lead AI research with faculty', score: 5 }
+                        ]
+                    },
+                    {
+                        text: 'Does your institution have AI-related industry or community partnerships?',
+                        options: [
+                            { label: 'No partnerships', desc: 'No external AI collaborations', score: 1 },
+                            { label: 'Informal connections', desc: 'A few faculty have industry contacts', score: 2 },
+                            { label: 'Some partnerships', desc: 'Formal MOUs or grants with industry', score: 3 },
+                            { label: 'Active ecosystem', desc: 'Multiple industry and community partnerships', score: 4 },
+                            { label: 'Innovation hub', desc: 'Co-labs, accelerators, or applied AI centers with partners', score: 5 }
+                        ]
+                    },
+                    {
+                        text: 'Is your institution collaborating with other HSIs on AI initiatives?',
+                        options: [
+                            { label: 'No collaboration', desc: 'Working in isolation on AI', score: 1 },
+                            { label: 'Informal networks', desc: 'Some faculty attend shared conferences', score: 2 },
+                            { label: 'Active in alliances', desc: 'Participates in CAHSI, HACU, or similar AI activities', score: 3 },
+                            { label: 'Joint initiatives', desc: 'Co-PIs on grants, shared curricula, or exchanges', score: 4 },
+                            { label: 'Collaborative ecosystem', desc: 'Deep multi-institutional partnerships driving shared AI innovation', score: 5 }
+                        ]
+                    },
+                    {
+                        text: 'How is AI being applied to address challenges specific to your community?',
+                        options: [
+                            { label: 'Not applied', desc: 'AI is not used for community challenges', score: 1 },
+                            { label: 'Early ideas', desc: 'Discussions about using AI for community needs', score: 2 },
+                            { label: 'Pilot projects', desc: 'One or two AI projects addressing local issues', score: 3 },
+                            { label: 'Active engagement', desc: 'Multiple community-focused AI projects', score: 4 },
+                            { label: 'Community-driven AI', desc: 'AI research agenda shaped by community needs and partnerships', score: 5 }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'infrastructure',
+                name: 'Infrastructure',
+                icon: '🖥️',
+                color: '#ef4444',
+                description: 'Does your institution have the computing, data, and human resources to support AI adoption?',
+                questions: [
+                    {
+                        text: 'What computing resources are available for AI workloads?',
+                        options: [
+                            { label: 'Standard IT only', desc: 'No specialized computing for AI', score: 1 },
+                            { label: 'Some GPU access', desc: 'Limited GPU resources or cloud credits', score: 2 },
+                            { label: 'Dedicated resources', desc: 'AI-capable servers or cloud accounts available', score: 3 },
+                            { label: 'Robust infrastructure', desc: 'HPC cluster or significant cloud environment for AI', score: 4 },
+                            { label: 'Advanced capabilities', desc: 'Major HPC, multi-GPU clusters, and cloud partnerships', score: 5 }
+                        ]
+                    },
+                    {
+                        text: 'How is institutional data managed and governed for AI use?',
+                        options: [
+                            { label: 'Siloed data', desc: 'Data spread across systems with no integration', score: 1 },
+                            { label: 'Basic warehouse', desc: 'Some data centralized but not AI-ready', score: 2 },
+                            { label: 'Developing pipeline', desc: 'Working on data integration and quality for AI', score: 3 },
+                            { label: 'Mature data platform', desc: 'Integrated data warehouse with governance and quality controls', score: 4 },
+                            { label: 'AI-ready ecosystem', desc: 'Clean, governed, accessible data with self-service analytics', score: 5 }
+                        ]
+                    },
+                    {
+                        text: 'Does your institution have IT staff with AI/ML expertise?',
+                        options: [
+                            { label: 'No expertise', desc: 'No staff with AI skills', score: 1 },
+                            { label: 'Self-taught interest', desc: 'A few staff learning AI on their own', score: 2 },
+                            { label: 'Some capacity', desc: 'One or two people with ML/AI experience', score: 3 },
+                            { label: 'Dedicated team', desc: 'IT has AI/ML specialists or a data science team', score: 4 },
+                            { label: 'Full capability', desc: 'Data engineers, ML ops, and AI specialists on staff', score: 5 }
+                        ]
+                    },
+                    {
+                        text: 'Is there reliable internet and device access for students and faculty engaging with AI?',
+                        options: [
+                            { label: 'Significant gaps', desc: 'Many students lack reliable internet or devices', score: 1 },
+                            { label: 'Basic access', desc: 'Campus has WiFi but off-campus access is a challenge', score: 2 },
+                            { label: 'Good access', desc: 'Most students can access AI tools on and off campus', score: 3 },
+                            { label: 'Strong access', desc: 'Device lending, hotspot programs, and campus-wide connectivity', score: 4 },
+                            { label: 'Universal access', desc: 'All students have devices and connectivity with support programs', score: 5 }
+                        ]
+                    },
+                    {
+                        text: 'Are AI tools and platforms centrally provided and supported?',
+                        options: [
+                            { label: 'No central tools', desc: 'Individuals find their own AI tools', score: 1 },
+                            { label: 'Limited licenses', desc: 'A few enterprise AI tools available', score: 2 },
+                            { label: 'Growing toolkit', desc: 'Several AI platforms with basic support', score: 3 },
+                            { label: 'Supported ecosystem', desc: 'Enterprise AI tools with training and documentation', score: 4 },
+                            { label: 'Comprehensive platform', desc: 'Full AI platform with support, training, and integration', score: 5 }
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        // State
+        let currentStep = 0;
+        let answers = {};
+
+        // ============================================================
+        // Render
+        // ============================================================
+        function renderSections() {
+            const container = document.getElementById('assessmentSections');
+            container.innerHTML = '';
+
+            pillars.forEach((pillar, pIdx) => {
+                const section = document.createElement('div');
+                section.className = `assessment-section ${pIdx === 0 ? 'active' : ''}`;
+                section.id = `section-${pIdx}`;
+
+                let questionsHtml = '';
+                pillar.questions.forEach((q, qIdx) => {
+                    const globalIdx = pIdx * 5 + qIdx;
+                    questionsHtml += `
+                        <div class="question">
+                            <div class="question-number">Question ${globalIdx + 1} of 25</div>
+                            <div class="question-text">${q.text}</div>
+                            <div class="options">
+                                ${q.options.map((opt, oIdx) => `
+                                    <div class="option ${answers[globalIdx] === oIdx ? 'selected' : ''}"
+                                         onclick="selectOption(${globalIdx}, ${oIdx}, ${opt.score})">
+                                        <div class="option-radio"></div>
+                                        <div class="option-content">
+                                            <div class="option-label">${opt.label}</div>
+                                            <div class="option-desc">${opt.desc}</div>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                });
+
+                section.innerHTML = `
+                    <div class="section-header">
+                        <div class="section-icon" style="background: ${pillar.color}15; color: ${pillar.color};">${pillar.icon}</div>
+                        <h2>${pillar.name}</h2>
+                    </div>
+                    <p class="section-description">${pillar.description}</p>
+                    ${questionsHtml}
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="prevStep()" ${pIdx === 0 ? 'disabled' : ''}>
+                            &larr; Previous
+                        </button>
+                        ${pIdx < pillars.length - 1
+                            ? `<button class="btn btn-primary" onclick="nextStep()">Next: ${pillars[pIdx + 1].name} &rarr;</button>`
+                            : `<button class="btn btn-success" onclick="showResults()">See Your Results &rarr;</button>`
+                        }
+                    </div>
+                `;
+
+                container.appendChild(section);
+            });
+        }
+
+        // ============================================================
+        // Interaction
+        // ============================================================
+        function selectOption(questionIdx, optionIdx, score) {
+            answers[questionIdx] = optionIdx;
+            answers[`score_${questionIdx}`] = score;
+
+            // Update visual
+            const section = document.querySelector(`.assessment-section.active`);
+            const questions = section.querySelectorAll('.question');
+            const localIdx = questionIdx % 5;
+            const options = questions[localIdx].querySelectorAll('.option');
+            options.forEach((opt, i) => {
+                opt.classList.toggle('selected', i === optionIdx);
+            });
+
+            updateProgress();
+        }
+
+        function nextStep() {
+            if (currentStep < pillars.length - 1) {
+                document.getElementById(`section-${currentStep}`).classList.remove('active');
+                currentStep++;
+                document.getElementById(`section-${currentStep}`).classList.add('active');
+                updateStepIndicators();
+                window.scrollTo({ top: 200, behavior: 'smooth' });
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 0) {
+                document.getElementById(`section-${currentStep}`).classList.remove('active');
+                currentStep--;
+                document.getElementById(`section-${currentStep}`).classList.add('active');
+                updateStepIndicators();
+                window.scrollTo({ top: 200, behavior: 'smooth' });
+            }
+        }
+
+        function updateStepIndicators() {
+            document.querySelectorAll('.step-indicator').forEach((el, i) => {
+                el.classList.remove('active', 'completed');
+                if (i === currentStep) el.classList.add('active');
+                if (i < currentStep) el.classList.add('completed');
+            });
+        }
+
+        function updateProgress() {
+            const answered = Object.keys(answers).filter(k => !k.startsWith('score_')).length;
+            const pct = (answered / 25) * 100;
+            document.getElementById('progressFill').style.width = `${pct}%`;
+            document.getElementById('progressText').textContent = `${answered} / 25`;
+        }
+
+        // ============================================================
+        // Results
+        // ============================================================
+        function showResults() {
+            // Calculate pillar scores
+            const pillarScores = pillars.map((pillar, pIdx) => {
+                let total = 0;
+                let count = 0;
+                for (let q = 0; q < 5; q++) {
+                    const globalIdx = pIdx * 5 + q;
+                    const score = answers[`score_${globalIdx}`];
+                    if (score !== undefined) {
+                        total += score;
+                        count++;
+                    }
+                }
+                return {
+                    id: pillar.id,
+                    name: pillar.name,
+                    color: pillar.color,
+                    score: count > 0 ? Math.round(total / count) : 1,
+                    avg: count > 0 ? (total / count).toFixed(1) : '1.0'
+                };
+            });
+
+            // Overall score
+            const overallAvg = pillarScores.reduce((s, p) => s + parseFloat(p.avg), 0) / pillarScores.length;
+            const overallScore = Math.round(overallAvg);
+
+            // Journey label
+            const journeyLabels = {
+                5: { label: 'Trailblazer', color: '#10b981', bg: '#ecfdf5' },
+                4: { label: 'Innovating', color: '#34d399', bg: '#f0fdf4' },
+                3: { label: 'Building', color: '#f59e0b', bg: '#fffbeb' },
+                2: { label: 'Exploring', color: '#fb923c', bg: '#fff7ed' },
+                1: { label: 'Preparing', color: '#f87171', bg: '#fef2f2' }
+            };
+
+            const journey = journeyLabels[overallScore] || journeyLabels[1];
+
+            // Update overall score
+            document.getElementById('overallScore').textContent = overallScore;
+            document.getElementById('overallScore').style.color = journey.color;
+            const journeyEl = document.getElementById('journeyLabel');
+            journeyEl.textContent = journey.label;
+            journeyEl.style.background = journey.bg;
+            journeyEl.style.color = journey.color;
+
+            // Render pillar results
+            const pillarResultsEl = document.getElementById('pillarResults');
+            pillarResultsEl.innerHTML = pillarScores.map(p => `
+                <div class="pillar-result">
+                    <div class="pillar-result-score" style="color: ${p.color}">${p.score}</div>
+                    <div class="pillar-result-max">/ 5</div>
+                    <div class="pillar-result-name">${p.name}</div>
+                    <div class="pillar-result-bar">
+                        <div class="pillar-result-bar-fill" style="width: ${p.score * 20}%; background: ${p.color};"></div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Recommendations based on weakest pillars
+            const sorted = [...pillarScores].sort((a, b) => parseFloat(a.avg) - parseFloat(b.avg));
+            const recs = generateRecommendations(sorted);
+            document.getElementById('recList').innerHTML = recs.map(r => `
+                <div class="rec-item">
+                    <div class="rec-icon" style="background: ${r.bg};">${r.icon}</div>
+                    <div class="rec-content">
+                        <h4>${r.title}</h4>
+                        <p>${r.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            // Show results, hide assessment
+            document.querySelectorAll('.assessment-section').forEach(s => s.classList.remove('active'));
+            document.getElementById('progressContainer').style.display = 'none';
+            document.getElementById('resultsContainer').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function generateRecommendations(sortedPillars) {
+            const recs = [];
+
+            const recMap = {
+                'teaching': {
+                    icon: '📚', bg: '#eff6ff',
+                    title: 'Strengthen AI in Teaching & Learning',
+                    desc: 'Start with faculty workshops on AI tools, develop course integration guidelines, and explore AI tutoring platforms for students.'
+                },
+                'policy': {
+                    icon: '📋', bg: '#f5f3ff',
+                    title: 'Build AI Governance Foundations',
+                    desc: 'Form an AI task force, draft institutional AI use policies, and integrate AI into your strategic plan.'
+                },
+                'ethics': {
+                    icon: '⚖️', bg: '#ecfdf5',
+                    title: 'Center Ethics & Equity in AI',
+                    desc: 'Develop responsible AI guidelines, conduct bias reviews before deploying tools, and ensure equitable AI access for all students.'
+                },
+                'research': {
+                    icon: '🔬', bg: '#fffbeb',
+                    title: 'Grow Research & Innovation',
+                    desc: 'Join CAHSI or HACU AI initiatives, pursue collaborative grants with partner HSIs, and create student AI research opportunities.'
+                },
+                'infrastructure': {
+                    icon: '🖥️', bg: '#fef2f2',
+                    title: 'Invest in AI Infrastructure',
+                    desc: 'Assess computing needs, explore cloud partnerships for GPU access, and build data governance for AI-ready analytics.'
+                }
+            };
+
+            // Add recs for the two weakest pillars
+            for (let i = 0; i < Math.min(2, sortedPillars.length); i++) {
+                const p = sortedPillars[i];
+                if (recMap[p.id]) recs.push(recMap[p.id]);
+            }
+
+            // Always add collaboration recommendation
+            recs.push({
+                icon: '🤝', bg: '#f0f9ff',
+                title: 'Connect with Peer Institutions',
+                desc: 'Use the Atlas to find institutions at a similar stage or with complementary strengths. Shared learning accelerates everyone\'s AI journey.'
+            });
+
+            return recs;
+        }
+
+        function resetAssessment() {
+            answers = {};
+            currentStep = 0;
+            document.getElementById('resultsContainer').classList.remove('active');
+            document.getElementById('progressContainer').style.display = 'block';
+            renderSections();
+            updateProgress();
+            updateStepIndicators();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Step indicator clicks
+        document.querySelectorAll('.step-indicator').forEach(el => {
+            el.addEventListener('click', () => {
+                const step = parseInt(el.dataset.step);
+                document.getElementById(`section-${currentStep}`).classList.remove('active');
+                currentStep = step;
+                document.getElementById(`section-${currentStep}`).classList.add('active');
+                updateStepIndicators();
+            });
+        });
+
+        // Init
+        renderSections();
+    </script>
+</body>
+</html>

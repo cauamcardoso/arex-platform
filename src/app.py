@@ -54,6 +54,18 @@ def atlas():
     )
 
 
+@app.route("/assessment")
+def assessment():
+    """AI Readiness Self-Assessment tool."""
+    return render_template("assessment.html")
+
+
+@app.route("/toolkit")
+def toolkit():
+    """AI Readiness Toolkit - curated resources for HSIs."""
+    return render_template("toolkit.html")
+
+
 @app.route("/institution/<institution_id>")
 def institution_profile(institution_id):
     """Individual institution profile page."""

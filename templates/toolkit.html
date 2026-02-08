@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Toolkit | AI Readiness Atlas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: rgba(37, 99, 235, 0.08);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--gray-50);
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            border-bottom: 1px solid var(--gray-200);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            height: 64px;
+        }
+
+        .header-brand { display: flex; align-items: center; gap: 1rem; }
+        .header-brand h1 { font-size: 1.25rem; font-weight: 700; color: var(--gray-900); }
+        .header-brand span { font-size: 0.75rem; color: var(--gray-500); background: var(--gray-100); padding: 0.25rem 0.5rem; border-radius: 4px; }
+
+        .header-nav { display: flex; gap: 1.5rem; }
+        .header-nav a { color: var(--gray-600); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+        .header-nav a:hover, .header-nav a.active { color: var(--primary); }
+
+        /* Hero */
+        .hero {
+            margin-top: 64px;
+            background: linear-gradient(135deg, #064e3b 0%, #10b981 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.75rem; }
+        .hero p { font-size: 1.1rem; opacity: 0.9; max-width: 650px; margin: 0 auto; }
+
+        /* Filter Tabs */
+        .filter-bar {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.25rem 2rem;
+            background: white;
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 64px;
+            z-index: 100;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            padding: 0.5rem 1rem;
+            background: var(--gray-100);
+            border: 1px solid var(--gray-200);
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--gray-600);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-tab:hover { background: var(--gray-200); }
+
+        .filter-tab.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Category Section */
+        .category-section {
+            margin-bottom: 3rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .category-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .category-header h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .category-count {
+            font-size: 0.7rem;
+            background: var(--gray-100);
+            color: var(--gray-500);
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            font-weight: 600;
+        }
+
+        /* Resource Cards */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1rem;
+        }
+
+        .resource-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .resource-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            transform: translateY(-2px);
+        }
+
+        .resource-tags {
+            display: flex;
+            gap: 0.375rem;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .resource-tag {
+            font-size: 0.6rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tag-guide { background: #eff6ff; color: #2563eb; }
+        .tag-template { background: #f5f3ff; color: #7c3aed; }
+        .tag-framework { background: #ecfdf5; color: #059669; }
+        .tag-workshop { background: #fffbeb; color: #d97706; }
+        .tag-report { background: #fef2f2; color: #dc2626; }
+        .tag-tool { background: #f0f9ff; color: #0284c7; }
+        .tag-community { background: #fdf4ff; color: #c026d3; }
+
+        .resource-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .resource-desc {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            margin-bottom: 1rem;
+            flex: 1;
+        }
+
+        .resource-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.7rem;
+            color: var(--gray-400);
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--gray-100);
+        }
+
+        .resource-pillar {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .pillar-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .resource-action {
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid var(--gray-200);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .cta-section h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 0.75rem;
+        }
+
+        .cta-section p {
+            font-size: 0.95rem;
+            color: var(--gray-500);
+            max-width: 500px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-dark); }
+        .btn-secondary { background: var(--gray-100); color: var(--gray-600); border: 1px solid var(--gray-200); }
+        .btn-secondary:hover { background: var(--gray-200); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.75rem; }
+            .resource-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-brand">
+            <h1>AI Readiness Atlas</h1>
+            <span>HACU + CAHSI Network</span>
+        </div>
+        <nav class="header-nav">
+            <a href="/">Home</a>
+            <a href="/atlas">Atlas</a>
+            <a href="/toolkit" class="active">Toolkit</a>
+            <a href="/assessment">Assessment</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>AI Readiness Toolkit</h1>
+        <p>Curated resources, frameworks, and guides to help HSIs navigate every stage of their AI integration journey.</p>
+    </section>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+        <div class="filter-tabs" id="filterTabs">
+            <button class="filter-tab active" data-filter="all">All Resources</button>
+            <button class="filter-tab" data-filter="teaching">Teaching & Learning</button>
+            <button class="filter-tab" data-filter="policy">Policy & Governance</button>
+            <button class="filter-tab" data-filter="ethics">Ethics & Equity</button>
+            <button class="filter-tab" data-filter="research">Research & Innovation</button>
+            <button class="filter-tab" data-filter="infrastructure">Infrastructure</button>
+            <button class="filter-tab" data-filter="getting-started">Getting Started</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="resourcesContainer">
+        <!-- Resources rendered by JS -->
+    </div>
+
+    <!-- CTA -->
+    <div class="main-content">
+        <div class="cta-section">
+            <h2>Not sure where to start?</h2>
+            <p>Take the AI Readiness Assessment to identify your institution's strengths and areas for growth, then come back for targeted resources.</p>
+            <div class="cta-buttons">
+                <a href="/assessment" class="btn btn-primary">Take the Assessment</a>
+                <a href="/atlas" class="btn btn-secondary">Explore the Atlas</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const resources = [
+            // GETTING STARTED
+            {
+                title: 'AI Integration Readiness Checklist for HSIs',
+                desc: 'A step-by-step checklist for institutional leaders beginning their AI journey. Covers governance, faculty readiness, infrastructure, and student impact.',
+                tags: ['guide'],
+                pillar: 'getting-started',
+                pillarLabel: 'Getting Started',
+                pillarColor: '#6b7280'
+            },
+            {
+                title: 'Building Your Institution\'s AI Task Force',
+                desc: 'Template for forming a cross-functional AI committee with representation from faculty, IT, students, administration, and community partners.',
+                tags: ['template'],
+                pillar: 'getting-started',
+                pillarLabel: 'Getting Started',
+                pillarColor: '#6b7280'
+            },
+            {
+                title: 'AI Landscape Overview for Higher Education',
+                desc: 'An introduction to current AI technologies, their applications in higher education, and what they mean for Hispanic-Serving Institutions.',
+                tags: ['guide'],
+                pillar: 'getting-started',
+                pillarLabel: 'Getting Started',
+                pillarColor: '#6b7280'
+            },
+
+            // TEACHING & LEARNING
+            {
+                title: 'Faculty Guide to AI in the Classroom',
+                desc: 'Practical guide for faculty on integrating AI tools into teaching, from assignment design to academic integrity. Includes syllabus language templates.',
+                tags: ['guide', 'template'],
+                pillar: 'teaching',
+                pillarLabel: 'Teaching & Learning',
+                pillarColor: '#3b82f6'
+            },
+            {
+                title: 'AI Syllabus Statement Generator',
+                desc: 'Customizable templates for AI use policies in course syllabi. Covers permitted use, citation requirements, and academic integrity expectations.',
+                tags: ['template', 'tool'],
+                pillar: 'teaching',
+                pillarLabel: 'Teaching & Learning',
+                pillarColor: '#3b82f6'
+            },
+            {
+                title: 'Workshop Series: Teaching with AI',
+                desc: 'A 4-session professional development series for faculty covering AI literacy, prompt engineering, AI-assisted grading, and curriculum redesign.',
+                tags: ['workshop'],
+                pillar: 'teaching',
+                pillarLabel: 'Teaching & Learning',
+                pillarColor: '#3b82f6'
+            },
+            {
+                title: 'AI Literacy Across Disciplines Framework',
+                desc: 'Framework for embedding AI literacy into non-CS programs including humanities, social sciences, health sciences, and business.',
+                tags: ['framework'],
+                pillar: 'teaching',
+                pillarLabel: 'Teaching & Learning',
+                pillarColor: '#3b82f6'
+            },
+            {
+                title: 'Student AI Competency Rubric',
+                desc: 'Assessment rubric for evaluating student AI skills from basic awareness through advanced application. Aligned with workforce expectations.',
+                tags: ['template', 'tool'],
+                pillar: 'teaching',
+                pillarLabel: 'Teaching & Learning',
+                pillarColor: '#3b82f6'
+            },
+
+            // POLICY & GOVERNANCE
+            {
+                title: 'Institutional AI Policy Template',
+                desc: 'Comprehensive policy template covering acceptable use, academic integrity, procurement, data governance, and accountability for AI tools.',
+                tags: ['template', 'framework'],
+                pillar: 'policy',
+                pillarLabel: 'Policy & Governance',
+                pillarColor: '#8b5cf6'
+            },
+            {
+                title: 'AI Strategic Planning Guide',
+                desc: 'Step-by-step guide for integrating AI into your institutional strategic plan with goals, metrics, timelines, and budget considerations.',
+                tags: ['guide'],
+                pillar: 'policy',
+                pillarLabel: 'Policy & Governance',
+                pillarColor: '#8b5cf6'
+            },
+            {
+                title: 'AI Vendor Evaluation Framework',
+                desc: 'Checklist for evaluating AI tool vendors on bias, accessibility, privacy, cost, and alignment with institutional values and student demographics.',
+                tags: ['framework', 'tool'],
+                pillar: 'policy',
+                pillarLabel: 'Policy & Governance',
+                pillarColor: '#8b5cf6'
+            },
+            {
+                title: 'AI Governance Committee Charter Template',
+                desc: 'Template for establishing an AI governance committee including membership, scope, decision-making authority, and reporting structure.',
+                tags: ['template'],
+                pillar: 'policy',
+                pillarLabel: 'Policy & Governance',
+                pillarColor: '#8b5cf6'
+            },
+
+            // ETHICS & EQUITY
+            {
+                title: 'Responsible AI Framework for HSIs',
+                desc: 'An equity-centered framework for responsible AI adoption that centers the experiences and needs of Hispanic and underserved student populations.',
+                tags: ['framework'],
+                pillar: 'ethics',
+                pillarLabel: 'Ethics & Equity',
+                pillarColor: '#10b981'
+            },
+            {
+                title: 'AI Bias Audit Toolkit',
+                desc: 'Step-by-step process for auditing AI tools for bias before deployment. Includes data collection templates, evaluation criteria, and reporting formats.',
+                tags: ['tool', 'template'],
+                pillar: 'ethics',
+                pillarLabel: 'Ethics & Equity',
+                pillarColor: '#10b981'
+            },
+            {
+                title: 'Equitable AI Access Playbook',
+                desc: 'Strategies for ensuring all students can benefit from AI regardless of socioeconomic status, language background, or disability. Includes device lending and connectivity programs.',
+                tags: ['guide'],
+                pillar: 'ethics',
+                pillarLabel: 'Ethics & Equity',
+                pillarColor: '#10b981'
+            },
+            {
+                title: 'AI Transparency & Consent Guidelines',
+                desc: 'Templates for disclosing AI use to students, obtaining consent for AI-powered analytics, and maintaining transparency in automated decision-making.',
+                tags: ['template', 'guide'],
+                pillar: 'ethics',
+                pillarLabel: 'Ethics & Equity',
+                pillarColor: '#10b981'
+            },
+
+            // RESEARCH & INNOVATION
+            {
+                title: 'HSI AI Research Collaboration Playbook',
+                desc: 'Guide for building multi-institutional AI research partnerships among HSIs. Covers grant writing, shared infrastructure, student exchanges, and co-PI arrangements.',
+                tags: ['guide', 'community'],
+                pillar: 'research',
+                pillarLabel: 'Research & Innovation',
+                pillarColor: '#f59e0b'
+            },
+            {
+                title: 'Undergraduate AI Research Program Template',
+                desc: 'Blueprint for creating undergraduate AI research experiences including mentorship models, project structures, and pathways to graduate school.',
+                tags: ['template'],
+                pillar: 'research',
+                pillarLabel: 'Research & Innovation',
+                pillarColor: '#f59e0b'
+            },
+            {
+                title: 'Community-Engaged AI Research Guide',
+                desc: 'Framework for conducting AI research that addresses local community needs. Includes community partnership models, ethical considerations, and impact metrics.',
+                tags: ['framework', 'guide'],
+                pillar: 'research',
+                pillarLabel: 'Research & Innovation',
+                pillarColor: '#f59e0b'
+            },
+            {
+                title: 'AI Grant Funding Opportunities Directory',
+                desc: 'Curated list of NSF, NIH, DOE, and private foundation funding opportunities for AI research at HSIs, including HSI-specific programs.',
+                tags: ['guide', 'tool'],
+                pillar: 'research',
+                pillarLabel: 'Research & Innovation',
+                pillarColor: '#f59e0b'
+            },
+
+            // INFRASTRUCTURE
+            {
+                title: 'AI Infrastructure Assessment Guide',
+                desc: 'Evaluate your institution\'s computing, data, and human resource readiness for AI. Includes gap analysis templates and prioritization framework.',
+                tags: ['guide', 'tool'],
+                pillar: 'infrastructure',
+                pillarLabel: 'Infrastructure',
+                pillarColor: '#ef4444'
+            },
+            {
+                title: 'Cloud Computing for HSIs: Getting Started',
+                desc: 'Guide to leveraging cloud platforms (AWS, Azure, GCP) for AI workloads, including education credits, architecture patterns, and cost management.',
+                tags: ['guide'],
+                pillar: 'infrastructure',
+                pillarLabel: 'Infrastructure',
+                pillarColor: '#ef4444'
+            },
+            {
+                title: 'Data Governance Framework for AI',
+                desc: 'Framework for establishing data governance that enables AI while protecting student privacy. Covers FERPA compliance, data quality, and access management.',
+                tags: ['framework'],
+                pillar: 'infrastructure',
+                pillarLabel: 'Infrastructure',
+                pillarColor: '#ef4444'
+            },
+            {
+                title: 'Building an AI-Ready IT Team',
+                desc: 'Hiring guides, training plans, and organizational structures for developing in-house AI/ML capabilities within your IT department.',
+                tags: ['guide', 'template'],
+                pillar: 'infrastructure',
+                pillarLabel: 'Infrastructure',
+                pillarColor: '#ef4444'
+            }
+        ];
+
+        const tagClasses = {
+            'guide': 'tag-guide',
+            'template': 'tag-template',
+            'framework': 'tag-framework',
+            'workshop': 'tag-workshop',
+            'report': 'tag-report',
+            'tool': 'tag-tool',
+            'community': 'tag-community'
+        };
+
+        let currentFilter = 'all';
+
+        function renderResources() {
+            const container = document.getElementById('resourcesContainer');
+            const filtered = currentFilter === 'all'
+                ? resources
+                : resources.filter(r => r.pillar === currentFilter);
+
+            // Group by pillar
+            const groups = {};
+            filtered.forEach(r => {
+                if (!groups[r.pillar]) {
+                    groups[r.pillar] = {
+                        label: r.pillarLabel,
+                        color: r.pillarColor,
+                        items: []
+                    };
+                }
+                groups[r.pillar].items.push(r);
+            });
+
+            const pillarOrder = ['getting-started', 'teaching', 'policy', 'ethics', 'research', 'infrastructure'];
+
+            let html = '';
+            pillarOrder.forEach(key => {
+                const group = groups[key];
+                if (!group) return;
+
+                const icons = {
+                    'getting-started': '🚀',
+                    'teaching': '📚',
+                    'policy': '📋',
+                    'ethics': '⚖️',
+                    'research': '🔬',
+                    'infrastructure': '🖥️'
+                };
+
+                html += `
+                    <div class="category-section">
+                        <div class="category-header">
+                            <div class="category-icon" style="background: ${group.color}15; color: ${group.color};">${icons[key] || '📦'}</div>
+                            <h2>${group.label}</h2>
+                            <span class="category-count">${group.items.length} resources</span>
+                        </div>
+                        <div class="resource-grid">
+                            ${group.items.map(r => `
+                                <div class="resource-card">
+                                    <div class="resource-tags">
+                                        ${r.tags.map(t => `<span class="resource-tag ${tagClasses[t] || ''}">${t}</span>`).join('')}
+                                    </div>
+                                    <div class="resource-title">${r.title}</div>
+                                    <div class="resource-desc">${r.desc}</div>
+                                    <div class="resource-meta">
+                                        <div class="resource-pillar">
+                                            <div class="pillar-dot" style="background: ${r.pillarColor};"></div>
+                                            <span>${r.pillarLabel}</span>
+                                        </div>
+                                        <span class="resource-action">Coming Soon</span>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // Filter tabs
+        document.getElementById('filterTabs').addEventListener('click', (e) => {
+            if (e.target.classList.contains('filter-tab')) {
+                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                e.target.classList.add('active');
+                currentFilter = e.target.dataset.filter;
+                renderResources();
+            }
+        });
+
+        // Init
+        renderResources();
+    </script>
+</body>
+</html>
