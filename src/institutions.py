@@ -280,16 +280,17 @@ class InstitutionsDatabase:
         scored_peers.sort(key=lambda x: x[0], reverse=True)
         return [inst for score, inst in scored_peers[:limit]]
 
-    def get_leaders_by_category(self, category: str, limit: int = 5) -> List[Dict]:
+    def get_spotlight_by_category(self, category: str, limit: int = 5) -> List[Dict]:
         """
-        Get top institutions for a specific readiness category.
+        Get spotlight institutions for a specific readiness category.
+        Highlights institutions with strong practices others can learn from.
 
         Args:
             category: One of 'overall', 'teaching', 'policy', 'ethics', 'research', 'infrastructure'
-            limit: Number of leaders to return
+            limit: Number of spotlight institutions to return
 
         Returns:
-            List of top institutions for that category
+            List of spotlight institutions for that category
         """
         if category == 'overall':
             score_key = 'overall_score'
@@ -352,9 +353,9 @@ if __name__ == "__main__":
     print(f"CAHSI members: {len(cahsi)}")
 
     # Test readiness filter
-    leaders = db.filter(min_readiness=5)
-    print(f"Institutions with readiness score 5: {len(leaders)}")
-    for inst in leaders[:3]:
+    trailblazers = db.filter(min_readiness=5)
+    print(f"Institutions with readiness score 5: {len(trailblazers)}")
+    for inst in trailblazers[:3]:
         print(f"  - {inst['name']}")
 
     # Test peer finding

@@ -171,10 +171,11 @@ def get_institutions_stats():
     return jsonify(stats)
 
 
-@app.route("/api/institutions/leaders", methods=["GET"])
-def get_institutions_leaders():
+@app.route("/api/institutions/spotlight", methods=["GET"])
+def get_institutions_spotlight():
     """
-    Get top institutions by readiness category.
+    Get spotlight institutions by readiness category.
+    Highlights institutions with strong practices that others can learn from and collaborate with.
 
     Query params:
         category: One of 'overall', 'teaching', 'policy', 'ethics', 'research', 'infrastructure'
@@ -187,12 +188,12 @@ def get_institutions_leaders():
     if category not in valid_categories:
         return jsonify({"error": f"Invalid category. Must be one of: {valid_categories}"}), 400
 
-    leaders = institutions_db.get_leaders_by_category(category, limit=limit)
+    spotlight = institutions_db.get_spotlight_by_category(category, limit=limit)
 
     return jsonify({
         "category": category,
-        "leaders": leaders,
-        "count": len(leaders)
+        "spotlight": spotlight,
+        "count": len(spotlight)
     })
 
 

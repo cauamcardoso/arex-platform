@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ institution.short_name or institution.name }} | AI Readiness Atlas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: rgba(37, 99, 235, 0.08);
+            --secondary: #f97316;
+            --success: #10b981;
+            --success-light: rgba(16, 185, 129, 0.1);
+            --warning: #f59e0b;
+            --warning-light: rgba(245, 158, 11, 0.1);
+            --danger: #ef4444;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--gray-50);
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            border-bottom: 1px solid var(--gray-200);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            height: 64px;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header-brand h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .header-brand span {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            background: var(--gray-100);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .header-nav a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .header-nav a:hover { color: var(--primary); }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 64px;
+            background: white;
+            border-bottom: 1px solid var(--gray-200);
+            padding: 3rem 2rem 2rem;
+        }
+
+        .hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover { text-decoration: underline; }
+
+        .hero-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+        }
+
+        .hero-info { flex: 1; }
+
+        .hero-info h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-location {
+            font-size: 1rem;
+            color: var(--gray-500);
+            margin-bottom: 1rem;
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.25rem;
+        }
+
+        .badge {
+            font-size: 0.7rem;
+            padding: 0.3rem 0.75rem;
+            border-radius: 999px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-hsi {
+            background: var(--success-light);
+            color: var(--success);
+        }
+
+        .badge-cahsi {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .badge-type {
+            background: var(--gray-100);
+            color: var(--gray-600);
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        .hero-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+
+        .hero-meta-value {
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .hero-score {
+            text-align: center;
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            min-width: 160px;
+        }
+
+        .hero-score-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gray-500);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .hero-score-value {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 0.25rem;
+        }
+
+        .hero-score-max {
+            font-size: 0.875rem;
+            color: var(--gray-400);
+        }
+
+        .score-5 { color: #10b981; }
+        .score-4 { color: #34d399; }
+        .score-3 { color: #f59e0b; }
+        .score-2 { color: #fb923c; }
+        .score-1 { color: #f87171; }
+
+        .hero-journey-label {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 2rem;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-title-icon {
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+        }
+
+        /* Readiness Pillars */
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+        }
+
+        .pillar {
+            text-align: center;
+            padding: 1.25rem 0.75rem;
+            background: var(--gray-50);
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .pillar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .pillar-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+
+        .pillar-score {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 0.125rem;
+        }
+
+        .pillar-max {
+            font-size: 0.7rem;
+            color: var(--gray-400);
+            margin-bottom: 0.5rem;
+        }
+
+        .pillar-name {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--gray-600);
+        }
+
+        /* Progress Bar */
+        .pillar-bar {
+            width: 100%;
+            height: 6px;
+            background: var(--gray-200);
+            border-radius: 3px;
+            margin-top: 0.75rem;
+            overflow: hidden;
+        }
+
+        .pillar-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.6s ease;
+        }
+
+        /* Initiatives List */
+        .initiative-list {
+            list-style: none;
+        }
+
+        .initiative-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .initiative-item:last-child { border-bottom: none; }
+
+        .initiative-bullet {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary);
+            flex-shrink: 0;
+            margin-top: 0.5rem;
+        }
+
+        .initiative-text {
+            font-size: 0.875rem;
+            color: var(--gray-700);
+        }
+
+        /* Peer Institutions */
+        .peer-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--gray-50);
+            border-radius: 10px;
+            margin-bottom: 0.75rem;
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .peer-card:hover {
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .peer-score {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .peer-info { flex: 1; min-width: 0; }
+
+        .peer-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .peer-location {
+            font-size: 0.7rem;
+            color: var(--gray-500);
+        }
+
+        .peer-connect {
+            font-size: 0.65rem;
+            color: var(--primary);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        /* Mini Map */
+        .mini-map {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        /* Notes */
+        .notes-text {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* Visit Website Button */
+        .visit-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1.25rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .visit-btn:hover { background: var(--primary-dark); }
+
+        /* Back Link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .back-link:hover { text-decoration: underline; }
+
+        /* Collaboration CTA */
+        .collab-cta {
+            background: linear-gradient(135deg, #eff6ff, #f0fdf4);
+            border: 1px solid #bfdbfe;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .collab-cta h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 0.5rem;
+        }
+
+        .collab-cta p {
+            font-size: 0.8rem;
+            color: var(--gray-600);
+            margin-bottom: 1rem;
+        }
+
+        .collab-cta a {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .collab-cta a:hover { background: var(--primary-dark); }
+
+        /* Quick Facts */
+        .quick-facts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .fact {
+            background: var(--gray-50);
+            border-radius: 8px;
+            padding: 0.875rem;
+        }
+
+        .fact-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--gray-500);
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .fact-value {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            .pillar-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-top { flex-direction: column; }
+            .pillar-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-info h1 { font-size: 1.5rem; }
+            .quick-facts { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-brand">
+            <h1>AI Readiness Atlas</h1>
+            <span>HACU + CAHSI Network</span>
+        </div>
+        <nav class="header-nav">
+            <a href="/">Home</a>
+            <a href="/atlas">Atlas</a>
+            <a href="#">Toolkit</a>
+            <a href="#">Assessment</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="breadcrumb">
+                <a href="/atlas">Atlas</a>
+                <span>/</span>
+                <span>{{ institution.short_name or institution.name }}</span>
+            </div>
+
+            <div class="hero-top">
+                <div class="hero-info">
+                    <h1>{{ institution.name }}</h1>
+                    <div class="hero-location">{{ institution.city }}, {{ institution.state }} &middot; {{ institution.region }}</div>
+
+                    <div class="hero-badges">
+                        {% if institution.is_hsi %}
+                        <span class="badge badge-hsi">Hispanic-Serving Institution</span>
+                        {% endif %}
+                        {% if institution.is_cahsi_member %}
+                        <span class="badge badge-cahsi">CAHSI Member{% if institution.cahsi_role %} &middot; {{ institution.cahsi_role | replace('_', ' ') | title }}{% endif %}</span>
+                        {% endif %}
+                        <span class="badge badge-type">{{ institution.type | replace('_', ' ') | title }}</span>
+                    </div>
+
+                    <div class="hero-meta">
+                        <div class="hero-meta-item">
+                            <span>Enrollment:</span>
+                            <span class="hero-meta-value">{{ "{:,}".format(institution.total_enrollment) }}</span>
+                        </div>
+                        <div class="hero-meta-item">
+                            <span>Hispanic:</span>
+                            <span class="hero-meta-value">{{ institution.hispanic_enrollment_pct }}%</span>
+                        </div>
+                        {% if institution.carnegie_classification %}
+                        <div class="hero-meta-item">
+                            <span class="hero-meta-value">{{ institution.carnegie_classification.split(':')[0] }}</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="hero-score">
+                    <div class="hero-score-label">AI Readiness</div>
+                    <div class="hero-score-value score-{{ institution.ai_readiness.overall_score }}">
+                        {{ institution.ai_readiness.overall_score }}
+                    </div>
+                    <div class="hero-score-max">out of 5</div>
+                    <div class="hero-journey-label">
+                        {% if institution.ai_readiness.overall_score == 5 %}Trailblazer
+                        {% elif institution.ai_readiness.overall_score == 4 %}Innovating
+                        {% elif institution.ai_readiness.overall_score == 3 %}Building
+                        {% elif institution.ai_readiness.overall_score == 2 %}Exploring
+                        {% else %}Preparing{% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Left Column -->
+        <div class="content-left">
+            <!-- Readiness Pillars -->
+            <div class="card">
+                <div class="card-title">AI Readiness Across 5 Pillars</div>
+                <div class="pillar-grid">
+                    {% set pillars = [
+                        ('Teaching & Learning', institution.ai_readiness.teaching_score, '#3b82f6', 'teaching'),
+                        ('Policy & Governance', institution.ai_readiness.policy_score, '#8b5cf6', 'policy'),
+                        ('Ethics & Equity', institution.ai_readiness.ethics_score, '#10b981', 'ethics'),
+                        ('Research & Innovation', institution.ai_readiness.research_score, '#f59e0b', 'research'),
+                        ('Infrastructure', institution.ai_readiness.infrastructure_score, '#ef4444', 'infrastructure')
+                    ] %}
+                    {% for name, score, color, key in pillars %}
+                    <div class="pillar">
+                        <div class="pillar-score" style="color: {{ color }}">{{ score }}</div>
+                        <div class="pillar-max">/ 5</div>
+                        <div class="pillar-name">{{ name }}</div>
+                        <div class="pillar-bar">
+                            <div class="pillar-bar-fill" style="width: {{ score * 20 }}%; background: {{ color }};"></div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Notes / About -->
+            {% if institution.ai_readiness.notes %}
+            <div class="card">
+                <div class="card-title">About This Institution's AI Journey</div>
+                <p class="notes-text">"{{ institution.ai_readiness.notes }}"</p>
+            </div>
+            {% endif %}
+
+            <!-- Initiatives -->
+            {% if institution.initiatives %}
+            <div class="card">
+                <div class="card-title">Active AI Initiatives</div>
+                <ul class="initiative-list">
+                    {% for initiative in institution.initiatives %}
+                    <li class="initiative-item">
+                        <div class="initiative-bullet"></div>
+                        <span class="initiative-text">{{ initiative }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            <!-- Peer Institutions / Collaboration Partners -->
+            {% if peers %}
+            <div class="card">
+                <div class="card-title">Collaboration Partners</div>
+                <p style="font-size: 0.8rem; color: var(--gray-500); margin-bottom: 1rem;">
+                    Institutions with similar profiles — great partners for shared learning and joint initiatives.
+                </p>
+                {% for peer in peers %}
+                <a href="/institution/{{ peer.id }}" class="peer-card">
+                    <div class="peer-score" style="background: {% if peer.ai_readiness.overall_score >= 4 %}#10b981{% elif peer.ai_readiness.overall_score >= 3 %}#f59e0b{% else %}#fb923c{% endif %}">
+                        {{ peer.ai_readiness.overall_score }}
+                    </div>
+                    <div class="peer-info">
+                        <div class="peer-name">{{ peer.short_name or peer.name }}</div>
+                        <div class="peer-location">{{ peer.city }}, {{ peer.state }}</div>
+                    </div>
+                    <div class="peer-connect">View Profile &rarr;</div>
+                </a>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Right Column (Sidebar) -->
+        <div class="content-right">
+            <!-- Collaboration CTA -->
+            <div class="collab-cta">
+                <h3>Connect & Collaborate</h3>
+                <p>Interested in partnering with {{ institution.short_name or institution.name }} on AI initiatives? Explore the network to find shared goals.</p>
+                <a href="/atlas">Explore the Network</a>
+            </div>
+
+            <!-- Quick Facts -->
+            <div class="card">
+                <div class="card-title">Quick Facts</div>
+                <div class="quick-facts">
+                    <div class="fact">
+                        <div class="fact-label">Total Enrollment</div>
+                        <div class="fact-value">{{ "{:,}".format(institution.total_enrollment) }}</div>
+                    </div>
+                    <div class="fact">
+                        <div class="fact-label">Hispanic Enrollment</div>
+                        <div class="fact-value">{{ institution.hispanic_enrollment_pct }}%</div>
+                    </div>
+                    <div class="fact">
+                        <div class="fact-label">State</div>
+                        <div class="fact-value">{{ institution.state }}</div>
+                    </div>
+                    <div class="fact">
+                        <div class="fact-label">Region</div>
+                        <div class="fact-value">{{ institution.region }}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mini Map -->
+            <div class="card">
+                <div class="card-title">Location</div>
+                <div class="mini-map" id="miniMap"></div>
+                {% if institution.website %}
+                <a href="{{ institution.website }}" target="_blank" rel="noopener noreferrer" class="visit-btn">
+                    Visit Website &rarr;
+                </a>
+                {% endif %}
+            </div>
+
+            <!-- Back to Atlas -->
+            <a href="/atlas" class="back-link">&larr; Back to Atlas</a>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Mini map for institution location
+        const lat = {{ institution.lat }};
+        const lng = {{ institution.lng }};
+        const score = {{ institution.ai_readiness.overall_score }};
+
+        const miniMap = L.map('miniMap', {
+            zoomControl: false,
+            attributionControl: false,
+            dragging: false,
+            scrollWheelZoom: false
+        }).setView([lat, lng], 12);
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            subdomains: 'abcd',
+            maxZoom: 19
+        }).addTo(miniMap);
+
+        const colors = { 5: '#10b981', 4: '#34d399', 3: '#fbbf24', 2: '#fb923c', 1: '#f87171' };
+        const markerColor = colors[score] || '#9ca3af';
+
+        const icon = L.divIcon({
+            html: `<div style="
+                width: 20px; height: 20px; border-radius: 50%;
+                background: ${markerColor}; border: 3px solid white;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            "></div>`,
+            className: '',
+            iconSize: [20, 20],
+            iconAnchor: [10, 10]
+        });
+
+        L.marker([lat, lng], { icon }).addTo(miniMap);
+    </script>
+</body>
+</html>
