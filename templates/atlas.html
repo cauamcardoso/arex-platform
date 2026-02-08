@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Readiness Atlas | HSI Network</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #f97316;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--gray-100);
+            color: var(--gray-800);
+            line-height: 1.5;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            border-bottom: 1px solid var(--gray-200);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 64px;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header-brand h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .header-brand span {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            background: var(--gray-100);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .header-nav a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .header-nav a:hover,
+        .header-nav a.active {
+            color: var(--primary);
+        }
+
+        /* Main Layout */
+        .main-container {
+            display: flex;
+            margin-top: 64px;
+            height: calc(100vh - 64px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 380px;
+            background: white;
+            border-right: 1px solid var(--gray-200);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-header p {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            padding: 1rem 1.5rem;
+            background: var(--gray-50);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 0.75rem 0.5rem;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid var(--gray-200);
+        }
+
+        .stat-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.625rem;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0.25rem;
+        }
+
+        /* Filters */
+        .filters {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .filter-group {
+            margin-bottom: 1rem;
+        }
+
+        .filter-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .filter-select {
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 6px;
+            font-size: 0.875rem;
+            color: var(--gray-700);
+            background: white;
+            cursor: pointer;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .filter-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .filter-chip {
+            padding: 0.375rem 0.75rem;
+            background: var(--gray-100);
+            border: 1px solid var(--gray-200);
+            border-radius: 999px;
+            font-size: 0.75rem;
+            color: var(--gray-600);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-chip:hover {
+            background: var(--gray-200);
+        }
+
+        .filter-chip.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        /* Institution List */
+        .institution-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0.5rem;
+        }
+
+        .institution-card {
+            padding: 1rem;
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .institution-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .institution-card.selected {
+            border-color: var(--primary);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .institution-name {
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: var(--gray-900);
+            margin-bottom: 0.25rem;
+        }
+
+        .institution-location {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            margin-bottom: 0.5rem;
+        }
+
+        .institution-badges {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            font-size: 0.625rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-hsi {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+
+        .badge-cahsi {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+        }
+
+        .badge-readiness {
+            background: var(--gray-100);
+            color: var(--gray-600);
+        }
+
+        .readiness-score {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            margin-top: 0.5rem;
+        }
+
+        .readiness-dots {
+            display: flex;
+            gap: 3px;
+        }
+
+        .readiness-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gray-200);
+        }
+
+        .readiness-dot.filled {
+            background: var(--primary);
+        }
+
+        .readiness-dot.filled.high {
+            background: var(--success);
+        }
+
+        .readiness-dot.filled.medium {
+            background: var(--warning);
+        }
+
+        .readiness-dot.filled.low {
+            background: var(--danger);
+        }
+
+        .readiness-label {
+            font-size: 0.625rem;
+            color: var(--gray-500);
+            margin-left: 0.25rem;
+        }
+
+        /* Map Container */
+        .map-container {
+            flex: 1;
+            position: relative;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Map Legend */
+        .map-legend {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+            z-index: 500;
+            font-size: 0.75rem;
+        }
+
+        .map-legend h4 {
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--gray-700);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .legend-dot.level-5 { background: #10b981; }
+        .legend-dot.level-4 { background: #34d399; }
+        .legend-dot.level-3 { background: #fbbf24; }
+        .legend-dot.level-2 { background: #fb923c; }
+        .legend-dot.level-1 { background: #f87171; }
+
+        /* Custom Markers */
+        .custom-marker {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .custom-marker:hover {
+            transform: scale(1.2);
+        }
+
+        .custom-marker.level-5 { background: #10b981; }
+        .custom-marker.level-4 { background: #34d399; }
+        .custom-marker.level-3 { background: #fbbf24; }
+        .custom-marker.level-2 { background: #fb923c; }
+        .custom-marker.level-1 { background: #f87171; }
+
+        .custom-marker.cahsi {
+            border-color: var(--primary);
+        }
+
+        /* Popup Styles */
+        .leaflet-popup-content-wrapper {
+            border-radius: 8px;
+            padding: 0;
+        }
+
+        .leaflet-popup-content {
+            margin: 0;
+            min-width: 250px;
+        }
+
+        .popup-content {
+            padding: 1rem;
+        }
+
+        .popup-content h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .popup-content .location {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+            margin-bottom: 0.75rem;
+        }
+
+        .popup-content .badges {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .popup-content .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .popup-content .stat {
+            background: var(--gray-50);
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+
+        .popup-content .stat-label {
+            color: var(--gray-500);
+            margin-bottom: 0.125rem;
+        }
+
+        .popup-content .stat-value {
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .popup-content .view-btn {
+            display: block;
+            width: 100%;
+            padding: 0.5rem;
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .popup-content .view-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Search */
+        .search-box {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.625rem 1rem;
+            padding-left: 2.5rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 8px;
+            font-size: 0.875rem;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: 0.75rem center;
+            background-size: 1rem;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        /* Results count */
+        .results-count {
+            padding: 0.75rem 1.5rem;
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            border-bottom: 1px solid var(--gray-200);
+            background: var(--gray-50);
+        }
+
+        /* Loading state */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            color: var(--gray-500);
+        }
+
+        .loading-spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid var(--gray-200);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 320px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: 50%;
+            }
+
+            .map-container {
+                height: 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-brand">
+            <h1>AI Readiness Atlas</h1>
+            <span>HACU + CAHSI Network</span>
+        </div>
+        <nav class="header-nav">
+            <a href="/">Home</a>
+            <a href="/atlas" class="active">Atlas</a>
+            <a href="#">Toolkit</a>
+            <a href="#">Assessment</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Explore Institutions</h2>
+                <p>Navigate AI readiness across Hispanic-Serving Institutions</p>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">{{ total_institutions }}</div>
+                    <div class="stat-label">Institutions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{ states_count }}</div>
+                    <div class="stat-label">States</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{ avg_readiness }}/5</div>
+                    <div class="stat-label">Avg Score</div>
+                </div>
+            </div>
+
+            <!-- Search -->
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Search institutions..." id="searchInput">
+            </div>
+
+            <!-- Filters -->
+            <div class="filters">
+                <div class="filter-group">
+                    <label class="filter-label">State</label>
+                    <select class="filter-select" id="stateFilter">
+                        <option value="">All States</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Readiness Level</label>
+                    <div class="filter-chips" id="readinessFilter">
+                        <button class="filter-chip active" data-value="">All</button>
+                        <button class="filter-chip" data-value="5">Leaders (5)</button>
+                        <button class="filter-chip" data-value="4">Advanced (4)</button>
+                        <button class="filter-chip" data-value="3">Developing (3)</button>
+                        <button class="filter-chip" data-value="2">Emerging (2)</button>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Membership</label>
+                    <div class="filter-chips" id="membershipFilter">
+                        <button class="filter-chip active" data-value="">All</button>
+                        <button class="filter-chip" data-value="cahsi">CAHSI Members</button>
+                        <button class="filter-chip" data-value="hsi">All HSIs</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Count -->
+            <div class="results-count" id="resultsCount">
+                Loading institutions...
+            </div>
+
+            <!-- Institution List -->
+            <div class="institution-list" id="institutionList">
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    Loading...
+                </div>
+            </div>
+        </aside>
+
+        <!-- Map -->
+        <div class="map-container">
+            <div id="map"></div>
+
+            <!-- Legend -->
+            <div class="map-legend">
+                <h4>AI Readiness Level</h4>
+                <div class="legend-item">
+                    <div class="legend-dot level-5"></div>
+                    <span>Level 5 - Leaders</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot level-4"></div>
+                    <span>Level 4 - Advanced</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot level-3"></div>
+                    <span>Level 3 - Developing</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot level-2"></div>
+                    <span>Level 2 - Emerging</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot level-1"></div>
+                    <span>Level 1 - Beginning</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        // State data
+        let allInstitutions = [];
+        let filteredInstitutions = [];
+        let markers = {};
+        let map;
+
+        // Initialize map
+        function initMap() {
+            map = L.map('map').setView([39.8283, -98.5795], 4);
+
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                subdomains: 'abcd',
+                maxZoom: 19
+            }).addTo(map);
+        }
+
+        // Get marker color based on readiness score
+        function getMarkerColor(score) {
+            const colors = {
+                5: '#10b981',
+                4: '#34d399',
+                3: '#fbbf24',
+                2: '#fb923c',
+                1: '#f87171'
+            };
+            return colors[score] || '#9ca3af';
+        }
+
+        // Create custom marker
+        function createMarker(institution) {
+            const color = getMarkerColor(institution.overall_score);
+            const isCahsi = institution.is_cahsi_member;
+
+            const markerHtml = `
+                <div class="custom-marker level-${institution.overall_score} ${isCahsi ? 'cahsi' : ''}"
+                     style="background: ${color};">
+                </div>
+            `;
+
+            const icon = L.divIcon({
+                html: markerHtml,
+                className: 'custom-marker-container',
+                iconSize: [24, 24],
+                iconAnchor: [12, 12]
+            });
+
+            const marker = L.marker([institution.lat, institution.lng], { icon: icon });
+
+            // Popup content
+            const popupContent = `
+                <div class="popup-content">
+                    <h3>${institution.name}</h3>
+                    <div class="location">${institution.city}, ${institution.state}</div>
+                    <div class="badges">
+                        ${institution.is_hsi ? '<span class="badge badge-hsi">HSI</span>' : ''}
+                        ${institution.is_cahsi_member ? '<span class="badge badge-cahsi">CAHSI</span>' : ''}
+                    </div>
+                    <div class="stats">
+                        <div class="stat">
+                            <div class="stat-label">Readiness</div>
+                            <div class="stat-value">${institution.overall_score}/5</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-label">Hispanic %</div>
+                            <div class="stat-value">${institution.hispanic_enrollment_pct}%</div>
+                        </div>
+                    </div>
+                    <a href="/institution/${institution.id}" class="view-btn">View Profile</a>
+                </div>
+            `;
+
+            marker.bindPopup(popupContent);
+
+            return marker;
+        }
+
+        // Load institutions from API
+        async function loadInstitutions() {
+            try {
+                const response = await fetch('/api/institutions/map');
+                const data = await response.json();
+                allInstitutions = data.institutions;
+                filteredInstitutions = [...allInstitutions];
+
+                // Add markers to map
+                updateMap();
+
+                // Populate state filter
+                populateStateFilter();
+
+                // Render list
+                renderInstitutionList();
+
+            } catch (error) {
+                console.error('Error loading institutions:', error);
+            }
+        }
+
+        // Populate state filter dropdown
+        async function populateStateFilter() {
+            try {
+                const response = await fetch('/api/institutions/states');
+                const data = await response.json();
+
+                const select = document.getElementById('stateFilter');
+                data.states.forEach(state => {
+                    const option = document.createElement('option');
+                    option.value = state.code;
+                    option.textContent = `${state.name} (${state.count})`;
+                    select.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Error loading states:', error);
+            }
+        }
+
+        // Update map markers
+        function updateMap() {
+            // Clear existing markers
+            Object.values(markers).forEach(marker => map.removeLayer(marker));
+            markers = {};
+
+            // Add new markers
+            filteredInstitutions.forEach(inst => {
+                if (inst.lat && inst.lng) {
+                    const marker = createMarker(inst);
+                    marker.addTo(map);
+                    markers[inst.id] = marker;
+                }
+            });
+
+            // Fit bounds if we have markers
+            if (filteredInstitutions.length > 0) {
+                const bounds = L.latLngBounds(
+                    filteredInstitutions
+                        .filter(i => i.lat && i.lng)
+                        .map(i => [i.lat, i.lng])
+                );
+                map.fitBounds(bounds, { padding: [50, 50] });
+            }
+        }
+
+        // Render institution list
+        function renderInstitutionList() {
+            const list = document.getElementById('institutionList');
+            const count = document.getElementById('resultsCount');
+
+            count.textContent = `Showing ${filteredInstitutions.length} of ${allInstitutions.length} institutions`;
+
+            if (filteredInstitutions.length === 0) {
+                list.innerHTML = '<div class="loading">No institutions match your filters</div>';
+                return;
+            }
+
+            list.innerHTML = filteredInstitutions.map(inst => `
+                <div class="institution-card" data-id="${inst.id}" onclick="selectInstitution('${inst.id}')">
+                    <div class="institution-name">${inst.short_name || inst.name}</div>
+                    <div class="institution-location">${inst.city}, ${inst.state}</div>
+                    <div class="institution-badges">
+                        ${inst.is_hsi ? '<span class="badge badge-hsi">HSI</span>' : ''}
+                        ${inst.is_cahsi_member ? '<span class="badge badge-cahsi">CAHSI</span>' : ''}
+                        <span class="badge badge-readiness">${inst.type.replace(/_/g, ' ')}</span>
+                    </div>
+                    <div class="readiness-score">
+                        <div class="readiness-dots">
+                            ${[1,2,3,4,5].map(i => `
+                                <div class="readiness-dot ${i <= inst.overall_score ? 'filled' : ''} ${inst.overall_score >= 4 ? 'high' : inst.overall_score >= 3 ? 'medium' : 'low'}"></div>
+                            `).join('')}
+                        </div>
+                        <span class="readiness-label">Readiness: ${inst.overall_score}/5</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Select institution
+        function selectInstitution(id) {
+            // Update card selection
+            document.querySelectorAll('.institution-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.querySelector(`.institution-card[data-id="${id}"]`)?.classList.add('selected');
+
+            // Open popup on map
+            if (markers[id]) {
+                map.setView(markers[id].getLatLng(), 8);
+                markers[id].openPopup();
+            }
+        }
+
+        // Filter functions
+        function applyFilters() {
+            const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+            const stateFilter = document.getElementById('stateFilter').value;
+            const readinessFilter = document.querySelector('#readinessFilter .filter-chip.active')?.dataset.value;
+            const membershipFilter = document.querySelector('#membershipFilter .filter-chip.active')?.dataset.value;
+
+            filteredInstitutions = allInstitutions.filter(inst => {
+                // Search filter
+                if (searchQuery) {
+                    const searchable = `${inst.name} ${inst.short_name} ${inst.city} ${inst.state}`.toLowerCase();
+                    if (!searchable.includes(searchQuery)) return false;
+                }
+
+                // State filter
+                if (stateFilter && inst.state !== stateFilter) return false;
+
+                // Readiness filter
+                if (readinessFilter && inst.overall_score != readinessFilter) return false;
+
+                // Membership filter
+                if (membershipFilter === 'cahsi' && !inst.is_cahsi_member) return false;
+                if (membershipFilter === 'hsi' && !inst.is_hsi) return false;
+
+                return true;
+            });
+
+            updateMap();
+            renderInstitutionList();
+        }
+
+        // Event listeners
+        document.getElementById('searchInput').addEventListener('input', applyFilters);
+        document.getElementById('stateFilter').addEventListener('change', applyFilters);
+
+        document.querySelectorAll('.filter-chips').forEach(container => {
+            container.addEventListener('click', (e) => {
+                if (e.target.classList.contains('filter-chip')) {
+                    container.querySelectorAll('.filter-chip').forEach(chip => {
+                        chip.classList.remove('active');
+                    });
+                    e.target.classList.add('active');
+                    applyFilters();
+                }
+            });
+        });
+
+        // Initialize
+        initMap();
+        loadInstitutions();
+    </script>
+</body>
+</html>
