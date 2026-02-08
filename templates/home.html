@@ -69,27 +69,97 @@
             overflow: hidden;
         }
 
+        /* Animated floating orbs */
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            will-change: transform;
+        }
+
+        .hero-orb-1 {
+            width: 500px; height: 500px;
+            background: rgba(59, 130, 246, 0.35);
+            top: -10%; left: -5%;
+            animation: float-orb-1 12s ease-in-out infinite;
+        }
+
+        .hero-orb-2 {
+            width: 400px; height: 400px;
+            background: rgba(16, 185, 129, 0.25);
+            top: 30%; right: -10%;
+            animation: float-orb-2 15s ease-in-out infinite;
+        }
+
+        .hero-orb-3 {
+            width: 350px; height: 350px;
+            background: rgba(139, 92, 246, 0.2);
+            bottom: -15%; left: 30%;
+            animation: float-orb-3 18s ease-in-out infinite;
+        }
+
+        .hero-orb-4 {
+            width: 200px; height: 200px;
+            background: rgba(236, 72, 153, 0.15);
+            top: 60%; left: 15%;
+            animation: float-orb-4 10s ease-in-out infinite;
+        }
+
+        @keyframes float-orb-1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(40px, 30px) scale(1.05); }
+            50% { transform: translate(20px, -40px) scale(0.95); }
+            75% { transform: translate(-30px, 20px) scale(1.02); }
+        }
+
+        @keyframes float-orb-2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-50px, 30px) scale(1.08); }
+            66% { transform: translate(30px, -50px) scale(0.92); }
+        }
+
+        @keyframes float-orb-3 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(60px, -30px) scale(1.1); }
+        }
+
+        @keyframes float-orb-4 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-40px, -40px); }
+        }
+
+        /* Grid pattern overlay with shimmer */
         .hero::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background:
-                radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 60% 60%, rgba(139, 92, 246, 0.15) 0%, transparent 40%);
-            pointer-events: none;
-        }
-
-        /* Grid pattern overlay */
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
             background-image:
-                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+                linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
             background-size: 60px 60px;
             pointer-events: none;
+            animation: grid-shimmer 8s ease-in-out infinite;
+        }
+
+        @keyframes grid-shimmer {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Animated gradient text */
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, #60a5fa, #34d399, #a78bfa, #60a5fa);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 6s ease-in-out infinite;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         .hero-inner {
@@ -140,12 +210,7 @@
             letter-spacing: -0.02em;
         }
 
-        .hero h1 .highlight {
-            background: linear-gradient(135deg, #60a5fa, #34d399);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+        /* (gradient text defined with animations above) */
 
         .hero-desc {
             font-size: 1.15rem;
@@ -259,10 +324,12 @@
 
         .hero-stats-bottom .hero-stat-number {
             font-size: 2rem;
-            background: linear-gradient(135deg, #60a5fa, #34d399);
+            background: linear-gradient(135deg, #60a5fa, #34d399, #a78bfa, #60a5fa);
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: gradient-shift 6s ease-in-out infinite;
         }
 
         /* ============================================================
@@ -299,7 +366,7 @@
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
         }
 
@@ -589,6 +656,7 @@
             .hero { padding: 4rem 1.5rem 3rem; }
             .hero h1 { font-size: 2.25rem; }
             .features-grid { grid-template-columns: 1fr; }
+            .hero-orb { display: none; }
             .pillars-grid { grid-template-columns: repeat(2, 1fr); }
             .steps-grid { grid-template-columns: 1fr; }
             .network-bar-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
@@ -616,6 +684,10 @@
          HERO
          ============================================================ -->
     <section class="hero">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+        <div class="hero-orb hero-orb-4"></div>
         <div class="hero-inner">
             <div class="hero-content">
                 <div class="hero-badge">
@@ -695,6 +767,13 @@
                     <h3>Resource Toolkit</h3>
                     <p>Curated guides, templates, frameworks, and workshop materials — organized by pillar so you can take action on your weakest areas immediately.</p>
                     <div class="feature-link">Browse resources <span>&rarr;</span></div>
+                </a>
+
+                <a href="/atlas" class="feature-card">
+                    <div class="feature-icon" style="background: #fefce8;">🏛️</div>
+                    <h3>Institution Profiles</h3>
+                    <p>Dive deep into individual institutions — see their AI readiness across all five pillars, active initiatives, policy links, and find collaboration partners.</p>
+                    <div class="feature-link">View profiles <span>&rarr;</span></div>
                 </a>
             </div>
         </div>

@@ -115,17 +115,41 @@
         .sidebar-header {
             padding: 1.5rem;
             border-bottom: 1px solid var(--gray-200);
+            background: linear-gradient(135deg, #0f172a, #1e3a5f);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar-header::before {
+            content: '';
+            position: absolute;
+            width: 200px; height: 200px;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.2);
+            top: -50%; right: -20%;
+            filter: blur(40px);
+            animation: sidebar-orb 10s ease-in-out infinite;
+        }
+
+        @keyframes sidebar-orb {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-20px, 20px); }
         }
 
         .sidebar-header h2 {
             font-size: 1.125rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
         }
 
         .sidebar-header p {
             font-size: 0.875rem;
-            color: var(--gray-500);
+            color: rgba(255, 255, 255, 0.7);
+            position: relative;
+            z-index: 1;
         }
 
         /* Stats Grid */
@@ -471,22 +495,55 @@
             color: var(--gray-800);
         }
 
+        .popup-content .highlight-preview {
+            font-size: 0.75rem;
+            color: var(--gray-600);
+            background: var(--gray-50);
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+            border-left: 3px solid var(--success);
+        }
+
+        .popup-content .popup-btns {
+            display: flex;
+            gap: 0.5rem;
+        }
+
         .popup-content .view-btn {
             display: block;
-            width: 100%;
+            flex: 1;
             padding: 0.5rem;
             background: var(--primary);
             color: white;
             text-align: center;
             border-radius: 6px;
             text-decoration: none;
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             font-weight: 500;
             transition: background 0.2s;
         }
 
         .popup-content .view-btn:hover {
             background: var(--primary-dark);
+        }
+
+        .popup-content .policy-btn {
+            display: block;
+            padding: 0.5rem;
+            background: var(--success);
+            color: white;
+            text-align: center;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .popup-content .policy-btn:hover {
+            background: #059669;
         }
 
         /* Search */
@@ -742,6 +799,16 @@
 
             const marker = L.marker([institution.lat, institution.lng], { icon: icon });
 
+            // Build highlight preview
+            const highlightHtml = institution.ai_highlights && institution.ai_highlights.length > 0
+                ? `<div class="highlight-preview">${institution.ai_highlights[0]}</div>`
+                : '';
+
+            // Build policy button
+            const policyHtml = institution.ai_policy_url
+                ? `<a href="${institution.ai_policy_url}" target="_blank" rel="noopener noreferrer" class="policy-btn">AI Policy</a>`
+                : '';
+
             // Popup content
             const popupContent = `
                 <div class="popup-content">
@@ -761,7 +828,11 @@
                             <div class="stat-value">${institution.hispanic_enrollment_pct}%</div>
                         </div>
                     </div>
-                    <a href="/institution/${institution.id}" class="view-btn">View Profile</a>
+                    ${highlightHtml}
+                    <div class="popup-btns">
+                        <a href="/institution/${institution.id}" class="view-btn">View Profile</a>
+                        ${policyHtml}
+                    </div>
                 </div>
             `;
 

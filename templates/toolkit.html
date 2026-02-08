@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Toolkit | AI Readiness Atlas</title>
+    <title>AI Toolkit & Ethics Platform | AI Readiness Atlas</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #2563eb;
@@ -24,6 +24,19 @@
             --gray-700: #374151;
             --gray-800: #1f2937;
             --gray-900: #111827;
+            --emerald-50: #ecfdf5;
+            --emerald-100: #d1fae5;
+            --emerald-200: #a7f3d0;
+            --emerald-400: #34d399;
+            --emerald-500: #10b981;
+            --emerald-600: #059669;
+            --emerald-700: #047857;
+            --emerald-800: #065f46;
+            --emerald-900: #064e3b;
+            --teal-400: #2dd4bf;
+            --teal-500: #14b8a6;
+            --teal-600: #0d9488;
+            --teal-700: #0f766e;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -35,9 +48,12 @@
             line-height: 1.6;
         }
 
-        /* Header */
+        /* ============================================================
+           HEADER
+           ============================================================ */
         .header {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--gray-200);
             padding: 1rem 2rem;
             display: flex;
@@ -53,25 +69,184 @@
         .header-brand h1 { font-size: 1.25rem; font-weight: 700; color: var(--gray-900); }
         .header-brand span { font-size: 0.75rem; color: var(--gray-500); background: var(--gray-100); padding: 0.25rem 0.5rem; border-radius: 4px; }
 
-        .header-nav { display: flex; gap: 1.5rem; }
+        .header-nav { display: flex; gap: 1.5rem; align-items: center; }
         .header-nav a { color: var(--gray-600); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
-        .header-nav a:hover, .header-nav a.active { color: var(--primary); }
+        .header-nav a:hover { color: var(--primary); }
+        .header-nav a.active { color: var(--emerald-600); font-weight: 600; }
 
-        /* Hero */
+        /* ============================================================
+           HERO — Animated with floating orbs (green/emerald/teal)
+           ============================================================ */
         .hero {
             margin-top: 64px;
-            background: linear-gradient(135deg, #064e3b 0%, #10b981 100%);
-            padding: 4rem 2rem;
+            background: linear-gradient(160deg, #042f2e 0%, #064e3b 30%, #047857 60%, #0d9488 100%);
+            padding: 6rem 2rem 5rem;
+            position: relative;
+            overflow: hidden;
             text-align: center;
-            color: white;
         }
 
-        .hero h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.75rem; }
-        .hero p { font-size: 1.1rem; opacity: 0.9; max-width: 650px; margin: 0 auto; }
+        /* Floating orbs */
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            will-change: transform;
+        }
 
-        /* Filter Tabs */
+        .hero-orb-1 {
+            width: 500px; height: 500px;
+            background: rgba(16, 185, 129, 0.35);
+            top: -10%; left: -5%;
+            animation: float-orb-1 12s ease-in-out infinite;
+        }
+
+        .hero-orb-2 {
+            width: 400px; height: 400px;
+            background: rgba(45, 212, 191, 0.25);
+            top: 30%; right: -10%;
+            animation: float-orb-2 15s ease-in-out infinite;
+        }
+
+        .hero-orb-3 {
+            width: 350px; height: 350px;
+            background: rgba(52, 211, 153, 0.2);
+            bottom: -15%; left: 30%;
+            animation: float-orb-3 18s ease-in-out infinite;
+        }
+
+        .hero-orb-4 {
+            width: 200px; height: 200px;
+            background: rgba(167, 243, 208, 0.15);
+            top: 60%; left: 15%;
+            animation: float-orb-4 10s ease-in-out infinite;
+        }
+
+        .hero-orb-5 {
+            width: 280px; height: 280px;
+            background: rgba(20, 184, 166, 0.2);
+            top: 10%; right: 20%;
+            animation: float-orb-5 14s ease-in-out infinite;
+        }
+
+        @keyframes float-orb-1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(40px, 30px) scale(1.05); }
+            50% { transform: translate(20px, -40px) scale(0.95); }
+            75% { transform: translate(-30px, 20px) scale(1.02); }
+        }
+
+        @keyframes float-orb-2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-50px, 30px) scale(1.08); }
+            66% { transform: translate(30px, -50px) scale(0.92); }
+        }
+
+        @keyframes float-orb-3 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(60px, -30px) scale(1.1); }
+        }
+
+        @keyframes float-orb-4 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-40px, -40px); }
+        }
+
+        @keyframes float-orb-5 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            40% { transform: translate(30px, 40px) scale(1.06); }
+            80% { transform: translate(-20px, -30px) scale(0.96); }
+        }
+
+        /* Grid overlay */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            animation: grid-shimmer 8s ease-in-out infinite;
+        }
+
+        @keyframes grid-shimmer {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .hero-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 2.75rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, #34d399, #2dd4bf, #a7f3d0, #34d399);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 6s ease-in-out infinite;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.4rem 1rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(8px);
+        }
+
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--emerald-400);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        /* ============================================================
+           FILTER BAR
+           ============================================================ */
         .filter-bar {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 1.25rem 2rem;
             background: white;
@@ -97,19 +272,131 @@
             color: var(--gray-600);
             cursor: pointer;
             transition: all 0.2s;
+            font-family: inherit;
         }
 
         .filter-tab:hover { background: var(--gray-200); }
 
         .filter-tab.active {
-            background: var(--primary);
-            border-color: var(--primary);
+            background: var(--emerald-600);
+            border-color: var(--emerald-600);
             color: white;
         }
 
-        /* Main Content */
+        /* ============================================================
+           EMBEDDED ETHICS LEARNING MODULES
+           ============================================================ */
+        .modules-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .modules-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .modules-header h2 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+
+        .modules-header p {
+            font-size: 0.95rem;
+            color: var(--gray-500);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .module-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 16px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .module-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+
+        .module-card:nth-child(1)::before { background: linear-gradient(90deg, #0d9488, #14b8a6); }
+        .module-card:nth-child(2)::before { background: linear-gradient(90deg, #0f766e, #10b981); }
+        .module-card:nth-child(3)::before { background: linear-gradient(90deg, #047857, #34d399); }
+        .module-card:nth-child(4)::before { background: linear-gradient(90deg, #059669, #6ee7b7); }
+        .module-card:nth-child(5)::before { background: linear-gradient(90deg, #10b981, #a7f3d0); }
+
+        .module-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .module-card:nth-child(1) .module-number { background: linear-gradient(135deg, #0d9488, #14b8a6); }
+        .module-card:nth-child(2) .module-number { background: linear-gradient(135deg, #0f766e, #10b981); }
+        .module-card:nth-child(3) .module-number { background: linear-gradient(135deg, #047857, #34d399); }
+        .module-card:nth-child(4) .module-number { background: linear-gradient(135deg, #059669, #6ee7b7); }
+        .module-card:nth-child(5) .module-number { background: linear-gradient(135deg, #10b981, #a7f3d0); }
+
+        .module-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+
+        .module-desc {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        .modules-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--gray-400);
+            font-style: italic;
+            padding: 0.75rem;
+            background: var(--gray-50);
+            border-radius: 8px;
+            border: 1px solid var(--gray-100);
+        }
+
+        /* ============================================================
+           MAIN CONTENT / RESOURCES
+           ============================================================ */
         .main-content {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 2rem auto;
             padding: 0 2rem;
         }
@@ -169,7 +456,7 @@
         }
 
         .resource-card:hover {
-            border-color: var(--primary);
+            border-color: var(--emerald-500);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
             transform: translateY(-2px);
         }
@@ -236,19 +523,228 @@
         }
 
         .resource-action {
-            color: var(--primary);
+            color: var(--emerald-600);
             font-weight: 600;
             cursor: pointer;
         }
 
-        /* CTA Section */
+        /* ============================================================
+           MATERIALS SUBMISSION SECTION
+           ============================================================ */
+        .submission-section {
+            max-width: 1200px;
+            margin: 1rem auto 3rem;
+            padding: 0 2rem;
+        }
+
+        .submission-container {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submission-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--teal-500), var(--emerald-500), var(--emerald-400));
+        }
+
+        .submission-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .submission-header h2 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+
+        .submission-header p {
+            font-size: 0.95rem;
+            color: var(--gray-500);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .submission-form {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-group label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.7rem 0.9rem;
+            border: 1px solid var(--gray-200);
+            border-radius: 10px;
+            font-size: 0.875rem;
+            font-family: inherit;
+            color: var(--gray-800);
+            background: var(--gray-50);
+            transition: all 0.2s;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--emerald-500);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+            background: white;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-group select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.9rem center;
+            padding-right: 2.5rem;
+        }
+
+        .file-upload-area {
+            border: 2px dashed var(--gray-200);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: var(--gray-50);
+        }
+
+        .file-upload-area:hover {
+            border-color: var(--emerald-400);
+            background: var(--emerald-50);
+        }
+
+        .file-upload-area .upload-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .file-upload-area p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin-bottom: 0.25rem;
+        }
+
+        .file-upload-area .upload-hint {
+            font-size: 0.7rem;
+            color: var(--gray-400);
+        }
+
+        .file-upload-area input[type="file"] {
+            display: none;
+        }
+
+        .submit-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.85rem 2rem;
+            background: linear-gradient(135deg, var(--emerald-600), var(--teal-600));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            margin-top: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--gray-900);
+            color: white;
+            padding: 0.85rem 1.5rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 9999;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .toast .toast-icon {
+            font-size: 1.1rem;
+        }
+
+        /* ============================================================
+           CTA SECTION
+           ============================================================ */
         .cta-section {
             background: white;
-            border-radius: 16px;
+            border-radius: 20px;
             border: 1px solid var(--gray-200);
             padding: 3rem 2rem;
             text-align: center;
             margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--teal-500), var(--emerald-500), var(--primary));
         }
 
         .cta-section h2 {
@@ -261,8 +757,9 @@
         .cta-section p {
             font-size: 0.95rem;
             color: var(--gray-500);
-            max-width: 500px;
+            max-width: 580px;
             margin: 0 auto 1.5rem;
+            line-height: 1.7;
         }
 
         .cta-buttons {
@@ -274,7 +771,7 @@
 
         .btn {
             padding: 0.75rem 1.5rem;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 0.875rem;
             font-weight: 600;
             cursor: pointer;
@@ -284,17 +781,305 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            font-family: inherit;
         }
 
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-primary:hover { background: var(--primary-dark); }
+        .btn-primary { background: var(--emerald-600); color: white; }
+        .btn-primary:hover { background: var(--emerald-700); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
         .btn-secondary { background: var(--gray-100); color: var(--gray-600); border: 1px solid var(--gray-200); }
         .btn-secondary:hover { background: var(--gray-200); }
 
-        /* Responsive */
+        /* ============================================================
+           CHATBOT WIDGET
+           ============================================================ */
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--emerald-600), var(--teal-600));
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
+            z-index: 900;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 28px rgba(16, 185, 129, 0.5);
+        }
+
+        .chatbot-toggle.active {
+            transform: rotate(90deg) scale(0.9);
+        }
+
+        .chatbot-panel {
+            position: fixed;
+            bottom: 6rem;
+            right: 1.5rem;
+            width: 400px;
+            height: 500px;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid var(--gray-200);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            z-index: 899;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            pointer-events: none;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .chatbot-panel.open {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: all;
+        }
+
+        .chatbot-header {
+            padding: 1rem 1.25rem;
+            background: linear-gradient(135deg, var(--emerald-600), var(--teal-600));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+
+        .chatbot-header-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .chatbot-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .chatbot-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .chatbot-beta {
+            font-size: 0.6rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.15rem 0.5rem;
+            border-radius: 999px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .chatbot-close {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .chatbot-close:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .chat-message {
+            display: flex;
+            gap: 0.5rem;
+            max-width: 90%;
+            animation: msg-appear 0.3s ease-out;
+        }
+
+        @keyframes msg-appear {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .chat-message.bot {
+            align-self: flex-start;
+        }
+
+        .chat-message.user {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .chat-msg-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        .chat-message.bot .chat-msg-avatar {
+            background: var(--emerald-50);
+        }
+
+        .chat-message.user .chat-msg-avatar {
+            background: var(--primary-light);
+        }
+
+        .chat-msg-bubble {
+            padding: 0.75rem 1rem;
+            border-radius: 14px;
+            font-size: 0.825rem;
+            line-height: 1.55;
+        }
+
+        .chat-message.bot .chat-msg-bubble {
+            background: var(--gray-100);
+            color: var(--gray-700);
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-message.user .chat-msg-bubble {
+            background: var(--emerald-600);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding: 0 1.25rem 0.75rem;
+        }
+
+        .chat-chip {
+            padding: 0.4rem 0.75rem;
+            border: 1px solid var(--emerald-200);
+            background: var(--emerald-50);
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: var(--emerald-700);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .chat-chip:hover {
+            background: var(--emerald-100);
+            border-color: var(--emerald-400);
+        }
+
+        .chatbot-input-area {
+            padding: 0.75rem 1rem;
+            border-top: 1px solid var(--gray-200);
+            display: flex;
+            gap: 0.5rem;
+            flex-shrink: 0;
+            background: white;
+        }
+
+        .chatbot-input {
+            flex: 1;
+            padding: 0.6rem 0.9rem;
+            border: 1px solid var(--gray-200);
+            border-radius: 10px;
+            font-size: 0.825rem;
+            font-family: inherit;
+            outline: none;
+            background: var(--gray-50);
+            transition: all 0.2s;
+        }
+
+        .chatbot-input:focus {
+            border-color: var(--emerald-500);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .chatbot-send {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--emerald-600), var(--teal-600));
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .chatbot-send:hover {
+            transform: scale(1.05);
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 1024px) {
+            .modules-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
             .hero h1 { font-size: 1.75rem; }
+            .hero { padding: 4rem 1.5rem 3.5rem; }
             .resource-grid { grid-template-columns: 1fr; }
+            .modules-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .submission-container { padding: 2rem 1.5rem; }
+
+            .chatbot-panel {
+                width: calc(100vw - 2rem);
+                right: 1rem;
+                bottom: 5.5rem;
+                height: 450px;
+            }
+
+            .header-nav { gap: 0.75rem; }
+            .header-nav a { font-size: 0.8rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.5rem; }
+            .cta-buttons { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
@@ -315,8 +1100,19 @@
 
     <!-- Hero -->
     <section class="hero">
-        <h1>AI Readiness Toolkit</h1>
-        <p>Curated resources, frameworks, and guides to help HSIs navigate every stage of their AI integration journey.</p>
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+        <div class="hero-orb hero-orb-4"></div>
+        <div class="hero-orb hero-orb-5"></div>
+        <div class="hero-inner">
+            <div class="hero-badge">
+                <span class="dot"></span>
+                Ethics-Centered Platform
+            </div>
+            <h1>AI Readiness Toolkit &amp;<br><span class="highlight">Ethics Platform</span></h1>
+            <p>Curated resources, learning modules, and community tools to help institutions navigate AI integration ethically and effectively. Built on the 5 E's of Constructivism.</p>
+        </div>
     </section>
 
     <!-- Filter Bar -->
@@ -329,19 +1125,134 @@
             <button class="filter-tab" data-filter="research">Research & Innovation</button>
             <button class="filter-tab" data-filter="infrastructure">Infrastructure</button>
             <button class="filter-tab" data-filter="getting-started">Getting Started</button>
+            <button class="filter-tab" data-filter="community">Community</button>
         </div>
     </div>
 
-    <!-- Main Content -->
+    <!-- Embedded Ethics Learning Modules -->
+    <section class="modules-section">
+        <div class="modules-header">
+            <h2>Embedded Ethics Learning Modules</h2>
+            <p>Guided modules based on the 5 E's of Constructivism &mdash; a pedagogical framework for embedding ethical reasoning into computing education.</p>
+        </div>
+        <div class="modules-grid">
+            <div class="module-card">
+                <div class="module-number">1</div>
+                <div class="module-name">Engage</div>
+                <div class="module-desc">Start with real-world AI ethics scenarios that connect to students' experiences and communities. Surface assumptions and spark curiosity.</div>
+            </div>
+            <div class="module-card">
+                <div class="module-number">2</div>
+                <div class="module-name">Explore</div>
+                <div class="module-desc">Investigate AI systems hands-on &mdash; examine datasets, test models, and discover how technical decisions create ethical implications.</div>
+            </div>
+            <div class="module-card">
+                <div class="module-number">3</div>
+                <div class="module-name">Explain</div>
+                <div class="module-desc">Articulate ethical frameworks and principles. Students develop vocabulary and reasoning tools for responsible AI development.</div>
+            </div>
+            <div class="module-card">
+                <div class="module-number">4</div>
+                <div class="module-name">Elaborate</div>
+                <div class="module-desc">Apply ethical reasoning to complex, open-ended AI challenges. Design solutions that center equity, privacy, and community impact.</div>
+            </div>
+            <div class="module-card">
+                <div class="module-number">5</div>
+                <div class="module-name">Evaluate</div>
+                <div class="module-desc">Reflect on learning and assess AI systems against ethical criteria. Develop rubrics and assessment tools for responsible practice.</div>
+            </div>
+        </div>
+        <div class="modules-note">
+            Developed through NSF CUE-M Grant #2434338 at CAHSI institutions
+        </div>
+    </section>
+
+    <!-- Main Content — Resources -->
     <div class="main-content" id="resourcesContainer">
         <!-- Resources rendered by JS -->
     </div>
 
+    <!-- Materials Submission Section -->
+    <section class="submission-section">
+        <div class="submission-container">
+            <div class="submission-header">
+                <h2>Share Your Materials</h2>
+                <p>Contribute your AI teaching materials, policy templates, or ethics modules to the community. Submissions are reviewed and made available to all member institutions.</p>
+            </div>
+            <form class="submission-form" id="submissionForm" onsubmit="return false;">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="instName">Institution Name</label>
+                        <input type="text" id="instName" placeholder="e.g., University of Texas at El Paso">
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">Contact Email</label>
+                        <input type="email" id="contactEmail" placeholder="you@institution.edu">
+                    </div>
+                </div>
+                <div class="form-row full">
+                    <div class="form-group">
+                        <label for="resourceTitle">Resource Title</label>
+                        <input type="text" id="resourceTitle" placeholder="e.g., AI Ethics Case Study Collection">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="pillarCategory">Pillar Category</label>
+                        <select id="pillarCategory">
+                            <option value="" disabled selected>Select a category</option>
+                            <option value="teaching">Teaching & Learning</option>
+                            <option value="policy">Policy & Governance</option>
+                            <option value="ethics">Ethics & Equity</option>
+                            <option value="research">Research & Innovation</option>
+                            <option value="infrastructure">Infrastructure</option>
+                            <option value="general">General</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="resourceType">Resource Type</label>
+                        <select id="resourceType">
+                            <option value="" disabled selected>Select a type</option>
+                            <option value="guide">Guide</option>
+                            <option value="template">Template</option>
+                            <option value="framework">Framework</option>
+                            <option value="workshop">Workshop Materials</option>
+                            <option value="tool">Tool</option>
+                            <option value="casestudy">Case Study</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row full">
+                    <div class="form-group">
+                        <label for="resourceDesc">Description</label>
+                        <textarea id="resourceDesc" placeholder="Briefly describe the resource and how it can help other institutions..."></textarea>
+                    </div>
+                </div>
+                <div class="form-row full">
+                    <div class="form-group">
+                        <label>File Upload</label>
+                        <div class="file-upload-area" id="fileUploadArea">
+                            <div class="upload-icon">&#128194;</div>
+                            <p>Drag and drop your file here, or click to browse</p>
+                            <span class="upload-hint">PDF, DOCX, PPTX, or ZIP up to 25MB</span>
+                            <input type="file" id="fileInput" accept=".pdf,.docx,.pptx,.zip">
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="submit-btn" id="submitBtn">
+                    Submit Resource
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+            </form>
+        </div>
+    </section>
+
     <!-- CTA -->
     <div class="main-content">
         <div class="cta-section">
-            <h2>Not sure where to start?</h2>
-            <p>Take the AI Readiness Assessment to identify your institution's strengths and areas for growth, then come back for targeted resources.</p>
+            <h2>Ready to Begin Your AI Journey?</h2>
+            <p>Take the AI Readiness Assessment to identify your institution's strengths and growth areas. Explore the Atlas, try the AI Ethics Assistant, and contribute your own materials to the community.</p>
             <div class="cta-buttons">
                 <a href="/assessment" class="btn btn-primary">Take the Assessment</a>
                 <a href="/atlas" class="btn btn-secondary">Explore the Atlas</a>
@@ -349,7 +1260,46 @@
         </div>
     </div>
 
+    <!-- Chatbot Widget -->
+    <button class="chatbot-toggle" id="chatbotToggle" aria-label="Open AI Ethics Assistant">&#128172;</button>
+
+    <div class="chatbot-panel" id="chatbotPanel">
+        <div class="chatbot-header">
+            <div class="chatbot-header-left">
+                <div class="chatbot-avatar">&#129302;</div>
+                <div>
+                    <div class="chatbot-title">AI Ethics Assistant</div>
+                </div>
+                <span class="chatbot-beta">Beta</span>
+            </div>
+            <button class="chatbot-close" id="chatbotClose" aria-label="Close chat">&#10005;</button>
+        </div>
+        <div class="chatbot-messages" id="chatMessages">
+            <!-- Messages rendered by JS -->
+        </div>
+        <div class="chat-suggestions" id="chatSuggestions">
+            <button class="chat-chip" data-question="How do I start embedding ethics?">How do I start embedding ethics?</button>
+            <button class="chat-chip" data-question="What are the 5 E's?">What are the 5 E's?</button>
+            <button class="chat-chip" data-question="Find policy templates">Find policy templates</button>
+        </div>
+        <div class="chatbot-input-area">
+            <input type="text" class="chatbot-input" id="chatInput" placeholder="Ask about AI ethics..." autocomplete="off">
+            <button class="chatbot-send" id="chatSend" aria-label="Send message">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M14 2L7 9M14 2L9.5 14L7 9M14 2L2 6.5L7 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">&#128679;</span>
+        <span>Coming Soon! Submissions will be available in a future update.</span>
+    </div>
+
     <script>
+        /* ===========================================================
+           RESOURCE DATA — All 27 original resources preserved
+           =========================================================== */
         const resources = [
             // GETTING STARTED
             {
@@ -568,11 +1518,20 @@
 
         let currentFilter = 'all';
 
+        /* ===========================================================
+           RENDER RESOURCES
+           =========================================================== */
         function renderResources() {
             const container = document.getElementById('resourcesContainer');
-            const filtered = currentFilter === 'all'
-                ? resources
-                : resources.filter(r => r.pillar === currentFilter);
+            let filtered;
+
+            if (currentFilter === 'all') {
+                filtered = resources;
+            } else if (currentFilter === 'community') {
+                filtered = resources.filter(r => r.tags.includes('community'));
+            } else {
+                filtered = resources.filter(r => r.pillar === currentFilter);
+            }
 
             // Group by pillar
             const groups = {};
@@ -595,18 +1554,18 @@
                 if (!group) return;
 
                 const icons = {
-                    'getting-started': '🚀',
-                    'teaching': '📚',
-                    'policy': '📋',
-                    'ethics': '⚖️',
-                    'research': '🔬',
-                    'infrastructure': '🖥️'
+                    'getting-started': '&#128640;',
+                    'teaching': '&#128218;',
+                    'policy': '&#128203;',
+                    'ethics': '&#9878;&#65039;',
+                    'research': '&#128300;',
+                    'infrastructure': '&#128421;&#65039;'
                 };
 
                 html += `
                     <div class="category-section">
                         <div class="category-header">
-                            <div class="category-icon" style="background: ${group.color}15; color: ${group.color};">${icons[key] || '📦'}</div>
+                            <div class="category-icon" style="background: ${group.color}15; color: ${group.color};">${icons[key] || '&#128230;'}</div>
                             <h2>${group.label}</h2>
                             <span class="category-count">${group.items.length} resources</span>
                         </div>
@@ -632,10 +1591,22 @@
                 `;
             });
 
+            if (filtered.length === 0) {
+                html = `
+                    <div style="text-align:center; padding:4rem 2rem; color: var(--gray-400);">
+                        <div style="font-size:2.5rem; margin-bottom:1rem;">&#128269;</div>
+                        <p style="font-size:1rem; font-weight:600; color: var(--gray-500); margin-bottom:0.5rem;">No resources found</p>
+                        <p style="font-size:0.85rem;">Community resources are coming soon. Check back later!</p>
+                    </div>
+                `;
+            }
+
             container.innerHTML = html;
         }
 
-        // Filter tabs
+        /* ===========================================================
+           FILTER TABS
+           =========================================================== */
         document.getElementById('filterTabs').addEventListener('click', (e) => {
             if (e.target.classList.contains('filter-tab')) {
                 document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
@@ -645,7 +1616,179 @@
             }
         });
 
-        // Init
+        /* ===========================================================
+           FILE UPLOAD AREA
+           =========================================================== */
+        const fileUploadArea = document.getElementById('fileUploadArea');
+        const fileInput = document.getElementById('fileInput');
+
+        fileUploadArea.addEventListener('click', () => fileInput.click());
+
+        fileUploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileUploadArea.style.borderColor = '#10b981';
+            fileUploadArea.style.background = '#ecfdf5';
+        });
+
+        fileUploadArea.addEventListener('dragleave', () => {
+            fileUploadArea.style.borderColor = '';
+            fileUploadArea.style.background = '';
+        });
+
+        fileUploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileUploadArea.style.borderColor = '';
+            fileUploadArea.style.background = '';
+            if (e.dataTransfer.files.length > 0) {
+                const fname = e.dataTransfer.files[0].name;
+                fileUploadArea.querySelector('p').textContent = fname;
+            }
+        });
+
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                fileUploadArea.querySelector('p').textContent = fileInput.files[0].name;
+            }
+        });
+
+        /* ===========================================================
+           SUBMISSION FORM — COMING SOON TOAST
+           =========================================================== */
+        document.getElementById('submitBtn').addEventListener('click', () => {
+            showToast();
+        });
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3500);
+        }
+
+        /* ===========================================================
+           CHATBOT WIDGET
+           =========================================================== */
+        const chatbotToggle = document.getElementById('chatbotToggle');
+        const chatbotPanel = document.getElementById('chatbotPanel');
+        const chatbotClose = document.getElementById('chatbotClose');
+        const chatInput = document.getElementById('chatInput');
+        const chatSend = document.getElementById('chatSend');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatSuggestions = document.getElementById('chatSuggestions');
+
+        let chatOpen = false;
+        let firstOpen = true;
+
+        function toggleChat() {
+            chatOpen = !chatOpen;
+            chatbotPanel.classList.toggle('open', chatOpen);
+            chatbotToggle.classList.toggle('active', chatOpen);
+
+            if (chatOpen && firstOpen) {
+                firstOpen = false;
+                addBotMessage("Hello! I'm the AI Ethics Assistant. I can help you explore ethical considerations in AI adoption, find relevant resources, and navigate the 5 E's framework. What would you like to discuss?");
+            }
+
+            if (chatOpen) {
+                setTimeout(() => chatInput.focus(), 400);
+            }
+        }
+
+        chatbotToggle.addEventListener('click', toggleChat);
+        chatbotClose.addEventListener('click', toggleChat);
+
+        function addBotMessage(text) {
+            const div = document.createElement('div');
+            div.className = 'chat-message bot';
+            div.innerHTML = `
+                <div class="chat-msg-avatar">&#129302;</div>
+                <div class="chat-msg-bubble">${text}</div>
+            `;
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function addUserMessage(text) {
+            const div = document.createElement('div');
+            div.className = 'chat-message user';
+            div.innerHTML = `
+                <div class="chat-msg-avatar">&#128100;</div>
+                <div class="chat-msg-bubble">${text}</div>
+            `;
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function getBotResponse(input) {
+            const q = input.toLowerCase();
+
+            if (q.includes('5 e') || q.includes('five e') || q.includes("5 e's") || q.includes("what are the 5")) {
+                return "The <strong>5 E's of Constructivism</strong> is a pedagogical framework used to embed ethical reasoning into computing education:<br><br>" +
+                    "<strong>1. Engage</strong> &mdash; Connect with real-world AI ethics scenarios.<br>" +
+                    "<strong>2. Explore</strong> &mdash; Investigate AI systems and their ethical implications hands-on.<br>" +
+                    "<strong>3. Explain</strong> &mdash; Develop vocabulary and ethical reasoning frameworks.<br>" +
+                    "<strong>4. Elaborate</strong> &mdash; Apply reasoning to complex, open-ended challenges.<br>" +
+                    "<strong>5. Evaluate</strong> &mdash; Reflect and assess against ethical criteria.<br><br>" +
+                    "Check out the <strong>Embedded Ethics Learning Modules</strong> section above to explore each stage!";
+            }
+
+            if (q.includes('embed') && q.includes('ethic') || q.includes('start') && q.includes('ethic') || q.includes('getting started') && q.includes('ethic')) {
+                return "Great question! Here's how to get started with embedding ethics in your AI curriculum:<br><br>" +
+                    "<strong>1.</strong> Begin with the <strong>Engage</strong> module &mdash; use real-world scenarios your students can relate to.<br>" +
+                    "<strong>2.</strong> Audit one existing course for AI ethics integration opportunities.<br>" +
+                    "<strong>3.</strong> Use our <strong>Responsible AI Framework for HSIs</strong> in the Ethics & Equity section.<br>" +
+                    "<strong>4.</strong> Form a faculty working group to discuss ethical dimensions.<br>" +
+                    "<strong>5.</strong> Start small: add one ethics discussion to each unit before building full modules.<br><br>" +
+                    "The 5 E's framework provides a structured approach to weave ethics throughout your curriculum.";
+            }
+
+            if (q.includes('policy') && q.includes('template') || q.includes('governance')) {
+                return "You'll find several policy resources in our <strong>Policy & Governance</strong> section! Key resources include:<br><br>" +
+                    "&#8226; <strong>Institutional AI Policy Template</strong> &mdash; covers acceptable use, academic integrity, and data governance.<br>" +
+                    "&#8226; <strong>AI Governance Committee Charter Template</strong> &mdash; for establishing oversight structures.<br>" +
+                    "&#8226; <strong>AI Vendor Evaluation Framework</strong> &mdash; for assessing tools before adoption.<br>" +
+                    "&#8226; <strong>AI Strategic Planning Guide</strong> &mdash; for integrating AI into your strategic plan.<br><br>" +
+                    "Use the <strong>Policy & Governance</strong> filter tab above to see all related resources.";
+            }
+
+            return "I'm currently in beta. This feature will be fully powered by AI soon! In the meantime, explore our curated resources above or check out the <strong>Embedded Ethics Learning Modules</strong>.";
+        }
+
+        function handleUserInput() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+
+            addUserMessage(text);
+            chatInput.value = '';
+
+            // Hide suggestions after first interaction
+            chatSuggestions.style.display = 'none';
+
+            // Simulate a brief typing delay
+            setTimeout(() => {
+                addBotMessage(getBotResponse(text));
+            }, 600);
+        }
+
+        chatSend.addEventListener('click', handleUserInput);
+        chatInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') handleUserInput();
+        });
+
+        // Suggestion chips
+        chatSuggestions.addEventListener('click', (e) => {
+            const chip = e.target.closest('.chat-chip');
+            if (!chip) return;
+            const question = chip.dataset.question;
+            addUserMessage(question);
+            chatSuggestions.style.display = 'none';
+            setTimeout(() => {
+                addBotMessage(getBotResponse(question));
+            }, 600);
+        });
+
+        /* ===========================================================
+           INIT
+           =========================================================== */
         renderResources();
     </script>
 </body>

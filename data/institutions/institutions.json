@@ -25,6 +25,17 @@
       "is_cahsi_member": true,
       "cahsi_role": "founding_member",
       "website": "https://www.utep.edu",
+      "ai_policy_url": "https://www.utep.edu/extendeduniversity/online-faculty-resources/faculty-handbook/teaching-with-artificial-intelligence.html",
+      "ai_highlights": [
+        "Home to CAHSI national headquarters and the Institute for Applied AI Innovation (AAII)",
+        "Leads NSF CUE-M grant (#2434338) embedding ethical reasoning across CS curricula at CAHSI institutions",
+        "Developed AI Readiness Atlas platform for 500+ HACU member institutions"
+      ],
+      "key_programs": [
+        {"name": "Institute for Applied AI Innovation (AAII)", "type": "research_center"},
+        {"name": "Embedded Ethics in CS (NSF CUE-M)", "type": "nsf_grant"},
+        {"name": "CAHSI INCLUDES Alliance", "type": "nsf_grant"}
+      ],
       "ai_readiness": {
         "overall_score": 5,
         "teaching_score": 5,
@@ -58,6 +69,16 @@
       "is_cahsi_member": true,
       "cahsi_role": "founding_member",
       "website": "https://www.fiu.edu",
+      "ai_policy_url": "https://cat.fiu.edu/resources/teaching-with-ai/setting-expectations-and-ai-policy/",
+      "ai_highlights": [
+        "Knight Foundation School of Computing hosts cutting-edge AI/ML research labs",
+        "Published comprehensive faculty AI policy framework for all courses",
+        "NSF-funded research in natural language processing and computer vision"
+      ],
+      "key_programs": [
+        {"name": "Knight Foundation School of Computing", "type": "academic_school"},
+        {"name": "Applied Research Center", "type": "research_center"}
+      ],
       "ai_readiness": {
         "overall_score": 5,
         "teaching_score": 5,
@@ -90,6 +111,16 @@
       "is_cahsi_member": true,
       "cahsi_role": "founding_member",
       "website": "https://www.nmsu.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Computing Research Laboratory conducts federally funded NLP and AI research",
+        "Strong CAHSI integration with dedicated chapter for broadening participation",
+        "Active in AI ethics research through interdisciplinary collaborations"
+      ],
+      "key_programs": [
+        {"name": "Computing Research Laboratory", "type": "research_center"},
+        {"name": "CAHSI NMSU Chapter", "type": "consortium"}
+      ],
       "ai_readiness": {
         "overall_score": 4,
         "teaching_score": 4,
@@ -121,6 +152,15 @@
       "is_cahsi_member": true,
       "cahsi_role": "founding_member",
       "website": "https://www.csudh.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Serves as CAHSI West Region Lead coordinating computing education across California",
+        "Active in computing education initiatives bridging community colleges to 4-year programs",
+        "Developing AI literacy modules for non-CS majors"
+      ],
+      "key_programs": [
+        {"name": "CAHSI West Region Lead", "type": "consortium"}
+      ],
       "ai_readiness": {
         "overall_score": 4,
         "teaching_score": 4,
@@ -152,6 +192,15 @@
       "is_cahsi_member": true,
       "cahsi_role": "founding_member",
       "website": "https://www.tamucc.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Island University developing coastal AI applications for environmental monitoring",
+        "CAHSI founding member with strong computing sciences department",
+        "Growing data science curriculum with industry partnerships"
+      ],
+      "key_programs": [
+        {"name": "Computing Sciences Department", "type": "academic_department"}
+      ],
       "ai_readiness": {
         "overall_score": 4,
         "teaching_score": 4,
@@ -183,6 +232,15 @@
       "is_cahsi_member": true,
       "cahsi_role": "founding_member",
       "website": "https://www.uhd.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Urban university bringing AI education to Houston's diverse workforce",
+        "CAHSI founding member bridging access gaps in computing education",
+        "Computer Science and Engineering Technology programs serving first-generation students"
+      ],
+      "key_programs": [
+        {"name": "Computer Science and Engineering Technology", "type": "academic_department"}
+      ],
       "ai_readiness": {
         "overall_score": 3,
         "teaching_score": 3,
@@ -214,6 +272,16 @@
       "is_cahsi_member": true,
       "cahsi_role": "founding_member",
       "website": "https://www.uprm.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Premier engineering school in the Caribbean with strong STEM research tradition",
+        "CAHSI founding member with decades of computing excellence",
+        "Active in NSF-funded research across AI, robotics, and data science"
+      ],
+      "key_programs": [
+        {"name": "College of Engineering", "type": "academic_school"},
+        {"name": "Computing Research Programs", "type": "research_center"}
+      ],
       "ai_readiness": {
         "overall_score": 4,
         "teaching_score": 4,
@@ -246,6 +314,16 @@
       "is_cahsi_member": false,
       "cahsi_role": null,
       "website": "https://www.ucsd.edu",
+      "ai_policy_url": "https://blink.ucsd.edu/technology/generative-ai/index.html",
+      "ai_highlights": [
+        "Leads the TeachCSwithAI Consortium developing GenAI pedagogy nationwide",
+        "Halicioglu Data Science Institute pioneering undergraduate data science education",
+        "Comprehensive GenAI guidelines covering teaching, research, and administration"
+      ],
+      "key_programs": [
+        {"name": "TeachCSwithAI Consortium", "type": "consortium"},
+        {"name": "Halicioglu Data Science Institute", "type": "research_center"}
+      ],
       "ai_readiness": {
         "overall_score": 5,
         "teaching_score": 5,
@@ -278,6 +356,15 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.sfsu.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Bay Area location provides strong tech industry connections for AI education",
+        "College of Science & Engineering growing AI-focused computing programs",
+        "Active CAHSI member supporting diversity in computing"
+      ],
+      "key_programs": [
+        {"name": "College of Science & Engineering", "type": "academic_school"}
+      ],
       "ai_readiness": {
         "overall_score": 3,
         "teaching_score": 4,
@@ -309,6 +396,15 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.neiu.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Chicago-area HSI expanding access to computing education",
+        "Growing CS program with focus on serving underrepresented students",
+        "CAHSI member building computing pathways for urban communities"
+      ],
+      "key_programs": [
+        {"name": "Computer Science Department", "type": "academic_department"}
+      ],
       "ai_readiness": {
         "overall_score": 3,
         "teaching_score": 3,
@@ -340,6 +436,16 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.utsa.edu",
+      "ai_policy_url": "https://provost.utsa.edu/initiatives/artificial-intelligence/",
+      "ai_highlights": [
+        "National Security Collaboration Center applies AI to cybersecurity research",
+        "School of Data Science launched with focus on ethical AI applications",
+        "Provost-level AI initiative establishing institution-wide AI strategy"
+      ],
+      "key_programs": [
+        {"name": "National Security Collaboration Center", "type": "research_center"},
+        {"name": "School of Data Science", "type": "academic_school"}
+      ],
       "ai_readiness": {
         "overall_score": 4,
         "teaching_score": 4,
@@ -372,6 +478,15 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.utrgv.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Largest HSI in Texas by Hispanic enrollment percentage (91%)",
+        "College of Engineering and Computer Science expanding AI curriculum",
+        "Developing AI applications for border region healthcare and agriculture"
+      ],
+      "key_programs": [
+        {"name": "College of Engineering and Computer Science", "type": "academic_school"}
+      ],
       "ai_readiness": {
         "overall_score": 3,
         "teaching_score": 3,
@@ -403,6 +518,16 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.asu.edu",
+      "ai_policy_url": "https://ai.asu.edu/policy-and-resources",
+      "ai_highlights": [
+        "Largest public university in the US with comprehensive AI integration strategy",
+        "School of Computing and Augmented Intelligence leads AI research and education",
+        "Enterprise-level AI policy framework covering all academic and administrative operations"
+      ],
+      "key_programs": [
+        {"name": "School of Computing and Augmented Intelligence", "type": "academic_school"},
+        {"name": "ASU AI Innovation Initiative", "type": "institutional_initiative"}
+      ],
       "ai_readiness": {
         "overall_score": 5,
         "teaching_score": 5,
@@ -435,6 +560,16 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.unm.edu",
+      "ai_policy_url": "https://airesources.unm.edu/educators/ai-ethics.html",
+      "ai_highlights": [
+        "Research partnerships with Sandia and Los Alamos National Laboratories on AI",
+        "Dedicated AI resources portal with ethics-focused educator guidance",
+        "School of Engineering integrating AI across multiple disciplines"
+      ],
+      "key_programs": [
+        {"name": "School of Engineering", "type": "academic_school"},
+        {"name": "National Labs AI Partnership", "type": "research_partnership"}
+      ],
       "ai_readiness": {
         "overall_score": 4,
         "teaching_score": 4,
@@ -466,6 +601,15 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.uprrp.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Flagship UPR campus with growing computational research programs",
+        "Faculty of Natural Sciences expanding AI and data science offerings",
+        "CAHSI member building Caribbean computing research capacity"
+      ],
+      "key_programs": [
+        {"name": "Faculty of Natural Sciences", "type": "academic_school"}
+      ],
       "ai_readiness": {
         "overall_score": 3,
         "teaching_score": 3,
@@ -497,6 +641,15 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.csulb.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Large CSU campus with strong College of Engineering programs",
+        "Growing AI and data science integration in computing curricula",
+        "CAHSI member serving diverse Long Beach community"
+      ],
+      "key_programs": [
+        {"name": "College of Engineering", "type": "academic_school"}
+      ],
       "ai_readiness": {
         "overall_score": 3,
         "teaching_score": 4,
@@ -528,6 +681,16 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.calstatela.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "NASA partnerships bringing AI applications to aerospace research",
+        "College of Engineering, CS, and Technology serving diverse LA community",
+        "First-generation student success programs incorporating AI literacy"
+      ],
+      "key_programs": [
+        {"name": "College of Engineering, CS, and Technology", "type": "academic_school"},
+        {"name": "NASA DIRECT-STEM Center", "type": "research_center"}
+      ],
       "ai_readiness": {
         "overall_score": 3,
         "teaching_score": 3,
@@ -559,6 +722,15 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.csun.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Strong CS programs in the San Fernando Valley serving large Hispanic population",
+        "College of Engineering and Computer Science developing AI-enhanced curricula",
+        "Industry partnerships with major tech companies in LA region"
+      ],
+      "key_programs": [
+        {"name": "College of Engineering and Computer Science", "type": "academic_school"}
+      ],
       "ai_readiness": {
         "overall_score": 3,
         "teaching_score": 3,
@@ -590,6 +762,16 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.sjsu.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Located in the heart of Silicon Valley with direct industry AI partnerships",
+        "College of Engineering graduates feed directly into top tech companies",
+        "Infrastructure advantages from proximity to major cloud computing centers"
+      ],
+      "key_programs": [
+        {"name": "College of Engineering", "type": "academic_school"},
+        {"name": "Silicon Valley Industry Partnerships", "type": "industry_partnership"}
+      ],
       "ai_readiness": {
         "overall_score": 4,
         "teaching_score": 4,
@@ -622,6 +804,15 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.fullerton.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Largest CSU campus developing data science programs",
+        "College of Engineering and Computer Science expanding AI course offerings",
+        "Growing industry partnerships in Orange County tech ecosystem"
+      ],
+      "key_programs": [
+        {"name": "College of Engineering and Computer Science", "type": "academic_school"}
+      ],
       "ai_readiness": {
         "overall_score": 3,
         "teaching_score": 4,
@@ -653,6 +844,15 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.sdsu.edu",
+      "ai_policy_url": "https://brand.sdsu.edu/resources/genai-guidelines",
+      "ai_highlights": [
+        "Published comprehensive Generative AI guidelines for campus community",
+        "Research-active campus with strong engineering and computational programs",
+        "Cross-border AI research collaborations with institutions in Baja California"
+      ],
+      "key_programs": [
+        {"name": "College of Engineering", "type": "academic_school"}
+      ],
       "ai_readiness": {
         "overall_score": 4,
         "teaching_score": 4,
@@ -684,6 +884,16 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.uh.edu",
+      "ai_policy_url": "https://uhsystem.edu/offices/information-security/resources/artificial-intelligence/index.php",
+      "ai_highlights": [
+        "Hewlett Packard Enterprise Data Science Institute drives AI research and education",
+        "UH System-wide AI policy framework covering all member institutions",
+        "Major research university with strong industry ties in the energy sector AI applications"
+      ],
+      "key_programs": [
+        {"name": "Hewlett Packard Enterprise Data Science Institute", "type": "research_center"},
+        {"name": "UH System AI Initiative", "type": "institutional_initiative"}
+      ],
       "ai_readiness": {
         "overall_score": 5,
         "teaching_score": 4,
@@ -715,6 +925,15 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.ccny.cuny.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Historic CUNY campus with Grove School of Engineering leading AI education in NYC",
+        "Strong commitment to diversity in computing with targeted pipeline programs",
+        "AI research programs addressing urban challenges and equity"
+      ],
+      "key_programs": [
+        {"name": "Grove School of Engineering", "type": "academic_school"}
+      ],
       "ai_readiness": {
         "overall_score": 4,
         "teaching_score": 4,
@@ -746,6 +965,15 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.uic.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Major urban R1 research university with significant AI and data science programs",
+        "College of Engineering producing high-impact AI research publications",
+        "Serving one of the most diverse student bodies in the Midwest"
+      ],
+      "key_programs": [
+        {"name": "College of Engineering", "type": "academic_school"}
+      ],
       "ai_readiness": {
         "overall_score": 4,
         "teaching_score": 4,
@@ -777,6 +1005,15 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.newark.rutgers.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Strong commitment to diversity in computing at urban Newark campus",
+        "Department of Computer Science expanding AI and machine learning offerings",
+        "Research partnerships with Rutgers system-wide AI initiatives"
+      ],
+      "key_programs": [
+        {"name": "Department of Computer Science", "type": "academic_department"}
+      ],
       "ai_readiness": {
         "overall_score": 4,
         "teaching_score": 4,
@@ -808,6 +1045,15 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.fau.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Growing research university expanding AI programs in South Florida",
+        "College of Engineering and Computer Science building AI research capacity",
+        "Developing AI applications for marine science and environmental monitoring"
+      ],
+      "key_programs": [
+        {"name": "College of Engineering and Computer Science", "type": "academic_school"}
+      ],
       "ai_readiness": {
         "overall_score": 3,
         "teaching_score": 3,
@@ -839,6 +1085,16 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.ucf.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "One of the largest US universities with Institute for Simulation & Training applying AI",
+        "Strong simulation and AI research with defense and commercial applications",
+        "College of Engineering and Computer Science with robust AI/ML programs"
+      ],
+      "key_programs": [
+        {"name": "Institute for Simulation & Training", "type": "research_center"},
+        {"name": "College of Engineering and Computer Science", "type": "academic_school"}
+      ],
       "ai_readiness": {
         "overall_score": 4,
         "teaching_score": 4,
@@ -871,6 +1127,15 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.gsu.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "National leader in AI-driven student success analytics and interventions",
+        "Predictive analytics programs have significantly improved graduation rates",
+        "AI applications in student advising serve as model for institutions nationwide"
+      ],
+      "key_programs": [
+        {"name": "Student Success AI Programs", "type": "institutional_initiative"}
+      ],
       "ai_readiness": {
         "overall_score": 4,
         "teaching_score": 4,
@@ -902,6 +1167,15 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.ucdenver.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Urban research university with College of Engineering, Design and Computing",
+        "Growing data science and AI programs serving Denver metro area",
+        "Industry partnerships with Colorado tech sector for AI workforce development"
+      ],
+      "key_programs": [
+        {"name": "College of Engineering, Design and Computing", "type": "academic_school"}
+      ],
       "ai_readiness": {
         "overall_score": 4,
         "teaching_score": 4,
@@ -933,6 +1207,13 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.nmhu.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Small rural HSI building computing capacity in northern New Mexico",
+        "CAHSI member creating pathways for rural students into computing careers",
+        "Emerging technology programs with focus on serving underserved communities"
+      ],
+      "key_programs": [],
       "ai_readiness": {
         "overall_score": 2,
         "teaching_score": 2,
@@ -963,6 +1244,15 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.epcc.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Large community college partnering with UTEP for CS transfer pathways",
+        "Growing CS curriculum preparing students for 4-year computing programs",
+        "Serving El Paso border community with workforce-focused tech programs"
+      ],
+      "key_programs": [
+        {"name": "UTEP Transfer Pathway", "type": "academic_pathway"}
+      ],
       "ai_readiness": {
         "overall_score": 2,
         "teaching_score": 2,
@@ -994,6 +1284,16 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.mdc.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Largest college in the nation with dedicated AI Center for workforce development",
+        "AI workforce programs training students for emerging tech careers in South Florida",
+        "Innovative approach to AI education at the community college level"
+      ],
+      "key_programs": [
+        {"name": "AI Center", "type": "research_center"},
+        {"name": "Workforce Development Programs", "type": "institutional_initiative"}
+      ],
       "ai_readiness": {
         "overall_score": 3,
         "teaching_score": 3,
@@ -1026,6 +1326,13 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.pima.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Arizona community college building emerging technology programs",
+        "CAHSI member creating computing pathways to Arizona universities",
+        "Developing tech workforce programs for Tucson region"
+      ],
+      "key_programs": [],
       "ai_readiness": {
         "overall_score": 2,
         "teaching_score": 2,
@@ -1056,6 +1363,15 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.maricopa.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Large 10-college district with 9 HSIs and strong ASU transfer pathway",
+        "Developing AI-enhanced teaching and learning across district",
+        "Technology workforce programs serving Phoenix metro area"
+      ],
+      "key_programs": [
+        {"name": "ASU Transfer Pathway", "type": "academic_pathway"}
+      ],
       "ai_readiness": {
         "overall_score": 3,
         "teaching_score": 3,
@@ -1087,6 +1403,15 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.austincc.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Austin-area community college with strong tech industry connections",
+        "Tech workforce programs aligned with Austin's booming tech sector",
+        "Infrastructure investments supporting AI and data science education"
+      ],
+      "key_programs": [
+        {"name": "Tech Workforce Programs", "type": "institutional_initiative"}
+      ],
       "ai_readiness": {
         "overall_score": 3,
         "teaching_score": 3,
@@ -1118,6 +1443,13 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.hccs.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Large Houston-area system focused on workforce readiness",
+        "Building computing pathways connecting to UH and UHD 4-year programs",
+        "Workforce development programs incorporating emerging AI technologies"
+      ],
+      "key_programs": [],
       "ai_readiness": {
         "overall_score": 2,
         "teaching_score": 2,
@@ -1148,6 +1480,15 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.alamo.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Five-college district serving San Antonio with UTSA transfer pathway",
+        "Developing AI-enhanced learning across all five campuses",
+        "Community workforce programs incorporating emerging technologies"
+      ],
+      "key_programs": [
+        {"name": "UTSA Transfer Pathway", "type": "academic_pathway"}
+      ],
       "ai_readiness": {
         "overall_score": 3,
         "teaching_score": 3,
@@ -1179,6 +1520,13 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.alamo.edu/sac",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Part of Alamo Colleges with long history serving San Antonio community",
+        "Building computing and technology programs for diverse student body",
+        "CAHSI member supporting 2-year to 4-year computing pathways"
+      ],
+      "key_programs": [],
       "ai_readiness": {
         "overall_score": 2,
         "teaching_score": 2,
@@ -1209,6 +1557,15 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.southtexascollege.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Large community college on Texas-Mexico border with UTRGV transfer pathway",
+        "Serving 97% Hispanic student population with technology programs",
+        "Developing bilingual computing education resources"
+      ],
+      "key_programs": [
+        {"name": "UTRGV Transfer Pathway", "type": "academic_pathway"}
+      ],
       "ai_readiness": {
         "overall_score": 2,
         "teaching_score": 2,
@@ -1240,6 +1597,15 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.txst.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Growing research university positioned between Austin and San Antonio tech corridors",
+        "Department of Computer Science expanding AI and machine learning offerings",
+        "HSI with emerging data science programs"
+      ],
+      "key_programs": [
+        {"name": "Department of Computer Science", "type": "academic_department"}
+      ],
       "ai_readiness": {
         "overall_score": 3,
         "teaching_score": 3,
@@ -1271,6 +1637,13 @@
       "is_cahsi_member": false,
       "cahsi_role": null,
       "website": "https://www.tamuct.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Upper-level transfer institution serving military-connected community near Fort Cavazos",
+        "Building computing education programs for nontraditional students",
+        "Developing online AI literacy courses"
+      ],
+      "key_programs": [],
       "ai_readiness": {
         "overall_score": 2,
         "teaching_score": 2,
@@ -1299,6 +1672,15 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.tamuk.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "South Texas university with strong College of Engineering and research focus",
+        "CAHSI member building computing research capacity in the region",
+        "Engineering programs incorporating AI and automation technologies"
+      ],
+      "key_programs": [
+        {"name": "College of Engineering", "type": "academic_school"}
+      ],
       "ai_readiness": {
         "overall_score": 2,
         "teaching_score": 2,
@@ -1330,6 +1712,15 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.pvamu.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "HBCU with strong engineering programs partnering with CAHSI for diversity in computing",
+        "College of Engineering developing AI-enhanced curricula",
+        "Bridging HBCU and HSI networks for broader participation in computing"
+      ],
+      "key_programs": [
+        {"name": "College of Engineering", "type": "academic_school"}
+      ],
       "ai_readiness": {
         "overall_score": 3,
         "teaching_score": 3,
@@ -1361,6 +1752,15 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.ttu.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Large R1 research university with growing AI and data science programs",
+        "Department of Computer Science expanding machine learning research",
+        "West Texas institution building regional AI workforce capacity"
+      ],
+      "key_programs": [
+        {"name": "Department of Computer Science", "type": "academic_department"}
+      ],
       "ai_readiness": {
         "overall_score": 4,
         "teaching_score": 4,
@@ -1392,6 +1792,13 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://www.uprb.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "UPR campus with technology-focused programs in the San Juan metro area",
+        "CAHSI member building computing capacity in Puerto Rico",
+        "Developing technology programs for Caribbean workforce needs"
+      ],
+      "key_programs": [],
       "ai_readiness": {
         "overall_score": 2,
         "teaching_score": 2,
@@ -1422,6 +1829,13 @@
       "is_cahsi_member": true,
       "cahsi_role": "member",
       "website": "https://metro.inter.edu",
+      "ai_policy_url": null,
+      "ai_highlights": [
+        "Private university system serving Puerto Rico with technology programs",
+        "CAHSI member contributing to Caribbean computing education",
+        "Building AI awareness and digital literacy across campuses"
+      ],
+      "key_programs": [],
       "ai_readiness": {
         "overall_score": 2,
         "teaching_score": 2,
