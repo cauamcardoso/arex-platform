@@ -73,60 +73,60 @@
         .hero-orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
+            filter: blur(50px);
             pointer-events: none;
             will-change: transform;
         }
 
         .hero-orb-1 {
-            width: 500px; height: 500px;
-            background: rgba(59, 130, 246, 0.35);
-            top: -10%; left: -5%;
+            width: 600px; height: 600px;
+            background: rgba(59, 130, 246, 0.55);
+            top: -15%; left: -8%;
             animation: float-orb-1 12s ease-in-out infinite;
         }
 
         .hero-orb-2 {
-            width: 400px; height: 400px;
-            background: rgba(16, 185, 129, 0.25);
-            top: 30%; right: -10%;
+            width: 500px; height: 500px;
+            background: rgba(16, 185, 129, 0.45);
+            top: 25%; right: -12%;
             animation: float-orb-2 15s ease-in-out infinite;
         }
 
         .hero-orb-3 {
-            width: 350px; height: 350px;
-            background: rgba(139, 92, 246, 0.2);
-            bottom: -15%; left: 30%;
+            width: 450px; height: 450px;
+            background: rgba(139, 92, 246, 0.4);
+            bottom: -20%; left: 25%;
             animation: float-orb-3 18s ease-in-out infinite;
         }
 
         .hero-orb-4 {
-            width: 200px; height: 200px;
-            background: rgba(236, 72, 153, 0.15);
-            top: 60%; left: 15%;
+            width: 300px; height: 300px;
+            background: rgba(236, 72, 153, 0.3);
+            top: 55%; left: 12%;
             animation: float-orb-4 10s ease-in-out infinite;
         }
 
         @keyframes float-orb-1 {
             0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(40px, 30px) scale(1.05); }
-            50% { transform: translate(20px, -40px) scale(0.95); }
-            75% { transform: translate(-30px, 20px) scale(1.02); }
+            25% { transform: translate(80px, 60px) scale(1.1); }
+            50% { transform: translate(40px, -80px) scale(0.9); }
+            75% { transform: translate(-60px, 40px) scale(1.05); }
         }
 
         @keyframes float-orb-2 {
             0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(-50px, 30px) scale(1.08); }
-            66% { transform: translate(30px, -50px) scale(0.92); }
+            33% { transform: translate(-100px, 60px) scale(1.15); }
+            66% { transform: translate(60px, -100px) scale(0.85); }
         }
 
         @keyframes float-orb-3 {
             0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(60px, -30px) scale(1.1); }
+            50% { transform: translate(120px, -60px) scale(1.2); }
         }
 
         @keyframes float-orb-4 {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(-40px, -40px); }
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-80px, -80px) scale(1.15); }
         }
 
         /* Grid pattern overlay with shimmer */
@@ -135,8 +135,8 @@
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background-image:
-                linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+                linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
             background-size: 60px 60px;
             pointer-events: none;
             animation: grid-shimmer 8s ease-in-out infinite;
@@ -675,7 +675,7 @@
         <nav class="header-nav">
             <a href="/" class="active">Home</a>
             <a href="/atlas">Atlas</a>
-            <a href="/toolkit">Toolkit</a>
+            <a href="/toolkit">Repository</a>
             <a href="/assessment">Assessment</a>
         </nav>
     </header>
@@ -763,10 +763,10 @@
                 </a>
 
                 <a href="/toolkit" class="feature-card">
-                    <div class="feature-icon" style="background: #ecfdf5;">🧰</div>
-                    <h3>Resource Toolkit</h3>
-                    <p>Curated guides, templates, frameworks, and workshop materials — organized by pillar so you can take action on your weakest areas immediately.</p>
-                    <div class="feature-link">Browse resources <span>&rarr;</span></div>
+                    <div class="feature-icon" style="background: #ecfdf5;">💬</div>
+                    <h3>Conversational Repository</h3>
+                    <p>Ask questions, get AI-powered guidance, and browse curated guides, templates, and frameworks — organized by pillar with an intelligent assistant to help you navigate.</p>
+                    <div class="feature-link">Start a conversation <span>&rarr;</span></div>
                 </a>
 
                 <a href="/atlas" class="feature-card">
@@ -843,7 +843,7 @@
                 <div class="step">
                     <div class="step-number">3</div>
                     <h3>Act</h3>
-                    <p>Use the Toolkit to find targeted resources — policy templates, workshop guides, infrastructure checklists — for your priority areas.</p>
+                    <p>Use the Repository to find targeted resources — policy templates, workshop guides, infrastructure checklists — for your priority areas.</p>
                 </div>
                 <div class="step">
                     <div class="step-number">4</div>
@@ -881,7 +881,7 @@
             <div class="cta-actions">
                 <a href="/assessment" class="btn btn-primary">Take the Assessment &rarr;</a>
                 <a href="/atlas" class="btn btn-secondary">Explore the Atlas</a>
-                <a href="/toolkit" class="btn btn-secondary">Browse the Toolkit</a>
+                <a href="/toolkit" class="btn btn-secondary">Browse the Repository</a>
             </div>
         </div>
     </section>
@@ -898,7 +898,7 @@
             <div class="footer-links">
                 <a href="/atlas">Atlas</a>
                 <a href="/assessment">Assessment</a>
-                <a href="/toolkit">Toolkit</a>
+                <a href="/toolkit">Repository</a>
             </div>
         </div>
     </footer>

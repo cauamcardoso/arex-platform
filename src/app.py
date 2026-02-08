@@ -80,7 +80,7 @@ def assessment():
 
 @app.route("/toolkit")
 def toolkit():
-    """AI Readiness Toolkit - curated resources for HSIs."""
+    """Conversational Repository - curated resources and AI assistant for HSIs."""
     return render_template("toolkit.html")
 
 

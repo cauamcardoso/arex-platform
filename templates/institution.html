@@ -682,7 +682,7 @@
         <nav class="header-nav">
             <a href="/">Home</a>
             <a href="/atlas">Atlas</a>
-            <a href="/toolkit">Toolkit</a>
+            <a href="/toolkit">Repository</a>
             <a href="/assessment">Assessment</a>
         </nav>
     </header>
@@ -717,10 +717,6 @@
                         <div class="hero-meta-item">
                             <span>Enrollment:</span>
                             <span class="hero-meta-value">{{ "{:,}".format(institution.total_enrollment) }}</span>
-                        </div>
-                        <div class="hero-meta-item">
-                            <span>Hispanic:</span>
-                            <span class="hero-meta-value">{{ institution.hispanic_enrollment_pct }}%</span>
                         </div>
                         {% if institution.carnegie_classification %}
                         <div class="hero-meta-item">
@@ -881,8 +877,8 @@
                         <div class="fact-value">{{ "{:,}".format(institution.total_enrollment) }}</div>
                     </div>
                     <div class="fact">
-                        <div class="fact-label">Hispanic Enrollment</div>
-                        <div class="fact-value">{{ institution.hispanic_enrollment_pct }}%</div>
+                        <div class="fact-label">Type</div>
+                        <div class="fact-value">{{ institution.type | replace('_', ' ') | title }}</div>
                     </div>
                     <div class="fact">
                         <div class="fact-label">State</div>

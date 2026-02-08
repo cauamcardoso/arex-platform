@@ -214,9 +214,11 @@ class InstitutionsDatabase:
                 "is_hsi": inst.get('is_hsi'),
                 "is_cahsi_member": inst.get('is_cahsi_member'),
                 "overall_score": inst.get('ai_readiness', {}).get('overall_score', 0),
-                "hispanic_enrollment_pct": inst.get('hispanic_enrollment_pct', 0),
+                "total_enrollment": inst.get('total_enrollment', 0),
                 "ai_policy_url": inst.get('ai_policy_url'),
-                "ai_highlights": inst.get('ai_highlights', [])
+                "ai_highlights": inst.get('ai_highlights', []),
+                "key_programs": inst.get('key_programs', []),
+                "initiatives": inst.get('initiatives', [])
             })
         return map_data
 
