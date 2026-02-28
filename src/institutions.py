@@ -1,6 +1,6 @@
 """
 Institutions Database Module
-Manages HSI/CAHSI institution data for the AI Readiness Atlas.
+Manages HSI/CAHSI institution data for the AREX — AI Readiness Explorer.
 """
 
 import json
@@ -10,7 +10,7 @@ from typing import List, Dict, Optional
 
 class InstitutionsDatabase:
     """
-    Manages institution data for the AI Readiness Atlas.
+    Manages institution data for the AREX — AI Readiness Explorer.
     Provides search, filter, and aggregation capabilities.
     """
 
@@ -326,7 +326,7 @@ if __name__ == "__main__":
     db = InstitutionsDatabase()
 
     print("\n" + "=" * 60)
-    print("  AI Readiness Atlas - Institutions Database")
+    print("  AREX — AI Readiness Explorer - Institutions Database")
     print("=" * 60)
 
     stats = db.get_stats()

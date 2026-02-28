@@ -1,5 +1,5 @@
 """
-AI Readiness Atlas
+AREX — AI Readiness Explorer
 A platform helping Hispanic-Serving Institutions navigate AI integration in higher education.
 
 Built by the Institute for Applied AI Innovation at UTEP
@@ -58,7 +58,7 @@ def home():
 
 @app.route("/atlas")
 def atlas():
-    """AI Readiness Atlas - Interactive map of HSI institutions."""
+    """AREX — AI Readiness Explorer - Interactive map of HSI institutions."""
     stats = institutions_db.get_stats()
 
     return render_template(
@@ -274,7 +274,7 @@ def get_institution_regions():
 
 if __name__ == "__main__":
     print("\n" + "=" * 60)
-    print("  AI Readiness Atlas")
+    print("  AREX — AI Readiness Explorer")
     print("  Institute for Applied AI Innovation - UTEP")
     print("=" * 60)
 
