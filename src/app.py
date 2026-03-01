@@ -56,11 +56,11 @@ def home():
     """Homepage - Landing page with value proposition."""
     stats = institutions_db.get_stats()
 
-    # Format total enrollment for display (e.g., "4 Million")
+    # Format total enrollment for display (e.g., "4M")
     total_enrollment = stats["total_enrollment"]
     if total_enrollment >= 1_000_000:
         millions = total_enrollment / 1_000_000
-        enrollment_display = f"{millions:.0f} Million" if millions == int(millions) else f"{millions:.1f} Million"
+        enrollment_display = f"{millions:.0f}M" if millions == int(millions) else f"{millions:.1f}M"
     elif total_enrollment >= 1_000:
         enrollment_display = f"{total_enrollment / 1_000:.0f}K"
     else:

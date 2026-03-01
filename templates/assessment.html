@@ -9,19 +9,19 @@
     <style>
         :root {
             --bg-primary: #ffffff;
-            --bg-secondary: #f8f7ff;
-            --bg-tertiary: #f1f0fb;
+            --bg-secondary: #f0f7ff;
+            --bg-tertiary: #e0effe;
             --card-bg: rgba(255, 255, 255, 0.8);
             --card-hover: rgba(255, 255, 255, 0.95);
-            --border-subtle: rgba(99, 102, 241, 0.1);
-            --border-hover: rgba(139, 92, 246, 0.35);
-            --text-primary: #1e1b4b;
+            --border-subtle: rgba(37, 99, 235, 0.1);
+            --border-hover: rgba(29, 78, 216, 0.35);
+            --text-primary: #1e3a5f;
             --text-secondary: #4b5563;
             --text-muted: #6b7280;
-            --accent-purple: #8b5cf6;
-            --accent-indigo: #6366f1;
-            --accent-violet: #7c3aed;
-            --accent-cyan: #06b6d4;
+            --accent-blue: #2563eb;
+            --accent-blue-dark: #1d4ed8;
+            --accent-blue-deep: #1e40af;
+            --accent-blue-light: #3b82f6;
             --success: #10b981;
             --warning: #f59e0b;
             --danger: #ef4444;
@@ -43,7 +43,7 @@
             background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(99, 102, 241, 0.08);
+            border-bottom: 1px solid rgba(37, 99, 235, 0.08);
             padding: 1rem 2rem;
             display: flex;
             align-items: center;
@@ -59,9 +59,9 @@
         .header-brand h1 a { color: inherit; text-decoration: none; }
         .header-brand .badge {
             font-size: 0.65rem;
-            color: #7c3aed;
-            background: #f5f3ff;
-            border: 1px solid #e9d5ff;
+            color: #1d4ed8;
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
             padding: 0.2rem 0.5rem;
             border-radius: 4px;
             font-weight: 600;
@@ -77,8 +77,8 @@
             font-weight: 500;
             transition: color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        .header-nav a:hover { color: var(--accent-indigo); }
-        .header-nav a.active { color: var(--accent-indigo); font-weight: 600; }
+        .header-nav a:hover { color: var(--accent-blue); }
+        .header-nav a.active { color: var(--accent-blue); font-weight: 600; }
 
         .mobile-menu-btn {
             display: none;
@@ -95,7 +95,7 @@
            ============================================================ */
         .hero {
             margin-top: 64px;
-            background: linear-gradient(160deg, #0a0520 0%, #1a1145 40%, #251a6a 70%, #1e1b4b 100%);
+            background: linear-gradient(160deg, #0a1628 0%, #0f2847 40%, #1e3a8a 70%, #1e40af 100%);
             padding: 5rem 2rem 4.5rem;
             position: relative;
             overflow: hidden;
@@ -111,21 +111,21 @@
 
         .hero-orb-1 {
             width: 500px; height: 500px;
-            background: rgba(99, 102, 241, 0.55);
+            background: rgba(37, 99, 235, 0.55);
             top: -15%; left: -5%;
             animation: float-1 14s ease-in-out infinite;
         }
 
         .hero-orb-2 {
             width: 400px; height: 400px;
-            background: rgba(139, 92, 246, 0.35);
+            background: rgba(59, 130, 246, 0.35);
             top: 20%; right: -10%;
             animation: float-2 18s ease-in-out infinite;
         }
 
         .hero-orb-3 {
             width: 300px; height: 300px;
-            background: rgba(236, 72, 153, 0.2);
+            background: rgba(96, 165, 250, 0.25);
             bottom: -10%; left: 30%;
             animation: float-3 11s ease-in-out infinite;
         }
@@ -184,7 +184,7 @@
         }
 
         .hero h1 .highlight {
-            background: linear-gradient(135deg, #a78bfa, #c4b5fd, #818cf8);
+            background: linear-gradient(135deg, #60a5fa, #93c5fd, #3b82f6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -211,9 +211,9 @@
 
         .hero-card-badge {
             display: inline-block;
-            background: rgba(139, 92, 246, 0.2);
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            color: #c4b5fd;
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #93c5fd;
             font-size: 0.65rem;
             font-weight: 700;
             letter-spacing: 0.08em;
@@ -275,7 +275,7 @@
             font-weight: 800;
             letter-spacing: -0.025em;
             margin-bottom: 0.75rem;
-            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            background: linear-gradient(135deg, #1d4ed8, #2563eb);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -304,7 +304,7 @@
             background: rgba(255, 255, 255, 0.6);
             border-color: var(--border-hover);
             transform: translateY(-4px);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 12px 40px rgba(99, 102, 241, 0.08);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 12px 40px rgba(37, 99, 235, 0.08);
         }
 
         /* Scroll animation */
@@ -365,7 +365,7 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: var(--accent-indigo);
+            color: var(--accent-blue);
             margin-bottom: 0.75rem;
         }
 
@@ -383,7 +383,7 @@
             content: '';
             position: absolute;
             width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.06) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.06) 0%, transparent 70%);
             top: -10%; right: -5%;
             pointer-events: none;
             animation: aurora-pulse 12s ease-in-out infinite;
@@ -393,7 +393,7 @@
             content: '';
             position: absolute;
             width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(29, 78, 216, 0.05) 0%, transparent 70%);
             bottom: -15%; left: -3%;
             pointer-events: none;
             animation: aurora-pulse 15s ease-in-out infinite reverse;
@@ -428,9 +428,9 @@
         }
 
         .level-card-exploring::before { background: linear-gradient(180deg, #f59e0b, #fbbf24); }
-        .level-card-building::before { background: linear-gradient(180deg, #6366f1, #818cf8); }
+        .level-card-building::before { background: linear-gradient(180deg, #2563eb, #60a5fa); }
         .level-card-advancing::before { background: linear-gradient(180deg, #10b981, #34d399); }
-        .level-card-leading::before { background: linear-gradient(180deg, #8b5cf6, #a78bfa); }
+        .level-card-leading::before { background: linear-gradient(180deg, #1d4ed8, #3b82f6); }
 
         .level-card h4 {
             font-size: 1rem;
@@ -450,9 +450,9 @@
         }
 
         .score-exploring { background: #fffbeb; color: #b45309; }
-        .score-building { background: #eef2ff; color: #4338ca; }
+        .score-building { background: #eff6ff; color: #1d4ed8; }
         .score-advancing { background: #ecfdf5; color: #047857; }
-        .score-leading { background: #f5f3ff; color: #6d28d9; }
+        .score-leading { background: #eff6ff; color: #1e40af; }
 
         .level-card p {
             font-size: 0.85rem;
@@ -512,7 +512,7 @@
             align-items: center;
             gap: 0.75rem;
             padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, var(--accent-indigo), var(--accent-violet));
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-dark));
             color: white;
             border: none;
             border-radius: 12px;
@@ -520,12 +520,12 @@
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.25);
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.25);
         }
 
         .btn-start:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.35);
+            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.35);
         }
 
         .start-cta .start-subtext {
@@ -535,7 +535,7 @@
         }
 
         .start-cta .start-subtext a {
-            color: var(--accent-indigo);
+            color: var(--accent-blue);
             text-decoration: underline;
             text-underline-offset: 2px;
         }
@@ -594,7 +594,7 @@
         }
 
         .scoring-formula a {
-            color: var(--accent-indigo);
+            color: var(--accent-blue);
             text-decoration: underline;
             text-underline-offset: 2px;
             font-weight: 600;
@@ -607,9 +607,9 @@
             display: none;
             background: var(--bg-secondary);
             padding-bottom: 4rem;
-            --pillar-color: #4338ca;
-            --pillar-color-rgb: 67, 56, 202;
-            --pillar-color-light: #e0e7ff;
+            --pillar-color: #2563eb;
+            --pillar-color-rgb: 37, 99, 235;
+            --pillar-color-light: #dbeafe;
             transition: --pillar-color 0.3s;
         }
 
@@ -638,7 +638,7 @@
         .progress-track {
             flex: 1;
             height: 8px;
-            background: rgba(99, 102, 241, 0.08);
+            background: rgba(37, 99, 235, 0.08);
             border-radius: 4px;
             overflow: hidden;
         }
@@ -737,7 +737,7 @@
         .question {
             margin-bottom: 2rem;
             padding-bottom: 2rem;
-            border-bottom: 1px solid rgba(99, 102, 241, 0.06);
+            border-bottom: 1px solid rgba(37, 99, 235, 0.06);
         }
 
         .question:last-of-type { border-bottom: none; margin-bottom: 1rem; }
@@ -824,7 +824,7 @@
             align-items: center;
             margin-top: 1.5rem;
             padding-top: 1.5rem;
-            border-top: 1px solid rgba(99, 102, 241, 0.06);
+            border-top: 1px solid rgba(37, 99, 235, 0.06);
         }
 
         .btn {
@@ -842,11 +842,11 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--accent-indigo), var(--accent-violet));
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-dark));
             color: white;
-            box-shadow: 0 2px 12px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 2px 12px rgba(37, 99, 235, 0.2);
         }
-        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3); }
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3); }
 
         .btn-secondary {
             background: rgba(255, 255, 255, 0.6);
@@ -883,7 +883,7 @@
             font-weight: 800;
             letter-spacing: -0.025em;
             margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            background: linear-gradient(135deg, #1d4ed8, #2563eb);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -969,7 +969,7 @@
         .pillar-result-max { font-size: 0.7rem; color: var(--text-muted); margin-bottom: 0.5rem; }
         .pillar-result-name { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-secondary); }
 
-        .pillar-result-bar { width: 100%; height: 6px; background: rgba(99, 102, 241, 0.08); border-radius: 3px; margin-top: 0.75rem; overflow: hidden; }
+        .pillar-result-bar { width: 100%; height: 6px; background: rgba(37, 99, 235, 0.08); border-radius: 3px; margin-top: 0.75rem; overflow: hidden; }
         .pillar-result-bar-fill { height: 100%; border-radius: 3px; }
 
         .recommendations {
@@ -994,7 +994,7 @@
             display: flex;
             gap: 1rem;
             padding: 1rem 0;
-            border-bottom: 1px solid rgba(99, 102, 241, 0.06);
+            border-bottom: 1px solid rgba(37, 99, 235, 0.06);
         }
         .rec-item:last-child { border-bottom: none; }
 
@@ -1075,7 +1075,7 @@
             transition: color 0.2s;
         }
 
-        .footer-nav a:hover { color: var(--accent-indigo); }
+        .footer-nav a:hover { color: var(--accent-blue); }
 
         /* ============================================================
            RESPONSIVE
@@ -1125,14 +1125,14 @@
                 font-size: 1.5rem;
                 -webkit-text-fill-color: unset;
                 background: none;
-                color: #4f46e5;
+                color: #1d4ed8;
             }
 
             .results-header h2 {
                 font-size: 1.5rem;
                 -webkit-text-fill-color: unset;
                 background: none;
-                color: #4f46e5;
+                color: #1d4ed8;
             }
 
             .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
@@ -1212,16 +1212,16 @@
             <div class="how-grid">
                 <div class="how-card glass-card fade-up">
                     <div class="how-step-number">Step 1</div>
-                    <div class="how-icon" style="background: #e0e7ff;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="hw1" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#4338ca"/><stop offset="1" stop-color="#6366f1"/></linearGradient></defs><rect x="4" y="5" width="16" height="14" rx="3" fill="url(#hw1)" opacity="0.3"/><rect x="7" y="9" width="10" height="2" rx="1" fill="url(#hw1)"/><rect x="7" y="13" width="7" height="2" rx="1" fill="url(#hw1)"/></svg>
+                    <div class="how-icon" style="background: #dbeafe;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="hw1" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#1e40af"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs><rect x="4" y="5" width="16" height="14" rx="3" fill="url(#hw1)" opacity="0.3"/><rect x="7" y="9" width="10" height="2" rx="1" fill="url(#hw1)"/><rect x="7" y="13" width="7" height="2" rx="1" fill="url(#hw1)"/></svg>
                     </div>
                     <h3>Answer 25 questions</h3>
                     <p>Five questions per pillar, each with five response levels. Choose the option that best describes where your institution is right now.</p>
                 </div>
                 <div class="how-card glass-card fade-up" style="transition-delay: 0.1s">
                     <div class="how-step-number">Step 2</div>
-                    <div class="how-icon" style="background: #ede9fe;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="hw2" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#7c3aed"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs><circle cx="12" cy="12" r="9" fill="url(#hw2)" opacity="0.2"/><path d="M12 6v6l4 2" stroke="url(#hw2)" stroke-width="2.5" stroke-linecap="round"/></svg>
+                    <div class="how-icon" style="background: #dbeafe;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="hw2" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#1d4ed8"/><stop offset="1" stop-color="#3b82f6"/></linearGradient></defs><circle cx="12" cy="12" r="9" fill="url(#hw2)" opacity="0.2"/><path d="M12 6v6l4 2" stroke="url(#hw2)" stroke-width="2.5" stroke-linecap="round"/></svg>
                     </div>
                     <h3>Get your readiness profile</h3>
                     <p>See your overall score and a breakdown across all five pillars, with a developmental level that shows where you are on the journey.</p>
@@ -1233,68 +1233,6 @@
                     </div>
                     <h3>See recommended next steps</h3>
                     <p>Get tailored recommendations based on your weakest areas, with links to find peer institutions and explore the full framework.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- HOW SCORING WORKS -->
-    <section class="scoring-section" id="scoringExplained">
-        <div class="section-inner">
-            <div class="section-header fade-up">
-                <h2>How scoring works</h2>
-                <p>A transparent, straightforward scoring method. No hidden formulas.</p>
-            </div>
-            <div class="scoring-grid">
-                <div class="scoring-card glass-card fade-up">
-                    <div class="scoring-number" style="color: #4338ca;">1 &ndash; 5</div>
-                    <h4>Each response has a score</h4>
-                    <p>Every question has five options, scored from 1 (earliest stage) to 5 (most advanced). You pick the one that best matches your institution right now.</p>
-                </div>
-                <div class="scoring-card glass-card fade-up" style="transition-delay: 0.1s">
-                    <div class="scoring-number" style="color: #6d28d9;">&#x0078;&#x0305;</div>
-                    <h4>Pillar score = average</h4>
-                    <p>Each pillar has 5 questions. Your pillar score is the average of those 5 responses. A pillar score of 3.4 means you averaged 3.4 across its five questions.</p>
-                </div>
-                <div class="scoring-card glass-card fade-up" style="transition-delay: 0.2s">
-                    <div class="scoring-number" style="color: #059669;">&#x2211; &divide; 5</div>
-                    <h4>Overall = average of pillars</h4>
-                    <p>Your overall readiness score is the average of all five pillar scores. That overall number maps to one of the four developmental levels.</p>
-                </div>
-            </div>
-            <div class="scoring-formula fade-up">
-                <p>For example: if your pillar scores are 2.4, 3.0, 1.8, 2.6, and 3.2, your overall score is 2.6 (Building). Each pillar weighs equally. There are no penalties or bonuses. See the <a href="#levels">developmental levels below</a> for what each score range means.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- DEVELOPMENTAL LEVELS -->
-    <section class="levels-section" id="levels">
-        <div class="section-inner">
-            <div class="section-header fade-up">
-                <h2>Understanding your results</h2>
-                <p>Your responses map to one of four developmental levels. These levels describe where an institution is in the process, from early conversations to deep integration. They reflect progress, not performance.</p>
-            </div>
-            <div class="levels-grid">
-                <div class="level-card glass-card level-card-exploring fade-up">
-                    <h4>Exploring</h4>
-                    <span class="level-score score-exploring">1.0 &ndash; 2.0</span>
-                    <p>Aware of AI's potential. Early conversations are happening. No formal strategy yet, but curiosity and interest are growing.</p>
-                </div>
-                <div class="level-card glass-card level-card-building fade-up" style="transition-delay: 0.1s">
-                    <h4>Building</h4>
-                    <span class="level-score score-building">2.1 &ndash; 3.0</span>
-                    <p>Pilot initiatives underway. Policies are being drafted. Some faculty are adopting AI tools. A foundation is forming.</p>
-                </div>
-                <div class="level-card glass-card level-card-advancing fade-up" style="transition-delay: 0.15s">
-                    <h4>Advancing</h4>
-                    <span class="level-score score-advancing">3.1 &ndash; 4.0</span>
-                    <p>Coordinated AI strategy in place. Cross-departmental adoption. Dedicated resources and growing institutional support.</p>
-                </div>
-                <div class="level-card glass-card level-card-leading fade-up" style="transition-delay: 0.2s">
-                    <h4>Leading</h4>
-                    <span class="level-score score-leading">4.1 &ndash; 5.0</span>
-                    <p>AI is deeply embedded in institutional operations. Contributing to the broader field. Mentoring peer institutions.</p>
                 </div>
             </div>
         </div>
@@ -1354,6 +1292,68 @@
         </div>
     </section>
 
+    <!-- HOW SCORING WORKS -->
+    <section class="scoring-section" id="scoringExplained">
+        <div class="section-inner">
+            <div class="section-header fade-up">
+                <h2>How scoring works</h2>
+                <p>A transparent, straightforward scoring method. No hidden formulas.</p>
+            </div>
+            <div class="scoring-grid">
+                <div class="scoring-card glass-card fade-up">
+                    <div class="scoring-number" style="color: #1d4ed8;">1 &ndash; 5</div>
+                    <h4>Each response has a score</h4>
+                    <p>Every question has five options, scored from 1 (earliest stage) to 5 (most advanced). You pick the one that best matches your institution right now.</p>
+                </div>
+                <div class="scoring-card glass-card fade-up" style="transition-delay: 0.1s">
+                    <div class="scoring-number" style="color: #2563eb;">&#x0078;&#x0305;</div>
+                    <h4>Pillar score = average</h4>
+                    <p>Each pillar has 5 questions. Your pillar score is the average of those 5 responses. A pillar score of 3.4 means you averaged 3.4 across its five questions.</p>
+                </div>
+                <div class="scoring-card glass-card fade-up" style="transition-delay: 0.2s">
+                    <div class="scoring-number" style="color: #3b82f6;">&#x2211; &divide; 5</div>
+                    <h4>Overall = average of pillars</h4>
+                    <p>Your overall readiness score is the average of all five pillar scores. That overall number maps to one of the four developmental levels.</p>
+                </div>
+            </div>
+            <div class="scoring-formula fade-up">
+                <p>For example: if your pillar scores are 2.4, 3.0, 1.8, 2.6, and 3.2, your overall score is 2.6 (Building). Each pillar weighs equally. There are no penalties or bonuses. See the <a href="#levels">developmental levels below</a> for what each score range means.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEVELOPMENTAL LEVELS -->
+    <section class="levels-section" id="levels">
+        <div class="section-inner">
+            <div class="section-header fade-up">
+                <h2>Understanding your results</h2>
+                <p>Your responses map to one of four developmental levels. These levels describe where an institution is in the process, from early conversations to deep integration. They reflect progress, not performance.</p>
+            </div>
+            <div class="levels-grid">
+                <div class="level-card glass-card level-card-exploring fade-up">
+                    <h4>Exploring</h4>
+                    <span class="level-score score-exploring">1.0 &ndash; 2.0</span>
+                    <p>Aware of AI's potential. Early conversations are happening. No formal strategy yet, but curiosity and interest are growing.</p>
+                </div>
+                <div class="level-card glass-card level-card-building fade-up" style="transition-delay: 0.1s">
+                    <h4>Building</h4>
+                    <span class="level-score score-building">2.1 &ndash; 3.0</span>
+                    <p>Pilot initiatives underway. Policies are being drafted. Some faculty are adopting AI tools. A foundation is forming.</p>
+                </div>
+                <div class="level-card glass-card level-card-advancing fade-up" style="transition-delay: 0.15s">
+                    <h4>Advancing</h4>
+                    <span class="level-score score-advancing">3.1 &ndash; 4.0</span>
+                    <p>Coordinated AI strategy in place. Cross-departmental adoption. Dedicated resources and growing institutional support.</p>
+                </div>
+                <div class="level-card glass-card level-card-leading fade-up" style="transition-delay: 0.2s">
+                    <h4>Leading</h4>
+                    <span class="level-score score-leading">4.1 &ndash; 5.0</span>
+                    <p>AI is deeply embedded in institutional operations. Contributing to the broader field. Mentoring peer institutions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ASSESSMENT TOOL (hidden until "Begin Assessment") -->
     <div class="assessment-wrapper" id="assessmentWrapper">
         <!-- Progress -->
@@ -1393,9 +1393,9 @@
 
                 <div class="results-levels-ref" id="resultsLevelsRef">
                     <span class="results-level-chip" style="background: #fffbeb; color: #b45309;">Exploring 1.0-2.0</span>
-                    <span class="results-level-chip" style="background: #eef2ff; color: #4338ca;">Building 2.1-3.0</span>
+                    <span class="results-level-chip" style="background: #eff6ff; color: #1d4ed8;">Building 2.1-3.0</span>
                     <span class="results-level-chip" style="background: #ecfdf5; color: #047857;">Advancing 3.1-4.0</span>
-                    <span class="results-level-chip" style="background: #f5f3ff; color: #6d28d9;">Leading 4.1-5.0</span>
+                    <span class="results-level-chip" style="background: #eff6ff; color: #1e40af;">Leading 4.1-5.0</span>
                 </div>
 
                 <div class="pillar-results" id="pillarResults"></div>
@@ -1921,9 +1921,9 @@
             const overallAvg = pillarScores.reduce((s, p) => s + parseFloat(p.avg), 0) / pillarScores.length;
 
             function getJourneyLabel(avg) {
-                if (avg >= 4.1) return { label: 'Leading', range: '4.1-5.0', color: '#6d28d9', bg: '#f5f3ff' };
+                if (avg >= 4.1) return { label: 'Leading', range: '4.1-5.0', color: '#1e40af', bg: '#eff6ff' };
                 if (avg >= 3.1) return { label: 'Advancing', range: '3.1-4.0', color: '#047857', bg: '#ecfdf5' };
-                if (avg >= 2.1) return { label: 'Building', range: '2.1-3.0', color: '#4338ca', bg: '#eef2ff' };
+                if (avg >= 2.1) return { label: 'Building', range: '2.1-3.0', color: '#1d4ed8', bg: '#eff6ff' };
                 return { label: 'Exploring', range: '1.0-2.0', color: '#b45309', bg: '#fffbeb' };
             }
 
@@ -2014,7 +2014,7 @@
             }
 
             recs.push({
-                icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="rc6" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs><circle cx="8" cy="10" r="5" fill="url(#rc6)" opacity="0.5"/><circle cx="16" cy="10" r="5" fill="url(#rc6)" opacity="0.35"/><circle cx="12" cy="16" r="5" fill="url(#rc6)" opacity="0.25"/></svg>',
+                icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="rc6" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#2563eb"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs><circle cx="8" cy="10" r="5" fill="url(#rc6)" opacity="0.5"/><circle cx="16" cy="10" r="5" fill="url(#rc6)" opacity="0.35"/><circle cx="12" cy="16" r="5" fill="url(#rc6)" opacity="0.25"/></svg>',
                 bg: '#e0e7ff',
                 title: 'Connect with Peer Institutions',
                 desc: 'Use the Atlas to find institutions at a similar stage or with complementary strengths. Shared learning accelerates everyone\'s AI journey.'
