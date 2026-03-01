@@ -1,0 +1,800 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "last_updated": "2026-02-28",
+    "total_resources": 18,
+    "description": "Curated resource database for the AIREX Conversational Repository"
+  },
+  "resources": [
+    {
+      "id": "r001",
+      "title": "AI Ethics in Academic Assessment: Course Syllabus",
+      "type": "syllabus",
+      "pillar": "ethics",
+      "institution": "University of Texas at El Paso",
+      "institution_id": "utep",
+      "contributor": {
+        "name": "Dr. Maria Elena Ramirez",
+        "role": "Associate Professor, Computer Science",
+        "department": "Department of Computer Science"
+      },
+      "course": {
+        "name": "CS 4390: AI Ethics and Society",
+        "semester": "Fall 2025",
+        "level": "Undergraduate"
+      },
+      "description": "A senior-level course examining ethical implications of AI in academic settings, with a focus on assessment integrity, algorithmic bias, and responsible deployment in educational contexts.",
+      "readings": [
+        {
+          "title": "Weapons of Math Destruction",
+          "author": "Cathy O'Neil",
+          "type": "book",
+          "year": 2016,
+          "topics": ["bias", "algorithms", "social impact"]
+        },
+        {
+          "title": "The Ethical Algorithm",
+          "author": "Michael Kearns and Aaron Roth",
+          "type": "book",
+          "year": 2019,
+          "topics": ["fairness", "privacy", "algorithm design"]
+        },
+        {
+          "title": "On the Dangers of Stochastic Parrots: Can Language Models Be Too Big?",
+          "author": "Emily Bender, Timnit Gebru et al.",
+          "type": "paper",
+          "year": 2021,
+          "topics": ["large language models", "risk", "environmental cost"]
+        },
+        {
+          "title": "AI and Academic Integrity: A Framework for Ethical Use",
+          "author": "UNESCO",
+          "type": "report",
+          "year": 2024,
+          "topics": ["academic integrity", "assessment", "guidelines"]
+        },
+        {
+          "title": "Teaching AI Ethics: A Case-Based Approach",
+          "author": "Shannon Vallor",
+          "type": "paper",
+          "year": 2023,
+          "topics": ["pedagogy", "case studies", "virtue ethics"]
+        }
+      ],
+      "topics": ["ethics", "assessment", "academic integrity", "bias", "responsible AI"],
+      "tags": ["syllabus", "course material"],
+      "date_added": "2025-09-15",
+      "status": "vetted"
+    },
+    {
+      "id": "r002",
+      "title": "Generative AI Policy Template for Universities",
+      "type": "policy_template",
+      "pillar": "policy",
+      "institution": "California State University, Fullerton",
+      "institution_id": "csu_fullerton",
+      "contributor": {
+        "name": "Dr. James Ortiz",
+        "role": "Vice Provost for Academic Affairs",
+        "department": "Office of Academic Affairs"
+      },
+      "description": "A comprehensive template for institutional AI policies covering acceptable use, data privacy, student rights, and faculty guidelines. Includes sections on generative AI in coursework, research ethics, and administrative applications.",
+      "content_sections": [
+        {
+          "section": "Acceptable Use Guidelines",
+          "summary": "Defines permitted and restricted uses of generative AI tools by students, faculty, and staff. Includes specific guidance on when AI-generated content must be disclosed."
+        },
+        {
+          "section": "Student Assessment Policy",
+          "summary": "Framework for faculty to communicate AI tool policies in syllabi. Includes three tiers: AI-prohibited, AI-assisted (with disclosure), and AI-integrated assignments."
+        },
+        {
+          "section": "Data Privacy and Security",
+          "summary": "Requirements for protecting student data when using AI tools. Prohibits entering personally identifiable information into public AI systems."
+        },
+        {
+          "section": "Faculty Development Requirements",
+          "summary": "Mandates AI literacy training for all faculty within two semesters. Includes recommended workshops and certification pathways."
+        }
+      ],
+      "topics": ["policy", "governance", "acceptable use", "data privacy", "generative AI"],
+      "tags": ["template", "policy document"],
+      "date_added": "2025-10-01",
+      "status": "vetted"
+    },
+    {
+      "id": "r003",
+      "title": "AI-Enhanced Teaching Methods: Faculty Workshop Curriculum",
+      "type": "workshop_guide",
+      "pillar": "teaching",
+      "institution": "Florida International University",
+      "institution_id": "fiu",
+      "contributor": {
+        "name": "Dr. Ana Lucia Vargas",
+        "role": "Director, Center for Teaching and Learning",
+        "department": "Center for Teaching and Learning"
+      },
+      "description": "A 6-session faculty workshop series designed to help instructors integrate AI tools into their teaching practice. Covers prompt engineering, AI-assisted assessment design, and pedagogical strategies for AI-augmented classrooms.",
+      "sessions": [
+        {
+          "number": 1,
+          "title": "Understanding AI in Higher Education",
+          "description": "Overview of current AI tools and their capabilities. Hands-on exploration of ChatGPT, Claude, and Gemini in academic contexts.",
+          "duration": "2 hours"
+        },
+        {
+          "number": 2,
+          "title": "Redesigning Assignments for the AI Era",
+          "description": "Strategies for creating assessments that leverage AI rather than compete with it. Process-based evaluation methods.",
+          "duration": "2 hours"
+        },
+        {
+          "number": 3,
+          "title": "AI-Assisted Feedback and Grading",
+          "description": "Using AI to provide formative feedback. Maintaining academic integrity while streamlining evaluation workflows.",
+          "duration": "2 hours"
+        },
+        {
+          "number": 4,
+          "title": "Prompt Engineering for Educators",
+          "description": "Developing effective prompts for content creation, lesson planning, and student support. Building reusable prompt libraries.",
+          "duration": "2 hours"
+        },
+        {
+          "number": 5,
+          "title": "Equity and Access in AI-Enhanced Learning",
+          "description": "Addressing the digital divide. Ensuring AI tools are accessible and beneficial across diverse student populations.",
+          "duration": "2 hours"
+        },
+        {
+          "number": 6,
+          "title": "Building Your AI Teaching Portfolio",
+          "description": "Participants develop and present an AI-enhanced course module. Peer review and refinement session.",
+          "duration": "3 hours"
+        }
+      ],
+      "readings": [
+        {
+          "title": "Teaching with AI: A Practical Guide",
+          "author": "Jose Antonio Bowen and C. Edward Watson",
+          "type": "book",
+          "year": 2024,
+          "topics": ["pedagogy", "AI tools", "course design"]
+        },
+        {
+          "title": "AI in Education: Promises and Implications for Teaching and Learning",
+          "author": "Charles Fadel et al.",
+          "type": "report",
+          "year": 2023,
+          "topics": ["curriculum", "learning outcomes", "AI integration"]
+        }
+      ],
+      "topics": ["teaching", "faculty development", "workshop", "pedagogy", "AI tools"],
+      "tags": ["workshop", "guide"],
+      "date_added": "2025-08-20",
+      "status": "vetted"
+    },
+    {
+      "id": "r004",
+      "title": "Computing Infrastructure Assessment Checklist for AI Readiness",
+      "type": "checklist",
+      "pillar": "infrastructure",
+      "institution": "University of New Mexico",
+      "institution_id": "unm",
+      "contributor": {
+        "name": "David Chen",
+        "role": "Chief Information Officer",
+        "department": "IT Services"
+      },
+      "description": "A comprehensive checklist for evaluating institutional computing infrastructure readiness for AI workloads. Covers hardware, networking, cloud services, data storage, security, and staffing requirements.",
+      "content_sections": [
+        {
+          "section": "Computing Hardware",
+          "items": ["GPU cluster availability", "High-performance computing access", "Edge computing capabilities", "Student lab GPU workstations"]
+        },
+        {
+          "section": "Cloud and Networking",
+          "items": ["Cloud provider agreements (AWS/Azure/GCP)", "Network bandwidth for AI workloads", "API gateway infrastructure", "CDN and edge services"]
+        },
+        {
+          "section": "Data Management",
+          "items": ["Institutional data warehouse", "Data governance framework", "Research data management plan", "Secure data enclaves for sensitive datasets"]
+        },
+        {
+          "section": "Security and Compliance",
+          "items": ["AI-specific security protocols", "FERPA compliance for AI tools", "Vendor security assessments", "Incident response for AI systems"]
+        },
+        {
+          "section": "Staffing and Support",
+          "items": ["Dedicated AI/ML engineering staff", "Faculty AI support specialists", "Student AI help desk", "Training programs for IT staff"]
+        }
+      ],
+      "topics": ["infrastructure", "computing", "hardware", "cloud", "security", "staffing"],
+      "tags": ["checklist", "assessment tool"],
+      "date_added": "2025-11-05",
+      "status": "vetted"
+    },
+    {
+      "id": "r005",
+      "title": "AI Research Partnership Playbook",
+      "type": "guide",
+      "pillar": "research",
+      "institution": "University of Arizona",
+      "institution_id": "uarizona",
+      "contributor": {
+        "name": "Dr. Roberto Alvarez",
+        "role": "Associate VP for Research",
+        "department": "Office of Research, Innovation & Impact"
+      },
+      "description": "Step-by-step guide for establishing AI research partnerships between universities and industry. Covers proposal development, IP agreements, student involvement, and joint publication strategies.",
+      "content_sections": [
+        {
+          "section": "Identifying Partnership Opportunities",
+          "summary": "Methods for identifying industry partners aligned with institutional research strengths. Includes outreach templates and evaluation criteria."
+        },
+        {
+          "section": "Structuring the Agreement",
+          "summary": "Key terms to negotiate in AI research partnerships including IP rights, data sharing, publication timelines, and student involvement."
+        },
+        {
+          "section": "Managing Joint Research Projects",
+          "summary": "Best practices for coordinating research across institutional and corporate teams. Communication protocols and milestone tracking."
+        },
+        {
+          "section": "Student Engagement",
+          "summary": "Frameworks for involving graduate and undergraduate students in industry-partnered AI research. Internship pipelines and co-op models."
+        }
+      ],
+      "topics": ["research", "partnerships", "industry", "IP", "collaboration"],
+      "tags": ["guide", "framework"],
+      "date_added": "2025-07-10",
+      "status": "vetted"
+    },
+    {
+      "id": "r006",
+      "title": "Responsible AI Curriculum: Graduate Seminar Syllabus",
+      "type": "syllabus",
+      "pillar": "ethics",
+      "institution": "University of Houston",
+      "institution_id": "uhouston",
+      "contributor": {
+        "name": "Dr. Priya Natarajan",
+        "role": "Professor, Philosophy and Computer Science",
+        "department": "Department of Philosophy"
+      },
+      "course": {
+        "name": "PHIL 6380: Responsible AI Seminar",
+        "semester": "Spring 2026",
+        "level": "Graduate"
+      },
+      "description": "An interdisciplinary graduate seminar exploring responsible AI development and deployment. Students analyze real-world case studies, develop ethical impact assessments, and create institutional responsibility frameworks.",
+      "readings": [
+        {
+          "title": "Atlas of AI: Power, Politics, and the Planetary Costs of Artificial Intelligence",
+          "author": "Kate Crawford",
+          "type": "book",
+          "year": 2021,
+          "topics": ["power dynamics", "environmental impact", "labor"]
+        },
+        {
+          "title": "Race After Technology: Abolitionist Tools for the New Jim Code",
+          "author": "Ruha Benjamin",
+          "type": "book",
+          "year": 2019,
+          "topics": ["race", "technology", "justice", "equity"]
+        },
+        {
+          "title": "Artificial Unintelligence: How Computers Misunderstand the World",
+          "author": "Meredith Broussard",
+          "type": "book",
+          "year": 2018,
+          "topics": ["technochauvinism", "limitations", "critical thinking"]
+        },
+        {
+          "title": "Ethical and Social Risks of Harm from Language Models",
+          "author": "DeepMind Ethics Team",
+          "type": "paper",
+          "year": 2022,
+          "topics": ["language models", "harm taxonomy", "risk mitigation"]
+        },
+        {
+          "title": "A Framework for Ethical AI in Education",
+          "author": "IEEE Education Society",
+          "type": "framework",
+          "year": 2024,
+          "topics": ["education", "ethics framework", "guidelines"]
+        },
+        {
+          "title": "Algorithms of Oppression",
+          "author": "Safiya Umoja Noble",
+          "type": "book",
+          "year": 2018,
+          "topics": ["search engines", "racism", "information inequality"]
+        }
+      ],
+      "topics": ["ethics", "responsible AI", "equity", "bias", "policy", "interdisciplinary"],
+      "tags": ["syllabus", "course material"],
+      "date_added": "2026-01-08",
+      "status": "vetted"
+    },
+    {
+      "id": "r007",
+      "title": "AI Governance Committee Charter Template",
+      "type": "policy_template",
+      "pillar": "policy",
+      "institution": "San Antonio College",
+      "institution_id": "sac",
+      "contributor": {
+        "name": "Dr. Linda Flores",
+        "role": "President",
+        "department": "Office of the President"
+      },
+      "description": "Template for establishing an institutional AI governance committee. Defines membership, scope, decision-making authority, and reporting structures for managing AI policy across the institution.",
+      "content_sections": [
+        {
+          "section": "Committee Composition",
+          "summary": "Recommended membership includes faculty senate representatives, IT leadership, student government, legal counsel, and community advisory members. Minimum 9, maximum 15 members with staggered terms."
+        },
+        {
+          "section": "Scope and Authority",
+          "summary": "Committee reviews and approves AI tool procurement, develops use policies, handles complaints and concerns, and advises leadership on AI strategy."
+        },
+        {
+          "section": "Meeting and Reporting Structure",
+          "summary": "Monthly meetings with quarterly reports to the Board. Annual AI readiness report published publicly. Emergency convening protocol for urgent AI-related issues."
+        },
+        {
+          "section": "Review Process for New AI Tools",
+          "summary": "30-day review cycle for proposed AI tool adoptions. Includes privacy impact assessment, equity review, and pilot testing requirements."
+        }
+      ],
+      "topics": ["governance", "committee", "policy", "leadership", "oversight"],
+      "tags": ["template", "policy document"],
+      "date_added": "2025-12-01",
+      "status": "vetted"
+    },
+    {
+      "id": "r008",
+      "title": "AI Literacy for All Students: General Education Module",
+      "type": "curriculum_module",
+      "pillar": "teaching",
+      "institution": "Miami Dade College",
+      "institution_id": "mdc",
+      "contributor": {
+        "name": "Dr. Carlos Mendez",
+        "role": "Dean, School of Science",
+        "department": "School of Science"
+      },
+      "description": "A 4-week AI literacy module designed to be embedded in any general education course. No technical prerequisites. Students learn to evaluate AI outputs, understand data bias, and use AI tools responsibly in their discipline.",
+      "sessions": [
+        {
+          "number": 1,
+          "title": "What is AI and How Does It Work?",
+          "description": "Demystifying AI for non-technical students. Interactive demos showing how language models, image generators, and recommendation systems function at a conceptual level.",
+          "duration": "75 minutes"
+        },
+        {
+          "number": 2,
+          "title": "Evaluating AI Outputs: Critical Thinking in the AI Era",
+          "description": "Hands-on exercises where students compare AI-generated content with verified sources. Identifying hallucinations, bias, and limitations.",
+          "duration": "75 minutes"
+        },
+        {
+          "number": 3,
+          "title": "AI and Your Discipline",
+          "description": "Discipline-specific exploration of how AI is used in nursing, business, education, engineering, and arts. Students research AI applications in their field.",
+          "duration": "75 minutes"
+        },
+        {
+          "number": 4,
+          "title": "Being an Ethical AI User",
+          "description": "Understanding data privacy, intellectual property, and responsible use. Students create personal AI use guidelines for their academic work.",
+          "duration": "75 minutes"
+        }
+      ],
+      "readings": [
+        {
+          "title": "AI for Everyone (Coursera)",
+          "author": "Andrew Ng",
+          "type": "online course",
+          "year": 2023,
+          "topics": ["AI basics", "non-technical", "business applications"]
+        },
+        {
+          "title": "What Is ChatGPT Doing... and Why Does It Work?",
+          "author": "Stephen Wolfram",
+          "type": "article",
+          "year": 2023,
+          "topics": ["language models", "explanation", "technical literacy"]
+        }
+      ],
+      "topics": ["teaching", "AI literacy", "general education", "critical thinking", "all students"],
+      "tags": ["curriculum", "module"],
+      "date_added": "2025-06-15",
+      "status": "vetted"
+    },
+    {
+      "id": "r009",
+      "title": "Data Governance Framework for AI-Ready Institutions",
+      "type": "framework",
+      "pillar": "infrastructure",
+      "institution": "Texas State University",
+      "institution_id": "txstate",
+      "contributor": {
+        "name": "Sarah Kim",
+        "role": "Director of Institutional Research",
+        "department": "Office of Institutional Research"
+      },
+      "description": "A comprehensive data governance framework designed for universities preparing to scale AI initiatives. Addresses data quality, access controls, metadata standards, and ethical data use policies.",
+      "content_sections": [
+        {
+          "section": "Data Classification and Sensitivity Levels",
+          "summary": "Four-tier classification system: Public, Internal, Confidential, Restricted. Each tier has specific AI use permissions and access protocols."
+        },
+        {
+          "section": "Data Quality Standards",
+          "summary": "Requirements for data used in AI systems: completeness, accuracy, timeliness, consistency. Quarterly audits and data steward responsibilities."
+        },
+        {
+          "section": "Access and Authorization",
+          "summary": "Role-based access control for AI training data. Institutional review board approval required for AI research using student data."
+        },
+        {
+          "section": "Ethical Data Use for AI",
+          "summary": "Guidelines for training AI models with institutional data. Bias testing requirements, demographic impact assessments, and transparency obligations."
+        }
+      ],
+      "topics": ["infrastructure", "data governance", "security", "privacy", "data quality"],
+      "tags": ["framework", "guide"],
+      "date_added": "2025-10-20",
+      "status": "vetted"
+    },
+    {
+      "id": "r010",
+      "title": "AI Research Lab Startup Guide for Mid-Size Universities",
+      "type": "guide",
+      "pillar": "research",
+      "institution": "University of North Texas",
+      "institution_id": "unt",
+      "contributor": {
+        "name": "Dr. Wei Zhang",
+        "role": "Director, AI Research Center",
+        "department": "College of Engineering"
+      },
+      "description": "Practical guide for establishing an AI research lab at universities without large existing compute infrastructure. Covers cloud-first strategies, grant writing tips, faculty recruitment, and cross-departmental collaboration models.",
+      "content_sections": [
+        {
+          "section": "Starting with Cloud Computing",
+          "summary": "How to leverage AWS, Azure, and Google Cloud academic programs to access GPU computing without capital investment. Includes cost estimation templates."
+        },
+        {
+          "section": "Grant Opportunities for AI Research",
+          "summary": "Curated list of NSF, NIH, DOE, and DOD funding programs for AI research at primarily undergraduate institutions. Includes timeline and proposal tips."
+        },
+        {
+          "section": "Cross-Departmental Collaboration",
+          "summary": "Models for building AI research teams across CS, Engineering, Social Sciences, and Health Sciences. Shared lab spaces and equipment pooling strategies."
+        },
+        {
+          "section": "Student Pipeline Development",
+          "summary": "Creating research pathways from freshman year through graduate school. REU programs, mentorship models, and conference presentation support."
+        }
+      ],
+      "topics": ["research", "lab management", "grants", "cloud computing", "faculty recruitment"],
+      "tags": ["guide", "practical"],
+      "date_added": "2025-09-01",
+      "status": "vetted"
+    },
+    {
+      "id": "r011",
+      "title": "Integrating AI into Nursing Education: Case Studies and Readings",
+      "type": "syllabus",
+      "pillar": "teaching",
+      "institution": "University of Texas at San Antonio",
+      "institution_id": "utsa",
+      "contributor": {
+        "name": "Dr. Rebecca Torres",
+        "role": "Associate Professor, School of Nursing",
+        "department": "College of Health, Community and Policy"
+      },
+      "course": {
+        "name": "NUR 4650: AI Applications in Healthcare",
+        "semester": "Spring 2026",
+        "level": "Undergraduate"
+      },
+      "description": "A course examining how AI is transforming healthcare delivery and nursing practice. Students evaluate clinical decision support systems, AI diagnostic tools, and patient communication platforms.",
+      "readings": [
+        {
+          "title": "The AI Revolution in Medicine",
+          "author": "Peter Lee, Carey Goldberg, and Isaac Kohane",
+          "type": "book",
+          "year": 2023,
+          "topics": ["medicine", "GPT-4", "clinical applications"]
+        },
+        {
+          "title": "Artificial Intelligence in Nursing: Challenges and Opportunities",
+          "author": "Journal of Nursing Scholarship",
+          "type": "journal article",
+          "year": 2024,
+          "topics": ["nursing", "clinical workflows", "patient care"]
+        },
+        {
+          "title": "Bias in Clinical Algorithms: A Systematic Review",
+          "author": "NEJM AI",
+          "type": "paper",
+          "year": 2024,
+          "topics": ["clinical bias", "algorithms", "health equity"]
+        },
+        {
+          "title": "AI-Powered Patient Communication: Benefits and Risks",
+          "author": "WHO Digital Health Technical Brief",
+          "type": "report",
+          "year": 2025,
+          "topics": ["patient communication", "digital health", "telehealth"]
+        }
+      ],
+      "topics": ["teaching", "nursing", "healthcare", "clinical AI", "patient care"],
+      "tags": ["syllabus", "course material"],
+      "date_added": "2026-01-15",
+      "status": "vetted"
+    },
+    {
+      "id": "r012",
+      "title": "Equity Impact Assessment Guide for AI Tool Adoption",
+      "type": "guide",
+      "pillar": "ethics",
+      "institution": "University of California, Merced",
+      "institution_id": "ucmerced",
+      "contributor": {
+        "name": "Dr. Jennifer Okonkwo",
+        "role": "Director, Center for Equity and Inclusion",
+        "department": "Division of Equity, Justice and Inclusive Excellence"
+      },
+      "description": "A step-by-step guide for conducting equity impact assessments before adopting AI tools on campus. Includes rubrics, stakeholder interview templates, and decision matrices for evaluating AI tools through an equity lens.",
+      "content_sections": [
+        {
+          "section": "Pre-Adoption Equity Screening",
+          "summary": "12-question screening tool to evaluate potential equity impacts before piloting any AI tool. Flags high-risk tools for deeper review."
+        },
+        {
+          "section": "Stakeholder Impact Mapping",
+          "summary": "Method for identifying which student and staff populations will be affected by an AI tool. Includes templates for focus groups with underrepresented groups."
+        },
+        {
+          "section": "Bias Testing Protocol",
+          "summary": "Technical and non-technical approaches to testing AI tools for demographic bias. Includes sample test cases and evaluation criteria."
+        },
+        {
+          "section": "Ongoing Monitoring Framework",
+          "summary": "Post-deployment equity monitoring including usage analytics by demographic, complaint tracking, and quarterly bias audits."
+        }
+      ],
+      "topics": ["ethics", "equity", "bias testing", "inclusion", "tool evaluation"],
+      "tags": ["guide", "assessment tool"],
+      "date_added": "2025-11-15",
+      "status": "vetted"
+    },
+    {
+      "id": "r013",
+      "title": "AI Strategy Development Roadmap for University Leadership",
+      "type": "guide",
+      "pillar": "policy",
+      "institution": "Arizona State University",
+      "institution_id": "asu",
+      "contributor": {
+        "name": "Dr. Michael Torres",
+        "role": "Senior Vice Provost for Innovation",
+        "department": "Office of the Provost"
+      },
+      "description": "A roadmap for university presidents and provosts to develop institutional AI strategies. Covers stakeholder engagement, resource allocation, timeline planning, and success metrics for AI integration across campus.",
+      "content_sections": [
+        {
+          "section": "Phase 1: Assessment and Landscape Analysis (Months 1-3)",
+          "summary": "Internal audit of current AI usage, faculty survey, infrastructure assessment, and peer institution benchmarking."
+        },
+        {
+          "section": "Phase 2: Strategy Development (Months 4-6)",
+          "summary": "Forming the AI strategy committee, drafting vision and goals, identifying quick wins, and establishing the governance framework."
+        },
+        {
+          "section": "Phase 3: Pilot Implementation (Months 7-12)",
+          "summary": "Launching 3-5 pilot projects across different units. Dedicated funding allocation, faculty champion program, and student feedback loops."
+        },
+        {
+          "section": "Phase 4: Scale and Sustain (Year 2+)",
+          "summary": "Expanding successful pilots, building permanent AI support infrastructure, integrating AI into strategic plan, and establishing industry partnerships."
+        }
+      ],
+      "topics": ["policy", "leadership", "strategy", "governance", "roadmap", "administration"],
+      "tags": ["guide", "framework"],
+      "date_added": "2025-08-01",
+      "status": "vetted"
+    },
+    {
+      "id": "r014",
+      "title": "Cloud Computing for AI: Budget Planning Template",
+      "type": "template",
+      "pillar": "infrastructure",
+      "institution": "New Mexico State University",
+      "institution_id": "nmsu",
+      "contributor": {
+        "name": "Thomas Quintana",
+        "role": "Director of Enterprise IT",
+        "department": "ICT Division"
+      },
+      "description": "A budget planning spreadsheet and guide for estimating cloud computing costs for AI workloads. Includes cost models for AWS, Azure, and GCP with academic discount calculations.",
+      "content_sections": [
+        {
+          "section": "Cost Categories",
+          "items": ["GPU instance hours (training)", "Inference API costs", "Data storage and transfer", "Software licenses", "Staff and support"]
+        },
+        {
+          "section": "Academic Discount Programs",
+          "summary": "Overview of AWS Educate, Azure for Education, Google for Education credits. Application timelines and renewal processes."
+        },
+        {
+          "section": "Cost Optimization Strategies",
+          "summary": "Spot instances for training, right-sizing GPU selection, auto-scaling for inference, and shared compute pools across departments."
+        }
+      ],
+      "topics": ["infrastructure", "budget", "cloud computing", "cost planning", "IT management"],
+      "tags": ["template", "tool"],
+      "date_added": "2025-10-10",
+      "status": "vetted"
+    },
+    {
+      "id": "r015",
+      "title": "Undergraduate AI Research Experience Program Design",
+      "type": "guide",
+      "pillar": "research",
+      "institution": "University of Texas Rio Grande Valley",
+      "institution_id": "utrgv",
+      "contributor": {
+        "name": "Dr. Sofia Delgado",
+        "role": "Director, Undergraduate Research Office",
+        "department": "Office of Engaged Scholarship and Learning"
+      },
+      "description": "Complete program design for undergraduate AI research experiences. Includes recruitment strategies for underrepresented students, mentorship models, project templates, and conference presentation preparation.",
+      "content_sections": [
+        {
+          "section": "Program Structure",
+          "summary": "10-week summer program plus academic year continuation. 15 students per cohort, paired with faculty and graduate student mentors."
+        },
+        {
+          "section": "Recruitment and Selection",
+          "summary": "Targeted outreach to first-generation and underrepresented students. Portfolio-based application process that values potential over prior experience."
+        },
+        {
+          "section": "Research Project Templates",
+          "summary": "Starter project ideas across AI subfields: NLP for community health, computer vision for agriculture, ML for student success prediction."
+        },
+        {
+          "section": "Dissemination and Career Pathways",
+          "summary": "Conference presentation coaching, research poster workshops, graduate school application support, and industry networking events."
+        }
+      ],
+      "topics": ["research", "undergraduate", "mentorship", "diversity", "program design"],
+      "tags": ["guide", "program template"],
+      "date_added": "2025-07-20",
+      "status": "vetted"
+    },
+    {
+      "id": "r016",
+      "title": "AI in Business Education: Course Redesign Guide",
+      "type": "curriculum_module",
+      "pillar": "teaching",
+      "institution": "St. Mary's University",
+      "institution_id": "stmarys",
+      "contributor": {
+        "name": "Dr. Patricia Ruiz",
+        "role": "Professor, Greehey School of Business",
+        "department": "Department of Management"
+      },
+      "course": {
+        "name": "BUS 4350: AI for Business Leaders",
+        "semester": "Fall 2025",
+        "level": "Undergraduate"
+      },
+      "description": "Guide for redesigning traditional business courses to incorporate AI tools and concepts. Includes case studies on AI in marketing, finance, operations, and human resources.",
+      "readings": [
+        {
+          "title": "Competing in the Age of AI",
+          "author": "Marco Iansiti and Karim Lakhani",
+          "type": "book",
+          "year": 2020,
+          "topics": ["business strategy", "digital transformation", "AI operations"]
+        },
+        {
+          "title": "Prediction Machines: The Simple Economics of Artificial Intelligence",
+          "author": "Ajay Agrawal, Joshua Gans, and Avi Goldfarb",
+          "type": "book",
+          "year": 2022,
+          "topics": ["economics", "decision-making", "business applications"]
+        },
+        {
+          "title": "Human + Machine: Reimagining Work in the Age of AI",
+          "author": "Paul Daugherty and H. James Wilson",
+          "type": "book",
+          "year": 2018,
+          "topics": ["workforce", "collaboration", "process redesign"]
+        }
+      ],
+      "topics": ["teaching", "business", "course redesign", "case studies", "management"],
+      "tags": ["curriculum", "guide"],
+      "date_added": "2025-08-15",
+      "status": "vetted"
+    },
+    {
+      "id": "r017",
+      "title": "Student AI Acceptable Use Agreement Template",
+      "type": "policy_template",
+      "pillar": "policy",
+      "institution": "El Paso Community College",
+      "institution_id": "epcc",
+      "contributor": {
+        "name": "Maria Gonzalez",
+        "role": "Dean of Student Affairs",
+        "department": "Student Affairs Division"
+      },
+      "description": "A student-facing agreement template that clearly communicates expectations for AI use in academic work. Written in accessible language. Includes a student acknowledgment form and FAQ section.",
+      "content_sections": [
+        {
+          "section": "What AI Tools Are",
+          "summary": "Plain-language explanation of generative AI tools, how they work, and their limitations. Written at an accessible reading level for diverse student populations."
+        },
+        {
+          "section": "When You Can Use AI",
+          "summary": "Clear guidelines on three categories: assignments where AI is encouraged, where it is permitted with disclosure, and where it is not allowed."
+        },
+        {
+          "section": "How to Cite AI Assistance",
+          "summary": "Citation formats for AI-assisted work following APA, MLA, and Chicago styles. Includes examples and a quick-reference card."
+        },
+        {
+          "section": "Frequently Asked Questions",
+          "summary": "Answers to common student questions: Can I use AI for brainstorming? What if my professor has different rules? How do I know if my use is ethical?"
+        }
+      ],
+      "topics": ["policy", "students", "acceptable use", "academic integrity", "citations"],
+      "tags": ["template", "policy document"],
+      "date_added": "2025-11-20",
+      "status": "vetted"
+    },
+    {
+      "id": "r018",
+      "title": "AI-Powered Student Success Early Warning System",
+      "type": "case_study",
+      "pillar": "research",
+      "institution": "Texas A&M University-San Antonio",
+      "institution_id": "tamusa",
+      "contributor": {
+        "name": "Dr. Kevin Nguyen",
+        "role": "Associate VP for Student Success",
+        "department": "Division of Student Success"
+      },
+      "description": "Case study documenting the development and deployment of an AI-based early warning system that identifies students at risk of academic difficulty. Covers model development, ethical safeguards, intervention design, and outcome data.",
+      "content_sections": [
+        {
+          "section": "Problem Statement",
+          "summary": "25% first-year attrition rate despite existing advising programs. Traditional early warning systems relied on mid-term grades, missing early behavioral indicators."
+        },
+        {
+          "section": "Model Design and Ethical Safeguards",
+          "summary": "Random forest model using LMS engagement data, course registration patterns, and financial aid status. Explicit exclusion of race, ethnicity, and zip code. Annual bias audits by external reviewers."
+        },
+        {
+          "section": "Intervention Strategy",
+          "summary": "Three-tier intervention: automated resource emails (Tier 1), advisor outreach (Tier 2), intensive case management (Tier 3). Students can opt out at any time."
+        },
+        {
+          "section": "Results After Two Semesters",
+          "summary": "12% reduction in first-year attrition. 89% of flagged students who engaged with Tier 2 interventions completed the semester. No significant disparities in flag rates across demographic groups."
+        }
+      ],
+      "topics": ["research", "student success", "early warning", "machine learning", "retention"],
+      "tags": ["case study", "report"],
+      "date_added": "2026-02-01",
+      "status": "vetted"
+    }
+  ]
+}

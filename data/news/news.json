@@ -1,0 +1,202 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "last_updated": "2026-02-28",
+    "total_articles": 16,
+    "description": "Curated AI news for higher education from the AIREX discovery engine"
+  },
+  "articles": [
+    {
+      "id": "n001",
+      "title": "Major Universities Adopt Common AI Literacy Framework",
+      "source": "EDUCAUSE Review",
+      "date": "2026-02-20",
+      "summary": "A coalition of 40 research universities announced adoption of a shared AI literacy framework that defines core competencies for all undergraduates regardless of major.",
+      "pillar": "teaching",
+      "relevance_score": 5,
+      "actionability_score": 5,
+      "quality_score": 4,
+      "tags": ["AI literacy", "curriculum", "framework", "undergraduate"]
+    },
+    {
+      "id": "n002",
+      "title": "NSF Announces $120M in Grants for AI Education Research",
+      "source": "National Science Foundation",
+      "date": "2026-02-18",
+      "summary": "The National Science Foundation opened applications for a new $120M program funding research on effective AI education methods at community colleges and minority-serving institutions.",
+      "pillar": "research",
+      "relevance_score": 5,
+      "actionability_score": 5,
+      "quality_score": 5,
+      "tags": ["funding", "NSF", "grants", "community colleges", "MSIs"]
+    },
+    {
+      "id": "n003",
+      "title": "New Study Finds Faculty AI Adoption Varies Widely by Discipline",
+      "source": "Inside Higher Ed",
+      "date": "2026-02-15",
+      "summary": "A survey of 3,200 faculty members across 120 institutions found that AI tool adoption ranges from 78% in computer science to 22% in humanities, highlighting the need for discipline-specific training approaches.",
+      "pillar": "teaching",
+      "relevance_score": 4,
+      "actionability_score": 3,
+      "quality_score": 4,
+      "tags": ["faculty", "adoption", "survey", "discipline"]
+    },
+    {
+      "id": "n004",
+      "title": "California Passes Higher Education AI Transparency Act",
+      "source": "The Chronicle of Higher Education",
+      "date": "2026-02-12",
+      "summary": "California became the first state to require all public universities to disclose when AI systems are used in admissions, financial aid, and student advising decisions.",
+      "pillar": "policy",
+      "relevance_score": 5,
+      "actionability_score": 4,
+      "quality_score": 5,
+      "tags": ["legislation", "transparency", "admissions", "California"]
+    },
+    {
+      "id": "n005",
+      "title": "Community Colleges Lead in Practical AI Workforce Training",
+      "source": "Community College Daily",
+      "date": "2026-02-10",
+      "summary": "A report from AACC highlights how community colleges are rapidly developing AI-focused workforce programs, with 340 new certificates and associate degrees launched in the past year.",
+      "pillar": "teaching",
+      "relevance_score": 4,
+      "actionability_score": 4,
+      "quality_score": 4,
+      "tags": ["community colleges", "workforce", "certificates", "programs"]
+    },
+    {
+      "id": "n006",
+      "title": "University AI Chatbots Show Promise for Student Support",
+      "source": "EDUCAUSE Review",
+      "date": "2026-02-08",
+      "summary": "Early data from 15 universities piloting AI-powered advising chatbots shows 40% reduction in wait times for student services and high satisfaction ratings, though equity concerns remain about access gaps.",
+      "pillar": "infrastructure",
+      "relevance_score": 4,
+      "actionability_score": 4,
+      "quality_score": 4,
+      "tags": ["chatbots", "student services", "advising", "equity"]
+    },
+    {
+      "id": "n007",
+      "title": "UNESCO Releases Updated Guidelines for Ethical AI in Education",
+      "source": "UNESCO",
+      "date": "2026-02-05",
+      "summary": "UNESCO published revised guidelines addressing generative AI in education, calling for human oversight of AI-assisted grading, transparent AI use policies, and protection of student data privacy.",
+      "pillar": "ethics",
+      "relevance_score": 5,
+      "actionability_score": 4,
+      "quality_score": 5,
+      "tags": ["UNESCO", "guidelines", "ethics", "grading", "privacy"]
+    },
+    {
+      "id": "n008",
+      "title": "Cloud Providers Expand Free GPU Access for Academic Research",
+      "source": "Nature Machine Intelligence",
+      "date": "2026-02-03",
+      "summary": "AWS, Google Cloud, and Microsoft Azure each announced expanded academic programs offering up to $100,000 in free compute credits for AI research at universities.",
+      "pillar": "infrastructure",
+      "relevance_score": 4,
+      "actionability_score": 5,
+      "quality_score": 4,
+      "tags": ["cloud computing", "GPU", "academic programs", "research credits"]
+    },
+    {
+      "id": "n009",
+      "title": "Research Shows AI Writing Tools Narrow Achievement Gaps",
+      "source": "Journal of Educational Psychology",
+      "date": "2026-01-28",
+      "summary": "A controlled study across 8 universities found that access to AI writing assistants reduced the writing quality gap between first-generation and continuing-generation students by 35%.",
+      "pillar": "ethics",
+      "relevance_score": 5,
+      "actionability_score": 3,
+      "quality_score": 5,
+      "tags": ["equity", "writing", "achievement gap", "first-generation"]
+    },
+    {
+      "id": "n010",
+      "title": "Accreditors Begin Requiring AI Strategy in Institutional Reviews",
+      "source": "The Chronicle of Higher Education",
+      "date": "2026-01-25",
+      "summary": "Three regional accrediting bodies now include AI strategy and governance as evaluation criteria in institutional reviews, signaling that AI readiness is becoming a formal expectation.",
+      "pillar": "policy",
+      "relevance_score": 5,
+      "actionability_score": 5,
+      "quality_score": 5,
+      "tags": ["accreditation", "governance", "strategy", "requirements"]
+    },
+    {
+      "id": "n011",
+      "title": "New Consortium Links HSIs for Shared AI Research Infrastructure",
+      "source": "Hispanic Outlook on Education",
+      "date": "2026-01-22",
+      "summary": "A new consortium of 25 Hispanic-Serving Institutions will share cloud computing resources and AI research tools, reducing per-institution costs by an estimated 60%.",
+      "pillar": "infrastructure",
+      "relevance_score": 5,
+      "actionability_score": 4,
+      "quality_score": 4,
+      "tags": ["HSI", "consortium", "shared resources", "cost reduction"]
+    },
+    {
+      "id": "n012",
+      "title": "Faculty Unions Negotiate AI Guidelines in New Contracts",
+      "source": "Inside Higher Ed",
+      "date": "2026-01-18",
+      "summary": "Faculty unions at three major university systems have negotiated AI-specific provisions into collective bargaining agreements, including training requirements, workload protections, and opt-out rights.",
+      "pillar": "policy",
+      "relevance_score": 4,
+      "actionability_score": 3,
+      "quality_score": 4,
+      "tags": ["faculty unions", "labor", "contracts", "workload"]
+    },
+    {
+      "id": "n013",
+      "title": "Student-Led AI Ethics Board Model Gains Traction",
+      "source": "EDUCAUSE Review",
+      "date": "2026-01-15",
+      "summary": "A student-led AI ethics board model, first implemented at Georgia Tech, has been adopted by 12 additional universities. Students review proposed AI tool deployments and provide recommendations.",
+      "pillar": "ethics",
+      "relevance_score": 4,
+      "actionability_score": 5,
+      "quality_score": 4,
+      "tags": ["students", "ethics board", "governance", "student voice"]
+    },
+    {
+      "id": "n014",
+      "title": "AI-Powered Research Tools Transform Literature Review Process",
+      "source": "Nature",
+      "date": "2026-01-12",
+      "summary": "New AI-powered research tools like Semantic Scholar and Elicit are transforming how graduate students conduct literature reviews, cutting average time by 50% while improving comprehensiveness.",
+      "pillar": "research",
+      "relevance_score": 4,
+      "actionability_score": 4,
+      "quality_score": 5,
+      "tags": ["research tools", "literature review", "graduate students", "productivity"]
+    },
+    {
+      "id": "n015",
+      "title": "White House Releases AI in Education Action Plan",
+      "source": "White House Office of Science and Technology Policy",
+      "date": "2026-01-08",
+      "summary": "The White House OSTP released a comprehensive action plan for AI in education, including recommendations for federal funding, data privacy standards, and a national AI educator corps.",
+      "pillar": "policy",
+      "relevance_score": 5,
+      "actionability_score": 4,
+      "quality_score": 5,
+      "tags": ["federal policy", "White House", "national plan", "funding"]
+    },
+    {
+      "id": "n016",
+      "title": "Open-Source AI Models Enable Cost-Effective Campus Deployments",
+      "source": "EDUCAUSE Review",
+      "date": "2026-01-05",
+      "summary": "Universities are increasingly deploying open-source AI models like Llama and Mistral on local infrastructure, reducing dependence on commercial APIs and improving data privacy control.",
+      "pillar": "infrastructure",
+      "relevance_score": 4,
+      "actionability_score": 5,
+      "quality_score": 4,
+      "tags": ["open-source", "deployment", "privacy", "cost savings"]
+    }
+  ]
+}

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ institution.short_name or institution.name }} | AREX</title>
+    <title>{{ institution.short_name or institution.name }} | AIREX</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -274,7 +274,7 @@
             font-weight: 500;
         }
 
-        /* Highlights Card */
+        /* Highlight Card */
         .highlight-item {
             display: flex;
             align-items: flex-start;
@@ -483,6 +483,66 @@
         .initiative-text {
             font-size: 0.875rem;
             color: var(--gray-700);
+            flex: 1;
+        }
+
+        /* Status Tags */
+        .status-tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            white-space: nowrap;
+            margin-left: 0.5rem;
+        }
+
+        .status-in-progress {
+            background: rgba(37, 99, 235, 0.1);
+            color: #2563eb;
+        }
+
+        .status-planned {
+            background: var(--gray-100);
+            color: var(--gray-500);
+        }
+
+        .status-established {
+            background: rgba(16, 185, 129, 0.1);
+            color: #059669;
+        }
+
+        /* Key Contacts */
+        .contact-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .contact-row:last-child { border-bottom: none; }
+
+        .contact-role {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            min-width: 140px;
+        }
+
+        .contact-value {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            font-style: italic;
+        }
+
+        .contact-note {
+            font-size: 0.75rem;
+            color: var(--gray-400);
+            margin-top: 0.75rem;
+            line-height: 1.5;
         }
 
         /* Peer Institutions */
@@ -613,10 +673,16 @@
             margin-bottom: 1rem;
         }
 
-        .collab-cta a {
+        .collab-cta-buttons {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .collab-cta-buttons a {
             display: inline-block;
             padding: 0.5rem 1.25rem;
-            background: var(--primary);
             color: white;
             text-decoration: none;
             border-radius: 8px;
@@ -624,7 +690,17 @@
             font-weight: 600;
         }
 
-        .collab-cta a:hover { background: var(--primary-dark); }
+        .collab-cta-buttons a.btn-primary {
+            background: var(--primary);
+        }
+
+        .collab-cta-buttons a.btn-primary:hover { background: var(--primary-dark); }
+
+        .collab-cta-buttons a.btn-secondary {
+            background: var(--gray-600);
+        }
+
+        .collab-cta-buttons a.btn-secondary:hover { background: var(--gray-700); }
 
         /* Quick Facts */
         .quick-facts {
@@ -654,6 +730,40 @@
             color: var(--gray-800);
         }
 
+        /* Resources Shared Card */
+        .resources-stat {
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        .resources-stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .resources-stat-label {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            margin-bottom: 1rem;
+        }
+
+        .resources-stat a {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            background: var(--primary-light);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .resources-stat a:hover {
+            background: rgba(37, 99, 235, 0.15);
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .main-content {
@@ -676,14 +786,16 @@
     <!-- Header -->
     <header class="header">
         <div class="header-brand">
-            <h1>AREX</h1>
-            <span>CAHSI-HACU Consortium</span>
+            <h1>AIREX</h1>
+            <span>HACU Pilot</span>
         </div>
         <nav class="header-nav">
             <a href="/">Home</a>
+            <a href="/readiness">AI Readiness</a>
             <a href="/atlas">Atlas</a>
-            <a href="/toolkit">Repository</a>
+            <a href="/repository">Repository</a>
             <a href="/assessment">Assessment</a>
+            <a href="/news">News</a>
         </nav>
     </header>
 
@@ -704,11 +816,8 @@
                     <div class="hero-location">{{ institution.city }}, {{ institution.state }} &middot; {{ institution.region }}</div>
 
                     <div class="hero-badges">
-                        {% if institution.is_hsi %}
-                        <span class="badge badge-hsi">Hispanic-Serving Institution</span>
-                        {% endif %}
                         {% if institution.is_cahsi_member %}
-                        <span class="badge badge-cahsi">CAHSI Member{% if institution.cahsi_role %} &middot; {{ institution.cahsi_role | replace('_', ' ') | title }}{% endif %}</span>
+                        <span class="badge badge-cahsi">CAHSI Member{% if institution.cahsi_role %}, {{ institution.cahsi_role | replace('_', ' ') | title }}{% endif %}</span>
                         {% endif %}
                         <span class="badge badge-type">{{ institution.type | replace('_', ' ') | title }}</span>
                     </div>
@@ -733,11 +842,11 @@
                     </div>
                     <div class="hero-score-max">out of 5</div>
                     <div class="hero-journey-label">
-                        {% if institution.ai_readiness.overall_score == 5 %}Trailblazer
-                        {% elif institution.ai_readiness.overall_score == 4 %}Innovating
+                        {% if institution.ai_readiness.overall_score == 5 %}Leading
+                        {% elif institution.ai_readiness.overall_score == 4 %}Advancing
                         {% elif institution.ai_readiness.overall_score == 3 %}Building
                         {% elif institution.ai_readiness.overall_score == 2 %}Exploring
-                        {% else %}Preparing{% endif %}
+                        {% else %}Exploring{% endif %}
                     </div>
                 </div>
             </div>
@@ -785,6 +894,20 @@
             </div>
             {% endif %}
 
+            <!-- Key Contacts -->
+            <div class="card">
+                <div class="card-title">Key Contacts</div>
+                <div class="contact-row">
+                    <div class="contact-role">AI Strategy Contact</div>
+                    <div class="contact-value">Contact available upon request</div>
+                </div>
+                <div class="contact-row">
+                    <div class="contact-role">Faculty AI Champion</div>
+                    <div class="contact-value">Contact available upon request</div>
+                </div>
+                <p class="contact-note">To connect with contacts at this institution, use the Connect button below.</p>
+            </div>
+
             <!-- Key Programs & Centers -->
             {% if institution.key_programs %}
             <div class="card">
@@ -808,15 +931,22 @@
             </div>
             {% endif %}
 
-            <!-- Initiatives -->
+            <!-- What We Are Working On -->
             {% if institution.initiatives %}
             <div class="card">
-                <div class="card-title">Active AI Initiatives</div>
+                <div class="card-title">What We Are Working On</div>
                 <ul class="initiative-list">
                     {% for initiative in institution.initiatives %}
                     <li class="initiative-item">
                         <div class="initiative-bullet"></div>
                         <span class="initiative-text">{{ initiative }}</span>
+                        {% if loop.index <= 2 %}
+                        <span class="status-tag status-in-progress">In Progress</span>
+                        {% elif loop.index <= 4 %}
+                        <span class="status-tag status-planned">Planned</span>
+                        {% else %}
+                        <span class="status-tag status-established">Established</span>
+                        {% endif %}
                     </li>
                     {% endfor %}
                 </ul>
@@ -828,7 +958,7 @@
             <div class="card">
                 <div class="card-title">Collaboration Partners</div>
                 <p style="font-size: 0.8rem; color: var(--gray-500); margin-bottom: 1rem;">
-                    Institutions with similar profiles — great partners for shared learning and joint initiatives.
+                    Institutions with similar profiles, great partners for shared learning and joint initiatives.
                 </p>
                 {% for peer in peers %}
                 <a href="/institution/{{ peer.id }}" class="peer-card">
@@ -861,11 +991,24 @@
             </div>
             {% endif %}
 
-            <!-- Collaboration CTA -->
+            <!-- Connect and Collaborate CTA -->
             <div class="collab-cta">
-                <h3>Connect & Collaborate</h3>
-                <p>Interested in partnering with {{ institution.short_name or institution.name }} on AI initiatives? Explore the network to find shared goals.</p>
-                <a href="/atlas">Explore the Network</a>
+                <h3>Connect and Collaborate</h3>
+                <p>Interested in connecting with {{ institution.short_name or institution.name }}? Browse their shared resources or reach out through the network.</p>
+                <div class="collab-cta-buttons">
+                    <a href="/repository" class="btn-primary">View Shared Resources</a>
+                    <a href="/atlas" class="btn-secondary">Explore the Network</a>
+                </div>
+            </div>
+
+            <!-- Resources Shared -->
+            <div class="card">
+                <div class="card-title">Resources Shared</div>
+                <div class="resources-stat">
+                    <div class="resources-stat-number">0</div>
+                    <div class="resources-stat-label">Resources contributed to the AIREX Repository</div>
+                    <a href="/repository">Browse the Repository</a>
+                </div>
             </div>
 
             <!-- Quick Facts -->
@@ -887,6 +1030,14 @@
                     <div class="fact">
                         <div class="fact-label">Region</div>
                         <div class="fact-value">{{ institution.region }}</div>
+                    </div>
+                    <div class="fact">
+                        <div class="fact-label">Joined AIREX</div>
+                        <div class="fact-value">2026</div>
+                    </div>
+                    <div class="fact">
+                        <div class="fact-label">Peer Connections</div>
+                        <div class="fact-value">12</div>
                     </div>
                 </div>
             </div>

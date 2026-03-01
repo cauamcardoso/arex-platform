@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI News & Discovery | AIREX</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: rgba(37, 99, 235, 0.08);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+
+            --pillar-teaching: #2563eb;
+            --pillar-teaching-bg: rgba(37, 99, 235, 0.08);
+            --pillar-policy: #7c3aed;
+            --pillar-policy-bg: rgba(124, 58, 237, 0.08);
+            --pillar-ethics: #059669;
+            --pillar-ethics-bg: rgba(5, 150, 105, 0.08);
+            --pillar-research: #d97706;
+            --pillar-research-bg: rgba(217, 119, 6, 0.08);
+            --pillar-infrastructure: #dc2626;
+            --pillar-infrastructure-bg: rgba(220, 38, 38, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--gray-50);
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            height: 64px;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .header-brand h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .header-brand .pilot-badge {
+            font-size: 0.675rem;
+            color: var(--primary);
+            background: var(--primary-light);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            border: 1px solid rgba(37, 99, 235, 0.15);
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .header-nav a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .header-nav a:hover,
+        .header-nav a.active {
+            color: var(--primary);
+        }
+
+        /* ============================================================
+           HERO
+           ============================================================ */
+        .hero {
+            margin-top: 64px;
+            background: linear-gradient(160deg, #1c1917 0%, #78350f 40%, #d97706 100%);
+            padding: 5rem 2rem 4rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+            will-change: transform;
+        }
+
+        .hero-orb-1 {
+            width: 500px; height: 500px;
+            background: rgba(251, 191, 36, 0.3);
+            top: -20%; left: -5%;
+            animation: float-orb-1 14s ease-in-out infinite;
+        }
+
+        .hero-orb-2 {
+            width: 400px; height: 400px;
+            background: rgba(245, 158, 11, 0.25);
+            top: 10%; right: -10%;
+            animation: float-orb-2 18s ease-in-out infinite;
+        }
+
+        .hero-orb-3 {
+            width: 350px; height: 350px;
+            background: rgba(217, 119, 6, 0.2);
+            bottom: -25%; left: 30%;
+            animation: float-orb-3 12s ease-in-out infinite;
+        }
+
+        @keyframes float-orb-1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(60px, 40px) scale(1.1); }
+        }
+
+        @keyframes float-orb-2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-50px, 30px) scale(0.9); }
+        }
+
+        @keyframes float-orb-3 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(40px, -50px) scale(1.15); }
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .hero-inner {
+            max-width: 720px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(4px);
+        }
+
+        .hero-badge-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: #fbbf24;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706, #fbbf24);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 6s ease-in-out infinite;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ============================================================
+           FILTER BAR (sticky)
+           ============================================================ */
+        .filter-bar {
+            position: sticky;
+            top: 64px;
+            z-index: 900;
+            background: white;
+            border-bottom: 1px solid var(--gray-200);
+            padding: 0.75rem 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+
+        .filter-bar-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-right: 0.25rem;
+        }
+
+        .filter-chip {
+            padding: 0.375rem 0.875rem;
+            background: var(--gray-100);
+            border: 1px solid var(--gray-200);
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--gray-600);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .filter-chip:hover {
+            background: var(--gray-200);
+            color: var(--gray-800);
+        }
+
+        .filter-chip.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .article-count {
+            margin-left: auto;
+            font-size: 0.8rem;
+            color: var(--gray-400);
+            font-weight: 500;
+        }
+
+        /* ============================================================
+           MAIN CONTENT
+           ============================================================ */
+        .main-content {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Loading state */
+        .loading-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            color: var(--gray-500);
+            gap: 1rem;
+        }
+
+        .loading-spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--gray-200);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .empty-state-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .empty-state h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state p {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        /* ============================================================
+           NEWS GRID
+           ============================================================ */
+        .news-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        .news-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 14px;
+            padding: 1.5rem;
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card:hover {
+            border-color: var(--gray-300);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            transform: translateY(-2px);
+        }
+
+        /* Pillar tag pill */
+        .pillar-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.625rem;
+            border-radius: 999px;
+            font-size: 0.675rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.875rem;
+            width: fit-content;
+        }
+
+        .pillar-tag.teaching {
+            background: var(--pillar-teaching-bg);
+            color: var(--pillar-teaching);
+        }
+
+        .pillar-tag.policy {
+            background: var(--pillar-policy-bg);
+            color: var(--pillar-policy);
+        }
+
+        .pillar-tag.ethics {
+            background: var(--pillar-ethics-bg);
+            color: var(--pillar-ethics);
+        }
+
+        .pillar-tag.research {
+            background: var(--pillar-research-bg);
+            color: var(--pillar-research);
+        }
+
+        .pillar-tag.infrastructure {
+            background: var(--pillar-infrastructure-bg);
+            color: var(--pillar-infrastructure);
+        }
+
+        .news-card-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-card-meta {
+            font-size: 0.75rem;
+            color: var(--gray-400);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .news-card-meta .meta-dot {
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: var(--gray-300);
+        }
+
+        .news-card-summary {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            line-height: 1.65;
+            margin-bottom: 1rem;
+            flex: 1;
+        }
+
+        /* Score badges */
+        .score-row {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .score-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.675rem;
+            font-weight: 600;
+        }
+
+        .score-badge.relevance {
+            background: rgba(37, 99, 235, 0.08);
+            color: var(--primary);
+        }
+
+        .score-badge.actionability {
+            background: rgba(16, 185, 129, 0.08);
+            color: var(--success);
+        }
+
+        .score-badge.high {
+            font-weight: 700;
+        }
+
+        /* Tags */
+        .news-card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.375rem;
+        }
+
+        .news-tag {
+            font-size: 0.65rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            background: var(--gray-100);
+            color: var(--gray-500);
+            font-weight: 500;
+        }
+
+        /* ============================================================
+           WEEKLY DIGEST
+           ============================================================ */
+        .digest-section {
+            margin-top: 3rem;
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 16px;
+            padding: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .digest-content {
+            flex: 1;
+        }
+
+        .digest-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            flex-shrink: 0;
+        }
+
+        .digest-content h2 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 0.375rem;
+        }
+
+        .digest-content p {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .digest-form {
+            display: flex;
+            gap: 0.5rem;
+            max-width: 420px;
+        }
+
+        .digest-input {
+            flex: 1;
+            padding: 0.625rem 0.875rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-family: inherit;
+            color: var(--gray-800);
+            background: var(--gray-50);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .digest-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            background: white;
+        }
+
+        .digest-input::placeholder {
+            color: var(--gray-400);
+        }
+
+        .digest-btn {
+            padding: 0.625rem 1.25rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            white-space: nowrap;
+        }
+
+        .digest-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .digest-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* ============================================================
+           TOAST
+           ============================================================ */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--gray-900);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .toast.visible {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .footer {
+            padding: 3rem 2rem;
+            background: var(--gray-900);
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 2rem;
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-brand h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.25rem;
+        }
+
+        .footer-brand p { font-size: 0.75rem; }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: white; }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 768px) {
+            .hero { padding: 3.5rem 1.5rem 3rem; }
+            .hero h1 { font-size: 2.25rem; }
+            .hero-orb { display: none; }
+
+            .filter-bar { padding: 0.75rem 1rem; }
+            .filter-bar-inner { gap: 0.5rem; }
+            .filter-chip { padding: 0.3rem 0.65rem; font-size: 0.7rem; }
+
+            .main-content { padding: 1.5rem 1rem; }
+            .news-grid { grid-template-columns: 1fr; }
+
+            .digest-section {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem 1.5rem;
+                gap: 1.5rem;
+            }
+
+            .digest-form {
+                flex-direction: column;
+                max-width: 100%;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header { padding: 1rem 1rem; }
+            .header-nav { gap: 1rem; }
+            .header-nav a { font-size: 0.8rem; }
+            .hero h1 { font-size: 1.85rem; }
+            .hero-desc { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================================
+         HEADER
+         ============================================================ -->
+    <header class="header">
+        <a href="/" class="header-brand" style="text-decoration:none;">
+            <h1>AIREX</h1>
+            <span class="pilot-badge">HACU Pilot</span>
+        </a>
+        <nav class="header-nav">
+            <a href="/">Home</a>
+            <a href="/readiness">AI Readiness</a>
+            <a href="/atlas">Atlas</a>
+            <a href="/repository">Repository</a>
+            <a href="/assessment">Assessment</a>
+            <a href="/news" class="active">News</a>
+        </nav>
+    </header>
+
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section class="hero">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+        <div class="hero-inner">
+            <div class="hero-badge">
+                <div class="hero-badge-dot"></div>
+                Updated weekly &middot; Curated for higher education
+            </div>
+            <h1>AI News and <span class="highlight">Discovery</span></h1>
+            <p class="hero-desc">
+                Stay current with AI developments that matter for academic institutions. Every article is scored for relevance and actionability, so you can focus on what is useful.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         FILTER BAR
+         ============================================================ -->
+    <div class="filter-bar">
+        <div class="filter-bar-inner">
+            <span class="filter-label">Pillar</span>
+            <button class="filter-chip active" data-pillar="all">All</button>
+            <button class="filter-chip" data-pillar="teaching">Teaching &amp; Learning</button>
+            <button class="filter-chip" data-pillar="policy">Policy &amp; Governance</button>
+            <button class="filter-chip" data-pillar="ethics">Ethics &amp; Equity</button>
+            <button class="filter-chip" data-pillar="research">Research &amp; Innovation</button>
+            <button class="filter-chip" data-pillar="infrastructure">Infrastructure</button>
+            <span class="article-count" id="articleCount"></span>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         MAIN CONTENT
+         ============================================================ -->
+    <main class="main-content">
+        <!-- Loading state (shown while fetching) -->
+        <div class="loading-state" id="loadingState">
+            <div class="loading-spinner"></div>
+            <span class="loading-text">Loading articles...</span>
+        </div>
+
+        <!-- News grid (populated by JS) -->
+        <div class="news-grid" id="newsGrid" style="display:none;"></div>
+
+        <!-- Empty state (shown when no articles match filter) -->
+        <div class="empty-state" id="emptyState" style="display:none;">
+            <div class="empty-state-icon">&#128240;</div>
+            <h3>No articles found</h3>
+            <p>No articles match this pillar filter. Try selecting a different pillar or view all articles.</p>
+        </div>
+
+        <!-- ============================================================
+             WEEKLY DIGEST
+             ============================================================ -->
+        <section class="digest-section">
+            <div class="digest-icon">&#9993;&#65039;</div>
+            <div class="digest-content">
+                <h2>Weekly Digest</h2>
+                <p>Get a summary of the relevant AI news for higher education delivered to your inbox every Monday.</p>
+                <form class="digest-form" id="digestForm">
+                    <input
+                        type="email"
+                        class="digest-input"
+                        placeholder="you@university.edu"
+                        required
+                        aria-label="Email address"
+                    >
+                    <button type="submit" class="digest-btn">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h3>AIREX</h3>
+                <p>AI Readiness Explorer &middot; HACU Pilot</p>
+            </div>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/atlas">Atlas</a>
+                <a href="/repository">Repository</a>
+                <a href="/assessment">Assessment</a>
+                <a href="/news">News</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+         JAVASCRIPT
+         ============================================================ -->
+    <script>
+        // ---- State ----
+        let allArticles = [];
+        let activePillar = 'all';
+
+        // ---- DOM refs ----
+        const newsGrid = document.getElementById('newsGrid');
+        const loadingState = document.getElementById('loadingState');
+        const emptyState = document.getElementById('emptyState');
+        const articleCount = document.getElementById('articleCount');
+        const toast = document.getElementById('toast');
+
+        // ---- Pillar display names ----
+        const pillarLabels = {
+            teaching: 'Teaching & Learning',
+            policy: 'Policy & Governance',
+            ethics: 'Ethics & Equity',
+            research: 'Research & Innovation',
+            infrastructure: 'Infrastructure'
+        };
+
+        // ---- Format date ----
+        function formatDate(dateStr) {
+            try {
+                const d = new Date(dateStr + 'T00:00:00');
+                return d.toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric'
+                });
+            } catch {
+                return dateStr;
+            }
+        }
+
+        // ---- Build a single card ----
+        function buildCard(article) {
+            const pillar = article.pillar || 'teaching';
+            const pillarLabel = pillarLabels[pillar] || pillar;
+            const relevance = article.relevance_score || 0;
+            const actionability = article.actionability_score || 0;
+            const tags = article.tags || [];
+
+            const card = document.createElement('div');
+            card.className = 'news-card';
+            card.dataset.pillar = pillar;
+
+            card.innerHTML = `
+                <span class="pillar-tag ${pillar}">${pillarLabel}</span>
+                <h3 class="news-card-title">${escapeHtml(article.title)}</h3>
+                <div class="news-card-meta">
+                    <span>${escapeHtml(article.source)}</span>
+                    <span class="meta-dot"></span>
+                    <span>${formatDate(article.date)}</span>
+                </div>
+                <p class="news-card-summary">${escapeHtml(article.summary)}</p>
+                <div class="score-row">
+                    <span class="score-badge relevance ${relevance >= 4 ? 'high' : ''}">Relevance: ${relevance}/5</span>
+                    <span class="score-badge actionability ${actionability >= 4 ? 'high' : ''}">Actionability: ${actionability}/5</span>
+                </div>
+                ${tags.length > 0 ? `
+                    <div class="news-card-tags">
+                        ${tags.map(t => `<span class="news-tag">${escapeHtml(t)}</span>`).join('')}
+                    </div>
+                ` : ''}
+            `;
+
+            return card;
+        }
+
+        // ---- Escape HTML ----
+        function escapeHtml(str) {
+            if (!str) return '';
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        // ---- Render cards ----
+        function renderArticles() {
+            const filtered = activePillar === 'all'
+                ? allArticles
+                : allArticles.filter(a => a.pillar === activePillar);
+
+            // Update count
+            if (activePillar === 'all') {
+                articleCount.textContent = `${filtered.length} article${filtered.length !== 1 ? 's' : ''}`;
+            } else {
+                articleCount.textContent = `${filtered.length} of ${allArticles.length}`;
+            }
+
+            // Clear grid
+            newsGrid.innerHTML = '';
+
+            if (filtered.length === 0) {
+                newsGrid.style.display = 'none';
+                emptyState.style.display = 'block';
+                return;
+            }
+
+            emptyState.style.display = 'none';
+            newsGrid.style.display = 'grid';
+
+            filtered.forEach(article => {
+                newsGrid.appendChild(buildCard(article));
+            });
+        }
+
+        // ---- Fetch articles ----
+        async function fetchArticles() {
+            loadingState.style.display = 'flex';
+            newsGrid.style.display = 'none';
+            emptyState.style.display = 'none';
+
+            try {
+                const res = await fetch('/api/news');
+                if (!res.ok) throw new Error('Network response was not ok');
+                const data = await res.json();
+                allArticles = data.articles || [];
+
+                loadingState.style.display = 'none';
+                renderArticles();
+            } catch (err) {
+                console.error('Failed to load articles:', err);
+                loadingState.style.display = 'none';
+                emptyState.querySelector('h3').textContent = 'Could not load articles';
+                emptyState.querySelector('p').textContent = 'There was a problem fetching news. Please try refreshing the page.';
+                emptyState.style.display = 'block';
+            }
+        }
+
+        // ---- Filter chip clicks ----
+        document.querySelectorAll('.filter-chip').forEach(chip => {
+            chip.addEventListener('click', () => {
+                document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                activePillar = chip.dataset.pillar;
+                renderArticles();
+            });
+        });
+
+        // ---- Digest form ----
+        document.getElementById('digestForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showToast('Coming soon. Weekly digest is not yet available.');
+        });
+
+        // ---- Toast ----
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.add('visible');
+            setTimeout(() => {
+                toast.classList.remove('visible');
+            }, 3000);
+        }
+
+        // ---- Init ----
+        fetchArticles();
+    </script>
+</body>
+</html>

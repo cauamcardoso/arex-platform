@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conversational Repository & Ethics Platform | AREX</title>
+    <title>Conversational Repository | AIREX</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
@@ -65,7 +65,7 @@
             height: 64px;
         }
 
-        .header-brand { display: flex; align-items: center; gap: 1rem; }
+        .header-brand { display: flex; align-items: center; gap: 1rem; text-decoration: none; }
         .header-brand h1 { font-size: 1.25rem; font-weight: 700; color: var(--gray-900); }
         .header-brand span { font-size: 0.75rem; color: var(--gray-500); background: var(--gray-100); padding: 0.25rem 0.5rem; border-radius: 4px; }
 
@@ -75,7 +75,7 @@
         .header-nav a.active { color: var(--emerald-600); font-weight: 600; }
 
         /* ============================================================
-           HERO — Animated with floating orbs (green/emerald/teal)
+           HERO
            ============================================================ */
         .hero {
             margin-top: 64px;
@@ -86,7 +86,6 @@
             text-align: center;
         }
 
-        /* Floating orbs */
         .hero-orb {
             position: absolute;
             border-radius: 50%;
@@ -123,13 +122,6 @@
             animation: float-orb-4 10s ease-in-out infinite;
         }
 
-        .hero-orb-5 {
-            width: 280px; height: 280px;
-            background: rgba(20, 184, 166, 0.2);
-            top: 10%; right: 20%;
-            animation: float-orb-5 14s ease-in-out infinite;
-        }
-
         @keyframes float-orb-1 {
             0%, 100% { transform: translate(0, 0) scale(1); }
             25% { transform: translate(40px, 30px) scale(1.05); }
@@ -153,13 +145,6 @@
             50% { transform: translate(-40px, -40px); }
         }
 
-        @keyframes float-orb-5 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            40% { transform: translate(30px, 40px) scale(1.06); }
-            80% { transform: translate(-20px, -30px) scale(0.96); }
-        }
-
-        /* Grid overlay */
         .hero::before {
             content: '';
             position: absolute;
@@ -182,6 +167,33 @@
             margin: 0 auto;
             position: relative;
             z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(4px);
+        }
+
+        .hero-badge-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--emerald-400);
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
         }
 
         .hero h1 {
@@ -207,670 +219,91 @@
             50% { background-position: 100% 50%; }
         }
 
-        .hero p {
+        .hero-desc {
             font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.85);
-            max-width: 680px;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 650px;
             margin: 0 auto;
             line-height: 1.7;
         }
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 0.4rem 1rem;
-            border-radius: 999px;
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 1.5rem;
-            backdrop-filter: blur(8px);
-        }
-
-        .hero-badge .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--emerald-400);
-            animation: pulse-dot 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse-dot {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(0.8); }
-        }
-
         /* ============================================================
-           FILTER BAR
+           CHATBOT SECTION
            ============================================================ */
-        .filter-bar {
-            max-width: 1200px;
+        .chatbot-section {
+            padding: 4rem 2rem;
+            background: var(--gray-50);
+        }
+
+        .chatbot-container {
+            max-width: 900px;
             margin: 0 auto;
-            padding: 1.25rem 2rem;
-            background: white;
-            border-bottom: 1px solid var(--gray-200);
-            position: sticky;
-            top: 64px;
-            z-index: 100;
-        }
-
-        .filter-tabs {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-tab {
-            padding: 0.5rem 1rem;
-            background: var(--gray-100);
-            border: 1px solid var(--gray-200);
-            border-radius: 999px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: var(--gray-600);
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: inherit;
-        }
-
-        .filter-tab:hover { background: var(--gray-200); }
-
-        .filter-tab.active {
-            background: var(--emerald-600);
-            border-color: var(--emerald-600);
-            color: white;
-        }
-
-        /* ============================================================
-           EMBEDDED ETHICS LEARNING MODULES
-           ============================================================ */
-        .modules-section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-
-        .modules-header {
-            text-align: center;
-            margin-bottom: 2.5rem;
-        }
-
-        .modules-header h2 {
-            font-size: 1.75rem;
-            font-weight: 800;
-            color: var(--gray-900);
-            margin-bottom: 0.5rem;
-        }
-
-        .modules-header p {
-            font-size: 0.95rem;
-            color: var(--gray-500);
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.7;
-        }
-
-        .modules-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .module-card {
-            background: white;
-            border: 1px solid var(--gray-200);
             border-radius: 16px;
-            padding: 1.5rem;
-            position: relative;
             overflow: hidden;
-            transition: all 0.3s;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--gray-200);
+            background: white;
         }
 
-        .module-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+        .chatbot-header {
+            background: linear-gradient(135deg, #064e3b, #047857, #0d9488);
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        .module-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
+        .chatbot-header-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
-        .module-card:nth-child(1)::before { background: linear-gradient(90deg, #0d9488, #14b8a6); }
-        .module-card:nth-child(2)::before { background: linear-gradient(90deg, #0f766e, #10b981); }
-        .module-card:nth-child(3)::before { background: linear-gradient(90deg, #047857, #34d399); }
-        .module-card:nth-child(4)::before { background: linear-gradient(90deg, #059669, #6ee7b7); }
-        .module-card:nth-child(5)::before { background: linear-gradient(90deg, #10b981, #a7f3d0); }
-
-        .module-number {
+        .chatbot-icon {
             width: 36px;
             height: 36px;
             border-radius: 10px;
+            background: rgba(255, 255, 255, 0.15);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.85rem;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 1rem;
-        }
-
-        .module-card:nth-child(1) .module-number { background: linear-gradient(135deg, #0d9488, #14b8a6); }
-        .module-card:nth-child(2) .module-number { background: linear-gradient(135deg, #0f766e, #10b981); }
-        .module-card:nth-child(3) .module-number { background: linear-gradient(135deg, #047857, #34d399); }
-        .module-card:nth-child(4) .module-number { background: linear-gradient(135deg, #059669, #6ee7b7); }
-        .module-card:nth-child(5) .module-number { background: linear-gradient(135deg, #10b981, #a7f3d0); }
-
-        .module-name {
             font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--gray-900);
-            margin-bottom: 0.5rem;
         }
 
-        .module-desc {
-            font-size: 0.8rem;
-            color: var(--gray-500);
-            line-height: 1.6;
-        }
-
-        .modules-note {
-            text-align: center;
-            font-size: 0.8rem;
-            color: var(--gray-400);
-            font-style: italic;
-            padding: 0.75rem;
-            background: var(--gray-50);
-            border-radius: 8px;
-            border: 1px solid var(--gray-100);
-        }
-
-        /* ============================================================
-           MAIN CONTENT / RESOURCES
-           ============================================================ */
-        .main-content {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-        }
-
-        /* Category Section */
-        .category-section {
-            margin-bottom: 3rem;
-        }
-
-        .category-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .category-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-        }
-
-        .category-header h2 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--gray-900);
-        }
-
-        .category-count {
-            font-size: 0.7rem;
-            background: var(--gray-100);
-            color: var(--gray-500);
-            padding: 0.2rem 0.5rem;
-            border-radius: 999px;
-            font-weight: 600;
-        }
-
-        /* Resource Cards */
-        .resource-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1rem;
-        }
-
-        .resource-card {
-            background: white;
-            border: 1px solid var(--gray-200);
-            border-radius: 12px;
-            padding: 1.5rem;
-            transition: all 0.2s;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .resource-card:hover {
-            border-color: var(--emerald-500);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-            transform: translateY(-2px);
-        }
-
-        .resource-tags {
-            display: flex;
-            gap: 0.375rem;
-            margin-bottom: 0.75rem;
-            flex-wrap: wrap;
-        }
-
-        .resource-tag {
-            font-size: 0.6rem;
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .tag-guide { background: #eff6ff; color: #2563eb; }
-        .tag-template { background: #f5f3ff; color: #7c3aed; }
-        .tag-framework { background: #ecfdf5; color: #059669; }
-        .tag-workshop { background: #fffbeb; color: #d97706; }
-        .tag-report { background: #fef2f2; color: #dc2626; }
-        .tag-tool { background: #f0f9ff; color: #0284c7; }
-        .tag-community { background: #fdf4ff; color: #c026d3; }
-
-        .resource-title {
+        .chatbot-header h2 {
             font-size: 1rem;
             font-weight: 700;
-            color: var(--gray-900);
-            margin-bottom: 0.5rem;
-            line-height: 1.3;
-        }
-
-        .resource-desc {
-            font-size: 0.8rem;
-            color: var(--gray-500);
-            margin-bottom: 1rem;
-            flex: 1;
-        }
-
-        .resource-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.7rem;
-            color: var(--gray-400);
-            padding-top: 0.75rem;
-            border-top: 1px solid var(--gray-100);
-        }
-
-        .resource-pillar {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-
-        .pillar-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-        }
-
-        .resource-action {
-            color: var(--emerald-600);
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        /* ============================================================
-           MATERIALS SUBMISSION SECTION
-           ============================================================ */
-        .submission-section {
-            max-width: 1200px;
-            margin: 1rem auto 3rem;
-            padding: 0 2rem;
-        }
-
-        .submission-container {
-            background: white;
-            border: 1px solid var(--gray-200);
-            border-radius: 20px;
-            padding: 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .submission-container::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--teal-500), var(--emerald-500), var(--emerald-400));
-        }
-
-        .submission-header {
-            text-align: center;
-            margin-bottom: 2.5rem;
-        }
-
-        .submission-header h2 {
-            font-size: 1.75rem;
-            font-weight: 800;
-            color: var(--gray-900);
-            margin-bottom: 0.5rem;
-        }
-
-        .submission-header p {
-            font-size: 0.95rem;
-            color: var(--gray-500);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.7;
-        }
-
-        .submission-form {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.25rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .form-row.full {
-            grid-template-columns: 1fr;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-        }
-
-        .form-group label {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--gray-700);
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            padding: 0.7rem 0.9rem;
-            border: 1px solid var(--gray-200);
-            border-radius: 10px;
-            font-size: 0.875rem;
-            font-family: inherit;
-            color: var(--gray-800);
-            background: var(--gray-50);
-            transition: all 0.2s;
-            outline: none;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            border-color: var(--emerald-500);
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
-            background: white;
-        }
-
-        .form-group textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .form-group select {
-            cursor: pointer;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 0.9rem center;
-            padding-right: 2.5rem;
-        }
-
-        .file-upload-area {
-            border: 2px dashed var(--gray-200);
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            background: var(--gray-50);
-        }
-
-        .file-upload-area:hover {
-            border-color: var(--emerald-400);
-            background: var(--emerald-50);
-        }
-
-        .file-upload-area .upload-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .file-upload-area p {
-            font-size: 0.85rem;
-            color: var(--gray-500);
-            margin-bottom: 0.25rem;
-        }
-
-        .file-upload-area .upload-hint {
-            font-size: 0.7rem;
-            color: var(--gray-400);
-        }
-
-        .file-upload-area input[type="file"] {
-            display: none;
-        }
-
-        .submit-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.85rem 2rem;
-            background: linear-gradient(135deg, var(--emerald-600), var(--teal-600));
             color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 0.9rem;
+        }
+
+        .chatbot-header-badge {
+            font-size: 0.65rem;
             font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: inherit;
-            margin-top: 0.5rem;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
-        }
-
-        /* Toast notification */
-        .toast {
-            position: fixed;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: var(--gray-900);
-            color: white;
-            padding: 0.85rem 1.5rem;
-            border-radius: 12px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            z-index: 9999;
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-        }
-
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
-
-        .toast .toast-icon {
-            font-size: 1.1rem;
-        }
-
-        /* ============================================================
-           CTA SECTION
-           ============================================================ */
-        .cta-section {
-            background: white;
-            border-radius: 20px;
-            border: 1px solid var(--gray-200);
-            padding: 3rem 2rem;
-            text-align: center;
-            margin: 3rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--teal-500), var(--emerald-500), var(--primary));
-        }
-
-        .cta-section h2 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--gray-900);
-            margin-bottom: 0.75rem;
-        }
-
-        .cta-section p {
-            font-size: 0.95rem;
-            color: var(--gray-500);
-            max-width: 580px;
-            margin: 0 auto 1.5rem;
-            line-height: 1.7;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: 10px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: none;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-family: inherit;
-        }
-
-        .btn-primary { background: var(--emerald-600); color: white; }
-        .btn-primary:hover { background: var(--emerald-700); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
-        .btn-secondary { background: var(--gray-100); color: var(--gray-600); border: 1px solid var(--gray-200); }
-        .btn-secondary:hover { background: var(--gray-200); }
-
-        /* ============================================================
-           CONVERSATIONAL AI SECTION
-           ============================================================ */
-        .conversation-section {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem 2rem 0;
-        }
-
-        .conversation-container {
-            background: white;
-            border: 1px solid var(--gray-200);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-        }
-
-        .conversation-header {
-            padding: 1.25rem 1.5rem;
-            background: linear-gradient(135deg, var(--emerald-600), var(--teal-600));
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .conversation-header-left {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .conversation-avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-        }
-
-        .conversation-title {
-            font-size: 1.05rem;
-            font-weight: 700;
-        }
-
-        .conversation-subtitle {
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.75);
-            margin-top: 0.15rem;
-        }
-
-        .conversation-beta {
-            font-size: 0.6rem;
-            background: rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.15);
             padding: 0.2rem 0.6rem;
             border-radius: 999px;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
+            letter-spacing: 0.03em;
         }
 
-        .conversation-messages {
-            min-height: 200px;
-            max-height: 400px;
+        .chat-messages {
+            height: 420px;
             overflow-y: auto;
             padding: 1.5rem;
             display: flex;
             flex-direction: column;
             gap: 1rem;
+            background: var(--gray-50);
         }
 
         .chat-message {
             display: flex;
-            gap: 0.625rem;
+            gap: 0.75rem;
             max-width: 85%;
-            animation: msg-appear 0.3s ease-out;
+            animation: msg-in 0.3s ease-out;
         }
 
-        @keyframes msg-appear {
+        @keyframes msg-in {
             from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
@@ -878,10 +311,10 @@
         .chat-message.bot { align-self: flex-start; }
         .chat-message.user { align-self: flex-end; flex-direction: row-reverse; }
 
-        .chat-msg-avatar {
+        .chat-avatar {
             width: 32px;
             height: 32px;
-            border-radius: 10px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -889,878 +322,1179 @@
             flex-shrink: 0;
         }
 
-        .chat-message.bot .chat-msg-avatar { background: var(--emerald-50); }
-        .chat-message.user .chat-msg-avatar { background: var(--primary-light); }
+        .chat-message.bot .chat-avatar {
+            background: linear-gradient(135deg, var(--emerald-600), var(--teal-500));
+            color: white;
+        }
 
-        .chat-msg-bubble {
+        .chat-message.user .chat-avatar {
+            background: var(--gray-200);
+            color: var(--gray-600);
+        }
+
+        .chat-bubble {
             padding: 0.875rem 1.125rem;
-            border-radius: 16px;
+            border-radius: 14px;
             font-size: 0.875rem;
             line-height: 1.6;
         }
 
-        .chat-message.bot .chat-msg-bubble {
-            background: var(--gray-100);
+        .chat-message.bot .chat-bubble {
+            background: white;
             color: var(--gray-700);
-            border-bottom-left-radius: 4px;
+            border: 1px solid var(--gray-200);
+            border-top-left-radius: 4px;
         }
 
-        .chat-message.user .chat-msg-bubble {
-            background: var(--emerald-600);
+        .chat-message.user .chat-bubble {
+            background: linear-gradient(135deg, var(--emerald-600), var(--teal-600));
             color: white;
-            border-bottom-right-radius: 4px;
+            border-top-right-radius: 4px;
         }
 
-        .conversation-suggestions {
+        /* Typing indicator */
+        .typing-indicator {
             display: flex;
-            flex-wrap: wrap;
+            gap: 4px;
+            padding: 0.875rem 1.125rem;
+            align-items: center;
+        }
+
+        .typing-indicator span {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gray-400);
+            animation: typing-bounce 1.4s ease-in-out infinite;
+        }
+
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing-bounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-4px); }
+        }
+
+        /* Chat result cards */
+        .chat-result-card {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 10px;
+            padding: 0.875rem;
+            margin-top: 0.5rem;
+        }
+
+        .chat-result-card + .chat-result-card {
+            margin-top: 0.5rem;
+        }
+
+        .chat-result-header {
+            display: flex;
+            align-items: center;
             gap: 0.5rem;
-            padding: 0 1.5rem 1rem;
+            margin-bottom: 0.375rem;
         }
 
-        .convo-chip {
-            padding: 0.5rem 0.875rem;
-            border: 1px solid var(--emerald-200);
-            background: var(--emerald-50);
-            border-radius: 999px;
-            font-size: 0.78rem;
-            font-weight: 500;
-            color: var(--emerald-700);
+        .chat-result-type {
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.15rem 0.45rem;
+            border-radius: 4px;
+        }
+
+        .chat-result-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .chat-result-institution {
+            font-size: 0.7rem;
+            color: var(--gray-500);
+            margin-bottom: 0.375rem;
+        }
+
+        .chat-result-matches {
+            font-size: 0.7rem;
+            color: var(--gray-600);
+            padding-left: 0.75rem;
+            border-left: 2px solid var(--emerald-300);
+            margin-top: 0.375rem;
+        }
+
+        .chat-result-matches li {
+            margin-bottom: 0.2rem;
+            list-style: none;
+        }
+
+        .chat-result-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--emerald-600);
+            text-decoration: none;
             cursor: pointer;
-            transition: all 0.2s;
-            font-family: inherit;
         }
 
-        .convo-chip:hover {
-            background: var(--emerald-100);
-            border-color: var(--emerald-400);
-            transform: translateY(-1px);
+        .chat-result-link:hover {
+            color: var(--emerald-700);
+            text-decoration: underline;
         }
 
-        .conversation-input-area {
+        .chat-input-area {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
             padding: 1rem 1.5rem;
             border-top: 1px solid var(--gray-200);
-            display: flex;
-            gap: 0.625rem;
+            background: white;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 10px;
+            font-size: 0.875rem;
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
             background: var(--gray-50);
         }
 
-        .conversation-input {
-            flex: 1;
-            padding: 0.75rem 1rem;
-            border: 1px solid var(--gray-200);
-            border-radius: 12px;
-            font-size: 0.9rem;
-            font-family: inherit;
+        .chat-input:focus {
             outline: none;
-            background: white;
-            transition: all 0.2s;
-        }
-
-        .conversation-input:focus {
             border-color: var(--emerald-500);
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12);
+            background: white;
         }
 
-        .conversation-send {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, var(--emerald-600), var(--teal-600));
+        .chat-send-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
             border: none;
+            background: linear-gradient(135deg, var(--emerald-600), var(--teal-600));
             color: white;
+            font-size: 1.1rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s;
+            transition: transform 0.15s, box-shadow 0.15s;
             flex-shrink: 0;
         }
 
-        .conversation-send:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        .chat-send-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
         }
+
+        .chat-send-btn:active {
+            transform: translateY(0);
+        }
+
+        .chat-send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* ============================================================
+           RESOURCE BROWSER SECTION
+           ============================================================ */
+        .resources-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .resources-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            font-size: 1rem;
+            color: var(--gray-500);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Pillar filter tabs */
+        .filter-bar {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 2rem;
+            padding: 0.5rem;
+            background: var(--gray-100);
+            border-radius: 12px;
+        }
+
+        .filter-tab {
+            padding: 0.5rem 1.125rem;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--gray-600);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            white-space: nowrap;
+        }
+
+        .filter-tab:hover {
+            background: var(--gray-200);
+            color: var(--gray-700);
+        }
+
+        .filter-tab.active {
+            background: white;
+            color: var(--emerald-700);
+            font-weight: 600;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Resource cards grid */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .resource-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 14px;
+            padding: 1.5rem;
+            transition: all 0.25s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .resource-card:hover {
+            border-color: var(--emerald-300);
+            box-shadow: 0 8px 24px rgba(5, 150, 105, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .resource-tags {
+            display: flex;
+            gap: 0.375rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.75rem;
+        }
+
+        .resource-type-tag {
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        /* Type colors */
+        .type-syllabus { background: #dbeafe; color: #1e40af; }
+        .type-guide { background: #d1fae5; color: #065f46; }
+        .type-template { background: #ede9fe; color: #5b21b6; }
+        .type-checklist { background: #fef3c7; color: #92400e; }
+        .type-case_study { background: #fee2e2; color: #991b1b; }
+        .type-framework { background: #ccfbf1; color: #0f766e; }
+        .type-workshop_guide { background: #ffedd5; color: #9a3412; }
+        .type-curriculum_module { background: #e0e7ff; color: #3730a3; }
+        .type-policy_template { background: #f3e8ff; color: #6b21a8; }
+
+        /* Pillar colors */
+        .pillar-teaching { background: #eff6ff; color: #1d4ed8; }
+        .pillar-policy { background: #f5f3ff; color: #6d28d9; }
+        .pillar-ethics { background: #ecfdf5; color: #047857; }
+        .pillar-research { background: #fffbeb; color: #b45309; }
+        .pillar-infrastructure { background: #fef2f2; color: #b91c1c; }
+
+        .resource-card h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 0.25rem;
+            line-height: 1.4;
+        }
+
+        .resource-institution {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            margin-bottom: 0.625rem;
+        }
+
+        .resource-description {
+            font-size: 0.8rem;
+            color: var(--gray-600);
+            line-height: 1.55;
+            margin-bottom: 0.75rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            flex: 1;
+        }
+
+        .resource-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+            margin-bottom: 0.875rem;
+        }
+
+        .topic-pill {
+            font-size: 0.625rem;
+            padding: 0.15rem 0.45rem;
+            border-radius: 999px;
+            background: var(--gray-100);
+            color: var(--gray-500);
+            font-weight: 500;
+        }
+
+        .reading-count {
+            font-size: 0.7rem;
+            color: var(--emerald-600);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .resource-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--gray-100);
+            margin-top: auto;
+        }
+
+        .resource-contributor {
+            font-size: 0.7rem;
+            color: var(--gray-400);
+        }
+
+        .resource-date {
+            font-size: 0.65rem;
+            color: var(--gray-400);
+        }
+
+        .resources-empty {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem;
+            color: var(--gray-400);
+            font-size: 0.9rem;
+        }
+
+        /* ============================================================
+           CONTRIBUTE SECTION
+           ============================================================ */
+        .contribute-section {
+            padding: 5rem 2rem;
+            background: var(--gray-50);
+        }
+
+        .contribute-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contribute-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .contribute-header h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+
+        .contribute-header p {
+            font-size: 1rem;
+            color: var(--gray-500);
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        .contribute-form {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.375rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.625rem 0.875rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-family: inherit;
+            color: var(--gray-700);
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--emerald-500);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .file-upload-area {
+            border: 2px dashed var(--gray-300);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .file-upload-area:hover {
+            border-color: var(--emerald-400);
+            background: var(--emerald-50);
+        }
+
+        .file-upload-area input[type="file"] {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .file-upload-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .file-upload-text {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+        }
+
+        .file-upload-text strong {
+            color: var(--emerald-600);
+        }
+
+        .file-upload-hint {
+            font-size: 0.7rem;
+            color: var(--gray-400);
+            margin-top: 0.25rem;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 0.875rem;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--emerald-600), var(--teal-600));
+            color: white;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: transform 0.15s, box-shadow 0.15s;
+            margin-top: 1.5rem;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(5, 150, 105, 0.3);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        .review-process {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            font-size: 0.75rem;
+            color: var(--gray-400);
+        }
+
+        .review-step {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .review-arrow {
+            color: var(--gray-300);
+        }
+
+        /* ============================================================
+           TOAST
+           ============================================================ */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--emerald-700);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            transform: translateY(120%);
+            opacity: 0;
+            transition: transform 0.35s ease, opacity 0.35s ease;
+            max-width: 400px;
+        }
+
+        .toast.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .footer {
+            padding: 3rem 2rem;
+            background: var(--gray-900);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-brand h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.25rem;
+        }
+
+        .footer-brand p { font-size: 0.75rem; }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: white; }
 
         /* ============================================================
            RESPONSIVE
            ============================================================ */
-        @media (max-width: 1024px) {
-            .modules-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
         @media (max-width: 768px) {
-            .hero h1 { font-size: 1.75rem; }
-            .hero { padding: 4rem 1.5rem 3.5rem; }
-            .resource-grid { grid-template-columns: 1fr; }
-            .modules-grid { grid-template-columns: 1fr; }
-            .form-row { grid-template-columns: 1fr; }
-            .submission-container { padding: 2rem 1.5rem; }
-
+            .hero { padding: 4rem 1.5rem 3rem; }
+            .hero h1 { font-size: 2rem; }
+            .hero-orb { display: none; }
+            .hero-desc { font-size: 0.95rem; }
             .header-nav { gap: 0.75rem; }
-            .header-nav a { font-size: 0.8rem; }
-            .conversation-section { padding: 1.5rem 1rem 0; }
+            .header-nav a { font-size: 0.75rem; }
+            .chat-messages { height: 350px; }
+            .chat-message { max-width: 92%; }
+            .filter-bar { gap: 0.25rem; }
+            .filter-tab { padding: 0.4rem 0.75rem; font-size: 0.7rem; }
+            .resources-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .footer-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
+            .chatbot-section, .resources-section, .contribute-section { padding: 2.5rem 1rem; }
         }
 
         @media (max-width: 480px) {
-            .hero h1 { font-size: 1.5rem; }
-            .cta-buttons { flex-direction: column; align-items: center; }
+            .header { padding: 1rem; }
+            .header-nav { display: none; }
+            .hero h1 { font-size: 1.75rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- ============================================================
+         HEADER
+         ============================================================ -->
     <header class="header">
-        <div class="header-brand">
-            <h1>AREX</h1>
-            <span>CAHSI-HACU Consortium</span>
-        </div>
+        <a href="/" class="header-brand" style="text-decoration: none;">
+            <h1>AIREX</h1>
+            <span>HACU Pilot</span>
+        </a>
         <nav class="header-nav">
             <a href="/">Home</a>
+            <a href="/readiness">AI Readiness</a>
             <a href="/atlas">Atlas</a>
-            <a href="/toolkit" class="active">Repository</a>
+            <a href="/repository" class="active">Repository</a>
             <a href="/assessment">Assessment</a>
+            <a href="/news">News</a>
         </nav>
     </header>
 
-    <!-- Hero -->
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
     <section class="hero">
         <div class="hero-orb hero-orb-1"></div>
         <div class="hero-orb hero-orb-2"></div>
         <div class="hero-orb hero-orb-3"></div>
         <div class="hero-orb hero-orb-4"></div>
-        <div class="hero-orb hero-orb-5"></div>
         <div class="hero-inner">
             <div class="hero-badge">
-                <span class="dot"></span>
-                Ethics-Centered Platform
+                <div class="hero-badge-dot"></div>
+                18 curated resources &middot; 5 pillars &middot; AI-powered search
             </div>
-            <h1>Conversational Repository &amp;<br><span class="highlight">Ethics Platform</span></h1>
-            <p>Ask questions, explore curated resources, and get AI-powered guidance to help your institution navigate AI integration ethically and effectively. Built on the 5 E's of Constructivism.</p>
+            <h1>Conversational <span class="highlight">Repository</span></h1>
+            <p class="hero-desc">
+                Search curated resources across all five AI readiness pillars. Ask questions in natural language and get specific answers drawn from syllabi, policy templates, guides, and case studies contributed by the network.
+            </p>
         </div>
     </section>
 
-    <!-- Conversational AI Section -->
-    <section class="conversation-section">
-        <div class="conversation-container">
-            <div class="conversation-header">
-                <div class="conversation-header-left">
-                    <div class="conversation-avatar">&#129302;</div>
-                    <div>
-                        <div class="conversation-title">AI Readiness Assistant</div>
-                        <div class="conversation-subtitle">Ask about AI policies, ethics frameworks, teaching strategies, and more</div>
-                    </div>
+    <!-- ============================================================
+         SECTION 1: CHATBOT / SEARCH
+         ============================================================ -->
+    <section class="chatbot-section">
+        <div class="chatbot-container">
+            <div class="chatbot-header">
+                <div class="chatbot-header-left">
+                    <div class="chatbot-icon">&#128218;</div>
+                    <h2>AIREX Repository Assistant</h2>
                 </div>
-                <span class="conversation-beta">Beta</span>
+                <div class="chatbot-header-badge">Beta</div>
             </div>
-            <div class="conversation-messages" id="chatMessages">
-                <!-- Messages rendered by JS -->
+
+            <div class="chat-messages" id="chatMessages">
+                <!-- Initial bot message injected by JS -->
             </div>
-            <div class="conversation-suggestions" id="chatSuggestions">
-                <button class="convo-chip" data-question="How do I start embedding ethics in my AI curriculum?">How to embed ethics in AI curriculum?</button>
-                <button class="convo-chip" data-question="What are the 5 E's?">What are the 5 E's?</button>
-                <button class="convo-chip" data-question="Find policy templates">Find policy templates</button>
-                <button class="convo-chip" data-question="How should my institution approach AI governance?">AI governance guidance</button>
-                <button class="convo-chip" data-question="What resources exist for AI infrastructure planning?">Infrastructure planning</button>
-                <button class="convo-chip" data-question="How can HSIs ensure equitable AI access?">Equitable AI access</button>
-            </div>
-            <div class="conversation-input-area">
-                <input type="text" class="conversation-input" id="chatInput" placeholder="Ask about AI readiness, ethics, policies, resources..." autocomplete="off">
-                <button class="conversation-send" id="chatSend" aria-label="Send message">
-                    <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M14 2L7 9M14 2L9.5 14L7 9M14 2L2 6.5L7 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </button>
+
+            <div class="chat-input-area">
+                <input
+                    type="text"
+                    class="chat-input"
+                    id="chatInput"
+                    placeholder="Ask a question about AI readiness..."
+                    autocomplete="off"
+                >
+                <button class="chat-send-btn" id="chatSend" title="Send message">&#10148;</button>
             </div>
         </div>
     </section>
 
-    <!-- Filter Bar -->
-    <div class="filter-bar">
-        <div class="filter-tabs" id="filterTabs">
-            <button class="filter-tab active" data-filter="all">All Resources</button>
-            <button class="filter-tab" data-filter="teaching">Teaching & Learning</button>
-            <button class="filter-tab" data-filter="policy">Policy & Governance</button>
-            <button class="filter-tab" data-filter="ethics">Ethics & Equity</button>
-            <button class="filter-tab" data-filter="research">Research & Innovation</button>
-            <button class="filter-tab" data-filter="infrastructure">Infrastructure</button>
-            <button class="filter-tab" data-filter="getting-started">Getting Started</button>
-            <button class="filter-tab" data-filter="community">Community</button>
-        </div>
-    </div>
+    <!-- ============================================================
+         SECTION 2: RESOURCE BROWSER
+         ============================================================ -->
+    <section class="resources-section" id="resourceBrowser">
+        <div class="resources-inner">
+            <div class="section-header">
+                <h2>Browse Resources</h2>
+                <p>Filter by pillar to find resources relevant to your institution's priorities.</p>
+            </div>
 
-    <!-- Embedded Ethics Learning Modules -->
-    <section class="modules-section">
-        <div class="modules-header">
-            <h2>Embedded Ethics Learning Modules</h2>
-            <p>Guided modules based on the 5 E's of Constructivism &mdash; a pedagogical framework for embedding ethical reasoning into computing education.</p>
-        </div>
-        <div class="modules-grid">
-            <div class="module-card">
-                <div class="module-number">1</div>
-                <div class="module-name">Engage</div>
-                <div class="module-desc">Start with real-world AI ethics scenarios that connect to students' experiences and communities. Surface assumptions and spark curiosity.</div>
+            <div class="filter-bar" id="filterBar">
+                <button class="filter-tab active" data-pillar="">All</button>
+                <button class="filter-tab" data-pillar="teaching">Teaching &amp; Learning</button>
+                <button class="filter-tab" data-pillar="policy">Policy &amp; Governance</button>
+                <button class="filter-tab" data-pillar="ethics">Ethics &amp; Equity</button>
+                <button class="filter-tab" data-pillar="research">Research &amp; Innovation</button>
+                <button class="filter-tab" data-pillar="infrastructure">Infrastructure</button>
             </div>
-            <div class="module-card">
-                <div class="module-number">2</div>
-                <div class="module-name">Explore</div>
-                <div class="module-desc">Investigate AI systems hands-on &mdash; examine datasets, test models, and discover how technical decisions create ethical implications.</div>
+
+            <div class="resources-grid" id="resourcesGrid">
+                <div class="resources-empty">Loading resources...</div>
             </div>
-            <div class="module-card">
-                <div class="module-number">3</div>
-                <div class="module-name">Explain</div>
-                <div class="module-desc">Articulate ethical frameworks and principles. Students develop vocabulary and reasoning tools for responsible AI development.</div>
-            </div>
-            <div class="module-card">
-                <div class="module-number">4</div>
-                <div class="module-name">Elaborate</div>
-                <div class="module-desc">Apply ethical reasoning to complex, open-ended AI challenges. Design solutions that center equity, privacy, and community impact.</div>
-            </div>
-            <div class="module-card">
-                <div class="module-number">5</div>
-                <div class="module-name">Evaluate</div>
-                <div class="module-desc">Reflect on learning and assess AI systems against ethical criteria. Develop rubrics and assessment tools for responsible practice.</div>
-            </div>
-        </div>
-        <div class="modules-note">
-            Developed through NSF CUE-M Grant #2434338 at CAHSI institutions
         </div>
     </section>
 
-    <!-- Main Content — Resources -->
-    <div class="main-content" id="resourcesContainer">
-        <!-- Resources rendered by JS -->
-    </div>
-
-    <!-- Materials Submission Section -->
-    <section class="submission-section">
-        <div class="submission-container">
-            <div class="submission-header">
-                <h2>Share Your Materials</h2>
-                <p>Contribute your AI teaching materials, policy templates, or ethics modules to the community. Submissions are reviewed and made available to all member institutions.</p>
+    <!-- ============================================================
+         SECTION 3: CONTRIBUTE / SUBMIT
+         ============================================================ -->
+    <section class="contribute-section">
+        <div class="contribute-inner">
+            <div class="contribute-header">
+                <h2>Contribute to the Repository</h2>
+                <p>Share your institution's AI resources with the network. All submissions go through a quality review process before being published.</p>
             </div>
-            <form class="submission-form" id="submissionForm" onsubmit="return false;">
+
+            <form class="contribute-form" id="contributeForm">
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="instName">Institution Name</label>
-                        <input type="text" id="instName" placeholder="e.g., University of Texas at El Paso">
+                        <label for="contribName">Your Name</label>
+                        <input type="text" id="contribName" placeholder="Dr. Jane Smith" required>
                     </div>
                     <div class="form-group">
-                        <label for="contactEmail">Contact Email</label>
-                        <input type="email" id="contactEmail" placeholder="you@institution.edu">
+                        <label for="contribEmail">Email</label>
+                        <input type="email" id="contribEmail" placeholder="jane@university.edu" required>
                     </div>
-                </div>
-                <div class="form-row full">
                     <div class="form-group">
-                        <label for="resourceTitle">Resource Title</label>
-                        <input type="text" id="resourceTitle" placeholder="e.g., AI Ethics Case Study Collection">
+                        <label for="contribInstitution">Institution</label>
+                        <input type="text" id="contribInstitution" placeholder="University name" required>
                     </div>
                 </div>
+
+                <div class="form-group full-width" style="margin-bottom: 1rem;">
+                    <label for="contribTitle">Resource Title</label>
+                    <input type="text" id="contribTitle" placeholder="e.g., AI Ethics in Academic Assessment: Course Syllabus" required>
+                </div>
+
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="pillarCategory">Pillar Category</label>
-                        <select id="pillarCategory">
-                            <option value="" disabled selected>Select a category</option>
-                            <option value="teaching">Teaching & Learning</option>
-                            <option value="policy">Policy & Governance</option>
-                            <option value="ethics">Ethics & Equity</option>
-                            <option value="research">Research & Innovation</option>
+                        <label for="contribPillar">Pillar</label>
+                        <select id="contribPillar" required>
+                            <option value="">Select a pillar</option>
+                            <option value="teaching">Teaching &amp; Learning</option>
+                            <option value="policy">Policy &amp; Governance</option>
+                            <option value="ethics">Ethics &amp; Equity</option>
+                            <option value="research">Research &amp; Innovation</option>
                             <option value="infrastructure">Infrastructure</option>
-                            <option value="general">General</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="resourceType">Resource Type</label>
-                        <select id="resourceType">
-                            <option value="" disabled selected>Select a type</option>
+                        <label for="contribType">Resource Type</label>
+                        <select id="contribType" required>
+                            <option value="">Select a type</option>
+                            <option value="syllabus">Syllabus</option>
                             <option value="guide">Guide</option>
                             <option value="template">Template</option>
+                            <option value="checklist">Checklist</option>
+                            <option value="case_study">Case Study</option>
                             <option value="framework">Framework</option>
-                            <option value="workshop">Workshop Materials</option>
-                            <option value="tool">Tool</option>
-                            <option value="casestudy">Case Study</option>
-                            <option value="other">Other</option>
+                            <option value="workshop_guide">Workshop Guide</option>
+                            <option value="curriculum_module">Curriculum Module</option>
+                            <option value="policy_template">Policy Template</option>
                         </select>
                     </div>
-                </div>
-                <div class="form-row full">
-                    <div class="form-group">
-                        <label for="resourceDesc">Description</label>
-                        <textarea id="resourceDesc" placeholder="Briefly describe the resource and how it can help other institutions..."></textarea>
+                    <div class="form-group" style="visibility: hidden;">
+                        <label>&nbsp;</label>
+                        <input type="text" disabled>
                     </div>
                 </div>
-                <div class="form-row full">
-                    <div class="form-group">
-                        <label>File Upload</label>
-                        <div class="file-upload-area" id="fileUploadArea">
-                            <div class="upload-icon">&#128194;</div>
-                            <p>Drag and drop your file here, or click to browse</p>
-                            <span class="upload-hint">PDF, DOCX, PPTX, or ZIP up to 25MB</span>
-                            <input type="file" id="fileInput" accept=".pdf,.docx,.pptx,.zip">
-                        </div>
+
+                <div class="form-group full-width" style="margin-bottom: 1rem;">
+                    <label for="contribDesc">Description</label>
+                    <textarea id="contribDesc" placeholder="Describe the resource, its purpose, and how other institutions can use it..." required></textarea>
+                </div>
+
+                <div class="form-group full-width" style="margin-bottom: 0;">
+                    <label>Attach File</label>
+                    <div class="file-upload-area" id="fileUploadArea">
+                        <input type="file" id="contribFile" accept=".pdf,.doc,.docx,.pptx,.xlsx,.txt">
+                        <div class="file-upload-icon">&#128206;</div>
+                        <div class="file-upload-text"><strong>Click to upload</strong> or drag and drop</div>
+                        <div class="file-upload-hint">PDF, DOC, DOCX, PPTX, or TXT (max 10MB)</div>
                     </div>
                 </div>
-                <button type="button" class="submit-btn" id="submitBtn">
-                    Submit Resource
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </button>
+
+                <button type="submit" class="btn-submit">Submit Resource for Review</button>
             </form>
+
+            <div class="review-process">
+                <span class="review-step">&#128228; Submit</span>
+                <span class="review-arrow">&#8594;</span>
+                <span class="review-step">&#129302; AI Screening</span>
+                <span class="review-arrow">&#8594;</span>
+                <span class="review-step">&#128101; Human Review</span>
+                <span class="review-arrow">&#8594;</span>
+                <span class="review-step">&#9989; Published</span>
+            </div>
         </div>
     </section>
 
-    <!-- CTA -->
-    <div class="main-content">
-        <div class="cta-section">
-            <h2>Ready to Begin Your AI Journey?</h2>
-            <p>Take the AI Readiness Assessment to identify your institution's strengths and growth areas. Explore the Atlas, try the AI Ethics Assistant, and contribute your own materials to the community.</p>
-            <div class="cta-buttons">
-                <a href="/assessment" class="btn btn-primary">Take the Assessment</a>
-                <a href="/atlas" class="btn btn-secondary">Explore the Atlas</a>
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h3>AIREX</h3>
+                <p>AI Readiness Explorer &middot; HACU Pilot</p>
+            </div>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/atlas">Atlas</a>
+                <a href="/repository">Repository</a>
+                <a href="/assessment">Assessment</a>
+                <a href="/news">News</a>
             </div>
         </div>
-    </div>
+    </footer>
 
+    <!-- Toast notification -->
+    <div class="toast" id="toast"></div>
 
-    <!-- Toast -->
-    <div class="toast" id="toast">
-        <span class="toast-icon">&#128679;</span>
-        <span>Coming Soon! Submissions will be available in a future update.</span>
-    </div>
-
+    <!-- ============================================================
+         JAVASCRIPT
+         ============================================================ -->
     <script>
-        /* ===========================================================
-           RESOURCE DATA — All 27 original resources preserved
-           =========================================================== */
-        const resources = [
-            // GETTING STARTED
-            {
-                title: 'AI Integration Readiness Checklist for HSIs',
-                desc: 'A step-by-step checklist for institutional leaders beginning their AI journey. Covers governance, faculty readiness, infrastructure, and student impact.',
-                tags: ['guide'],
-                pillar: 'getting-started',
-                pillarLabel: 'Getting Started',
-                pillarColor: '#6b7280'
-            },
-            {
-                title: 'Building Your Institution\'s AI Task Force',
-                desc: 'Template for forming a cross-functional AI committee with representation from faculty, IT, students, administration, and community partners.',
-                tags: ['template'],
-                pillar: 'getting-started',
-                pillarLabel: 'Getting Started',
-                pillarColor: '#6b7280'
-            },
-            {
-                title: 'AI Landscape Overview for Higher Education',
-                desc: 'An introduction to current AI technologies, their applications in higher education, and what they mean for Hispanic-Serving Institutions.',
-                tags: ['guide'],
-                pillar: 'getting-started',
-                pillarLabel: 'Getting Started',
-                pillarColor: '#6b7280'
-            },
-
-            // TEACHING & LEARNING
-            {
-                title: 'Faculty Guide to AI in the Classroom',
-                desc: 'Practical guide for faculty on integrating AI tools into teaching, from assignment design to academic integrity. Includes syllabus language templates.',
-                tags: ['guide', 'template'],
-                pillar: 'teaching',
-                pillarLabel: 'Teaching & Learning',
-                pillarColor: '#3b82f6'
-            },
-            {
-                title: 'AI Syllabus Statement Generator',
-                desc: 'Customizable templates for AI use policies in course syllabi. Covers permitted use, citation requirements, and academic integrity expectations.',
-                tags: ['template', 'tool'],
-                pillar: 'teaching',
-                pillarLabel: 'Teaching & Learning',
-                pillarColor: '#3b82f6'
-            },
-            {
-                title: 'Workshop Series: Teaching with AI',
-                desc: 'A 4-session professional development series for faculty covering AI literacy, prompt engineering, AI-assisted grading, and curriculum redesign.',
-                tags: ['workshop'],
-                pillar: 'teaching',
-                pillarLabel: 'Teaching & Learning',
-                pillarColor: '#3b82f6'
-            },
-            {
-                title: 'AI Literacy Across Disciplines Framework',
-                desc: 'Framework for embedding AI literacy into non-CS programs including humanities, social sciences, health sciences, and business.',
-                tags: ['framework'],
-                pillar: 'teaching',
-                pillarLabel: 'Teaching & Learning',
-                pillarColor: '#3b82f6'
-            },
-            {
-                title: 'Student AI Competency Rubric',
-                desc: 'Assessment rubric for evaluating student AI skills from basic awareness through advanced application. Aligned with workforce expectations.',
-                tags: ['template', 'tool'],
-                pillar: 'teaching',
-                pillarLabel: 'Teaching & Learning',
-                pillarColor: '#3b82f6'
-            },
-
-            // POLICY & GOVERNANCE
-            {
-                title: 'Institutional AI Policy Template',
-                desc: 'Comprehensive policy template covering acceptable use, academic integrity, procurement, data governance, and accountability for AI tools.',
-                tags: ['template', 'framework'],
-                pillar: 'policy',
-                pillarLabel: 'Policy & Governance',
-                pillarColor: '#8b5cf6'
-            },
-            {
-                title: 'AI Strategic Planning Guide',
-                desc: 'Step-by-step guide for integrating AI into your institutional strategic plan with goals, metrics, timelines, and budget considerations.',
-                tags: ['guide'],
-                pillar: 'policy',
-                pillarLabel: 'Policy & Governance',
-                pillarColor: '#8b5cf6'
-            },
-            {
-                title: 'AI Vendor Evaluation Framework',
-                desc: 'Checklist for evaluating AI tool vendors on bias, accessibility, privacy, cost, and alignment with institutional values and student demographics.',
-                tags: ['framework', 'tool'],
-                pillar: 'policy',
-                pillarLabel: 'Policy & Governance',
-                pillarColor: '#8b5cf6'
-            },
-            {
-                title: 'AI Governance Committee Charter Template',
-                desc: 'Template for establishing an AI governance committee including membership, scope, decision-making authority, and reporting structure.',
-                tags: ['template'],
-                pillar: 'policy',
-                pillarLabel: 'Policy & Governance',
-                pillarColor: '#8b5cf6'
-            },
-
-            // ETHICS & EQUITY
-            {
-                title: 'Responsible AI Framework for HSIs',
-                desc: 'An equity-centered framework for responsible AI adoption that centers the experiences and needs of Hispanic and underserved student populations.',
-                tags: ['framework'],
-                pillar: 'ethics',
-                pillarLabel: 'Ethics & Equity',
-                pillarColor: '#10b981'
-            },
-            {
-                title: 'AI Bias Audit Toolkit',
-                desc: 'Step-by-step process for auditing AI tools for bias before deployment. Includes data collection templates, evaluation criteria, and reporting formats.',
-                tags: ['tool', 'template'],
-                pillar: 'ethics',
-                pillarLabel: 'Ethics & Equity',
-                pillarColor: '#10b981'
-            },
-            {
-                title: 'Equitable AI Access Playbook',
-                desc: 'Strategies for ensuring all students can benefit from AI regardless of socioeconomic status, language background, or disability. Includes device lending and connectivity programs.',
-                tags: ['guide'],
-                pillar: 'ethics',
-                pillarLabel: 'Ethics & Equity',
-                pillarColor: '#10b981'
-            },
-            {
-                title: 'AI Transparency & Consent Guidelines',
-                desc: 'Templates for disclosing AI use to students, obtaining consent for AI-powered analytics, and maintaining transparency in automated decision-making.',
-                tags: ['template', 'guide'],
-                pillar: 'ethics',
-                pillarLabel: 'Ethics & Equity',
-                pillarColor: '#10b981'
-            },
-
-            // RESEARCH & INNOVATION
-            {
-                title: 'HSI AI Research Collaboration Playbook',
-                desc: 'Guide for building multi-institutional AI research partnerships among HSIs. Covers grant writing, shared infrastructure, student exchanges, and co-PI arrangements.',
-                tags: ['guide', 'community'],
-                pillar: 'research',
-                pillarLabel: 'Research & Innovation',
-                pillarColor: '#f59e0b'
-            },
-            {
-                title: 'Undergraduate AI Research Program Template',
-                desc: 'Blueprint for creating undergraduate AI research experiences including mentorship models, project structures, and pathways to graduate school.',
-                tags: ['template'],
-                pillar: 'research',
-                pillarLabel: 'Research & Innovation',
-                pillarColor: '#f59e0b'
-            },
-            {
-                title: 'Community-Engaged AI Research Guide',
-                desc: 'Framework for conducting AI research that addresses local community needs. Includes community partnership models, ethical considerations, and impact metrics.',
-                tags: ['framework', 'guide'],
-                pillar: 'research',
-                pillarLabel: 'Research & Innovation',
-                pillarColor: '#f59e0b'
-            },
-            {
-                title: 'AI Grant Funding Opportunities Directory',
-                desc: 'Curated list of NSF, NIH, DOE, and private foundation funding opportunities for AI research at HSIs, including HSI-specific programs.',
-                tags: ['guide', 'tool'],
-                pillar: 'research',
-                pillarLabel: 'Research & Innovation',
-                pillarColor: '#f59e0b'
-            },
-
-            // INFRASTRUCTURE
-            {
-                title: 'AI Infrastructure Assessment Guide',
-                desc: 'Evaluate your institution\'s computing, data, and human resource readiness for AI. Includes gap analysis templates and prioritization framework.',
-                tags: ['guide', 'tool'],
-                pillar: 'infrastructure',
-                pillarLabel: 'Infrastructure',
-                pillarColor: '#ef4444'
-            },
-            {
-                title: 'Cloud Computing for HSIs: Getting Started',
-                desc: 'Guide to leveraging cloud platforms (AWS, Azure, GCP) for AI workloads, including education credits, architecture patterns, and cost management.',
-                tags: ['guide'],
-                pillar: 'infrastructure',
-                pillarLabel: 'Infrastructure',
-                pillarColor: '#ef4444'
-            },
-            {
-                title: 'Data Governance Framework for AI',
-                desc: 'Framework for establishing data governance that enables AI while protecting student privacy. Covers FERPA compliance, data quality, and access management.',
-                tags: ['framework'],
-                pillar: 'infrastructure',
-                pillarLabel: 'Infrastructure',
-                pillarColor: '#ef4444'
-            },
-            {
-                title: 'Building an AI-Ready IT Team',
-                desc: 'Hiring guides, training plans, and organizational structures for developing in-house AI/ML capabilities within your IT department.',
-                tags: ['guide', 'template'],
-                pillar: 'infrastructure',
-                pillarLabel: 'Infrastructure',
-                pillarColor: '#ef4444'
-            }
-        ];
-
-        const tagClasses = {
-            'guide': 'tag-guide',
-            'template': 'tag-template',
-            'framework': 'tag-framework',
-            'workshop': 'tag-workshop',
-            'report': 'tag-report',
-            'tool': 'tag-tool',
-            'community': 'tag-community'
+        /* ==========================================================
+           UTILITY HELPERS
+           ========================================================== */
+        const PILLAR_LABELS = {
+            teaching: 'Teaching & Learning',
+            policy: 'Policy & Governance',
+            ethics: 'Ethics & Equity',
+            research: 'Research & Innovation',
+            infrastructure: 'Infrastructure'
         };
 
-        let currentFilter = 'all';
+        const TYPE_LABELS = {
+            syllabus: 'Syllabus',
+            guide: 'Guide',
+            template: 'Template',
+            checklist: 'Checklist',
+            case_study: 'Case Study',
+            framework: 'Framework',
+            workshop_guide: 'Workshop Guide',
+            curriculum_module: 'Curriculum Module',
+            policy_template: 'Policy Template'
+        };
 
-        /* ===========================================================
-           RENDER RESOURCES
-           =========================================================== */
-        function renderResources() {
-            const container = document.getElementById('resourcesContainer');
-            let filtered;
-
-            if (currentFilter === 'all') {
-                filtered = resources;
-            } else if (currentFilter === 'community') {
-                filtered = resources.filter(r => r.tags.includes('community'));
-            } else {
-                filtered = resources.filter(r => r.pillar === currentFilter);
-            }
-
-            // Group by pillar
-            const groups = {};
-            filtered.forEach(r => {
-                if (!groups[r.pillar]) {
-                    groups[r.pillar] = {
-                        label: r.pillarLabel,
-                        color: r.pillarColor,
-                        items: []
-                    };
-                }
-                groups[r.pillar].items.push(r);
-            });
-
-            const pillarOrder = ['getting-started', 'teaching', 'policy', 'ethics', 'research', 'infrastructure'];
-
-            let html = '';
-            pillarOrder.forEach(key => {
-                const group = groups[key];
-                if (!group) return;
-
-                const icons = {
-                    'getting-started': '&#128640;',
-                    'teaching': '&#128218;',
-                    'policy': '&#128203;',
-                    'ethics': '&#9878;&#65039;',
-                    'research': '&#128300;',
-                    'infrastructure': '&#128421;&#65039;'
-                };
-
-                html += `
-                    <div class="category-section">
-                        <div class="category-header">
-                            <div class="category-icon" style="background: ${group.color}15; color: ${group.color};">${icons[key] || '&#128230;'}</div>
-                            <h2>${group.label}</h2>
-                            <span class="category-count">${group.items.length} resources</span>
-                        </div>
-                        <div class="resource-grid">
-                            ${group.items.map(r => `
-                                <div class="resource-card">
-                                    <div class="resource-tags">
-                                        ${r.tags.map(t => `<span class="resource-tag ${tagClasses[t] || ''}">${t}</span>`).join('')}
-                                    </div>
-                                    <div class="resource-title">${r.title}</div>
-                                    <div class="resource-desc">${r.desc}</div>
-                                    <div class="resource-meta">
-                                        <div class="resource-pillar">
-                                            <div class="pillar-dot" style="background: ${r.pillarColor};"></div>
-                                            <span>${r.pillarLabel}</span>
-                                        </div>
-                                        <span class="resource-action">Coming Soon</span>
-                                    </div>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                `;
-            });
-
-            if (filtered.length === 0) {
-                html = `
-                    <div style="text-align:center; padding:4rem 2rem; color: var(--gray-400);">
-                        <div style="font-size:2.5rem; margin-bottom:1rem;">&#128269;</div>
-                        <p style="font-size:1rem; font-weight:600; color: var(--gray-500); margin-bottom:0.5rem;">No resources found</p>
-                        <p style="font-size:0.85rem;">Community resources are coming soon. Check back later!</p>
-                    </div>
-                `;
-            }
-
-            container.innerHTML = html;
+        function escapeHtml(text) {
+            const el = document.createElement('span');
+            el.textContent = text;
+            return el.innerHTML;
         }
 
-        /* ===========================================================
-           FILTER TABS
-           =========================================================== */
-        document.getElementById('filterTabs').addEventListener('click', (e) => {
-            if (e.target.classList.contains('filter-tab')) {
-                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-                e.target.classList.add('active');
-                currentFilter = e.target.dataset.filter;
-                renderResources();
-            }
-        });
+        function formatDate(dateStr) {
+            if (!dateStr) return '';
+            const d = new Date(dateStr + 'T00:00:00');
+            return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        }
 
-        /* ===========================================================
-           FILE UPLOAD AREA
-           =========================================================== */
-        const fileUploadArea = document.getElementById('fileUploadArea');
-        const fileInput = document.getElementById('fileInput');
-
-        fileUploadArea.addEventListener('click', () => fileInput.click());
-
-        fileUploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            fileUploadArea.style.borderColor = '#10b981';
-            fileUploadArea.style.background = '#ecfdf5';
-        });
-
-        fileUploadArea.addEventListener('dragleave', () => {
-            fileUploadArea.style.borderColor = '';
-            fileUploadArea.style.background = '';
-        });
-
-        fileUploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            fileUploadArea.style.borderColor = '';
-            fileUploadArea.style.background = '';
-            if (e.dataTransfer.files.length > 0) {
-                const fname = e.dataTransfer.files[0].name;
-                fileUploadArea.querySelector('p').textContent = fname;
-            }
-        });
-
-        fileInput.addEventListener('change', () => {
-            if (fileInput.files.length > 0) {
-                fileUploadArea.querySelector('p').textContent = fileInput.files[0].name;
-            }
-        });
-
-        /* ===========================================================
-           SUBMISSION FORM — COMING SOON TOAST
-           =========================================================== */
-        document.getElementById('submitBtn').addEventListener('click', () => {
-            showToast();
-        });
-
-        function showToast() {
+        function showToast(message) {
             const toast = document.getElementById('toast');
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3500);
+            toast.textContent = message;
+            toast.classList.add('visible');
+            setTimeout(() => toast.classList.remove('visible'), 5000);
         }
 
-        /* ===========================================================
-           CONVERSATIONAL ASSISTANT
-           =========================================================== */
+        /* ==========================================================
+           CHATBOT
+           ========================================================== */
+        const chatMessages = document.getElementById('chatMessages');
         const chatInput = document.getElementById('chatInput');
         const chatSend = document.getElementById('chatSend');
-        const chatMessages = document.getElementById('chatMessages');
-        const chatSuggestions = document.getElementById('chatSuggestions');
 
-        // Show welcome message on page load
-        addBotMessage("Hello! I'm the AI Readiness Assistant. I can help you explore ethical considerations in AI adoption, find relevant resources, navigate the 5 E's framework, and answer questions about AI integration for your institution. What would you like to discuss?");
+        // Initial welcome message
+        addBotMessage("Welcome to the AIREX Repository. I can help you find resources across all five AI readiness pillars. Try asking something like: <em>'What readings are faculty using to discuss ethics and AI in academic assessments?'</em> or <em>'How should we structure an AI governance committee?'</em>");
 
-        function addBotMessage(text) {
-            const div = document.createElement('div');
-            div.className = 'chat-message bot';
-            div.innerHTML = `
-                <div class="chat-msg-avatar">&#129302;</div>
-                <div class="chat-msg-bubble">${text}</div>
+        function addBotMessage(html) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'chat-message bot';
+            wrapper.innerHTML = `
+                <div class="chat-avatar">&#128218;</div>
+                <div class="chat-bubble">${html}</div>
             `;
-            chatMessages.appendChild(div);
+            chatMessages.appendChild(wrapper);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
         function addUserMessage(text) {
-            const div = document.createElement('div');
-            div.className = 'chat-message user';
-            div.innerHTML = `
-                <div class="chat-msg-avatar">&#128100;</div>
-                <div class="chat-msg-bubble">${text}</div>
+            const wrapper = document.createElement('div');
+            wrapper.className = 'chat-message user';
+            wrapper.innerHTML = `
+                <div class="chat-avatar">&#128100;</div>
+                <div class="chat-bubble">${escapeHtml(text)}</div>
             `;
-            chatMessages.appendChild(div);
+            chatMessages.appendChild(wrapper);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        function getBotResponse(input) {
-            const q = input.toLowerCase();
-
-            if (q.includes('5 e') || q.includes('five e') || q.includes("5 e's") || q.includes("what are the 5")) {
-                return "The <strong>5 E's of Constructivism</strong> is a pedagogical framework used to embed ethical reasoning into computing education:<br><br>" +
-                    "<strong>1. Engage</strong> &mdash; Connect with real-world AI ethics scenarios.<br>" +
-                    "<strong>2. Explore</strong> &mdash; Investigate AI systems and their ethical implications hands-on.<br>" +
-                    "<strong>3. Explain</strong> &mdash; Develop vocabulary and ethical reasoning frameworks.<br>" +
-                    "<strong>4. Elaborate</strong> &mdash; Apply reasoning to complex, open-ended challenges.<br>" +
-                    "<strong>5. Evaluate</strong> &mdash; Reflect and assess against ethical criteria.<br><br>" +
-                    "Check out the <strong>Embedded Ethics Learning Modules</strong> section above to explore each stage!";
-            }
-
-            if (q.includes('embed') && q.includes('ethic') || q.includes('start') && q.includes('ethic') || q.includes('getting started') && q.includes('ethic')) {
-                return "Great question! Here's how to get started with embedding ethics in your AI curriculum:<br><br>" +
-                    "<strong>1.</strong> Begin with the <strong>Engage</strong> module &mdash; use real-world scenarios your students can relate to.<br>" +
-                    "<strong>2.</strong> Audit one existing course for AI ethics integration opportunities.<br>" +
-                    "<strong>3.</strong> Use our <strong>Responsible AI Framework for HSIs</strong> in the Ethics & Equity section.<br>" +
-                    "<strong>4.</strong> Form a faculty working group to discuss ethical dimensions.<br>" +
-                    "<strong>5.</strong> Start small: add one ethics discussion to each unit before building full modules.<br><br>" +
-                    "The 5 E's framework provides a structured approach to weave ethics throughout your curriculum.";
-            }
-
-            if (q.includes('policy') && q.includes('template') || q.includes('governance')) {
-                return "You'll find several policy resources in our <strong>Policy & Governance</strong> section! Key resources include:<br><br>" +
-                    "&#8226; <strong>Institutional AI Policy Template</strong> &mdash; covers acceptable use, academic integrity, and data governance.<br>" +
-                    "&#8226; <strong>AI Governance Committee Charter Template</strong> &mdash; for establishing oversight structures.<br>" +
-                    "&#8226; <strong>AI Vendor Evaluation Framework</strong> &mdash; for assessing tools before adoption.<br>" +
-                    "&#8226; <strong>AI Strategic Planning Guide</strong> &mdash; for integrating AI into your strategic plan.<br><br>" +
-                    "Use the <strong>Policy & Governance</strong> filter tab above to see all related resources.";
-            }
-
-            if (q.includes('infrastructure') || q.includes('computing') || q.includes('cloud') || q.includes('hardware')) {
-                return "For infrastructure planning, check out our <strong>Infrastructure</strong> section! Key resources:<br><br>" +
-                    "&#8226; <strong>AI Infrastructure Assessment Guide</strong> &mdash; evaluate computing, data, and human resource readiness.<br>" +
-                    "&#8226; <strong>Cloud Computing for HSIs</strong> &mdash; leverage AWS, Azure, GCP with education credits.<br>" +
-                    "&#8226; <strong>Data Governance Framework for AI</strong> &mdash; enable AI while protecting student privacy.<br>" +
-                    "&#8226; <strong>Building an AI-Ready IT Team</strong> &mdash; hiring and training plans.<br><br>" +
-                    "Use the <strong>Infrastructure</strong> filter tab to see all related resources.";
-            }
-
-            if (q.includes('teaching') || q.includes('classroom') || q.includes('faculty') || q.includes('course') || q.includes('curriculum')) {
-                return "Great question about teaching! Here are key resources in our <strong>Teaching & Learning</strong> section:<br><br>" +
-                    "&#8226; <strong>Faculty Guide to AI in the Classroom</strong> &mdash; practical integration strategies.<br>" +
-                    "&#8226; <strong>AI Syllabus Statement Generator</strong> &mdash; templates for AI use policies in courses.<br>" +
-                    "&#8226; <strong>Workshop Series: Teaching with AI</strong> &mdash; 4-session professional development.<br>" +
-                    "&#8226; <strong>AI Literacy Across Disciplines</strong> &mdash; framework for non-CS programs.<br>" +
-                    "&#8226; <strong>Student AI Competency Rubric</strong> &mdash; assess student AI skills.<br><br>" +
-                    "These resources help faculty at any level integrate AI effectively.";
-            }
-
-            if (q.includes('research') || q.includes('grant') || q.includes('fund') || q.includes('nsf') || q.includes('collaboration')) {
-                return "For research and collaboration, explore our <strong>Research & Innovation</strong> section:<br><br>" +
-                    "&#8226; <strong>HSI AI Research Collaboration Playbook</strong> &mdash; build multi-institutional partnerships.<br>" +
-                    "&#8226; <strong>Undergraduate AI Research Program Template</strong> &mdash; create student research experiences.<br>" +
-                    "&#8226; <strong>Community-Engaged AI Research Guide</strong> &mdash; address local community needs.<br>" +
-                    "&#8226; <strong>AI Grant Funding Opportunities Directory</strong> &mdash; NSF, NIH, DOE, and private funding.<br><br>" +
-                    "The <strong>Atlas</strong> also helps you find collaboration partners at other institutions!";
-            }
-
-            if (q.includes('equity') || q.includes('access') || q.includes('bias') || q.includes('fair') || q.includes('equitable')) {
-                return "Equity in AI is critical, especially for HSIs. Check our <strong>Ethics & Equity</strong> resources:<br><br>" +
-                    "&#8226; <strong>Responsible AI Framework for HSIs</strong> &mdash; centers the needs of Hispanic and underserved students.<br>" +
-                    "&#8226; <strong>AI Bias Audit Toolkit</strong> &mdash; audit AI tools before deployment.<br>" +
-                    "&#8226; <strong>Equitable AI Access Playbook</strong> &mdash; ensure all students benefit regardless of background.<br>" +
-                    "&#8226; <strong>AI Transparency & Consent Guidelines</strong> &mdash; disclosure and consent templates.<br><br>" +
-                    "These are especially designed with HSI student populations in mind.";
-            }
-
-            if (q.includes('governance') || q.includes('committee') || q.includes('task force') || q.includes('strategic')) {
-                return "For AI governance at your institution, here's a recommended approach:<br><br>" +
-                    "<strong>1.</strong> Form an AI Task Force &mdash; use our <strong>Building Your AI Task Force</strong> template.<br>" +
-                    "<strong>2.</strong> Draft initial policy &mdash; our <strong>Institutional AI Policy Template</strong> covers acceptable use, integrity, and data governance.<br>" +
-                    "<strong>3.</strong> Establish oversight &mdash; use the <strong>AI Governance Committee Charter</strong>.<br>" +
-                    "<strong>4.</strong> Integrate into strategic plan &mdash; follow the <strong>AI Strategic Planning Guide</strong>.<br><br>" +
-                    "Start with governance to build a foundation for all other AI initiatives.";
-            }
-
-            if (q.includes('assess') || q.includes('readiness') || q.includes('score') || q.includes('benchmark')) {
-                return "To assess your institution's AI readiness:<br><br>" +
-                    "<strong>1.</strong> Take our <a href='/assessment' style='color: var(--emerald-600); font-weight: 600;'>25-question Self-Assessment</a> &mdash; covers all 5 pillars.<br>" +
-                    "<strong>2.</strong> Compare results on the <a href='/atlas' style='color: var(--emerald-600); font-weight: 600;'>Interactive Atlas</a> &mdash; see how peers are doing.<br>" +
-                    "<strong>3.</strong> Use this Repository to find resources for your weakest areas.<br><br>" +
-                    "The assessment gives you a personalized readiness profile with actionable next steps!";
-            }
-
-            return "That's a great question! I'm currently in beta and learning to answer more topics. In the meantime, I can help with:<br><br>" +
-                "&#8226; <strong>Ethics frameworks</strong> &mdash; the 5 E's and embedding ethics<br>" +
-                "&#8226; <strong>Policy templates</strong> &mdash; governance and AI policies<br>" +
-                "&#8226; <strong>Teaching resources</strong> &mdash; faculty guides and curricula<br>" +
-                "&#8226; <strong>Infrastructure planning</strong> &mdash; cloud, data, and IT readiness<br>" +
-                "&#8226; <strong>Research & grants</strong> &mdash; funding and collaboration<br>" +
-                "&#8226; <strong>Equity & access</strong> &mdash; ensuring fair AI for all students<br><br>" +
-                "Try asking about any of these topics, or explore the curated resources below!";
+        function showTypingIndicator() {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'chat-message bot';
+            wrapper.id = 'typingIndicator';
+            wrapper.innerHTML = `
+                <div class="chat-avatar">&#128218;</div>
+                <div class="chat-bubble">
+                    <div class="typing-indicator">
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+            `;
+            chatMessages.appendChild(wrapper);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        function handleUserInput() {
-            const text = chatInput.value.trim();
-            if (!text) return;
+        function removeTypingIndicator() {
+            const el = document.getElementById('typingIndicator');
+            if (el) el.remove();
+        }
 
-            addUserMessage(text);
+        function buildSearchResponse(data) {
+            if (!data.results || data.results.length === 0) {
+                return "I could not find resources matching that query. Try searching by pillar or topic, such as <em>'AI policy template'</em> or <em>'ethics curriculum.'</em>";
+            }
+
+            const count = data.count;
+            const showing = Math.min(data.results.length, 5);
+            let html = `<strong>${count} resource${count !== 1 ? 's' : ''} found.</strong> Here are the top matches:`;
+
+            const topResults = data.results.slice(0, 5);
+            for (const item of topResults) {
+                const r = item.resource;
+                const typeClass = 'type-' + (r.type || '').replace(/ /g, '_');
+                const typeLabel = TYPE_LABELS[r.type] || r.type || 'Resource';
+
+                html += `<div class="chat-result-card">`;
+                html += `<div class="chat-result-header">`;
+                html += `<span class="chat-result-type resource-type-tag ${typeClass}">${escapeHtml(typeLabel)}</span>`;
+                html += `<span class="chat-result-title">${escapeHtml(r.title || '')}</span>`;
+                html += `</div>`;
+                html += `<div class="chat-result-institution">${escapeHtml(r.institution || '')}</div>`;
+
+                // Matched readings
+                if (item.matched_readings && item.matched_readings.length > 0) {
+                    html += `<div class="chat-result-matches"><strong>Matched readings:</strong>`;
+                    for (const rd of item.matched_readings.slice(0, 3)) {
+                        html += `<li>${escapeHtml(rd.title || '')}${rd.author ? ' (' + escapeHtml(rd.author) + ')' : ''}</li>`;
+                    }
+                    html += `</div>`;
+                }
+
+                // Matched sections
+                if (item.matched_sections && item.matched_sections.length > 0) {
+                    html += `<div class="chat-result-matches"><strong>Relevant sections:</strong>`;
+                    for (const sec of item.matched_sections.slice(0, 3)) {
+                        html += `<li><strong>${escapeHtml(sec.section || '')}</strong>`;
+                        if (sec.summary) html += ` &ndash; ${escapeHtml(sec.summary.substring(0, 100))}${sec.summary.length > 100 ? '...' : ''}`;
+                        html += `</li>`;
+                    }
+                    html += `</div>`;
+                }
+
+                // Matched sessions
+                if (item.matched_sessions && item.matched_sessions.length > 0) {
+                    html += `<div class="chat-result-matches"><strong>Matched sessions:</strong>`;
+                    for (const sess of item.matched_sessions.slice(0, 3)) {
+                        html += `<li>${escapeHtml(sess.title || '')}</li>`;
+                    }
+                    html += `</div>`;
+                }
+
+                html += `<a class="chat-result-link" onclick="document.getElementById('resourceBrowser').scrollIntoView({behavior:'smooth'})">View full resource &#8599;</a>`;
+                html += `</div>`;
+            }
+
+            return html;
+        }
+
+        async function handleUserQuery(query) {
+            if (!query.trim()) return;
+
+            addUserMessage(query);
             chatInput.value = '';
+            chatSend.disabled = true;
+            showTypingIndicator();
 
-            // Hide suggestions after first interaction
-            chatSuggestions.style.display = 'none';
+            try {
+                const response = await fetch(`/api/resources/search?q=${encodeURIComponent(query)}`);
+                const data = await response.json();
 
-            // Simulate a brief typing delay
-            setTimeout(() => {
-                addBotMessage(getBotResponse(text));
-            }, 600);
+                removeTypingIndicator();
+                addBotMessage(buildSearchResponse(data));
+            } catch (err) {
+                removeTypingIndicator();
+                addBotMessage("Something went wrong while searching. Please try again in a moment.");
+                console.error('Search error:', err);
+            }
+
+            chatSend.disabled = false;
+            chatInput.focus();
         }
 
-        chatSend.addEventListener('click', handleUserInput);
+        chatSend.addEventListener('click', () => {
+            handleUserQuery(chatInput.value);
+        });
+
         chatInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') handleUserInput();
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                handleUserQuery(chatInput.value);
+            }
         });
 
-        // Suggestion chips
-        chatSuggestions.addEventListener('click', (e) => {
-            const chip = e.target.closest('.convo-chip');
-            if (!chip) return;
-            const question = chip.dataset.question;
-            addUserMessage(question);
-            chatSuggestions.style.display = 'none';
-            setTimeout(() => {
-                addBotMessage(getBotResponse(question));
-            }, 600);
+        /* ==========================================================
+           RESOURCE BROWSER
+           ========================================================== */
+        let allResources = [];
+        let activeFilter = '';
+
+        async function loadResources() {
+            try {
+                const response = await fetch('/api/resources');
+                const data = await response.json();
+                allResources = data.resources || [];
+                renderResources();
+            } catch (err) {
+                console.error('Error loading resources:', err);
+                document.getElementById('resourcesGrid').innerHTML =
+                    '<div class="resources-empty">Unable to load resources. Please refresh the page.</div>';
+            }
+        }
+
+        function renderResources() {
+            const grid = document.getElementById('resourcesGrid');
+            let filtered = allResources;
+
+            if (activeFilter) {
+                filtered = allResources.filter(r => r.pillar === activeFilter);
+            }
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div class="resources-empty">No resources found for this pillar.</div>';
+                return;
+            }
+
+            grid.innerHTML = filtered.map(r => {
+                const typeClass = 'type-' + (r.type || '').replace(/ /g, '_');
+                const pillarClass = 'pillar-' + (r.pillar || '');
+                const typeLabel = TYPE_LABELS[r.type] || r.type || 'Resource';
+                const pillarLabel = PILLAR_LABELS[r.pillar] || r.pillar || '';
+                const readingCount = r.readings ? r.readings.length : 0;
+                const topics = r.topics || [];
+                const contributor = r.contributor ? r.contributor.name : '';
+                const dateAdded = formatDate(r.date_added);
+
+                return `
+                    <div class="resource-card">
+                        <div class="resource-tags">
+                            <span class="resource-type-tag ${typeClass}">${escapeHtml(typeLabel)}</span>
+                            <span class="resource-type-tag ${pillarClass}">${escapeHtml(pillarLabel)}</span>
+                        </div>
+                        <h3>${escapeHtml(r.title || '')}</h3>
+                        <div class="resource-institution">${escapeHtml(r.institution || '')}</div>
+                        <div class="resource-description">${escapeHtml(r.description || '')}</div>
+                        ${topics.length > 0 ? `
+                            <div class="resource-topics">
+                                ${topics.slice(0, 5).map(t => `<span class="topic-pill">${escapeHtml(t)}</span>`).join('')}
+                            </div>
+                        ` : ''}
+                        ${readingCount > 0 ? `<div class="reading-count">&#128214; ${readingCount} reading${readingCount !== 1 ? 's' : ''}</div>` : ''}
+                        <div class="resource-footer">
+                            <span class="resource-contributor">${escapeHtml(contributor)}</span>
+                            <span class="resource-date">${dateAdded}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Filter tab clicks
+        document.getElementById('filterBar').addEventListener('click', (e) => {
+            const tab = e.target.closest('.filter-tab');
+            if (!tab) return;
+
+            document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            activeFilter = tab.dataset.pillar || '';
+            renderResources();
         });
 
-        /* ===========================================================
-           INIT
-           =========================================================== */
-        renderResources();
+        // Load resources on page load
+        loadResources();
+
+        /* ==========================================================
+           CONTRIBUTE FORM
+           ========================================================== */
+        const contributeForm = document.getElementById('contributeForm');
+        const fileUploadArea = document.getElementById('fileUploadArea');
+        const fileInput = document.getElementById('contribFile');
+
+        // File name display
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                const fileName = fileInput.files[0].name;
+                fileUploadArea.querySelector('.file-upload-text').innerHTML = `<strong>${escapeHtml(fileName)}</strong> selected`;
+                fileUploadArea.querySelector('.file-upload-icon').textContent = '\u2705';
+            }
+        });
+
+        contributeForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Gather form data (for future API integration)
+            const formData = {
+                name: document.getElementById('contribName').value,
+                email: document.getElementById('contribEmail').value,
+                institution: document.getElementById('contribInstitution').value,
+                title: document.getElementById('contribTitle').value,
+                pillar: document.getElementById('contribPillar').value,
+                type: document.getElementById('contribType').value,
+                description: document.getElementById('contribDesc').value
+            };
+
+            // Reset form
+            contributeForm.reset();
+            fileUploadArea.querySelector('.file-upload-text').innerHTML = '<strong>Click to upload</strong> or drag and drop';
+            fileUploadArea.querySelector('.file-upload-icon').textContent = '\u{1F4CE}';
+
+            showToast('Thank you for your submission. Our review team will evaluate it within 5 business days.');
+        });
     </script>
 </body>
 </html>

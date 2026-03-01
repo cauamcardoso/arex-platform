@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: arex-platform
+    name: airex-platform
     env: python
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn src.app:app --bind 0.0.0.0:$PORT

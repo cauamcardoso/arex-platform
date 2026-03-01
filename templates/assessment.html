@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Readiness Assessment | AREX</title>
+    <title>AI Readiness Assessment | AIREX</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -460,14 +460,16 @@
     <!-- Header -->
     <header class="header">
         <div class="header-brand">
-            <h1>AREX</h1>
-            <span>CAHSI-HACU Consortium</span>
+            <h1>AIREX</h1>
+            <span>HACU Pilot</span>
         </div>
         <nav class="header-nav">
             <a href="/">Home</a>
+            <a href="/readiness">AI Readiness</a>
             <a href="/atlas">Atlas</a>
-            <a href="/toolkit">Toolkit</a>
+            <a href="/repository">Repository</a>
             <a href="/assessment" class="active">Assessment</a>
+            <a href="/news">News</a>
         </nav>
     </header>
 
@@ -477,8 +479,8 @@
         <div class="hero-orb hero-orb-2"></div>
         <div class="hero-orb hero-orb-3"></div>
         <h1>AI Readiness Self-Assessment</h1>
-        <p>Understand where your institution stands on its AI integration journey and discover collaboration opportunities.</p>
-        <div class="subtitle">25 questions across 5 pillars &middot; Takes ~10 minutes</div>
+        <p>Evaluate your institution's AI readiness across five pillars. This anonymous assessment takes about 10 minutes and provides a personalized readiness profile with recommendations.</p>
+        <div class="subtitle">25 questions across 5 pillars &middot; <a href="/readiness" style="color: rgba(255,255,255,0.9); text-decoration: underline;">Learn more about the AI readiness framework</a></div>
     </section>
 
     <!-- Progress -->
@@ -507,7 +509,7 @@
         <div class="results-container" id="resultsContainer">
             <div class="results-header">
                 <h2>Your AI Readiness Profile</h2>
-                <p>Here's where your institution stands on its AI integration journey</p>
+                <p>Here is where your institution stands on its AI integration journey</p>
             </div>
 
             <div class="overall-score-card">
@@ -525,8 +527,8 @@
             </div>
 
             <div class="results-actions">
-                <a href="/atlas" class="btn btn-primary">Find Collaboration Partners on the Atlas</a>
-                <a href="/toolkit" class="btn btn-secondary">Explore the AI Toolkit</a>
+                <a href="/atlas" class="btn btn-primary">Find institutions at your level on the Atlas</a>
+                <a href="/readiness" class="btn btn-secondary">Explore the AI Readiness Framework</a>
                 <button class="btn btn-secondary" onclick="resetAssessment()">Retake Assessment</button>
             </div>
         </div>
@@ -752,7 +754,7 @@
                         ]
                     },
                     {
-                        text: 'Is your institution collaborating with other HSIs on AI initiatives?',
+                        text: 'Is your institution collaborating with other institutions on AI initiatives?',
                         options: [
                             { label: 'No collaboration', desc: 'Working in isolation on AI', score: 1 },
                             { label: 'Informal networks', desc: 'Some faculty attend shared conferences', score: 2 },
@@ -978,19 +980,18 @@
             const overallAvg = pillarScores.reduce((s, p) => s + parseFloat(p.avg), 0) / pillarScores.length;
             const overallScore = Math.round(overallAvg);
 
-            // Journey label
-            const journeyLabels = {
-                5: { label: 'Trailblazer', color: '#10b981', bg: '#ecfdf5' },
-                4: { label: 'Innovating', color: '#34d399', bg: '#f0fdf4' },
-                3: { label: 'Building', color: '#f59e0b', bg: '#fffbeb' },
-                2: { label: 'Exploring', color: '#fb923c', bg: '#fff7ed' },
-                1: { label: 'Preparing', color: '#f87171', bg: '#fef2f2' }
-            };
+            // Journey label based on average score ranges
+            function getJourneyLabel(avg) {
+                if (avg >= 4.1) return { label: 'Leading (4.1–5.0)', color: '#10b981', bg: '#ecfdf5' };
+                if (avg >= 3.1) return { label: 'Advancing (3.1–4.0)', color: '#34d399', bg: '#f0fdf4' };
+                if (avg >= 2.1) return { label: 'Building (2.1–3.0)', color: '#f59e0b', bg: '#fffbeb' };
+                return { label: 'Exploring (1.0–2.0)', color: '#fb923c', bg: '#fff7ed' };
+            }
 
-            const journey = journeyLabels[overallScore] || journeyLabels[1];
+            const journey = getJourneyLabel(overallAvg);
 
             // Update overall score
-            document.getElementById('overallScore').textContent = overallScore;
+            document.getElementById('overallScore').textContent = overallAvg.toFixed(1);
             document.getElementById('overallScore').style.color = journey.color;
             const journeyEl = document.getElementById('journeyLabel');
             journeyEl.textContent = journey.label;
@@ -1001,11 +1002,11 @@
             const pillarResultsEl = document.getElementById('pillarResults');
             pillarResultsEl.innerHTML = pillarScores.map(p => `
                 <div class="pillar-result">
-                    <div class="pillar-result-score" style="color: ${p.color}">${p.score}</div>
+                    <div class="pillar-result-score" style="color: ${p.color}">${p.avg}</div>
                     <div class="pillar-result-max">/ 5</div>
                     <div class="pillar-result-name">${p.name}</div>
                     <div class="pillar-result-bar">
-                        <div class="pillar-result-bar-fill" style="width: ${p.score * 20}%; background: ${p.color};"></div>
+                        <div class="pillar-result-bar-fill" style="width: ${parseFloat(p.avg) * 20}%; background: ${p.color};"></div>
                     </div>
                 </div>
             `).join('');
@@ -1052,7 +1053,7 @@
                 'research': {
                     icon: '🔬', bg: '#fffbeb',
                     title: 'Grow Research & Innovation',
-                    desc: 'Join CAHSI or HACU AI initiatives, pursue collaborative grants with partner HSIs, and create student AI research opportunities.'
+                    desc: 'Join consortium AI initiatives, pursue collaborative grants with partner institutions, and create student AI research opportunities.'
                 },
                 'infrastructure': {
                     icon: '🖥️', bg: '#fef2f2',

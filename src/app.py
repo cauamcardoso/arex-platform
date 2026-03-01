@@ -1,13 +1,14 @@
 """
-AREX — AI Readiness Explorer
-A platform helping Hispanic-Serving Institutions navigate AI integration in higher education.
+AIREX - AI Readiness Explorer
+A platform where academic institutions assess their AI readiness,
+find peer institutions, and share what is working.
 
 Built by the Institute for Applied AI Innovation at UTEP
-For HACU and CAHSI member institutions
 """
 
 import os
 import sys
+import json
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -26,6 +27,24 @@ app = Flask(__name__,
 
 # Initialize institutions database
 institutions_db = InstitutionsDatabase()
+
+# Load resources database
+resources_path = project_root / "data" / "resources" / "resources.json"
+if resources_path.exists():
+    with open(resources_path, 'r', encoding='utf-8') as f:
+        resources_data = json.load(f)
+        resources_db = resources_data.get('resources', [])
+else:
+    resources_db = []
+
+# Load news database
+news_path = project_root / "data" / "news" / "news.json"
+if news_path.exists():
+    with open(news_path, 'r', encoding='utf-8') as f:
+        news_data = json.load(f)
+        news_db = news_data.get('articles', [])
+else:
+    news_db = []
 
 
 # ============================================================
@@ -58,7 +77,7 @@ def home():
 
 @app.route("/atlas")
 def atlas():
-    """AREX — AI Readiness Explorer - Interactive map of HSI institutions."""
+    """AIREX Atlas - Interactive map of institutions."""
     stats = institutions_db.get_stats()
 
     return render_template(
@@ -78,10 +97,28 @@ def assessment():
     return render_template("assessment.html")
 
 
+@app.route("/readiness")
+def readiness():
+    """AI Readiness concept page - What is AI readiness?"""
+    return render_template("readiness.html")
+
+
+@app.route("/repository")
+def repository():
+    """Conversational Repository - curated resources and search assistant."""
+    return render_template("toolkit.html")
+
+
 @app.route("/toolkit")
 def toolkit():
-    """Conversational Repository - curated resources and AI assistant for HSIs."""
-    return render_template("toolkit.html")
+    """Legacy route - redirect to repository."""
+    return repository()
+
+
+@app.route("/news")
+def news():
+    """AI News and Discovery page."""
+    return render_template("news.html")
 
 
 @app.route("/institution/<institution_id>")
@@ -205,7 +242,6 @@ def get_institutions_stats():
 def get_institutions_spotlight():
     """
     Get spotlight institutions by readiness category.
-    Highlights institutions with strong practices that others can learn from and collaborate with.
 
     Query params:
         category: One of 'overall', 'teaching', 'policy', 'ethics', 'research', 'infrastructure'
@@ -272,9 +308,134 @@ def get_institution_regions():
     })
 
 
+# ============================================================
+# ROUTES - RESOURCES API
+# ============================================================
+
+@app.route("/api/resources", methods=["GET"])
+def get_resources():
+    """Get all resources or filter by pillar/type."""
+    pillar = request.args.get('pillar')
+    rtype = request.args.get('type')
+
+    results = resources_db
+    if pillar:
+        results = [r for r in results if r.get('pillar') == pillar]
+    if rtype:
+        results = [r for r in results if r.get('type') == rtype]
+
+    return jsonify({
+        "resources": results,
+        "count": len(results)
+    })
+
+
+@app.route("/api/resources/search", methods=["GET"])
+def search_resources():
+    """
+    Search resources by query string.
+    Searches across title, description, topics, readings, and content sections.
+    Returns matching resources with relevant excerpts.
+    """
+    query = request.args.get('q', '').lower().strip()
+    if not query:
+        return jsonify({"results": [], "count": 0, "query": ""})
+
+    query_terms = query.split()
+    results = []
+
+    for resource in resources_db:
+        score = 0
+        matches = []
+
+        # Search in title
+        title = resource.get('title', '').lower()
+        if any(term in title for term in query_terms):
+            score += 5
+
+        # Search in description
+        desc = resource.get('description', '').lower()
+        if any(term in desc for term in query_terms):
+            score += 3
+
+        # Search in topics
+        topics = ' '.join(resource.get('topics', [])).lower()
+        for term in query_terms:
+            if term in topics:
+                score += 4
+
+        # Search in readings (syllabi)
+        readings = resource.get('readings', [])
+        matched_readings = []
+        for reading in readings:
+            reading_text = f"{reading.get('title', '')} {reading.get('author', '')} {' '.join(reading.get('topics', []))}".lower()
+            if any(term in reading_text for term in query_terms):
+                score += 3
+                matched_readings.append(reading)
+
+        # Search in sessions (workshops)
+        sessions = resource.get('sessions', [])
+        matched_sessions = []
+        for session in sessions:
+            session_text = f"{session.get('title', '')} {session.get('description', '')}".lower()
+            if any(term in session_text for term in query_terms):
+                score += 2
+                matched_sessions.append(session)
+
+        # Search in content sections
+        sections = resource.get('content_sections', [])
+        matched_sections = []
+        for section in sections:
+            section_text = f"{section.get('section', '')} {section.get('summary', '')} {' '.join(section.get('items', []))}".lower()
+            if any(term in section_text for term in query_terms):
+                score += 2
+                matched_sections.append(section)
+
+        if score > 0:
+            result = {
+                "resource": resource,
+                "relevance_score": score,
+                "matched_readings": matched_readings,
+                "matched_sessions": matched_sessions,
+                "matched_sections": matched_sections
+            }
+            results.append(result)
+
+    # Sort by relevance
+    results.sort(key=lambda x: x['relevance_score'], reverse=True)
+
+    return jsonify({
+        "results": results[:10],
+        "count": len(results),
+        "query": query
+    })
+
+
+# ============================================================
+# ROUTES - NEWS API
+# ============================================================
+
+@app.route("/api/news", methods=["GET"])
+def get_news():
+    """Get news articles, optionally filtered by pillar."""
+    pillar = request.args.get('pillar')
+
+    results = news_db
+    if pillar:
+        results = [a for a in results if a.get('pillar') == pillar]
+
+    # Sort by date descending
+    results.sort(key=lambda x: x.get('date', ''), reverse=True)
+
+    return jsonify({
+        "articles": results,
+        "count": len(results)
+    })
+
+
 if __name__ == "__main__":
     print("\n" + "=" * 60)
-    print("  AREX — AI Readiness Explorer")
+    print("  AIREX - AI Readiness Explorer")
     print("  Institute for Applied AI Innovation - UTEP")
     print("=" * 60)
 
@@ -283,6 +444,8 @@ if __name__ == "__main__":
     print(f"HSIs: {stats['hsi_count']}")
     print(f"CAHSI Members: {stats['cahsi_member_count']}")
     print(f"States: {stats['states_represented']}")
+    print(f"Resources: {len(resources_db)}")
+    print(f"News Articles: {len(news_db)}")
 
     print("\nStarting server: http://127.0.0.1:5000")
     print("\nPress Ctrl+C to stop")

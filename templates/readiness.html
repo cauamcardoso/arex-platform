@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Readiness | AIREX</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: rgba(37, 99, 235, 0.08);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: white;
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            height: 64px;
+        }
+
+        .header-brand { display: flex; align-items: center; gap: 1rem; }
+        .header-brand h1 { font-size: 1.25rem; font-weight: 700; color: var(--gray-900); letter-spacing: -0.01em; }
+        .header-brand h1 a { color: inherit; text-decoration: none; }
+        .header-brand .badge {
+            font-size: 0.65rem;
+            color: #7c3aed;
+            background: #f5f3ff;
+            border: 1px solid #e9d5ff;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .header-nav { display: flex; gap: 1.5rem; align-items: center; }
+        .header-nav a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .header-nav a:hover { color: var(--primary); }
+        .header-nav a.active { color: var(--primary); font-weight: 600; }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray-700);
+            padding: 0.25rem;
+        }
+
+        /* ============================================================
+           HERO
+           ============================================================ */
+        .hero {
+            margin-top: 64px;
+            background: linear-gradient(160deg, #1e1b4b 0%, #312e81 40%, #4f46e5 100%);
+            padding: 6rem 2rem 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated orbs */
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+            will-change: transform;
+        }
+
+        .hero-orb-1 {
+            width: 500px; height: 500px;
+            background: rgba(99, 102, 241, 0.5);
+            top: -15%; left: -5%;
+            animation: float-1 14s ease-in-out infinite;
+        }
+
+        .hero-orb-2 {
+            width: 400px; height: 400px;
+            background: rgba(139, 92, 246, 0.4);
+            top: 20%; right: -8%;
+            animation: float-2 17s ease-in-out infinite;
+        }
+
+        .hero-orb-3 {
+            width: 350px; height: 350px;
+            background: rgba(79, 70, 229, 0.35);
+            bottom: -15%; left: 30%;
+            animation: float-3 12s ease-in-out infinite;
+        }
+
+        @keyframes float-1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(60px, 50px) scale(1.1); }
+            50% { transform: translate(30px, -60px) scale(0.9); }
+            75% { transform: translate(-50px, 30px) scale(1.05); }
+        }
+
+        @keyframes float-2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-80px, 50px) scale(1.12); }
+            66% { transform: translate(50px, -80px) scale(0.88); }
+        }
+
+        @keyframes float-3 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(100px, -40px) scale(1.15); }
+        }
+
+        /* Grid overlay */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            animation: grid-shimmer 8s ease-in-out infinite;
+        }
+
+        @keyframes grid-shimmer {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .hero-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(4px);
+        }
+
+        .hero h1 {
+            font-size: 3.25rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, #a78bfa, #c4b5fd, #e0e7ff, #a78bfa);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 6s ease-in-out infinite;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* ============================================================
+           SHARED SECTION STYLES
+           ============================================================ */
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-header p {
+            font-size: 1.05rem;
+            color: var(--gray-500);
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ============================================================
+           DEFINITION SECTION
+           ============================================================ */
+        .definition {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .definition-inner {
+            max-width: 760px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .definition h2 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 1.25rem;
+        }
+
+        .definition p {
+            font-size: 1.05rem;
+            color: var(--gray-600);
+            line-height: 1.85;
+        }
+
+        /* ============================================================
+           FIVE PILLARS SECTION
+           ============================================================ */
+        .pillars-section {
+            padding: 5rem 2rem;
+            background: var(--gray-50);
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .pillar-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .pillar-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .pillar-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 0.625rem;
+        }
+
+        .pillar-card p {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            line-height: 1.7;
+        }
+
+        /* Two-column bottom row centering for 5 cards */
+        .pillars-grid .pillar-card:nth-child(4) {
+            grid-column: 1 / 2;
+        }
+
+        .pillars-bottom-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: 740px;
+            margin: 1.5rem auto 0;
+        }
+
+        /* ============================================================
+           FOUR LEVELS SECTION
+           ============================================================ */
+        .levels-section {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .level-card {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 16px;
+            padding: 1.75rem 1.5rem;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+
+        .level-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Top accent bar */
+        .level-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+        }
+
+        .level-card.level-exploring::before { background: var(--warning); }
+        .level-card.level-building::before { background: var(--primary); }
+        .level-card.level-advancing::before { background: var(--success); }
+        .level-card.level-leading::before { background: #8b5cf6; }
+
+        .level-icon {
+            font-size: 1.75rem;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .level-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 0.375rem;
+        }
+
+        .level-score {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+            margin-bottom: 0.875rem;
+        }
+
+        .level-exploring .level-score {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .level-building .level-score {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .level-advancing .level-score {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .level-leading .level-score {
+            background: #ede9fe;
+            color: #5b21b6;
+        }
+
+        .level-card p {
+            font-size: 0.825rem;
+            color: var(--gray-500);
+            line-height: 1.65;
+        }
+
+        /* Progress connector */
+        .levels-progress {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            max-width: 900px;
+            margin: 0 auto 2rem;
+        }
+
+        .levels-progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .levels-progress-line {
+            height: 3px;
+            flex: 1;
+            border-radius: 2px;
+        }
+
+        .levels-note {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 1.25rem 1.5rem;
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            color: #92400e;
+            line-height: 1.7;
+        }
+
+        /* ============================================================
+           CTA SECTION
+           ============================================================ */
+        .cta {
+            padding: 5rem 2rem;
+            background: var(--gray-50);
+            text-align: center;
+        }
+
+        .cta-inner {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            font-size: 1.05rem;
+            color: var(--gray-500);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.875rem 1.75rem;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--gray-700);
+            border: 1px solid var(--gray-200);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-100);
+            transform: translateY(-1px);
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .footer {
+            padding: 3rem 2rem;
+            background: var(--gray-900);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-brand h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.25rem;
+        }
+
+        .footer-brand p { font-size: 0.75rem; }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: white; }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 2.75rem; }
+            .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+            .pillars-bottom-row { grid-template-columns: 1fr; max-width: 100%; }
+            .levels-grid { grid-template-columns: repeat(2, 1fr); }
+            .levels-progress { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            .header-nav { display: none; }
+            .mobile-menu-btn { display: block; }
+            .header-nav.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px;
+                left: 0; right: 0;
+                background: white;
+                padding: 1rem 2rem;
+                border-bottom: 1px solid var(--gray-200);
+                gap: 0.75rem;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            }
+
+            .hero { padding: 4rem 1.5rem 3rem; }
+            .hero h1 { font-size: 2.25rem; }
+            .hero-desc { font-size: 1rem; }
+            .hero-orb { display: none; }
+
+            .definition { padding: 3.5rem 1.5rem; }
+            .pillars-section { padding: 3.5rem 1.5rem; }
+            .pillars-grid { grid-template-columns: 1fr; }
+            .pillars-bottom-row { grid-template-columns: 1fr; }
+            .levels-section { padding: 3.5rem 1.5rem; }
+            .levels-grid { grid-template-columns: 1fr; }
+            .levels-progress { display: none; }
+
+            .section-header h2 { font-size: 1.5rem; }
+            .cta h2 { font-size: 1.75rem; }
+            .cta { padding: 3.5rem 1.5rem; }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================================
+         HEADER
+         ============================================================ -->
+    <header class="header">
+        <div class="header-brand">
+            <h1><a href="/">AIREX</a></h1>
+            <span class="badge">HACU Pilot</span>
+        </div>
+        <button class="mobile-menu-btn" onclick="document.querySelector('.header-nav').classList.toggle('open')" aria-label="Toggle navigation">&#9776;</button>
+        <nav class="header-nav">
+            <a href="/">Home</a>
+            <a href="/readiness" class="active">AI Readiness</a>
+            <a href="/atlas">Atlas</a>
+            <a href="/repository">Repository</a>
+            <a href="/assessment">Assessment</a>
+            <a href="/news">News</a>
+        </nav>
+    </header>
+
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section class="hero">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+        <div class="hero-inner">
+            <div class="hero-badge">Framework &middot; 5 Pillars &middot; 4 Levels</div>
+            <h1>What is <span class="highlight">AI Readiness</span>?</h1>
+            <p class="hero-desc">
+                AI readiness is an institution's capacity to intentionally and equitably integrate AI across its core functions. It is not about being first or having the most resources. It is about understanding where you are and having a clear path forward.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         DEFINITION SECTION
+         ============================================================ -->
+    <section class="definition">
+        <div class="definition-inner">
+            <h2>A shared language for a shared challenge</h2>
+            <p>
+                AI is changing how institutions teach, research, govern, and serve students. But without a common framework, it is difficult to know where to start or how to measure progress. AIREX defines AI readiness across five pillars and four developmental levels, giving institutions a structured way to understand their current state and plan their next steps.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         FIVE PILLARS SECTION
+         ============================================================ -->
+    <section class="pillars-section">
+        <div class="section-inner">
+            <div class="section-header">
+                <h2>Five pillars of AI readiness</h2>
+                <p>Each pillar represents a core function where AI integration matters. Together, they provide a complete picture of institutional readiness.</p>
+            </div>
+
+            <div class="pillars-grid">
+                <!-- Pillar 1 -->
+                <div class="pillar-card">
+                    <div class="pillar-icon" style="background: #dbeafe;">&#128218;</div>
+                    <h3>Teaching &amp; Learning</h3>
+                    <p>AI in curriculum design, faculty development, student preparation, and classroom integration. How is AI shaping what and how students learn?</p>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="pillar-card">
+                    <div class="pillar-icon" style="background: #ede9fe;">&#128203;</div>
+                    <h3>Policy &amp; Governance</h3>
+                    <p>Institutional AI strategy, acceptable use policies, data governance, and leadership support. Does your institution have a clear AI direction?</p>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="pillar-card">
+                    <div class="pillar-icon" style="background: #d1fae5;">&#9878;&#65039;</div>
+                    <h3>Ethics &amp; Equity</h3>
+                    <p>Responsible AI practices, bias awareness, equitable access, and inclusive adoption. Are AI benefits reaching all students and staff?</p>
+                </div>
+            </div>
+
+            <div class="pillars-bottom-row">
+                <!-- Pillar 4 -->
+                <div class="pillar-card">
+                    <div class="pillar-icon" style="background: #fef3c7;">&#128300;</div>
+                    <h3>Research &amp; Innovation</h3>
+                    <p>AI-assisted research, faculty adoption, partnerships, and community impact. How is AI advancing your institution's research mission?</p>
+                </div>
+
+                <!-- Pillar 5 -->
+                <div class="pillar-card">
+                    <div class="pillar-icon" style="background: #fee2e2;">&#128421;&#65039;</div>
+                    <h3>Infrastructure</h3>
+                    <p>Computing resources, data systems, technical staffing, security, and support services. Does your institution have the technical foundation for AI?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         FOUR LEVELS SECTION
+         ============================================================ -->
+    <section class="levels-section">
+        <div class="section-inner">
+            <div class="section-header">
+                <h2>Four developmental levels</h2>
+                <p>AI readiness is a journey, not a destination. Every institution starts somewhere, and each level represents meaningful progress. The language is intentionally growth-oriented.</p>
+            </div>
+
+            <!-- Visual progress bar -->
+            <div class="levels-progress">
+                <div class="levels-progress-dot" style="background: #f59e0b;"></div>
+                <div class="levels-progress-line" style="background: linear-gradient(90deg, #f59e0b, #2563eb);"></div>
+                <div class="levels-progress-dot" style="background: #2563eb;"></div>
+                <div class="levels-progress-line" style="background: linear-gradient(90deg, #2563eb, #10b981);"></div>
+                <div class="levels-progress-dot" style="background: #10b981;"></div>
+                <div class="levels-progress-line" style="background: linear-gradient(90deg, #10b981, #8b5cf6);"></div>
+                <div class="levels-progress-dot" style="background: #8b5cf6;"></div>
+            </div>
+
+            <div class="levels-grid">
+                <!-- Level 1 -->
+                <div class="level-card level-exploring">
+                    <span class="level-icon">&#128269;</span>
+                    <h3>Exploring</h3>
+                    <span class="level-score">1.0 &ndash; 2.0</span>
+                    <p>Aware of AI's potential. Early conversations are happening. No formal strategy yet, but curiosity and interest are growing.</p>
+                </div>
+
+                <!-- Level 2 -->
+                <div class="level-card level-building">
+                    <span class="level-icon">&#128296;</span>
+                    <h3>Building</h3>
+                    <span class="level-score">2.1 &ndash; 3.0</span>
+                    <p>Pilot initiatives underway. Policies are being drafted. Some faculty are adopting AI tools. A foundation is forming.</p>
+                </div>
+
+                <!-- Level 3 -->
+                <div class="level-card level-advancing">
+                    <span class="level-icon">&#128640;</span>
+                    <h3>Advancing</h3>
+                    <span class="level-score">3.1 &ndash; 4.0</span>
+                    <p>Coordinated AI strategy in place. Cross-departmental adoption. Dedicated resources and growing institutional support.</p>
+                </div>
+
+                <!-- Level 4 -->
+                <div class="level-card level-leading">
+                    <span class="level-icon">&#127963;&#65039;</span>
+                    <h3>Leading</h3>
+                    <span class="level-score">4.1 &ndash; 5.0</span>
+                    <p>AI is deeply embedded in institutional operations. Contributing to the broader field. Mentoring peer institutions.</p>
+                </div>
+            </div>
+
+            <div class="levels-note">
+                These levels are not rankings. An institution that is Exploring is not failing. It is simply earlier in its journey. Every level represents valid, important work.
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         CTA SECTION
+         ============================================================ -->
+    <section class="cta">
+        <div class="cta-inner">
+            <h2>See where your institution stands</h2>
+            <p>The self-assessment takes about 10 minutes and is completely anonymous. You will get a personalized readiness profile with recommendations for each pillar.</p>
+            <div class="cta-actions">
+                <a href="/assessment" class="btn btn-primary">Take the Assessment &rarr;</a>
+                <a href="/atlas" class="btn btn-secondary">Explore the Atlas</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h3>AIREX</h3>
+                <p>AI Readiness Explorer &middot; HACU Pilot</p>
+            </div>
+            <div class="footer-links">
+                <a href="/readiness">AI Readiness</a>
+                <a href="/atlas">Atlas</a>
+                <a href="/repository">Repository</a>
+                <a href="/assessment">Assessment</a>
+                <a href="/news">News</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

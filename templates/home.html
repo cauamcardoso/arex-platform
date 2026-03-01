@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AREX — AI Readiness Explorer for Hispanic-Serving Institutions</title>
+    <title>AIREX - AI Readiness Explorer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
@@ -35,7 +35,9 @@
             line-height: 1.6;
         }
 
-        /* Header */
+        /* ============================================================
+           HEADER
+           ============================================================ */
         .header {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
@@ -50,13 +52,63 @@
             height: 64px;
         }
 
-        .header-brand { display: flex; align-items: center; gap: 1rem; }
-        .header-brand h1 { font-size: 1.25rem; font-weight: 700; color: var(--gray-900); }
-        .header-brand span { font-size: 0.75rem; color: var(--gray-500); background: var(--gray-100); padding: 0.25rem 0.5rem; border-radius: 4px; }
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
 
-        .header-nav { display: flex; gap: 1.5rem; align-items: center; }
-        .header-nav a { color: var(--gray-600); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
-        .header-nav a:hover, .header-nav a.active { color: var(--primary); }
+        .header-brand a {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            text-decoration: none;
+        }
+
+        .header-badge {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--primary);
+            background: var(--primary-light);
+            border: 1px solid rgba(37, 99, 235, 0.15);
+            padding: 0.25rem 0.625rem;
+            border-radius: 999px;
+            letter-spacing: 0.02em;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .header-nav a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .header-nav a:hover,
+        .header-nav a.active {
+            color: var(--primary);
+        }
+
+        /* Mobile menu toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            color: var(--gray-700);
+        }
+
+        .mobile-menu-toggle svg {
+            width: 24px;
+            height: 24px;
+        }
 
         /* ============================================================
            HERO
@@ -210,8 +262,6 @@
             letter-spacing: -0.02em;
         }
 
-        /* (gradient text defined with animations above) */
-
         .hero-desc {
             font-size: 1.15rem;
             color: rgba(255, 255, 255, 0.8);
@@ -226,6 +276,7 @@
             flex-wrap: wrap;
         }
 
+        /* Buttons */
         .btn {
             padding: 0.875rem 1.75rem;
             border-radius: 10px;
@@ -333,13 +384,8 @@
         }
 
         /* ============================================================
-           FEATURES
+           SHARED SECTION STYLES
            ============================================================ */
-        .features {
-            padding: 5rem 2rem;
-            background: var(--gray-50);
-        }
-
         .section-inner {
             max-width: 1100px;
             margin: 0 auto;
@@ -364,9 +410,17 @@
             margin: 0 auto;
         }
 
+        /* ============================================================
+           FEATURES
+           ============================================================ */
+        .features {
+            padding: 5rem 2rem;
+            background: var(--gray-50);
+        }
+
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
         }
 
@@ -474,7 +528,7 @@
         }
 
         /* ============================================================
-           NETWORK / HOW IT WORKS
+           HOW IT WORKS
            ============================================================ */
         .how-it-works {
             padding: 5rem 2rem;
@@ -485,7 +539,6 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
-            margin-bottom: 3rem;
         }
 
         .step {
@@ -521,7 +574,7 @@
         }
 
         /* ============================================================
-           NETWORK STATS BAR
+           NETWORK BAR
            ============================================================ */
         .network-bar {
             padding: 3rem 2rem;
@@ -648,35 +701,77 @@
         @media (max-width: 1024px) {
             .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
             .hero h1 { font-size: 2.75rem; }
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
             .pillars-grid { grid-template-columns: repeat(3, 1fr); }
             .steps-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 768px) {
+            .header { padding: 1rem 1.25rem; }
+
+            .header-nav {
+                display: none;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem 1.5rem;
+                border-bottom: 1px solid var(--gray-200);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                gap: 0.75rem;
+            }
+
+            .header-nav.open {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
             .hero { padding: 4rem 1.5rem 3rem; }
             .hero h1 { font-size: 2.25rem; }
-            .features-grid { grid-template-columns: 1fr; }
             .hero-orb { display: none; }
+            .hero-stats-card { display: none; }
+            .features-grid { grid-template-columns: 1fr; }
             .pillars-grid { grid-template-columns: repeat(2, 1fr); }
             .steps-grid { grid-template-columns: 1fr; }
             .network-bar-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
             .footer-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
-            .hero-stats-card { display: none; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.85rem; }
+            .hero-desc { font-size: 1rem; }
+            .pillars-grid { grid-template-columns: 1fr; }
+            .network-bar-logos { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+            .cta h2 { font-size: 1.75rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- ============================================================
+         HEADER
+         ============================================================ -->
     <header class="header">
         <div class="header-brand">
-            <h1>AREX</h1>
-            <span>CAHSI-HACU Consortium</span>
+            <a href="/">AIREX</a>
+            <span class="header-badge">HACU Pilot</span>
         </div>
+        <button class="mobile-menu-toggle" onclick="document.querySelector('.header-nav').classList.toggle('open')" aria-label="Toggle menu">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
         <nav class="header-nav">
             <a href="/" class="active">Home</a>
+            <a href="/readiness">AI Readiness</a>
             <a href="/atlas">Atlas</a>
-            <a href="/toolkit">Repository</a>
+            <a href="/repository">Repository</a>
             <a href="/assessment">Assessment</a>
+            <a href="/news">News</a>
         </nav>
     </header>
 
@@ -695,10 +790,10 @@
                     Open-source platform &middot; {{ total_institutions }} institutions
                 </div>
 
-                <h1>Map Your Institution's <span class="highlight">AI Readiness</span></h1>
+                <h1>Explore Your Institution's <span class="highlight">AI Readiness</span></h1>
 
                 <p class="hero-desc">
-                    AREX helps Hispanic-Serving Institutions benchmark, assess, and strengthen their AI integration strategy — across teaching, policy, ethics, research, and infrastructure. Built for the CAHSI-HACU HSI AI Readiness Consortium.
+                    Institutions across the country are exploring AI, but few have structured ways to learn from one another. AIREX gives universities the tools to assess their readiness, find peers on a similar path, and share what is working.
                 </p>
 
                 <div class="hero-actions">
@@ -743,37 +838,51 @@
     <section class="features">
         <div class="section-inner">
             <div class="section-header">
-                <h2>One platform, four powerful tools</h2>
-                <p>Everything your institution needs to navigate AI adoption — from benchmarking to action planning.</p>
+                <h2>One platform, six connected tools</h2>
+                <p>Everything your institution needs to understand, benchmark, and strengthen its AI integration.</p>
             </div>
 
             <div class="features-grid">
-                <a href="/atlas" class="feature-card">
-                    <div class="feature-icon" style="background: #eff6ff;">🗺️</div>
-                    <h3>Interactive Atlas</h3>
-                    <p>Explore an interactive map of institutions with AI readiness data. Filter by state, readiness level, and network membership to find collaboration partners.</p>
-                    <div class="feature-link">Explore the map <span>&rarr;</span></div>
+                <a href="/readiness" class="feature-card">
+                    <div class="feature-icon" style="background: #f0fdf4;">&#x1F4D6;</div>
+                    <h3>Understand AI Readiness</h3>
+                    <p>Learn what AI readiness means for academic institutions and how the five-pillar framework helps you evaluate your progress.</p>
+                    <div class="feature-link">Learn the framework <span>&rarr;</span></div>
                 </a>
 
                 <a href="/assessment" class="feature-card">
-                    <div class="feature-icon" style="background: #f5f3ff;">📊</div>
+                    <div class="feature-icon" style="background: #f5f3ff;">&#x1F4CA;</div>
                     <h3>Self-Assessment</h3>
-                    <p>Answer 25 questions across 5 pillars to understand where your institution stands. Get a personalized readiness profile with actionable next steps.</p>
+                    <p>Answer 25 questions across 5 pillars to see where your institution stands. Get a personalized readiness profile with actionable recommendations.</p>
                     <div class="feature-link">Start the assessment <span>&rarr;</span></div>
                 </a>
 
-                <a href="/toolkit" class="feature-card">
-                    <div class="feature-icon" style="background: #ecfdf5;">💬</div>
-                    <h3>Conversational Repository</h3>
-                    <p>Ask questions, get AI-powered guidance, and browse curated guides, templates, and frameworks — organized by pillar with an intelligent assistant to help you navigate.</p>
-                    <div class="feature-link">Start a conversation <span>&rarr;</span></div>
+                <a href="/atlas" class="feature-card">
+                    <div class="feature-icon" style="background: #eff6ff;">&#x1F5FA;&#xFE0F;</div>
+                    <h3>Interactive Atlas</h3>
+                    <p>Explore an interactive map of institutions with AI readiness data. Filter by state, readiness level, and capabilities to find collaboration partners.</p>
+                    <div class="feature-link">Explore the map <span>&rarr;</span></div>
                 </a>
 
                 <a href="/atlas" class="feature-card">
-                    <div class="feature-icon" style="background: #fefce8;">🏛️</div>
+                    <div class="feature-icon" style="background: #fefce8;">&#x1F3DB;&#xFE0F;</div>
                     <h3>Institution Profiles</h3>
-                    <p>Dive deep into individual institutions — see their AI readiness across all five pillars, active initiatives, policy links, and find collaboration partners.</p>
+                    <p>See detailed profiles with readiness breakdowns, active initiatives, key contacts, and resources shared by peer institutions.</p>
                     <div class="feature-link">View profiles <span>&rarr;</span></div>
+                </a>
+
+                <a href="/repository" class="feature-card">
+                    <div class="feature-icon" style="background: #ecfdf5;">&#x1F4AC;</div>
+                    <h3>Conversational Repository</h3>
+                    <p>Search curated resources across all five pillars. Ask questions and get results drawn from syllabi, policy templates, and guides contributed by the network.</p>
+                    <div class="feature-link">Start a conversation <span>&rarr;</span></div>
+                </a>
+
+                <a href="/news" class="feature-card">
+                    <div class="feature-icon" style="background: #fff7ed;">&#x1F4F0;</div>
+                    <h3>AI News and Discovery</h3>
+                    <p>Stay current with curated, scored AI news relevant to higher education. Filtered by pillar and updated regularly.</p>
+                    <div class="feature-link">Read the news <span>&rarr;</span></div>
                 </a>
             </div>
         </div>
@@ -791,27 +900,27 @@
 
             <div class="pillars-grid">
                 <div class="pillar-card">
-                    <div class="pillar-icon" style="background: #eff6ff;">📚</div>
-                    <h3>Teaching & Learning</h3>
+                    <div class="pillar-icon" style="background: #eff6ff;">&#x1F4DA;</div>
+                    <h3>Teaching &amp; Learning</h3>
                     <p>AI in curriculum, faculty development, and student preparation</p>
                 </div>
                 <div class="pillar-card">
-                    <div class="pillar-icon" style="background: #f5f3ff;">📋</div>
-                    <h3>Policy & Governance</h3>
+                    <div class="pillar-icon" style="background: #f5f3ff;">&#x1F4CB;</div>
+                    <h3>Policy &amp; Governance</h3>
                     <p>Institutional strategy, AI policies, and leadership support</p>
                 </div>
                 <div class="pillar-card">
-                    <div class="pillar-icon" style="background: #ecfdf5;">⚖️</div>
-                    <h3>Ethics & Equity</h3>
+                    <div class="pillar-icon" style="background: #ecfdf5;">&#x2696;&#xFE0F;</div>
+                    <h3>Ethics &amp; Equity</h3>
                     <p>Responsible AI, bias mitigation, and equitable access</p>
                 </div>
                 <div class="pillar-card">
-                    <div class="pillar-icon" style="background: #fffbeb;">🔬</div>
-                    <h3>Research & Innovation</h3>
+                    <div class="pillar-icon" style="background: #fffbeb;">&#x1F52C;</div>
+                    <h3>Research &amp; Innovation</h3>
                     <p>AI research activity, partnerships, and community impact</p>
                 </div>
                 <div class="pillar-card">
-                    <div class="pillar-icon" style="background: #fef2f2;">🖥️</div>
+                    <div class="pillar-icon" style="background: #fef2f2;">&#x1F5A5;&#xFE0F;</div>
                     <h3>Infrastructure</h3>
                     <p>Computing resources, data governance, and technical capacity</p>
                 </div>
@@ -826,29 +935,29 @@
         <div class="section-inner">
             <div class="section-header">
                 <h2>How it works</h2>
-                <p>A simple path from understanding to action.</p>
+                <p>From understanding to action, at your own pace.</p>
             </div>
 
             <div class="steps-grid">
                 <div class="step">
                     <div class="step-number">1</div>
-                    <h3>Assess</h3>
-                    <p>Take the 25-question self-assessment to understand your institution's AI readiness across all five pillars.</p>
+                    <h3>Understand</h3>
+                    <p>Start with the AI Readiness page to learn the framework and see what readiness looks like across different levels.</p>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
-                    <h3>Benchmark</h3>
-                    <p>See how your profile compares with peer institutions on the interactive Atlas. Identify strengths and growth areas.</p>
+                    <h3>Assess</h3>
+                    <p>Take the anonymous self-assessment to see where your institution stands across all five pillars.</p>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
-                    <h3>Act</h3>
-                    <p>Use the Repository to find targeted resources — policy templates, workshop guides, infrastructure checklists — for your priority areas.</p>
+                    <h3>Discover</h3>
+                    <p>Use the Atlas to find institutions at a similar stage. Explore their profiles to see what they are working on.</p>
                 </div>
                 <div class="step">
                     <div class="step-number">4</div>
-                    <h3>Collaborate</h3>
-                    <p>Connect with institutions at similar stages or with complementary strengths. Shared learning accelerates everyone's AI journey.</p>
+                    <h3>Engage</h3>
+                    <p>Search the Repository for curated resources, connect with peers, and stay current through the news feed.</p>
                 </div>
             </div>
         </div>
@@ -860,8 +969,8 @@
     <section class="network-bar">
         <div class="network-bar-inner">
             <div class="network-bar-text">
-                <h3>Built for the CAHSI-HACU HSI AI Readiness Consortium</h3>
-                <p>Serving 500+ member institutions focused on broadening participation in computing and advancing AI education across Hispanic-Serving Institutions.</p>
+                <h3>Launching with 542 HACU member institutions</h3>
+                <p>AIREX is piloting with the HACU network and designed to grow. Any academic institution can benefit from the framework and tools.</p>
             </div>
             <div class="network-bar-logos">
                 <div class="network-logo">HACU</div>
@@ -876,12 +985,12 @@
          ============================================================ -->
     <section class="cta">
         <div class="cta-inner">
-            <h2>Ready to map your AI journey?</h2>
-            <p>Whether you're just getting started or already innovating, AREX helps you find your path forward — and the partners to walk it with.</p>
+            <h2>Ready to explore your AI readiness?</h2>
+            <p>Whether your institution is just getting started or already innovating, AIREX helps you find your path forward and the partners to walk it with.</p>
             <div class="cta-actions">
                 <a href="/assessment" class="btn btn-primary">Take the Assessment &rarr;</a>
                 <a href="/atlas" class="btn btn-secondary">Explore the Atlas</a>
-                <a href="/toolkit" class="btn btn-secondary">Browse the Repository</a>
+                <a href="/repository" class="btn btn-secondary">Browse the Repository</a>
             </div>
         </div>
     </section>
@@ -892,13 +1001,15 @@
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-brand">
-                <h3>AREX</h3>
-                <p>AAII &middot; CAHSI &middot; UTEP</p>
+                <h3>AIREX</h3>
+                <p>AAII &middot; UTEP</p>
             </div>
             <div class="footer-links">
                 <a href="/atlas">Atlas</a>
                 <a href="/assessment">Assessment</a>
-                <a href="/toolkit">Repository</a>
+                <a href="/repository">Repository</a>
+                <a href="/readiness">AI Readiness</a>
+                <a href="/news">News</a>
             </div>
         </div>
     </footer>

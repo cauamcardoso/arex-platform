@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AREX | HSI Network</title>
+    <title>AIREX | HSI Network</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Leaflet CSS -->
@@ -652,14 +652,16 @@
     <!-- Header -->
     <header class="header">
         <div class="header-brand">
-            <h1>AREX</h1>
-            <span>CAHSI-HACU Consortium</span>
+            <h1>AIREX</h1>
+            <span>HACU Pilot</span>
         </div>
         <nav class="header-nav">
             <a href="/">Home</a>
+            <a href="/readiness">AI Readiness</a>
             <a href="/atlas" class="active">Atlas</a>
-            <a href="/toolkit">Repository</a>
+            <a href="/repository">Repository</a>
             <a href="/assessment">Assessment</a>
+            <a href="/news">News</a>
         </nav>
     </header>
 
@@ -669,7 +671,7 @@
         <aside class="sidebar">
             <div class="sidebar-header">
                 <h2>Explore Institutions</h2>
-                <p>Discover AI readiness journeys and find collaboration partners across HSIs</p>
+                <p>Discover AI readiness data and find collaboration partners across institutions</p>
             </div>
 
             <!-- Stats -->
@@ -753,11 +755,11 @@
                 <h4>Readiness Score</h4>
                 <div class="legend-item">
                     <div class="legend-dot level-5"></div>
-                    <span>5 - Trailblazer</span>
+                    <span>5 - Leading</span>
                 </div>
                 <div class="legend-item">
                     <div class="legend-dot level-4"></div>
-                    <span>4 - Innovating</span>
+                    <span>4 - Advancing</span>
                 </div>
                 <div class="legend-item">
                     <div class="legend-dot level-3"></div>
@@ -1018,7 +1020,7 @@
                 // State filter
                 if (stateFilter && inst.state !== stateFilter) return false;
 
-                // Capability filters (AND logic — must have all selected)
+                // Capability filters (AND logic, must have all selected)
                 for (const cap of activeCapabilities) {
                     if (cap === 'policy' && !inst.ai_policy_url) return false;
                     if (cap === 'programs' && (!inst.key_programs || inst.key_programs.length === 0)) return false;
@@ -1043,7 +1045,7 @@
         document.getElementById('searchInput').addEventListener('input', applyFilters);
         document.getElementById('stateFilter').addEventListener('change', applyFilters);
 
-        // Capability filter chips — toggle on/off (multi-select)
+        // Capability filter chips, toggle on/off (multi-select)
         document.getElementById('capabilityFilter').addEventListener('click', (e) => {
             const chip = e.target.closest('.capability-chip');
             if (!chip) return;
@@ -1051,7 +1053,7 @@
             applyFilters();
         });
 
-        // Membership filter — single-select
+        // Membership filter, single-select
         document.getElementById('membershipFilter').addEventListener('click', (e) => {
             if (e.target.classList.contains('filter-chip')) {
                 document.querySelectorAll('#membershipFilter .filter-chip').forEach(chip => {
