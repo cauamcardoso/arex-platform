@@ -1160,9 +1160,9 @@
         <nav class="header-nav">
             <a href="/">Home</a>
             <a href="/readiness">AI Readiness</a>
+            <a href="/assessment" class="active">Assessment</a>
             <a href="/atlas">Atlas</a>
             <a href="/repository">Repository</a>
-            <a href="/assessment" class="active">Assessment</a>
             <a href="/news">News</a>
         </nav>
     </header>
@@ -1238,7 +1238,37 @@
         </div>
     </section>
 
-    <!-- DEVELOPMENTAL LEVELS (moved from readiness page) -->
+    <!-- HOW SCORING WORKS -->
+    <section class="scoring-section" id="scoringExplained">
+        <div class="section-inner">
+            <div class="section-header fade-up">
+                <h2>How scoring works</h2>
+                <p>A transparent, straightforward scoring method. No hidden formulas.</p>
+            </div>
+            <div class="scoring-grid">
+                <div class="scoring-card glass-card fade-up">
+                    <div class="scoring-number" style="color: #4338ca;">1 &ndash; 5</div>
+                    <h4>Each response has a score</h4>
+                    <p>Every question has five options, scored from 1 (earliest stage) to 5 (most advanced). You pick the one that best matches your institution right now.</p>
+                </div>
+                <div class="scoring-card glass-card fade-up" style="transition-delay: 0.1s">
+                    <div class="scoring-number" style="color: #6d28d9;">&#x0078;&#x0305;</div>
+                    <h4>Pillar score = average</h4>
+                    <p>Each pillar has 5 questions. Your pillar score is the average of those 5 responses. A pillar score of 3.4 means you averaged 3.4 across its five questions.</p>
+                </div>
+                <div class="scoring-card glass-card fade-up" style="transition-delay: 0.2s">
+                    <div class="scoring-number" style="color: #059669;">&#x2211; &divide; 5</div>
+                    <h4>Overall = average of pillars</h4>
+                    <p>Your overall readiness score is the average of all five pillar scores. That overall number maps to one of the four developmental levels.</p>
+                </div>
+            </div>
+            <div class="scoring-formula fade-up">
+                <p>For example: if your pillar scores are 2.4, 3.0, 1.8, 2.6, and 3.2, your overall score is 2.6 (Building). Each pillar weighs equally. There are no penalties or bonuses. See the <a href="#levels">developmental levels below</a> for what each score range means.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEVELOPMENTAL LEVELS -->
     <section class="levels-section" id="levels">
         <div class="section-inner">
             <div class="section-header fade-up">
@@ -1266,36 +1296,6 @@
                     <span class="level-score score-leading">4.1 &ndash; 5.0</span>
                     <p>AI is deeply embedded in institutional operations. Contributing to the broader field. Mentoring peer institutions.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- HOW SCORING WORKS -->
-    <section class="scoring-section" id="scoringExplained">
-        <div class="section-inner">
-            <div class="section-header fade-up">
-                <h2>How scoring works</h2>
-                <p>A transparent, straightforward scoring method. No hidden formulas.</p>
-            </div>
-            <div class="scoring-grid">
-                <div class="scoring-card glass-card fade-up">
-                    <div class="scoring-number" style="color: #4338ca;">1 &ndash; 5</div>
-                    <h4>Each response has a score</h4>
-                    <p>Every question has five options, scored from 1 (earliest stage) to 5 (most advanced). You pick the one that best matches your institution right now.</p>
-                </div>
-                <div class="scoring-card glass-card fade-up" style="transition-delay: 0.1s">
-                    <div class="scoring-number" style="color: #6d28d9;">&#x0078;&#x0305;</div>
-                    <h4>Pillar score = average</h4>
-                    <p>Each pillar has 5 questions. Your pillar score is the average of those 5 responses. A pillar score of 3.4 means you averaged 3.4 across its five questions.</p>
-                </div>
-                <div class="scoring-card glass-card fade-up" style="transition-delay: 0.2s">
-                    <div class="scoring-number" style="color: #059669;">&#x2211; &divide; 5</div>
-                    <h4>Overall = average of pillars</h4>
-                    <p>Your overall readiness score is the average of all five pillar scores. That overall number maps to one of the four developmental levels.</p>
-                </div>
-            </div>
-            <div class="scoring-formula fade-up">
-                <p>For example: if your pillar scores are 2.4, 3.0, 1.8, 2.6, and 3.2, your overall score is 2.6 (Building). Each pillar weighs equally. There are no penalties or bonuses. See the <a href="#levels">developmental levels above</a> for what each score range means.</p>
             </div>
         </div>
     </section>
@@ -1421,6 +1421,7 @@
             <nav class="footer-nav">
                 <a href="/">Home</a>
                 <a href="/readiness">AI Readiness</a>
+                <a href="/assessment">Assessment</a>
                 <a href="/atlas">Atlas</a>
                 <a href="/repository">Repository</a>
                 <a href="/news">News</a>
@@ -2062,6 +2063,12 @@
         }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
         document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // Auto-start assessment if URL has #start
+        if (window.location.hash === '#start') {
+            // Small delay to let the page render first
+            setTimeout(() => startAssessment(), 300);
+        }
     </script>
 </body>
 </html>
