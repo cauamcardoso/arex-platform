@@ -101,7 +101,6 @@
             overflow: hidden;
         }
 
-        /* Animated orbs */
         .hero-orb {
             position: absolute;
             border-radius: 50%;
@@ -149,7 +148,6 @@
             50% { transform: translate(100px, -40px) scale(1.15); }
         }
 
-        /* Dot grid overlay */
         .hero::before {
             content: '';
             position: absolute;
@@ -254,16 +252,16 @@
         }
 
         /* ============================================================
-           DEFINITION SECTION
+           THE PROBLEM SECTION (replaces Definition)
            ============================================================ */
-        .definition {
+        .problem-section {
             padding: 5rem 2rem;
             background: var(--bg-secondary);
             position: relative;
             overflow: hidden;
         }
 
-        .definition::before {
+        .problem-section::before {
             content: '';
             position: absolute;
             top: -40%; right: -15%;
@@ -278,14 +276,13 @@
             50% { transform: scale(1.1); opacity: 1; }
         }
 
-        .definition-inner {
+        .problem-inner {
             max-width: 760px;
             margin: 0 auto;
-            text-align: center;
             position: relative;
         }
 
-        .definition-inner::before {
+        .problem-inner::before {
             content: '';
             display: block;
             width: 48px;
@@ -295,7 +292,7 @@
             margin: 0 auto 2rem;
         }
 
-        .definition h2 {
+        .problem-inner h2 {
             font-size: 2rem;
             font-weight: 800;
             background: linear-gradient(135deg, #4f46e5, #7c3aed, #06b6d4);
@@ -303,25 +300,34 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 1.25rem;
+            text-align: center;
         }
 
-        .definition p {
+        .problem-inner p {
             font-size: 1.05rem;
             color: var(--text-secondary);
             line-height: 1.85;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .problem-inner p:last-child {
+            margin-bottom: 0;
+            font-weight: 600;
+            color: var(--text-primary);
         }
 
         /* ============================================================
-           FIVE PILLARS SECTION
+           FRAMEWORK SECTION (Pillars + Levels combined)
            ============================================================ */
-        .pillars-section {
-            padding: 5rem 2rem;
+        .framework-section {
+            padding: 5rem 2rem 2rem;
             background: var(--bg-tertiary);
             position: relative;
             overflow: hidden;
         }
 
-        .pillars-section::before {
+        .framework-section::before {
             content: '';
             position: absolute;
             bottom: -30%; left: -15%;
@@ -331,6 +337,7 @@
             animation: aurora-pulse 12s ease-in-out infinite;
         }
 
+        /* Pillars */
         .pillars-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -379,11 +386,6 @@
             line-height: 1.7;
         }
 
-        /* Two-column bottom row centering for 5 cards */
-        .pillars-grid .pillar-card:nth-child(4) {
-            grid-column: 1 / 2;
-        }
-
         .pillars-bottom-row {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -392,13 +394,31 @@
             margin: 1.5rem auto 0;
         }
 
-        /* ============================================================
-           FOUR LEVELS SECTION
-           ============================================================ */
-        .levels-section {
-            padding: 5rem 2rem;
-            background: var(--bg-secondary);
-            position: relative;
+        /* Sub-header between pillars and levels */
+        .framework-divider {
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+        }
+
+        .framework-divider h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .framework-divider p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Levels */
+        .levels-wrap {
+            padding: 0 2rem 5rem;
+            background: var(--bg-tertiary);
         }
 
         .levels-grid {
@@ -406,6 +426,9 @@
             grid-template-columns: repeat(4, 1fr);
             gap: 1.25rem;
             margin-bottom: 2rem;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .level-card {
@@ -429,7 +452,6 @@
             background: var(--card-hover);
         }
 
-        /* Top accent bar */
         .level-card::before {
             content: '';
             position: absolute;
@@ -467,25 +489,10 @@
             margin-bottom: 0.875rem;
         }
 
-        .level-exploring .level-score {
-            background: #fef3c7;
-            color: #92400e;
-        }
-
-        .level-building .level-score {
-            background: #e0e7ff;
-            color: #3730a3;
-        }
-
-        .level-advancing .level-score {
-            background: #d1fae5;
-            color: #065f46;
-        }
-
-        .level-leading .level-score {
-            background: #ede9fe;
-            color: #5b21b6;
-        }
+        .level-exploring .level-score { background: #fef3c7; color: #92400e; }
+        .level-building .level-score { background: #e0e7ff; color: #3730a3; }
+        .level-advancing .level-score { background: #d1fae5; color: #065f46; }
+        .level-leading .level-score { background: #ede9fe; color: #5b21b6; }
 
         .level-card p {
             font-size: 0.825rem;
@@ -493,7 +500,6 @@
             line-height: 1.65;
         }
 
-        /* Progress connector */
         .levels-progress {
             display: flex;
             align-items: center;
@@ -530,19 +536,178 @@
             line-height: 1.7;
         }
 
-        /* ── Personas ── */
-        .personas-section { padding: 5rem 2rem; background: var(--bg-primary); }
-        .personas-section .section-inner { max-width: 1060px; margin: 0 auto; }
-        .personas-section .section-header { text-align: center; margin-bottom: 3rem; }
-        .personas-section .section-header h2 {
-            font-size: 2rem; font-weight: 800;
-            background: linear-gradient(135deg, #4f46e5, #7c3aed, #06b6d4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        /* ============================================================
+           WHY THIS APPROACH
+           ============================================================ */
+        .approach-section {
+            padding: 5rem 2rem;
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .approach-section::before {
+            content: '';
+            position: absolute;
+            top: -20%; right: -10%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.06), transparent 70%);
+            pointer-events: none;
+            animation: aurora-pulse 11s ease-in-out infinite;
+        }
+
+        .approach-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .approach-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 2.25rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .approach-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px;
+            height: 100%;
+            border-radius: 0 2px 2px 0;
+        }
+
+        .approach-card:nth-child(1)::before { background: linear-gradient(180deg, #8b5cf6, #6366f1); }
+        .approach-card:nth-child(2)::before { background: linear-gradient(180deg, #6366f1, #06b6d4); }
+        .approach-card:nth-child(3)::before { background: linear-gradient(180deg, #06b6d4, #10b981); }
+
+        .approach-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 48px rgba(99, 102, 241, 0.1), 0 8px 16px rgba(0, 0, 0, 0.04);
+            border-color: var(--border-hover);
+            background: var(--card-hover);
+        }
+
+        .approach-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .approach-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
             margin-bottom: 0.75rem;
         }
-        .personas-section .section-header p { font-size: 1rem; color: var(--text-muted); max-width: 620px; margin: 0 auto; line-height: 1.7; }
+
+        .approach-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.75;
+        }
+
+        /* ============================================================
+           NETWORK SECTION
+           ============================================================ */
+        .network-section {
+            padding: 5rem 2rem;
+            background: var(--bg-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .network-section::before {
+            content: '';
+            position: absolute;
+            bottom: -30%; left: -10%;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.06), transparent 70%);
+            pointer-events: none;
+            animation: aurora-pulse 13s ease-in-out infinite;
+        }
+
+        .network-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .network-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 2.25rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .network-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #4f46e5, #7c3aed, #06b6d4);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+            transform-origin: left;
+        }
+
+        .network-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 48px rgba(99, 102, 241, 0.1), 0 8px 16px rgba(0, 0, 0, 0.04);
+            border-color: var(--border-hover);
+            background: var(--card-hover);
+        }
+        .network-card:hover::after { transform: scaleX(1); }
+
+        .network-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .network-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .network-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.75;
+        }
+
+        /* ============================================================
+           PERSONAS SECTION
+           ============================================================ */
+        .personas-section { padding: 5rem 2rem; background: var(--bg-tertiary); }
+        .personas-section .section-inner { max-width: 1060px; margin: 0 auto; }
 
         .personas-grid {
             display: grid;
@@ -593,208 +758,6 @@
         .persona-card p {
             font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7;
         }
-
-        /* ── Methodology ── */
-        .methodology-section {
-            padding: 5rem 2rem;
-            background: var(--bg-primary);
-            position: relative;
-            overflow: hidden;
-        }
-        .methodology-section::before {
-            content: '';
-            position: absolute;
-            top: -20%; right: -10%;
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(6, 182, 212, 0.06), transparent 70%);
-            pointer-events: none;
-            animation: aurora-pulse 11s ease-in-out infinite;
-        }
-        .methodology-section .section-inner { max-width: 1060px; margin: 0 auto; }
-        .methodology-section .section-header { text-align: center; margin-bottom: 3rem; }
-        .methodology-section .section-header h2 {
-            font-size: 2rem; font-weight: 800;
-            background: linear-gradient(135deg, #4f46e5, #7c3aed, #06b6d4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.75rem;
-        }
-        .methodology-section .section-header p { font-size: 1rem; color: var(--text-muted); max-width: 580px; margin: 0 auto; line-height: 1.7; }
-
-        .methodology-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.25rem;
-            margin-bottom: 3rem;
-        }
-        .method-card {
-            background: linear-gradient(135deg, #faf5ff, #f0f0ff);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(139, 92, 246, 0.12);
-            border-radius: 20px;
-            padding: 2rem 1.5rem;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .method-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 16px 32px rgba(99, 102, 241, 0.1), 0 8px 16px rgba(0, 0, 0, 0.04);
-            border-color: var(--border-hover);
-            background: linear-gradient(135deg, #f5f3ff, #eef2ff);
-        }
-        .method-number {
-            font-size: 2.75rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, #4f46e5, #7c3aed);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1;
-            margin-bottom: 0.375rem;
-        }
-        .method-label {
-            font-size: 0.7rem; font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-        }
-        .method-card p {
-            font-size: 0.825rem; color: var(--text-secondary);
-            line-height: 1.65; text-align: left;
-        }
-
-        .methodology-details {
-            max-width: 800px; margin: 0 auto;
-            display: grid; gap: 1.25rem;
-        }
-        .method-detail-item {
-            background: white;
-            border: 1px solid rgba(99, 102, 241, 0.1);
-            border-left: 4px solid;
-            border-image: linear-gradient(180deg, #4f46e5, #06b6d4) 1;
-            border-radius: 0 16px 16px 0;
-            padding: 1.75rem 2rem;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .method-detail-item:hover {
-            background: #faf5ff;
-            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.08);
-            transform: translateX(6px);
-        }
-        .method-detail-item h4 {
-            font-size: 0.95rem; font-weight: 700;
-            color: var(--text-primary); margin-bottom: 0.5rem;
-        }
-        .method-detail-item p {
-            font-size: 0.875rem; color: var(--text-secondary); line-height: 1.7;
-        }
-
-        /* ── Results Guidance ── */
-        .results-guidance {
-            padding: 5rem 2rem;
-            background: var(--bg-tertiary);
-            position: relative;
-            overflow: hidden;
-        }
-        .results-guidance::before {
-            content: '';
-            position: absolute;
-            bottom: -30%; right: -10%;
-            width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.06), transparent 70%);
-            pointer-events: none;
-            animation: aurora-pulse 9s ease-in-out infinite;
-        }
-        .results-guidance .section-inner { max-width: 1060px; margin: 0 auto; }
-        .results-guidance .section-header { text-align: center; margin-bottom: 3rem; }
-        .results-guidance .section-header h2 {
-            font-size: 2rem; font-weight: 800;
-            background: linear-gradient(135deg, #4f46e5, #7c3aed, #06b6d4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.75rem;
-        }
-        .results-guidance .section-header p { font-size: 1rem; color: var(--text-muted); max-width: 580px; margin: 0 auto; line-height: 1.7; }
-
-        .guidance-steps {
-            max-width: 760px; margin: 0 auto;
-            display: grid; gap: 1.25rem;
-        }
-        .guidance-step {
-            display: flex;
-            gap: 1.5rem;
-            align-items: flex-start;
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--border-subtle);
-            border-radius: 16px;
-            padding: 1.75rem;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-        }
-        .guidance-step:hover {
-            transform: translateY(-4px) translateX(4px);
-            box-shadow: 0 16px 32px rgba(99, 102, 241, 0.1), 0 8px 16px rgba(0, 0, 0, 0.04);
-            border-color: var(--border-hover);
-            background: var(--card-hover);
-        }
-        .guidance-icon {
-            width: 52px; height: 52px;
-            border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.35rem;
-            flex-shrink: 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-        }
-        .guidance-text h4 {
-            font-size: 0.95rem; font-weight: 700;
-            color: var(--text-primary); margin-bottom: 0.375rem;
-        }
-        .guidance-text p {
-            font-size: 0.875rem; color: var(--text-secondary); line-height: 1.7;
-        }
-
-        /* ── Design Note ── */
-        .design-note-section { padding: 5rem 2rem; background: var(--bg-secondary); }
-        .design-note-inner {
-            max-width: 720px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 3.5rem;
-            background: linear-gradient(135deg, #faf5ff, #f5f3ff);
-            border: 1px solid rgba(99, 102, 241, 0.1);
-            border-radius: 24px;
-            box-shadow: 0 16px 48px rgba(99, 102, 241, 0.06), 0 4px 12px rgba(0, 0, 0, 0.03);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .design-note-inner::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #4f46e5, #7c3aed, #06b6d4, #4f46e5);
-        }
-        .design-note-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.25rem;
-            display: block;
-        }
-        .design-note-inner h3 {
-            font-size: 1.25rem; font-weight: 700;
-            color: var(--text-primary); margin-bottom: 1rem;
-        }
-        .design-note-inner p {
-            font-size: 0.9rem; color: var(--text-secondary);
-            line-height: 1.8; margin-bottom: 1rem;
-        }
-        .design-note-inner p:last-child { margin-bottom: 0; }
 
         /* ============================================================
            CTA SECTION
@@ -926,10 +889,7 @@
 
         .footer-brand p { font-size: 0.75rem; }
 
-        .footer-links {
-            display: flex;
-            gap: 1.5rem;
-        }
+        .footer-links { display: flex; gap: 1.5rem; }
 
         .footer-links a {
             color: rgba(255, 255, 255, 0.4);
@@ -960,6 +920,8 @@
             .pillars-bottom-row { grid-template-columns: 1fr; max-width: 100%; }
             .levels-grid { grid-template-columns: repeat(2, 1fr); }
             .levels-progress { display: none; }
+            .approach-grid { grid-template-columns: 1fr; max-width: 600px; }
+            .network-grid { grid-template-columns: 1fr; max-width: 600px; }
         }
 
         @media (max-width: 768px) {
@@ -985,25 +947,26 @@
             .hero-desc { font-size: 1rem; }
             .hero-orb { display: none; }
 
-            .definition { padding: 3.5rem 1.5rem; }
-            .definition::before { display: none; }
-            .pillars-section { padding: 3.5rem 1.5rem; }
-            .pillars-section::before { display: none; }
+            .problem-section { padding: 3.5rem 1.5rem; }
+            .problem-section::before { display: none; }
+            .framework-section { padding: 3.5rem 1.5rem 1rem; }
+            .framework-section::before { display: none; }
             .pillars-grid { grid-template-columns: 1fr; }
             .pillars-bottom-row { grid-template-columns: 1fr; }
-            .levels-section { padding: 3.5rem 1.5rem; }
+            .levels-wrap { padding: 0 1.5rem 3.5rem; }
             .levels-grid { grid-template-columns: 1fr; }
             .levels-progress { display: none; }
 
+            .approach-section { padding: 3.5rem 1.5rem; }
+            .approach-section::before { display: none; }
+            .approach-grid { grid-template-columns: 1fr; }
+
+            .network-section { padding: 3.5rem 1.5rem; }
+            .network-section::before { display: none; }
+            .network-grid { grid-template-columns: 1fr; }
+
             .personas-grid { grid-template-columns: 1fr; }
             .personas-section { padding: 3.5rem 1.5rem; }
-            .methodology-grid { grid-template-columns: repeat(2, 1fr); }
-            .methodology-section { padding: 3.5rem 1.5rem; }
-            .methodology-section::before { display: none; }
-            .results-guidance { padding: 3.5rem 1.5rem; }
-            .results-guidance::before { display: none; }
-            .design-note-section { padding: 3rem 1.5rem; }
-            .design-note-inner { padding: 2rem 1.5rem; }
 
             .cta { padding: 4rem 1.5rem; }
             .cta h2 { font-size: 1.85rem; color: white; -webkit-text-fill-color: white; }
@@ -1014,22 +977,7 @@
                 color: #4f46e5;
                 font-size: 1.5rem;
             }
-            .definition h2 {
-                -webkit-text-fill-color: unset;
-                background: none;
-                color: #4f46e5;
-            }
-            .personas-section .section-header h2 {
-                -webkit-text-fill-color: unset;
-                background: none;
-                color: #4f46e5;
-            }
-            .methodology-section .section-header h2 {
-                -webkit-text-fill-color: unset;
-                background: none;
-                color: #4f46e5;
-            }
-            .results-guidance .section-header h2 {
+            .problem-inner h2 {
                 -webkit-text-fill-color: unset;
                 background: none;
                 color: #4f46e5;
@@ -1074,81 +1022,53 @@
             <div class="hero-badge">Framework &middot; 5 Pillars &middot; 4 Levels</div>
             <h1>What is <span class="highlight">AI Readiness</span>?</h1>
             <p class="hero-desc">
-                AI readiness is an institution's capacity to intentionally and equitably integrate AI across its core functions. It is not about being first or having the most resources. It is about understanding where you are and having a clear path forward.
+                AI readiness is about how prepared your institution is to work with AI across what it does: teaching, research, governance, student support. It looks different at every campus because every campus is starting from a different place, with different students, resources, and priorities.
             </p>
         </div>
     </section>
 
     <!-- ============================================================
-         DEFINITION SECTION
+         THE PROBLEM
          ============================================================ -->
-    <section class="definition">
-        <div class="definition-inner fade-up">
-            <h2>A shared language for a shared challenge</h2>
+    <section class="problem-section">
+        <div class="problem-inner fade-up">
+            <h2>The challenge institutions are facing</h2>
             <p>
-                AI is changing how institutions teach, research, govern, and serve students. But without a common framework, it is difficult to know where to start or how to measure progress. AIREX defines AI readiness across five pillars and four developmental levels, giving institutions a structured way to understand their current state and plan their next steps.
+                Most institutions are already dealing with AI, whether they planned for it or not. A faculty member starts using ChatGPT in their course. Someone in admissions adopts a new tool. A provost gets asked about AI policy at a board meeting and doesn't have a good answer yet.
+            </p>
+            <p>
+                This is happening everywhere, but at most campuses it's happening in pockets. People are figuring things out on their own without a shared picture of where the institution stands or where it's trying to go.
+            </p>
+            <p>
+                The framework we built is meant to fill that gap.
             </p>
         </div>
     </section>
 
     <!-- ============================================================
-         WHO THIS IS FOR
+         THE FRAMEWORK: PILLARS + LEVELS
          ============================================================ -->
-    <section class="personas-section">
-        <div class="section-inner">
-            <div class="section-header">
-                <h2>Who this is for</h2>
-                <p>AI readiness is not a single conversation. It touches different roles in different ways. This framework is designed to meet each audience where they are.</p>
-            </div>
-
-            <div class="personas-grid">
-                <div class="persona-card fade-up">
-                    <div class="persona-icon" style="background: #ede9fe;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"></path><path d="M5 21V7l7-4 7 4v14"></path><path d="M9 21v-4h6v4"></path><path d="M9 10h1"></path><path d="M14 10h1"></path><path d="M9 14h1"></path><path d="M14 14h1"></path></svg></div>
-                    <h3>Institutional Leadership</h3>
-                    <p>Presidents, provosts, and deans use the framework to understand institutional positioning, set strategic priorities, and make informed decisions about AI investment. The five-pillar structure offers a clear lens for board-level conversations and cross-institutional comparison.</p>
-                </div>
-
-                <div class="persona-card fade-up" style="transition-delay: 0.1s">
-                    <div class="persona-icon" style="background: #e0e7ff;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg></div>
-                    <h3>Faculty</h3>
-                    <p>Faculty use the framework to situate their own teaching and research within a broader institutional context. Whether exploring AI-assisted pedagogy or rethinking curriculum design, the pillars help identify where support and collaboration opportunities exist.</p>
-                </div>
-
-                <div class="persona-card fade-up" style="transition-delay: 0.2s">
-                    <div class="persona-icon" style="background: #cffafe;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></div>
-                    <h3>Staff and Administrators</h3>
-                    <p>IT directors, academic advisors, and operations staff use the framework to evaluate infrastructure needs, plan training programs, and advocate for resources. The assessment translates daily observations into structured evidence for decision-makers.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-         FIVE PILLARS SECTION
-         ============================================================ -->
-    <section class="pillars-section">
+    <section class="framework-section">
         <div class="section-inner">
             <div class="section-header fade-up">
-                <h2>Five pillars of AI readiness</h2>
-                <p>Each pillar represents a core function where AI integration matters. Together, they provide a complete picture of institutional readiness.</p>
+                <h2>A framework built for this moment</h2>
+                <p>AIREX organizes AI readiness into five pillars and four developmental levels. The pillars cover the core areas where AI touches institutional life. The levels describe where an institution might be in each area, from early exploration to deep integration.</p>
             </div>
 
+            <!-- Five Pillars -->
             <div class="pillars-grid">
-                <!-- Pillar 1 -->
                 <div class="pillar-card fade-up">
                     <div class="pillar-icon" style="background: #e0e7ff;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg></div>
                     <h3>Teaching &amp; Learning</h3>
                     <p>AI in curriculum design, faculty development, student preparation, and classroom integration. How is AI shaping what and how students learn?</p>
                 </div>
 
-                <!-- Pillar 2 -->
                 <div class="pillar-card fade-up" style="transition-delay: 0.1s">
                     <div class="pillar-icon" style="background: #ede9fe;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg></div>
                     <h3>Policy &amp; Governance</h3>
                     <p>Institutional AI strategy, acceptable use policies, data governance, and leadership support. Does your institution have a clear AI direction?</p>
                 </div>
 
-                <!-- Pillar 3 -->
                 <div class="pillar-card fade-up" style="transition-delay: 0.2s">
                     <div class="pillar-icon" style="background: #cffafe;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"></path><path d="M3 7l3 5h6L9 7"></path><path d="M15 7l3 5h-6l3-5"></path><circle cx="12" cy="3" r="1"></circle></svg></div>
                     <h3>Ethics &amp; Equity</h3>
@@ -1157,14 +1077,12 @@
             </div>
 
             <div class="pillars-bottom-row">
-                <!-- Pillar 4 -->
                 <div class="pillar-card fade-up" style="transition-delay: 0.3s">
                     <div class="pillar-icon" style="background: #fef3c7;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6"></path><path d="M10 3v7.4a2 2 0 0 1-.6 1.4L4 17.2A2 2 0 0 0 5.5 21h13a2 2 0 0 0 1.5-3.8l-5.4-5.4a2 2 0 0 1-.6-1.4V3"></path></svg></div>
                     <h3>Research &amp; Innovation</h3>
                     <p>AI-assisted research, faculty adoption, partnerships, and community impact. How is AI advancing your institution's research mission?</p>
                 </div>
 
-                <!-- Pillar 5 -->
                 <div class="pillar-card fade-up" style="transition-delay: 0.4s">
                     <div class="pillar-icon" style="background: #fee2e2;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></div>
                     <h3>Infrastructure</h3>
@@ -1174,179 +1092,151 @@
         </div>
     </section>
 
-    <!-- ============================================================
-         FOUR LEVELS SECTION
-         ============================================================ -->
-    <section class="levels-section">
-        <div class="section-inner">
-            <div class="section-header fade-up">
-                <h2>Four developmental levels</h2>
-                <p>AI readiness is a journey, not a destination. Every institution starts somewhere, and each level represents meaningful progress. The language is intentionally growth-oriented.</p>
+    <!-- Four Levels (same background, continues the framework section visually) -->
+    <div class="levels-wrap">
+        <div class="framework-divider">
+            <h3>Four developmental levels</h3>
+            <p>These levels describe where an institution is in the process, from early conversations to deep integration. They reflect progress, not performance.</p>
+        </div>
+
+        <div class="levels-progress">
+            <div class="levels-progress-dot" style="background: #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);"></div>
+            <div class="levels-progress-line" style="background: linear-gradient(90deg, #f59e0b, #6366f1);"></div>
+            <div class="levels-progress-dot" style="background: #6366f1; box-shadow: 0 0 8px rgba(99, 102, 241, 0.4);"></div>
+            <div class="levels-progress-line" style="background: linear-gradient(90deg, #6366f1, #10b981);"></div>
+            <div class="levels-progress-dot" style="background: #10b981; box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);"></div>
+            <div class="levels-progress-line" style="background: linear-gradient(90deg, #10b981, #8b5cf6);"></div>
+            <div class="levels-progress-dot" style="background: #8b5cf6; box-shadow: 0 0 8px rgba(139, 92, 246, 0.4);"></div>
+        </div>
+
+        <div class="levels-grid">
+            <div class="level-card level-exploring fade-up">
+                <span class="level-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg></span>
+                <h3>Exploring</h3>
+                <span class="level-score">1.0 &ndash; 2.0</span>
+                <p>Aware of AI's potential. Early conversations are happening. No formal strategy yet, but curiosity and interest are growing.</p>
             </div>
 
-            <!-- Visual progress bar -->
-            <div class="levels-progress">
-                <div class="levels-progress-dot" style="background: #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);"></div>
-                <div class="levels-progress-line" style="background: linear-gradient(90deg, #f59e0b, #6366f1);"></div>
-                <div class="levels-progress-dot" style="background: #6366f1; box-shadow: 0 0 8px rgba(99, 102, 241, 0.4);"></div>
-                <div class="levels-progress-line" style="background: linear-gradient(90deg, #6366f1, #10b981);"></div>
-                <div class="levels-progress-dot" style="background: #10b981; box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);"></div>
-                <div class="levels-progress-line" style="background: linear-gradient(90deg, #10b981, #8b5cf6);"></div>
-                <div class="levels-progress-dot" style="background: #8b5cf6; box-shadow: 0 0 8px rgba(139, 92, 246, 0.4);"></div>
+            <div class="level-card level-building fade-up" style="transition-delay: 0.1s">
+                <span class="level-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg></span>
+                <h3>Building</h3>
+                <span class="level-score">2.1 &ndash; 3.0</span>
+                <p>Pilot initiatives underway. Policies are being drafted. Some faculty are adopting AI tools. A foundation is forming.</p>
             </div>
 
-            <div class="levels-grid">
-                <!-- Level 1 -->
-                <div class="level-card level-exploring fade-up">
-                    <span class="level-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg></span>
-                    <h3>Exploring</h3>
-                    <span class="level-score">1.0 &ndash; 2.0</span>
-                    <p>Aware of AI's potential. Early conversations are happening. No formal strategy yet, but curiosity and interest are growing.</p>
-                </div>
-
-                <!-- Level 2 -->
-                <div class="level-card level-building fade-up" style="transition-delay: 0.1s">
-                    <span class="level-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg></span>
-                    <h3>Building</h3>
-                    <span class="level-score">2.1 &ndash; 3.0</span>
-                    <p>Pilot initiatives underway. Policies are being drafted. Some faculty are adopting AI tools. A foundation is forming.</p>
-                </div>
-
-                <!-- Level 3 -->
-                <div class="level-card level-advancing fade-up" style="transition-delay: 0.2s">
-                    <span class="level-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg></span>
-                    <h3>Advancing</h3>
-                    <span class="level-score">3.1 &ndash; 4.0</span>
-                    <p>Coordinated AI strategy in place. Cross-departmental adoption. Dedicated resources and growing institutional support.</p>
-                </div>
-
-                <!-- Level 4 -->
-                <div class="level-card level-leading fade-up" style="transition-delay: 0.3s">
-                    <span class="level-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg></span>
-                    <h3>Leading</h3>
-                    <span class="level-score">4.1 &ndash; 5.0</span>
-                    <p>AI is deeply embedded in institutional operations. Contributing to the broader field. Mentoring peer institutions.</p>
-                </div>
+            <div class="level-card level-advancing fade-up" style="transition-delay: 0.2s">
+                <span class="level-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg></span>
+                <h3>Advancing</h3>
+                <span class="level-score">3.1 &ndash; 4.0</span>
+                <p>Coordinated AI strategy in place. Cross-departmental adoption. Dedicated resources and growing institutional support.</p>
             </div>
 
-            <div class="levels-note">
-                These levels are not rankings. An institution that is Exploring is not failing. It is simply earlier in its journey. Every level represents valid, important work.
+            <div class="level-card level-leading fade-up" style="transition-delay: 0.3s">
+                <span class="level-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg></span>
+                <h3>Leading</h3>
+                <span class="level-score">4.1 &ndash; 5.0</span>
+                <p>AI is deeply embedded in institutional operations. Contributing to the broader field. Mentoring peer institutions.</p>
             </div>
         </div>
-    </section>
+
+        <div class="levels-note">
+            These levels are not rankings. An institution that is Exploring is not failing. It is simply earlier in its journey. Every level represents valid, important work.
+        </div>
+    </div>
 
     <!-- ============================================================
-         HOW THE SCORE WORKS
+         WHY THIS APPROACH
          ============================================================ -->
-    <section class="methodology-section">
+    <section class="approach-section">
         <div class="section-inner">
             <div class="section-header fade-up">
-                <h2>How the score works</h2>
-                <p>The assessment is designed to be transparent, accessible, and consistent across institution types.</p>
+                <h2>Why we built it this way</h2>
+                <p>A few decisions shaped how this framework works, and why.</p>
             </div>
 
-            <div class="methodology-grid">
-                <div class="method-card fade-up">
-                    <div class="method-number">25</div>
-                    <div class="method-label">Questions</div>
-                    <p>Five questions for each of the five pillars. Every question maps directly to a pillar, so your results reflect specific areas of strength and growth.</p>
+            <div class="approach-grid">
+                <div class="approach-card fade-up">
+                    <div class="approach-icon" style="background: #ede9fe;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
+                    <h3>Designed to encourage honesty</h3>
+                    <p>We use words like "Exploring" and "Building" instead of scores that feel like grades. There are no rankings and no leaderboards. We found that people engage more honestly when they're not worried about how the results look, so we designed the whole experience around that.</p>
                 </div>
 
-                <div class="method-card fade-up" style="transition-delay: 0.1s">
-                    <div class="method-number">1 to 5</div>
-                    <div class="method-label">Response Scale</div>
-                    <p>Each question is answered on a 1-to-5 scale. Responses describe observable practices and behaviors rather than aspirational goals.</p>
+                <div class="approach-card fade-up" style="transition-delay: 0.1s">
+                    <div class="approach-icon" style="background: #e0e7ff;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div>
+                    <h3>Rooted in what HSIs are actually facing</h3>
+                    <p>The AI Readiness framework grew out of a partnership between AAII, CAHSI and HACU. The pillars, levels, and assessment questions come from working directly with Hispanic-Serving Institutions across 30 states and territories, where AI adoption plays out differently than it does at well-resourced research universities.</p>
                 </div>
 
-                <div class="method-card fade-up" style="transition-delay: 0.2s">
-                    <div class="method-number">5</div>
-                    <div class="method-label">Pillar Scores</div>
-                    <p>Each pillar score is the average of its five questions. A pillar score of 3.4 means your responses averaged 3.4 across that area.</p>
-                </div>
-
-                <div class="method-card fade-up" style="transition-delay: 0.3s">
-                    <div class="method-number">1</div>
-                    <div class="method-label">Overall Score</div>
-                    <p>Your overall readiness score is the average of all five pillar scores. Every pillar carries equal weight in the calculation.</p>
-                </div>
-            </div>
-
-            <div class="methodology-details">
-                <div class="method-detail-item fade-up">
-                    <h4>Equal Weighting</h4>
-                    <p>All five pillars contribute equally to the overall score. This reflects the principle that AI readiness requires balanced progress across teaching, policy, ethics, research, and infrastructure.</p>
-                </div>
-                <div class="method-detail-item fade-up" style="transition-delay: 0.1s">
-                    <h4>Anonymous and Accessible</h4>
-                    <p>No login required. No data is stored on any server. The assessment takes roughly 10 minutes. All responses stay in your browser and are not transmitted or saved.</p>
-                </div>
-                <div class="method-detail-item fade-up" style="transition-delay: 0.2s">
-                    <h4>Growth-Oriented Design</h4>
-                    <p>The 1-to-5 scale uses descriptive language that reflects a progression of practice, not a judgment of quality. A score of 1 means "early stage," not "falling behind." The language is designed to encourage honest self-reflection.</p>
+                <div class="approach-card fade-up" style="transition-delay: 0.2s">
+                    <div class="approach-icon" style="background: #cffafe;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg></div>
+                    <h3>Open, and getting better over time</h3>
+                    <p>AIREX is open and free for any institution to use. We also built it so the framework can be refined by the people using it. Institutions in the consortium have a direct role in shaping how readiness is defined, what gets measured, and how results get used.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ============================================================
-         HOW TO USE YOUR RESULTS
+         THE NETWORK DIMENSION
          ============================================================ -->
-    <section class="results-guidance">
+    <section class="network-section">
         <div class="section-inner">
             <div class="section-header fade-up">
-                <h2>How to use your results</h2>
-                <p>A readiness score is a starting point, not a conclusion. Here is how to translate your results into action.</p>
+                <h2>What happens when institutions share a framework</h2>
+                <p>A readiness score is useful on its own. When hundreds of institutions use the same framework, you also start learning from each other.</p>
             </div>
 
-            <div class="guidance-steps">
-                <div class="guidance-step fade-up">
-                    <div class="guidance-icon" style="background: #e0e7ff;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg></div>
-                    <div class="guidance-text">
-                        <h4>Identify your pillar gaps</h4>
-                        <p>Look at which pillars scored lower relative to others. These are areas where targeted investment or conversation could make a meaningful difference.</p>
-                    </div>
+            <div class="network-grid">
+                <div class="network-card fade-up">
+                    <div class="network-icon" style="background: #e0e7ff;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></div>
+                    <h3>Shared language</h3>
+                    <p>When hundreds of institutions describe AI readiness using the same five pillars and four levels, they can actually talk to each other about it. A provost in Texas and a dean in California can compare notes on infrastructure without spending the first 20 minutes defining terms.</p>
                 </div>
 
-                <div class="guidance-step fade-up" style="transition-delay: 0.1s">
-                    <div class="guidance-icon" style="background: #ede9fe;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div>
-                    <div class="guidance-text">
-                        <h4>Find peer institutions on the Atlas</h4>
-                        <p>Use the Atlas to find institutions at a similar readiness level or with strengths in your weaker areas. Their profiles may reveal initiatives worth adapting.</p>
-                    </div>
+                <div class="network-card fade-up" style="transition-delay: 0.1s">
+                    <div class="network-icon" style="background: #ede9fe;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+                    <h3>Peer learning</h3>
+                    <p>The Atlas maps every consortium institution by readiness level, region, and pillar strengths. Instead of hiring consultants or reading generic reports, you can look at what a peer institution with a similar profile is doing differently on a specific pillar.</p>
                 </div>
 
-                <div class="guidance-step fade-up" style="transition-delay: 0.2s">
-                    <div class="guidance-icon" style="background: #cffafe;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg></div>
-                    <div class="guidance-text">
-                        <h4>Explore the Repository</h4>
-                        <p>Search for curated resources filtered by pillar. Syllabi, policy templates, and guides contributed by the network are available to support your next steps.</p>
-                    </div>
-                </div>
-
-                <div class="guidance-step fade-up" style="transition-delay: 0.3s">
-                    <div class="guidance-icon" style="background: #fef3c7;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg></div>
-                    <div class="guidance-text">
-                        <h4>Reassess periodically</h4>
-                        <p>AI readiness is not static. As your institution evolves, take the assessment again to track progress and surface new areas for development.</p>
-                    </div>
+                <div class="network-card fade-up" style="transition-delay: 0.2s">
+                    <div class="network-icon" style="background: #cffafe;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></div>
+                    <h3>Collective intelligence</h3>
+                    <p>As more institutions complete the assessment, patterns start to emerge. Which pillars are most institutions scoring low on? Where are the bright spots? What kinds of institutions are moving fastest on ethics or infrastructure? Those patterns help the consortium decide where to put its energy.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ============================================================
-         DESIGN PHILOSOPHY
+         WHO THIS IS FOR
          ============================================================ -->
-    <section class="design-note-section">
-        <div class="design-note-inner fade-up">
-            <div class="design-note-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"></path></svg></div>
-            <h3>A note on our approach</h3>
-            <p>
-                The AIREX framework uses growth-oriented language deliberately. Terms like "Exploring" and "Building" replace evaluative labels because institutions at different stages are doing different kinds of important work. A score is not a grade. There are no rankings, no leaderboards, and no public comparisons. The purpose of this tool is self-reflection and peer learning, not competition.
-            </p>
-            <p>
-                This design choice reflects a core belief: institutions are more likely to engage honestly and make meaningful progress when the process feels supportive rather than punitive.
-            </p>
+    <section class="personas-section">
+        <div class="section-inner">
+            <div class="section-header fade-up">
+                <h2>Who this is for</h2>
+                <p>Different roles use the framework differently. Here's what that looks like.</p>
+            </div>
+
+            <div class="personas-grid">
+                <div class="persona-card fade-up">
+                    <div class="persona-icon" style="background: #ede9fe;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"></path><path d="M5 21V7l7-4 7 4v14"></path><path d="M9 21v-4h6v4"></path><path d="M9 10h1"></path><path d="M14 10h1"></path><path d="M9 14h1"></path><path d="M14 14h1"></path></svg></div>
+                    <h3>Institutional Leadership</h3>
+                    <p>Use the five pillars to structure board-level conversations, set AI priorities across divisions, and see where your institution stands relative to peers in the consortium.</p>
+                </div>
+
+                <div class="persona-card fade-up" style="transition-delay: 0.1s">
+                    <div class="persona-icon" style="background: #e0e7ff;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg></div>
+                    <h3>Faculty</h3>
+                    <p>See where your teaching and research fit into the bigger institutional picture. The pillars help you find where support already exists, where the gaps are, and where working with colleagues could move things forward.</p>
+                </div>
+
+                <div class="persona-card fade-up" style="transition-delay: 0.2s">
+                    <div class="persona-icon" style="background: #cffafe;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></div>
+                    <h3>Staff and Administrators</h3>
+                    <p>Turn what you see every day into structured evidence. IT directors, advisors, and operations staff can point to specific pillar scores when advocating for resources or planning professional development.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1356,7 +1246,7 @@
     <section class="cta">
         <div class="cta-inner">
             <h2>See where your institution stands</h2>
-            <p>The self-assessment takes about 10 minutes and is completely anonymous. You will get a personalized readiness profile with recommendations for each pillar.</p>
+            <p>The assessment takes about 10 minutes. It's anonymous, and nothing is stored. You'll get a readiness profile across all five pillars that you can use to start conversations on your campus.</p>
             <div class="cta-actions">
                 <a href="/assessment" class="btn btn-primary">Take the Assessment &rarr;</a>
                 <a href="/atlas" class="btn btn-secondary">Explore the Atlas</a>
@@ -1384,7 +1274,6 @@
     </footer>
 
     <script>
-        // Scroll-triggered fade-in
         const fadeObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
