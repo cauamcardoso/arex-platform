@@ -402,33 +402,6 @@
             font-weight: 500;
         }
 
-        .hero-stats-links {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-        }
-
-        .hero-stats-links a {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.6);
-            text-decoration: none;
-            transition: color 0.2s;
-            letter-spacing: 0.03em;
-        }
-
-        .hero-stats-links a:hover {
-            color: white;
-        }
-
-        .hero-stats-link-dot {
-            width: 3px;
-            height: 3px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.25);
-        }
-
         /* ============================================================
            VALUE NARRATIVE
            ============================================================ */
@@ -447,22 +420,35 @@
 
         .value-block {
             position: relative;
-            padding: 2rem 0 0;
+            padding: 2rem 2rem 2rem 2.25rem;
+            border-radius: 16px;
+            border: 1px solid var(--gray-200);
+            border-left: 4px solid;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .value-block::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 48px;
-            height: 3px;
-            border-radius: 2px;
+        .value-block:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
         }
 
-        .value-block:nth-child(1)::before { background: #3b82f6; }
-        .value-block:nth-child(2)::before { background: #8b5cf6; }
-        .value-block:nth-child(3)::before { background: #10b981; }
+        .value-block:nth-child(1) { border-left-color: #3b82f6; background: rgba(59, 130, 246, 0.03); }
+        .value-block:nth-child(2) { border-left-color: #8b5cf6; background: rgba(139, 92, 246, 0.03); }
+        .value-block:nth-child(3) { border-left-color: #10b981; background: rgba(16, 185, 129, 0.03); }
+
+        .value-block-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .value-block:nth-child(1) .value-block-icon { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+        .value-block:nth-child(2) .value-block-icon { background: rgba(139, 92, 246, 0.1); color: #8b5cf6; }
+        .value-block:nth-child(3) .value-block-icon { background: rgba(16, 185, 129, 0.1); color: #10b981; }
 
         .value-block h3 {
             font-size: 1.05rem;
@@ -478,13 +464,14 @@
             line-height: 1.7;
         }
 
-        /* Hero stats scaling text */
-        .hero-stats-scaling {
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.5);
-            line-height: 1.65;
-            text-align: center;
-            font-style: italic;
+        /* Hero stats framing text */
+        .hero-stats-framing {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         /* ============================================================
@@ -1151,6 +1138,7 @@
 
             <div class="hero-stats-card">
                 <div class="hero-stats-badge">Phase I Pilot</div>
+                <p class="hero-stats-framing">AIREX is designed as a model any university can use. This consortium is where it starts.</p>
                 <h2 class="hero-stats-heading">The CAHSI-HACU<br>AI Readiness Consortium</h2>
                 <p class="hero-stats-context">A partnership between the <strong>Computing Alliance of Hispanic-Serving Institutions</strong> and the <strong>Hispanic Association of Colleges and Universities</strong>, built by <strong>UTEP AAII</strong>.</p>
                 <div class="hero-stats-grid">
@@ -1171,7 +1159,6 @@
                         <div class="hero-stat-label">Readiness Pillars</div>
                     </div>
                 </div>
-                <p class="hero-stats-scaling">Starting with 542 institutions across 37 states and territories, from community colleges to R1 research universities. A network this varied is the right place to build a model that can scale.</p>
             </div>
         </div>
     </section>
@@ -1182,14 +1169,23 @@
     <section class="value-narrative" id="why-airex">
         <div class="value-narrative-inner">
             <div class="value-block">
+                <div class="value-block-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="5" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg>
+                </div>
                 <h3>The Challenge</h3>
                 <p>Universities across the country are integrating AI into teaching, research, policy, and operations. But most are doing it in isolation, without a structured way to measure where they are or learn from what other institutions have figured out.</p>
             </div>
             <div class="value-block">
+                <div class="value-block-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                </div>
                 <h3>The Approach</h3>
                 <p>AIREX organizes AI readiness around five pillars and four developmental levels, giving each institution a clear picture of its own progress and visibility into what peers are doing across the network.</p>
             </div>
             <div class="value-block">
+                <div class="value-block-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+                </div>
                 <h3>The Starting Point</h3>
                 <p>HACU's member institutions are the first cohort: 542 schools spanning community colleges to major research universities across 37 states and territories. That institutional diversity means the framework gets pressure-tested against real differences in resources, governance, and priorities from day one.</p>
             </div>
