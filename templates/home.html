@@ -324,29 +324,62 @@
         .btn-secondary { background: var(--gray-100); color: var(--gray-700); }
         .btn-secondary:hover { background: var(--gray-200); }
 
-        /* Hero Stats */
+        /* Hero Stats Card */
         .hero-stats-card {
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 20px;
-            padding: 2rem;
-            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 2.5rem;
+            backdrop-filter: blur(16px);
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            color: white;
         }
 
-        .hero-stats-title {
-            font-size: 0.75rem;
+        .hero-stats-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 0.12em;
+            padding: 0.3rem 0.85rem;
+            background: rgba(96, 165, 250, 0.15);
+            border: 1px solid rgba(96, 165, 250, 0.25);
+            border-radius: 999px;
+            color: #93c5fd;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-stats-heading {
+            font-size: 1.35rem;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-stats-context {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.65;
+            margin-bottom: 1.75rem;
+            padding-bottom: 1.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .hero-stats-context strong {
+            color: rgba(255, 255, 255, 0.8);
             font-weight: 600;
-            margin-bottom: 1.5rem;
-            line-height: 1.4;
         }
 
         .hero-stats-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .hero-stat {
@@ -354,7 +387,7 @@
         }
 
         .hero-stat-number {
-            font-size: 2.5rem;
+            font-size: 2.25rem;
             font-weight: 800;
             color: white;
             line-height: 1;
@@ -362,17 +395,38 @@
         }
 
         .hero-stat-label {
-            font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.5);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.06em;
             font-weight: 500;
         }
 
-        .hero-stats-divider {
-            grid-column: 1 / -1;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.1);
+        .hero-stats-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .hero-stats-links a {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.2s;
+            letter-spacing: 0.03em;
+        }
+
+        .hero-stats-links a:hover {
+            color: white;
+        }
+
+        .hero-stats-link-dot {
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25);
         }
 
         /* ============================================================
@@ -943,7 +997,9 @@
             .hero { padding: 4rem 1.5rem 3rem; }
             .hero h1 { font-size: 2.25rem; }
             .hero-orb { display: none; }
-            .hero-stats-card { display: none; }
+            .hero-stats-card { padding: 2rem 1.5rem; }
+            .hero-stats-heading { font-size: 1.15rem; }
+            .hero-stat-number { font-size: 1.85rem; }
             .journey { padding: 4rem 1.5rem; }
             .journey-step,
             .journey-step.journey-step-reverse {
@@ -1027,7 +1083,9 @@
             </div>
 
             <div class="hero-stats-card">
-                <div class="hero-stats-title">Phase I: the CAHSI-HACU HSI AI Readiness Consortium</div>
+                <div class="hero-stats-badge">Phase I Pilot</div>
+                <h2 class="hero-stats-heading">The CAHSI-HACU HSI<br>AI Readiness Consortium</h2>
+                <p class="hero-stats-context">A partnership between the <strong>Computing Alliance of Hispanic-Serving Institutions</strong> and the <strong>Hispanic Association of Colleges and Universities</strong>, built by <strong>UTEP AAII</strong>.</p>
                 <div class="hero-stats-grid">
                     <div class="hero-stat">
                         <div class="hero-stat-number">{{ total_institutions }}</div>
@@ -1035,9 +1093,8 @@
                     </div>
                     <div class="hero-stat">
                         <div class="hero-stat-number">{{ states_count }}</div>
-                        <div class="hero-stat-label">States</div>
+                        <div class="hero-stat-label">States &amp; Territories</div>
                     </div>
-                    <div class="hero-stats-divider"></div>
                     <div class="hero-stat">
                         <div class="hero-stat-number">{{ total_enrollment_display }}</div>
                         <div class="hero-stat-label">Students Enrolled</div>
@@ -1046,6 +1103,13 @@
                         <div class="hero-stat-number">5</div>
                         <div class="hero-stat-label">Readiness Pillars</div>
                     </div>
+                </div>
+                <div class="hero-stats-links">
+                    <a href="https://cahsi.utep.edu/" target="_blank" rel="noopener">CAHSI</a>
+                    <span class="hero-stats-link-dot"></span>
+                    <a href="https://www.hacu.net/" target="_blank" rel="noopener">HACU</a>
+                    <span class="hero-stats-link-dot"></span>
+                    <a href="https://www.utep.edu/aaii/" target="_blank" rel="noopener">UTEP AAII</a>
                 </div>
             </div>
         </div>
