@@ -359,20 +359,6 @@
             letter-spacing: -0.01em;
         }
 
-        .hero-stats-context {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.55);
-            line-height: 1.65;
-            margin-bottom: 1.75rem;
-            padding-bottom: 1.75rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .hero-stats-context strong {
-            color: rgba(255, 255, 255, 0.8);
-            font-weight: 600;
-        }
-
         .hero-stats-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -421,6 +407,14 @@
             font-weight: 800;
             color: var(--gray-900);
             letter-spacing: -0.01em;
+        }
+
+        .value-narrative-header p {
+            max-width: 680px;
+            margin: 0.75rem auto 0;
+            font-size: 1rem;
+            color: var(--gray-500);
+            line-height: 1.7;
         }
 
         .value-narrative-inner {
@@ -1142,7 +1136,6 @@
             <div class="hero-stats-card">
                 <div class="hero-stats-badge">Phase I Pilot</div>
                 <h2 class="hero-stats-heading">The CAHSI-HACU<br>AI Readiness Consortium</h2>
-                <p class="hero-stats-context">Built by the <strong>UTEP Institute for Applied AI Innovation (AAII)</strong>, AIREX offers a scalable learning model for academic institutions from all backgrounds. The inaugural partnership between the <strong>Computing Alliance of Hispanic-Serving Institutions (CAHSI)</strong> and the <strong>Hispanic Association of Colleges and Universities (HACU)</strong> marks the first step in this strategic initiative.</p>
                 <div class="hero-stats-grid">
                     <div class="hero-stat">
                         <div class="hero-stat-number">{{ total_institutions }}</div>
@@ -1171,6 +1164,7 @@
     <section class="value-narrative" id="why-airex">
         <div class="value-narrative-header">
             <h2>Why AIREX</h2>
+            <p>Built by the UTEP Institute for Applied AI Innovation (AAII), AIREX offers a scalable learning model for academic institutions from all backgrounds. The inaugural partnership between CAHSI and HACU marks the first step in this strategic initiative.</p>
         </div>
         <div class="value-narrative-inner">
             <div class="value-block">
