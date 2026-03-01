@@ -178,15 +178,16 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.4rem 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 0.4rem 1.25rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 999px;
             font-size: 0.75rem;
             font-weight: 500;
             color: rgba(255, 255, 255, 0.9);
             margin-bottom: 1.5rem;
-            backdrop-filter: blur(4px);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.08);
         }
 
         .hero h1 {
@@ -259,10 +260,21 @@
             max-width: 760px;
             margin: 0 auto;
             text-align: center;
+            position: relative;
+        }
+
+        .definition-inner::before {
+            content: '';
+            display: block;
+            width: 3px;
+            height: 48px;
+            background: linear-gradient(180deg, #4f46e5, #a78bfa);
+            border-radius: 2px;
+            margin: 0 auto 2rem;
         }
 
         .definition h2 {
-            font-size: 1.75rem;
+            font-size: 1.85rem;
             font-weight: 800;
             color: var(--gray-900);
             margin-bottom: 1.25rem;
@@ -297,8 +309,9 @@
         }
 
         .pillar-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            transform: translateY(-6px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.06), 0 4px 8px rgba(0, 0, 0, 0.03);
+            border-color: rgba(79, 70, 229, 0.12);
         }
 
         .pillar-icon {
@@ -354,19 +367,19 @@
         }
 
         .level-card {
-            background: var(--gray-50);
+            background: white;
             border: 1px solid var(--gray-200);
             border-radius: 16px;
             padding: 1.75rem 1.5rem;
             text-align: center;
             position: relative;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             overflow: hidden;
         }
 
         .level-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06), 0 8px 16px rgba(0, 0, 0, 0.03);
         }
 
         /* Top accent bar */
@@ -375,7 +388,9 @@
             position: absolute;
             top: 0; left: 0; right: 0;
             height: 4px;
+            transition: height 0.3s;
         }
+        .level-card:hover::before { height: 5px; }
 
         .level-card.level-exploring::before { background: var(--warning); }
         .level-card.level-building::before { background: var(--primary); }
@@ -442,8 +457,8 @@
         }
 
         .levels-progress-dot {
-            width: 12px;
-            height: 12px;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
             flex-shrink: 0;
         }
@@ -484,12 +499,25 @@
             border: 1px solid var(--gray-200);
             border-radius: 16px;
             padding: 2rem;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+        .persona-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #4f46e5, #7c3aed, #a78bfa);
+            opacity: 0;
+            transition: opacity 0.4s;
         }
         .persona-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(79, 70, 229, 0.08), 0 8px 16px rgba(0, 0, 0, 0.04);
+            border-color: rgba(79, 70, 229, 0.15);
         }
+        .persona-card:hover::before { opacity: 1; }
         .persona-icon {
             width: 56px; height: 56px;
             border-radius: 14px;
@@ -523,13 +551,24 @@
             background: var(--gray-50);
             border: 1px solid var(--gray-200);
             border-radius: 16px;
-            padding: 1.75rem 1.5rem;
+            padding: 2rem 1.5rem;
             text-align: center;
+            transition: all 0.3s;
+        }
+        .method-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+            border-color: rgba(79, 70, 229, 0.15);
         }
         .method-number {
-            font-size: 2.25rem; font-weight: 800;
-            color: #4f46e5;
-            line-height: 1; margin-bottom: 0.25rem;
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 0.25rem;
         }
         .method-label {
             font-size: 0.7rem; font-weight: 600;
@@ -550,8 +589,15 @@
         .method-detail-item {
             background: var(--gray-50);
             border: 1px solid var(--gray-200);
-            border-radius: 12px;
+            border-left: 3px solid #4f46e5;
+            border-radius: 0 12px 12px 0;
             padding: 1.5rem 2rem;
+            transition: all 0.3s;
+        }
+        .method-detail-item:hover {
+            background: white;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            transform: translateX(4px);
         }
         .method-detail-item h4 {
             font-size: 0.95rem; font-weight: 700;
@@ -573,17 +619,20 @@
             display: grid; gap: 1.25rem;
         }
         .guidance-step {
-            display: flex; gap: 1.25rem;
+            display: flex;
+            gap: 1.25rem;
             align-items: flex-start;
             background: white;
             border: 1px solid var(--gray-200);
             border-radius: 14px;
             padding: 1.5rem;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
         }
         .guidance-step:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.05);
+            border-color: rgba(79, 70, 229, 0.15);
         }
         .guidance-icon {
             width: 48px; height: 48px;
@@ -603,12 +652,15 @@
         /* ── Design Note ── */
         .design-note-section { padding: 4rem 2rem; background: white; }
         .design-note-inner {
-            max-width: 700px; margin: 0 auto;
+            max-width: 700px;
+            margin: 0 auto;
             text-align: center;
-            padding: 2.5rem;
-            background: var(--gray-50);
-            border: 1px solid var(--gray-200);
-            border-radius: 20px;
+            padding: 3rem;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, #4f46e5, #a78bfa, #c4b5fd) border-box;
+            border: 2px solid transparent;
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(79, 70, 229, 0.06);
         }
         .design-note-icon { font-size: 2rem; margin-bottom: 1rem; }
         .design-note-inner h3 {
@@ -628,6 +680,15 @@
             padding: 5rem 2rem;
             background: var(--gray-50);
             text-align: center;
+            position: relative;
+        }
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%; transform: translateX(-50%);
+            width: 120px; height: 3px;
+            background: linear-gradient(90deg, #4f46e5, #a78bfa);
+            border-radius: 2px;
         }
 
         .cta-inner {
@@ -671,14 +732,15 @@
         }
 
         .btn-primary {
-            background: var(--primary);
+            background: linear-gradient(135deg, #4f46e5, #6366f1);
             color: white;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
         }
 
         .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            background: linear-gradient(135deg, #4338ca, #4f46e5);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(79, 70, 229, 0.35);
         }
 
         .btn-secondary {
@@ -731,6 +793,17 @@
         }
 
         .footer-links a:hover { color: white; }
+
+        /* ── Scroll Animations ── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         /* ============================================================
            RESPONSIVE
@@ -832,7 +905,7 @@
          DEFINITION SECTION
          ============================================================ -->
     <section class="definition">
-        <div class="definition-inner">
+        <div class="definition-inner fade-up">
             <h2>A shared language for a shared challenge</h2>
             <p>
                 AI is changing how institutions teach, research, govern, and serve students. But without a common framework, it is difficult to know where to start or how to measure progress. AIREX defines AI readiness across five pillars and four developmental levels, giving institutions a structured way to understand their current state and plan their next steps.
@@ -851,19 +924,19 @@
             </div>
 
             <div class="personas-grid">
-                <div class="persona-card">
+                <div class="persona-card fade-up">
                     <div class="persona-icon" style="background: #dbeafe;">&#127891;</div>
                     <h3>Institutional Leadership</h3>
                     <p>Presidents, provosts, and deans use the framework to understand institutional positioning, set strategic priorities, and make informed decisions about AI investment. The five-pillar structure offers a clear lens for board-level conversations and cross-institutional comparison.</p>
                 </div>
 
-                <div class="persona-card">
+                <div class="persona-card fade-up" style="transition-delay: 0.1s">
                     <div class="persona-icon" style="background: #ede9fe;">&#128218;</div>
                     <h3>Faculty</h3>
                     <p>Faculty use the framework to situate their own teaching and research within a broader institutional context. Whether exploring AI-assisted pedagogy or rethinking curriculum design, the pillars help identify where support and collaboration opportunities exist.</p>
                 </div>
 
-                <div class="persona-card">
+                <div class="persona-card fade-up" style="transition-delay: 0.2s">
                     <div class="persona-icon" style="background: #d1fae5;">&#9881;&#65039;</div>
                     <h3>Staff and Administrators</h3>
                     <p>IT directors, academic advisors, and operations staff use the framework to evaluate infrastructure needs, plan training programs, and advocate for resources. The assessment translates daily observations into structured evidence for decision-makers.</p>
@@ -877,28 +950,28 @@
          ============================================================ -->
     <section class="pillars-section">
         <div class="section-inner">
-            <div class="section-header">
+            <div class="section-header fade-up">
                 <h2>Five pillars of AI readiness</h2>
                 <p>Each pillar represents a core function where AI integration matters. Together, they provide a complete picture of institutional readiness.</p>
             </div>
 
             <div class="pillars-grid">
                 <!-- Pillar 1 -->
-                <div class="pillar-card">
+                <div class="pillar-card fade-up">
                     <div class="pillar-icon" style="background: #dbeafe;">&#128218;</div>
                     <h3>Teaching &amp; Learning</h3>
                     <p>AI in curriculum design, faculty development, student preparation, and classroom integration. How is AI shaping what and how students learn?</p>
                 </div>
 
                 <!-- Pillar 2 -->
-                <div class="pillar-card">
+                <div class="pillar-card fade-up" style="transition-delay: 0.1s">
                     <div class="pillar-icon" style="background: #ede9fe;">&#128203;</div>
                     <h3>Policy &amp; Governance</h3>
                     <p>Institutional AI strategy, acceptable use policies, data governance, and leadership support. Does your institution have a clear AI direction?</p>
                 </div>
 
                 <!-- Pillar 3 -->
-                <div class="pillar-card">
+                <div class="pillar-card fade-up" style="transition-delay: 0.2s">
                     <div class="pillar-icon" style="background: #d1fae5;">&#9878;&#65039;</div>
                     <h3>Ethics &amp; Equity</h3>
                     <p>Responsible AI practices, bias awareness, equitable access, and inclusive adoption. Are AI benefits reaching all students and staff?</p>
@@ -907,14 +980,14 @@
 
             <div class="pillars-bottom-row">
                 <!-- Pillar 4 -->
-                <div class="pillar-card">
+                <div class="pillar-card fade-up" style="transition-delay: 0.3s">
                     <div class="pillar-icon" style="background: #fef3c7;">&#128300;</div>
                     <h3>Research &amp; Innovation</h3>
                     <p>AI-assisted research, faculty adoption, partnerships, and community impact. How is AI advancing your institution's research mission?</p>
                 </div>
 
                 <!-- Pillar 5 -->
-                <div class="pillar-card">
+                <div class="pillar-card fade-up" style="transition-delay: 0.4s">
                     <div class="pillar-icon" style="background: #fee2e2;">&#128421;&#65039;</div>
                     <h3>Infrastructure</h3>
                     <p>Computing resources, data systems, technical staffing, security, and support services. Does your institution have the technical foundation for AI?</p>
@@ -928,25 +1001,25 @@
          ============================================================ -->
     <section class="levels-section">
         <div class="section-inner">
-            <div class="section-header">
+            <div class="section-header fade-up">
                 <h2>Four developmental levels</h2>
                 <p>AI readiness is a journey, not a destination. Every institution starts somewhere, and each level represents meaningful progress. The language is intentionally growth-oriented.</p>
             </div>
 
             <!-- Visual progress bar -->
             <div class="levels-progress">
-                <div class="levels-progress-dot" style="background: #f59e0b;"></div>
+                <div class="levels-progress-dot" style="background: #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);"></div>
                 <div class="levels-progress-line" style="background: linear-gradient(90deg, #f59e0b, #2563eb);"></div>
-                <div class="levels-progress-dot" style="background: #2563eb;"></div>
+                <div class="levels-progress-dot" style="background: #2563eb; box-shadow: 0 0 8px rgba(37, 99, 235, 0.4);"></div>
                 <div class="levels-progress-line" style="background: linear-gradient(90deg, #2563eb, #10b981);"></div>
-                <div class="levels-progress-dot" style="background: #10b981;"></div>
+                <div class="levels-progress-dot" style="background: #10b981; box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);"></div>
                 <div class="levels-progress-line" style="background: linear-gradient(90deg, #10b981, #8b5cf6);"></div>
-                <div class="levels-progress-dot" style="background: #8b5cf6;"></div>
+                <div class="levels-progress-dot" style="background: #8b5cf6; box-shadow: 0 0 8px rgba(139, 92, 246, 0.4);"></div>
             </div>
 
             <div class="levels-grid">
                 <!-- Level 1 -->
-                <div class="level-card level-exploring">
+                <div class="level-card level-exploring fade-up">
                     <span class="level-icon">&#128269;</span>
                     <h3>Exploring</h3>
                     <span class="level-score">1.0 &ndash; 2.0</span>
@@ -954,7 +1027,7 @@
                 </div>
 
                 <!-- Level 2 -->
-                <div class="level-card level-building">
+                <div class="level-card level-building fade-up" style="transition-delay: 0.1s">
                     <span class="level-icon">&#128296;</span>
                     <h3>Building</h3>
                     <span class="level-score">2.1 &ndash; 3.0</span>
@@ -962,7 +1035,7 @@
                 </div>
 
                 <!-- Level 3 -->
-                <div class="level-card level-advancing">
+                <div class="level-card level-advancing fade-up" style="transition-delay: 0.2s">
                     <span class="level-icon">&#128640;</span>
                     <h3>Advancing</h3>
                     <span class="level-score">3.1 &ndash; 4.0</span>
@@ -970,7 +1043,7 @@
                 </div>
 
                 <!-- Level 4 -->
-                <div class="level-card level-leading">
+                <div class="level-card level-leading fade-up" style="transition-delay: 0.3s">
                     <span class="level-icon">&#127963;&#65039;</span>
                     <h3>Leading</h3>
                     <span class="level-score">4.1 &ndash; 5.0</span>
@@ -989,31 +1062,31 @@
          ============================================================ -->
     <section class="methodology-section">
         <div class="section-inner">
-            <div class="section-header">
+            <div class="section-header fade-up">
                 <h2>How the score works</h2>
                 <p>The assessment is designed to be transparent, accessible, and consistent across institution types.</p>
             </div>
 
             <div class="methodology-grid">
-                <div class="method-card">
+                <div class="method-card fade-up">
                     <div class="method-number">25</div>
                     <div class="method-label">Questions</div>
                     <p>Five questions for each of the five pillars. Every question maps directly to a pillar, so your results reflect specific areas of strength and growth.</p>
                 </div>
 
-                <div class="method-card">
+                <div class="method-card fade-up" style="transition-delay: 0.1s">
                     <div class="method-number">1 to 5</div>
                     <div class="method-label">Response Scale</div>
                     <p>Each question is answered on a 1-to-5 scale. Responses describe observable practices and behaviors rather than aspirational goals.</p>
                 </div>
 
-                <div class="method-card">
+                <div class="method-card fade-up" style="transition-delay: 0.2s">
                     <div class="method-number">5</div>
                     <div class="method-label">Pillar Scores</div>
                     <p>Each pillar score is the average of its five questions. A pillar score of 3.4 means your responses averaged 3.4 across that area.</p>
                 </div>
 
-                <div class="method-card">
+                <div class="method-card fade-up" style="transition-delay: 0.3s">
                     <div class="method-number">1</div>
                     <div class="method-label">Overall Score</div>
                     <p>Your overall readiness score is the average of all five pillar scores. Every pillar carries equal weight in the calculation.</p>
@@ -1021,15 +1094,15 @@
             </div>
 
             <div class="methodology-details">
-                <div class="method-detail-item">
+                <div class="method-detail-item fade-up">
                     <h4>Equal Weighting</h4>
                     <p>All five pillars contribute equally to the overall score. This reflects the principle that AI readiness requires balanced progress across teaching, policy, ethics, research, and infrastructure.</p>
                 </div>
-                <div class="method-detail-item">
+                <div class="method-detail-item fade-up" style="transition-delay: 0.1s">
                     <h4>Anonymous and Accessible</h4>
                     <p>No login required. No data is stored on any server. The assessment takes roughly 10 minutes. All responses stay in your browser and are not transmitted or saved.</p>
                 </div>
-                <div class="method-detail-item">
+                <div class="method-detail-item fade-up" style="transition-delay: 0.2s">
                     <h4>Growth-Oriented Design</h4>
                     <p>The 1-to-5 scale uses descriptive language that reflects a progression of practice, not a judgment of quality. A score of 1 means "early stage," not "falling behind." The language is designed to encourage honest self-reflection.</p>
                 </div>
@@ -1042,13 +1115,13 @@
          ============================================================ -->
     <section class="results-guidance">
         <div class="section-inner">
-            <div class="section-header">
+            <div class="section-header fade-up">
                 <h2>How to use your results</h2>
                 <p>A readiness score is a starting point, not a conclusion. Here is how to translate your results into action.</p>
             </div>
 
             <div class="guidance-steps">
-                <div class="guidance-step">
+                <div class="guidance-step fade-up">
                     <div class="guidance-icon" style="background: #dbeafe;">&#128269;</div>
                     <div class="guidance-text">
                         <h4>Identify your pillar gaps</h4>
@@ -1056,7 +1129,7 @@
                     </div>
                 </div>
 
-                <div class="guidance-step">
+                <div class="guidance-step fade-up" style="transition-delay: 0.1s">
                     <div class="guidance-icon" style="background: #ede9fe;">&#127758;</div>
                     <div class="guidance-text">
                         <h4>Find peer institutions on the Atlas</h4>
@@ -1064,7 +1137,7 @@
                     </div>
                 </div>
 
-                <div class="guidance-step">
+                <div class="guidance-step fade-up" style="transition-delay: 0.2s">
                     <div class="guidance-icon" style="background: #d1fae5;">&#128172;</div>
                     <div class="guidance-text">
                         <h4>Explore the Repository</h4>
@@ -1072,7 +1145,7 @@
                     </div>
                 </div>
 
-                <div class="guidance-step">
+                <div class="guidance-step fade-up" style="transition-delay: 0.3s">
                     <div class="guidance-icon" style="background: #fef3c7;">&#128257;</div>
                     <div class="guidance-text">
                         <h4>Reassess periodically</h4>
@@ -1087,7 +1160,7 @@
          DESIGN PHILOSOPHY
          ============================================================ -->
     <section class="design-note-section">
-        <div class="design-note-inner">
+        <div class="design-note-inner fade-up">
             <div class="design-note-icon">&#128161;</div>
             <h3>A note on our approach</h3>
             <p>
@@ -1131,5 +1204,19 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Scroll-triggered fade-in
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    fadeObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+    </script>
 </body>
 </html>

@@ -712,51 +712,119 @@
         }
 
         /* ============================================================
-           NETWORK BAR
+           CONSORTIUM
            ============================================================ */
-        .network-bar {
-            padding: 3rem 2rem;
-            background: linear-gradient(135deg, #0f172a, #1e3a5f);
+        .consortium {
+            padding: 6rem 2rem;
+            background: linear-gradient(160deg, #0f172a 0%, #1e293b 40%, #1e3a5f 100%);
             color: white;
+            position: relative;
+            overflow: hidden;
         }
 
-        .network-bar-inner {
-            max-width: 1100px;
+        .consortium::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                radial-gradient(ellipse 600px 400px at 20% 50%, rgba(59, 130, 246, 0.08), transparent),
+                radial-gradient(ellipse 500px 350px at 80% 50%, rgba(139, 92, 246, 0.06), transparent);
+            pointer-events: none;
+        }
+
+        .consortium-inner {
+            max-width: 1000px;
             margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            position: relative;
+            z-index: 1;
+            text-align: center;
         }
 
-        .network-bar-text {
-            max-width: 500px;
-        }
-
-        .network-bar-text h3 {
-            font-size: 1.25rem;
+        .consortium-badge {
+            display: inline-block;
+            font-size: 0.7rem;
             font-weight: 700;
-            margin-bottom: 0.375rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.35rem 1rem;
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            border-radius: 999px;
+            color: #a5b4fc;
+            margin-bottom: 1.5rem;
         }
 
-        .network-bar-text p {
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.7);
+        .consortium h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 1.25rem;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
         }
 
-        .network-bar-logos {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
+        .consortium-lead {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.8;
+            max-width: 720px;
+            margin: 0 auto 3rem;
         }
 
-        .network-logo {
-            padding: 0.5rem 1.25rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.8);
-            letter-spacing: 0.05em;
+        .consortium-orgs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .org-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            text-align: left;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .org-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .org-name {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+            letter-spacing: 0.02em;
+        }
+
+        .org-full {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: rgba(255, 255, 255, 0.45);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .org-card p {
+            font-size: 0.825rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.65;
+        }
+
+        .consortium-note {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 620px;
+            margin: 0 auto;
+            line-height: 1.7;
+            font-style: italic;
         }
 
         /* ============================================================
@@ -894,14 +962,15 @@
             .journey-content h3 { font-size: 1.25rem; }
             .journey-content p { font-size: 0.875rem; max-width: 100%; }
             .journey .section-header h2 { font-size: 1.75rem; }
-            .network-bar-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
+            .consortium { padding: 4rem 1.5rem; }
+            .consortium h2 { font-size: 1.75rem; }
+            .consortium-orgs { grid-template-columns: 1fr; }
             .footer-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
         }
 
         @media (max-width: 480px) {
             .hero h1 { font-size: 1.85rem; }
             .hero-desc { font-size: 1rem; }
-            .network-bar-logos { flex-wrap: wrap; justify-content: center; gap: 1rem; }
             .cta h2 { font-size: 1.75rem; }
         }
     </style>
@@ -1135,19 +1204,33 @@
     </section>
 
     <!-- ============================================================
-         NETWORK BAR
+         CONSORTIUM
          ============================================================ -->
-    <section class="network-bar">
-        <div class="network-bar-inner">
-            <div class="network-bar-text">
-                <h3>Launching with 542 HACU member institutions</h3>
-                <p>AIREX is piloting with the HACU network and designed to grow. Any academic institution can benefit from the framework and tools.</p>
+    <section class="consortium">
+        <div class="consortium-inner">
+            <div class="consortium-badge">Phase I Pilot</div>
+            <h2>The CAHSI-HACU HSI AI Readiness Consortium</h2>
+            <p class="consortium-lead">AIREX launches with a consortium of 542 Hispanic-Serving Institutions through a partnership between CAHSI and HACU, two organizations that have spent decades strengthening higher education for Hispanic communities.</p>
+
+            <div class="consortium-orgs">
+                <a href="https://cahsi.utep.edu/" target="_blank" rel="noopener" class="org-card">
+                    <div class="org-name">CAHSI</div>
+                    <div class="org-full">Computing Alliance of Hispanic-Serving Institutions</div>
+                    <p>A national network dedicated to increasing the number of Hispanics who pursue and complete baccalaureate and graduate degrees in computing.</p>
+                </a>
+                <a href="https://www.hacu.net/" target="_blank" rel="noopener" class="org-card">
+                    <div class="org-name">HACU</div>
+                    <div class="org-full">Hispanic Association of Colleges and Universities</div>
+                    <p>The leading national association representing Hispanic-Serving Institutions, with more than 500 member colleges and universities across the U.S. and Latin America.</p>
+                </a>
+                <a href="https://www.utep.edu/aaii/" target="_blank" rel="noopener" class="org-card">
+                    <div class="org-name">UTEP AAII</div>
+                    <div class="org-full">Academic Alliance for Artificial Intelligence</div>
+                    <p>Based at the University of Texas at El Paso, AAII leads the design and development of AIREX as a platform for institutional AI readiness.</p>
+                </a>
             </div>
-            <div class="network-bar-logos">
-                <div class="network-logo">HACU</div>
-                <div class="network-logo">CAHSI</div>
-                <div class="network-logo">UTEP AAII</div>
-            </div>
+
+            <p class="consortium-note">While this pilot focuses on HSIs, AIREX is designed to serve any academic institution. The framework, tools, and resources are institution-agnostic and open to all.</p>
         </div>
     </section>
 
