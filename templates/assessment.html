@@ -5,42 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Readiness Assessment | AIREX</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --primary-light: rgba(37, 99, 235, 0.08);
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f7ff;
+            --bg-tertiary: #f1f0fb;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --card-hover: rgba(255, 255, 255, 0.95);
+            --border-subtle: rgba(99, 102, 241, 0.1);
+            --border-hover: rgba(139, 92, 246, 0.35);
+            --text-primary: #1e1b4b;
+            --text-secondary: #4b5563;
+            --text-muted: #6b7280;
+            --accent-purple: #8b5cf6;
+            --accent-indigo: #6366f1;
+            --accent-violet: #7c3aed;
+            --accent-cyan: #06b6d4;
             --success: #10b981;
-            --success-light: rgba(16, 185, 129, 0.08);
             --warning: #f59e0b;
-            --warning-light: rgba(245, 158, 11, 0.08);
             --danger: #ef4444;
-            --gray-50: #f9fafb;
-            --gray-100: #f3f4f6;
-            --gray-200: #e5e7eb;
-            --gray-300: #d1d5db;
-            --gray-400: #9ca3af;
-            --gray-500: #6b7280;
-            --gray-600: #4b5563;
-            --gray-700: #374151;
-            --gray-800: #1f2937;
-            --gray-900: #111827;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--gray-50);
-            color: var(--gray-800);
+            background: #ffffff;
+            color: var(--text-primary);
             line-height: 1.6;
         }
 
-        /* Header */
+        /* ============================================================
+           HEADER (matches readiness + home)
+           ============================================================ */
         .header {
-            background: white;
-            border-bottom: 1px solid var(--gray-200);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.08);
             padding: 1rem 2rem;
             display: flex;
             align-items: center;
@@ -51,26 +54,49 @@
             height: 64px;
         }
 
-        .header-brand {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+        .header-brand { display: flex; align-items: center; gap: 1rem; }
+        .header-brand h1 { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); letter-spacing: -0.01em; }
+        .header-brand h1 a { color: inherit; text-decoration: none; }
+        .header-brand .badge {
+            font-size: 0.65rem;
+            color: #7c3aed;
+            background: #f5f3ff;
+            border: 1px solid #e9d5ff;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+        .badge a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+
+        .header-nav { display: flex; gap: 1.5rem; align-items: center; }
+        .header-nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .header-nav a:hover { color: var(--accent-indigo); }
+        .header-nav a.active { color: var(--accent-indigo); font-weight: 600; }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            padding: 0.25rem;
         }
 
-        .header-brand h1 { font-size: 1.25rem; font-weight: 700; color: var(--gray-900); }
-        .header-brand span { font-size: 0.75rem; color: var(--gray-500); background: var(--gray-100); padding: 0.25rem 0.5rem; border-radius: 4px; }
-
-        .header-nav { display: flex; gap: 1.5rem; }
-        .header-nav a { color: var(--gray-600); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
-        .header-nav a:hover, .header-nav a.active { color: var(--primary); }
-
-        /* Hero */
+        /* ============================================================
+           HERO
+           ============================================================ */
         .hero {
             margin-top: 64px;
-            background: linear-gradient(160deg, #1e1b4b 0%, #3730a3 40%, #7c3aed 100%);
-            padding: 4rem 2rem;
-            text-align: center;
-            color: white;
+            background: linear-gradient(160deg, #0a0520 0%, #1a1145 40%, #251a6a 70%, #1e1b4b 100%);
+            padding: 5rem 2rem 4.5rem;
             position: relative;
             overflow: hidden;
         }
@@ -78,59 +104,462 @@
         .hero-orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
+            filter: blur(60px);
             pointer-events: none;
             will-change: transform;
         }
 
         .hero-orb-1 {
-            width: 400px; height: 400px;
-            background: rgba(124, 58, 237, 0.4);
-            top: -20%; left: -5%;
-            animation: assess-orb-1 12s ease-in-out infinite;
+            width: 500px; height: 500px;
+            background: rgba(99, 102, 241, 0.55);
+            top: -15%; left: -5%;
+            animation: float-1 14s ease-in-out infinite;
         }
 
         .hero-orb-2 {
-            width: 350px; height: 350px;
-            background: rgba(59, 130, 246, 0.3);
-            top: 10%; right: -10%;
-            animation: assess-orb-2 15s ease-in-out infinite;
+            width: 400px; height: 400px;
+            background: rgba(139, 92, 246, 0.35);
+            top: 20%; right: -10%;
+            animation: float-2 18s ease-in-out infinite;
         }
 
         .hero-orb-3 {
-            width: 250px; height: 250px;
+            width: 300px; height: 300px;
             background: rgba(236, 72, 153, 0.2);
-            bottom: -15%; left: 40%;
-            animation: assess-orb-3 10s ease-in-out infinite;
+            bottom: -10%; left: 30%;
+            animation: float-3 11s ease-in-out infinite;
         }
 
-        @keyframes assess-orb-1 {
+        @keyframes float-1 {
             0%, 100% { transform: translate(0, 0) scale(1); }
             50% { transform: translate(40px, 30px) scale(1.1); }
         }
-
-        @keyframes assess-orb-2 {
+        @keyframes float-2 {
             0%, 100% { transform: translate(0, 0) scale(1); }
             33% { transform: translate(-40px, 20px) scale(1.05); }
             66% { transform: translate(20px, -30px) scale(0.95); }
         }
-
-        @keyframes assess-orb-3 {
+        @keyframes float-3 {
             0%, 100% { transform: translate(0, 0); }
             50% { transform: translate(-30px, -30px); }
         }
 
-        .hero h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.75rem; position: relative; z-index: 1; }
-        .hero p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto 0.5rem; position: relative; z-index: 1; }
-        .hero .subtitle { font-size: 0.875rem; opacity: 0.7; position: relative; z-index: 1; }
+        .hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
 
-        /* Progress Bar */
+        .hero-text { max-width: 560px; }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 0.35rem 0.85rem;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.85);
+            letter-spacing: 0.03em;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero h1 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, #a78bfa, #c4b5fd, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.7;
+            max-width: 520px;
+        }
+
+        /* Glass stats card */
+        .hero-card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            padding: 2rem;
+            min-width: 280px;
+            text-align: center;
+        }
+
+        .hero-card-badge {
+            display: inline-block;
+            background: rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            color: #c4b5fd;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.25rem 0.65rem;
+            border-radius: 999px;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-card-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-card-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .hero-card-stat strong {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        .hero-card-stat span {
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* ============================================================
+           SHARED SECTION STYLES
+           ============================================================ */
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Glass card base */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 4px 24px rgba(0, 0, 0, 0.03);
+            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.6);
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 12px 40px rgba(99, 102, 241, 0.08);
+        }
+
+        /* Scroll animation */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================================
+           HOW IT WORKS (3 cards)
+           ============================================================ */
+        .how-section {
+            padding: 5rem 2rem;
+            background: var(--bg-secondary);
+        }
+
+        .how-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .how-card {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .how-card .how-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.25rem;
+        }
+
+        .how-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .how-card p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .how-step-number {
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-indigo);
+            margin-bottom: 0.75rem;
+        }
+
+        /* ============================================================
+           DEVELOPMENTAL LEVELS (moved from readiness)
+           ============================================================ */
+        .levels-section {
+            padding: 5rem 2rem;
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .levels-section::before {
+            content: '';
+            position: absolute;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.06) 0%, transparent 70%);
+            top: -10%; right: -5%;
+            pointer-events: none;
+            animation: aurora-pulse 12s ease-in-out infinite;
+        }
+
+        .levels-section::after {
+            content: '';
+            position: absolute;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 0%, transparent 70%);
+            bottom: -15%; left: -3%;
+            pointer-events: none;
+            animation: aurora-pulse 15s ease-in-out infinite reverse;
+        }
+
+        @keyframes aurora-pulse {
+            0%, 100% { transform: scale(1); opacity: 0.08; }
+            50% { transform: scale(1.15); opacity: 0.12; }
+        }
+
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .level-card {
+            padding: 1.75rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .level-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px;
+            height: 100%;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .level-card-exploring::before { background: linear-gradient(180deg, #f59e0b, #fbbf24); }
+        .level-card-building::before { background: linear-gradient(180deg, #6366f1, #818cf8); }
+        .level-card-advancing::before { background: linear-gradient(180deg, #10b981, #34d399); }
+        .level-card-leading::before { background: linear-gradient(180deg, #8b5cf6, #a78bfa); }
+
+        .level-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.375rem;
+        }
+
+        .level-score {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            margin-bottom: 0.75rem;
+        }
+
+        .score-exploring { background: #fffbeb; color: #b45309; }
+        .score-building { background: #eef2ff; color: #4338ca; }
+        .score-advancing { background: #ecfdf5; color: #047857; }
+        .score-leading { background: #f5f3ff; color: #6d28d9; }
+
+        .level-card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+           PILLARS PREVIEW (brief, before assessment)
+           ============================================================ */
+        .pillars-section {
+            padding: 5rem 2rem;
+            background: var(--bg-secondary);
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.25rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .pillar-preview {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .pillar-preview .pillar-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+
+        .pillar-preview h4 {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.375rem;
+        }
+
+        .pillar-preview p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .start-cta {
+            text-align: center;
+        }
+
+        .btn-start {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--accent-indigo), var(--accent-violet));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.25);
+        }
+
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.35);
+        }
+
+        .start-cta .start-subtext {
+            margin-top: 0.75rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .start-cta .start-subtext a {
+            color: var(--accent-indigo);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        /* ============================================================
+           ASSESSMENT TOOL
+           ============================================================ */
+        .assessment-wrapper {
+            display: none;
+            background: var(--bg-secondary);
+            padding-bottom: 4rem;
+        }
+
+        .assessment-wrapper.active { display: block; }
+
+        /* Progress bar */
         .progress-container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 1.5rem 2rem;
-            background: white;
-            border-bottom: 1px solid var(--gray-200);
+            padding: 1.25rem 2rem;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
             position: sticky;
             top: 64px;
             z-index: 100;
@@ -145,23 +574,23 @@
         .progress-track {
             flex: 1;
             height: 8px;
-            background: var(--gray-200);
+            background: rgba(99, 102, 241, 0.08);
             border-radius: 4px;
             overflow: hidden;
         }
 
         .progress-fill {
             height: 100%;
-            background: var(--primary);
+            background: linear-gradient(90deg, var(--accent-indigo), var(--accent-violet));
             border-radius: 4px;
-            transition: width 0.4s ease;
+            transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             width: 0%;
         }
 
         .progress-text {
             font-size: 0.75rem;
-            color: var(--gray-500);
-            font-weight: 600;
+            color: var(--accent-indigo);
+            font-weight: 700;
             white-space: nowrap;
         }
 
@@ -173,36 +602,42 @@
 
         .step-indicator {
             font-size: 0.65rem;
-            color: var(--gray-400);
+            color: var(--text-muted);
             font-weight: 500;
             text-align: center;
             cursor: pointer;
-            transition: color 0.2s;
+            transition: all 0.2s;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
         }
 
-        .step-indicator.active { color: var(--primary); font-weight: 700; }
+        .step-indicator:hover { color: var(--accent-indigo); }
+        .step-indicator.active { color: var(--accent-indigo); font-weight: 700; background: rgba(99, 102, 241, 0.06); }
         .step-indicator.completed { color: var(--success); }
 
-        /* Main Content */
+        /* Main content */
         .main-content {
             max-width: 800px;
             margin: 2rem auto;
             padding: 0 2rem;
         }
 
-        /* Section */
+        /* Section cards */
         .assessment-section {
-            background: white;
-            border-radius: 12px;
-            border: 1px solid var(--gray-200);
-            padding: 2rem;
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 20px;
+            padding: 2.25rem;
             margin-bottom: 1.5rem;
             display: none;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 4px 24px rgba(0, 0, 0, 0.03);
         }
 
         .assessment-section.active { display: block; }
 
-        .section-header {
+        .section-icon-row {
             display: flex;
             align-items: center;
             gap: 0.75rem;
@@ -210,47 +645,53 @@
         }
 
         .section-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.25rem;
         }
 
-        .section-header h2 { font-size: 1.25rem; font-weight: 700; color: var(--gray-900); }
+        .section-icon-row h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            background: none;
+            -webkit-text-fill-color: unset;
+        }
 
         .section-description {
             font-size: 0.875rem;
-            color: var(--gray-500);
+            color: var(--text-muted);
             margin-bottom: 2rem;
-            line-height: 1.6;
+            line-height: 1.65;
         }
 
         /* Questions */
         .question {
             margin-bottom: 2rem;
             padding-bottom: 2rem;
-            border-bottom: 1px solid var(--gray-100);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.06);
         }
 
         .question:last-of-type { border-bottom: none; margin-bottom: 1rem; }
 
         .question-number {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: var(--gray-400);
-            font-weight: 600;
+            color: var(--accent-indigo);
+            font-weight: 700;
             margin-bottom: 0.5rem;
         }
 
         .question-text {
             font-size: 1rem;
             font-weight: 600;
-            color: var(--gray-800);
+            color: var(--text-primary);
             margin-bottom: 1rem;
+            line-height: 1.5;
         }
 
         .options { display: flex; flex-direction: column; gap: 0.5rem; }
@@ -260,36 +701,43 @@
             align-items: flex-start;
             gap: 0.75rem;
             padding: 0.875rem 1rem;
-            border: 2px solid var(--gray-200);
-            border-radius: 10px;
+            border: 1.5px solid var(--border-subtle);
+            border-radius: 12px;
             cursor: pointer;
-            transition: all 0.2s;
-            background: white;
+            transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
         }
 
-        .option:hover { border-color: var(--primary); background: var(--primary-light); }
+        .option:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            background: rgba(255, 255, 255, 0.7);
+            transform: translateX(4px);
+        }
 
         .option.selected {
-            border-color: var(--primary);
-            background: var(--primary-light);
+            border-color: var(--accent-indigo);
+            background: rgba(99, 102, 241, 0.06);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.08);
         }
 
         .option-radio {
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            border: 2px solid var(--gray-300);
+            border: 2px solid rgba(99, 102, 241, 0.2);
             flex-shrink: 0;
             margin-top: 1px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s;
+            transition: all 0.25s;
         }
 
         .option.selected .option-radio {
-            border-color: var(--primary);
-            background: var(--primary);
+            border-color: var(--accent-indigo);
+            background: var(--accent-indigo);
         }
 
         .option.selected .option-radio::after {
@@ -301,8 +749,8 @@
         }
 
         .option-content { flex: 1; }
-        .option-label { font-size: 0.875rem; font-weight: 500; color: var(--gray-700); }
-        .option-desc { font-size: 0.75rem; color: var(--gray-500); margin-top: 0.125rem; }
+        .option-label { font-size: 0.875rem; font-weight: 600; color: var(--text-primary); }
+        .option-desc { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.125rem; }
 
         /* Navigation */
         .nav-buttons {
@@ -311,75 +759,111 @@
             align-items: center;
             margin-top: 1.5rem;
             padding-top: 1.5rem;
-            border-top: 1px solid var(--gray-200);
+            border-top: 1px solid rgba(99, 102, 241, 0.06);
         }
 
         .btn {
             padding: 0.75rem 1.5rem;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 0.875rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             border: none;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            text-decoration: none;
         }
 
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-primary:hover { background: var(--primary-dark); }
-        .btn-secondary { background: var(--gray-100); color: var(--gray-600); border: 1px solid var(--gray-200); }
-        .btn-secondary:hover { background: var(--gray-200); }
-        .btn-success { background: var(--success); color: white; font-size: 1rem; padding: 1rem 2rem; }
-        .btn-success:hover { background: #059669; }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-indigo), var(--accent-violet));
+            color: white;
+            box-shadow: 0 2px 12px rgba(99, 102, 241, 0.2);
+        }
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3); }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-subtle);
+        }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.85); border-color: var(--border-hover); }
+
+        .btn-success {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+            font-size: 1rem;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 12px rgba(16, 185, 129, 0.2);
+        }
+        .btn-success:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3); }
         .btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-        /* Results */
+        /* ============================================================
+           RESULTS
+           ============================================================ */
         .results-container { display: none; }
         .results-container.active { display: block; }
 
         .results-header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
 
-        .results-header h2 { font-size: 1.75rem; font-weight: 800; color: var(--gray-900); margin-bottom: 0.5rem; }
-        .results-header p { color: var(--gray-500); font-size: 0.95rem; }
+        .results-header h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .results-header p { color: var(--text-secondary); font-size: 1rem; }
 
         .overall-score-card {
-            background: white;
-            border-radius: 16px;
-            border: 1px solid var(--gray-200);
-            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 20px;
+            padding: 2.75rem;
             text-align: center;
             margin-bottom: 2rem;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 4px 24px rgba(0, 0, 0, 0.03);
         }
 
         .overall-score-label {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: var(--gray-500);
-            font-weight: 600;
+            color: var(--text-muted);
+            font-weight: 700;
             margin-bottom: 0.75rem;
         }
 
         .overall-score-number {
             font-size: 5rem;
-            font-weight: 800;
+            font-weight: 900;
             line-height: 1;
             margin-bottom: 0.25rem;
+            letter-spacing: -0.03em;
         }
 
-        .overall-score-max { font-size: 1.1rem; color: var(--gray-400); margin-bottom: 0.75rem; }
+        .overall-score-max { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 0.75rem; }
 
         .overall-journey-label {
             display: inline-block;
-            padding: 0.375rem 1rem;
+            padding: 0.4rem 1.25rem;
             border-radius: 999px;
             font-size: 0.8rem;
-            font-weight: 600;
+            font-weight: 700;
+            letter-spacing: 0.02em;
         }
 
         .pillar-results {
@@ -390,52 +874,77 @@
         }
 
         .pillar-result {
-            background: white;
-            border: 1px solid var(--gray-200);
-            border-radius: 12px;
-            padding: 1.25rem;
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 14px;
+            padding: 1.5rem 1rem;
             text-align: center;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            transition: all 0.3s;
         }
 
-        .pillar-result-score { font-size: 2rem; font-weight: 800; }
-        .pillar-result-max { font-size: 0.7rem; color: var(--gray-400); margin-bottom: 0.5rem; }
-        .pillar-result-name { font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); }
+        .pillar-result:hover {
+            background: rgba(255, 255, 255, 0.65);
+            transform: translateY(-3px);
+        }
 
-        .pillar-result-bar { width: 100%; height: 6px; background: var(--gray-200); border-radius: 3px; margin-top: 0.75rem; overflow: hidden; }
+        .pillar-result-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.75rem;
+        }
+
+        .pillar-result-score { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
+        .pillar-result-max { font-size: 0.7rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+        .pillar-result-name { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-secondary); }
+
+        .pillar-result-bar { width: 100%; height: 6px; background: rgba(99, 102, 241, 0.08); border-radius: 3px; margin-top: 0.75rem; overflow: hidden; }
         .pillar-result-bar-fill { height: 100%; border-radius: 3px; }
 
         .recommendations {
-            background: white;
-            border-radius: 12px;
-            border: 1px solid var(--gray-200);
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
             padding: 2rem;
             margin-bottom: 2rem;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
         }
 
-        .recommendations h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; }
+        .recommendations h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            color: var(--text-primary);
+        }
 
         .rec-item {
             display: flex;
             gap: 1rem;
             padding: 1rem 0;
-            border-bottom: 1px solid var(--gray-100);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.06);
         }
-
         .rec-item:last-child { border-bottom: none; }
 
         .rec-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
             flex-shrink: 0;
         }
 
-        .rec-content h4 { font-size: 0.875rem; font-weight: 600; color: var(--gray-800); margin-bottom: 0.125rem; }
-        .rec-content p { font-size: 0.8rem; color: var(--gray-500); }
+        .rec-content h4 { font-size: 0.875rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem; }
+        .rec-content p { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.55; }
 
         .results-actions {
             display: flex;
@@ -444,25 +953,144 @@
             flex-wrap: wrap;
         }
 
-        /* Responsive */
+        /* Level reference in results */
+        .results-levels-ref {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .results-level-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.3rem 0.75rem;
+            border-radius: 999px;
+        }
+
+        .results-level-chip.current {
+            box-shadow: 0 0 0 2px currentColor;
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .footer {
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-subtle);
+            padding: 2rem;
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-brand {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-nav a {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-nav a:hover { color: var(--accent-indigo); }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 1024px) {
+            .hero-inner { grid-template-columns: 1fr; }
+            .hero-card { max-width: 360px; margin: 0 auto; }
+            .hero-text { max-width: 100%; text-align: center; margin: 0 auto; }
+            .hero-desc { margin: 0 auto; }
+            .hero-badge { margin: 0 auto 1.25rem; }
+            .pillars-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
         @media (max-width: 768px) {
-            .hero h1 { font-size: 1.75rem; }
+            .header { padding: 1rem; }
+            .header-nav {
+                display: none;
+                position: absolute;
+                top: 64px; left: 0; right: 0;
+                background: rgba(255, 255, 255, 0.96);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                padding: 1rem 2rem;
+                flex-direction: column;
+                gap: 0.75rem;
+                border-bottom: 1px solid var(--border-subtle);
+            }
+            .header-nav.open { display: flex; }
+            .mobile-menu-btn { display: block; }
+
+            .hero { padding: 3.5rem 1.5rem 3rem; }
+            .hero h1 { font-size: 2rem; }
+            .hero-desc { font-size: 0.95rem; }
+
+            .how-grid { grid-template-columns: 1fr; gap: 1rem; }
+
+            .levels-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+            .levels-section::before, .levels-section::after { display: none; }
+
+            .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+
             .pillar-results { grid-template-columns: repeat(2, 1fr); }
             .step-indicators { display: none; }
+
+            .section-header h2 {
+                font-size: 1.5rem;
+                -webkit-text-fill-color: unset;
+                background: none;
+                color: #4f46e5;
+            }
+
+            .results-header h2 {
+                font-size: 1.5rem;
+                -webkit-text-fill-color: unset;
+                background: none;
+                color: #4f46e5;
+            }
+
+            .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
         }
 
         @media (max-width: 480px) {
+            .hero h1 { font-size: 1.75rem; }
+            .levels-grid { grid-template-columns: 1fr; }
+            .pillars-grid { grid-template-columns: 1fr; }
             .pillar-results { grid-template-columns: 1fr 1fr; }
+            .hero-card-stats { grid-template-columns: 1fr; gap: 0.5rem; }
+            .results-actions { flex-direction: column; align-items: stretch; }
+            .results-actions .btn { justify-content: center; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- HEADER -->
     <header class="header">
         <div class="header-brand">
-            <h1>AIREX</h1>
-            <span>Powered by <a href="https://www.utep.edu/aaii/" target="_blank" rel="noopener">AAII</a> + <a href="https://cahsi.utep.edu/" target="_blank" rel="noopener">CAHSI</a></span>
+            <h1><a href="/">AIREX</a></h1>
+            <span class="badge">Powered by <a href="https://www.utep.edu/aaii/" target="_blank" rel="noopener">AAII</a> + <a href="https://cahsi.utep.edu/" target="_blank" rel="noopener">CAHSI</a></span>
         </div>
+        <button class="mobile-menu-btn" onclick="document.querySelector('.header-nav').classList.toggle('open')" aria-label="Toggle navigation">&#9776;</button>
         <nav class="header-nav">
             <a href="/">Home</a>
             <a href="/readiness">AI Readiness</a>
@@ -473,66 +1101,236 @@
         </nav>
     </header>
 
-    <!-- Hero -->
+    <!-- HERO -->
     <section class="hero">
         <div class="hero-orb hero-orb-1"></div>
         <div class="hero-orb hero-orb-2"></div>
         <div class="hero-orb hero-orb-3"></div>
-        <h1>AI Readiness Self-Assessment</h1>
-        <p>Evaluate your institution's AI readiness across five pillars. This anonymous assessment takes about 10 minutes and provides a personalized readiness profile with recommendations.</p>
-        <div class="subtitle">25 questions across 5 pillars &middot; <a href="/readiness" style="color: rgba(255,255,255,0.9); text-decoration: underline;">Learn more about the AI readiness framework</a></div>
+        <div class="hero-inner">
+            <div class="hero-text">
+                <div class="hero-badge">Self-Assessment &middot; 5 Pillars &middot; Personalized Profile</div>
+                <h1>Assess your institution's <span class="highlight">AI readiness</span></h1>
+                <p class="hero-desc">
+                    Answer 25 questions across five pillars to get a clear picture of where your institution stands and where to focus next. The assessment is anonymous and takes about 10 minutes.
+                </p>
+            </div>
+            <div class="hero-card">
+                <div class="hero-card-badge">Self-Assessment</div>
+                <h3>What you'll get</h3>
+                <div class="hero-card-divider"></div>
+                <div class="hero-card-stats">
+                    <div class="hero-card-stat">
+                        <strong>25</strong>
+                        <span>Questions</span>
+                    </div>
+                    <div class="hero-card-stat">
+                        <strong>5</strong>
+                        <span>Pillar Scores</span>
+                    </div>
+                    <div class="hero-card-stat">
+                        <strong>~10</strong>
+                        <span>Minutes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Progress -->
-    <div class="progress-container" id="progressContainer">
-        <div class="progress-bar-wrapper">
-            <div class="progress-track">
-                <div class="progress-fill" id="progressFill"></div>
+    <!-- HOW IT WORKS -->
+    <section class="how-section" id="howItWorks">
+        <div class="section-inner">
+            <div class="section-header fade-up">
+                <h2>How it works</h2>
+                <p>A straightforward process that gives you an actionable readiness profile.</p>
             </div>
-            <div class="progress-text" id="progressText">0 / 25</div>
+            <div class="how-grid">
+                <div class="how-card glass-card fade-up">
+                    <div class="how-step-number">Step 1</div>
+                    <div class="how-icon" style="background: #e0e7ff;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="hw1" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#4338ca"/><stop offset="1" stop-color="#6366f1"/></linearGradient></defs><rect x="4" y="5" width="16" height="14" rx="3" fill="url(#hw1)" opacity="0.3"/><rect x="7" y="9" width="10" height="2" rx="1" fill="url(#hw1)"/><rect x="7" y="13" width="7" height="2" rx="1" fill="url(#hw1)"/></svg>
+                    </div>
+                    <h3>Answer 25 questions</h3>
+                    <p>Five questions per pillar, each with five response levels. Choose the option that best describes where your institution is right now.</p>
+                </div>
+                <div class="how-card glass-card fade-up" style="transition-delay: 0.1s">
+                    <div class="how-step-number">Step 2</div>
+                    <div class="how-icon" style="background: #ede9fe;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="hw2" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#7c3aed"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs><circle cx="12" cy="12" r="9" fill="url(#hw2)" opacity="0.2"/><path d="M12 6v6l4 2" stroke="url(#hw2)" stroke-width="2.5" stroke-linecap="round"/></svg>
+                    </div>
+                    <h3>Get your readiness profile</h3>
+                    <p>See your overall score and a breakdown across all five pillars, with a developmental level that shows where you are on the journey.</p>
+                </div>
+                <div class="how-card glass-card fade-up" style="transition-delay: 0.2s">
+                    <div class="how-step-number">Step 3</div>
+                    <div class="how-icon" style="background: #ecfdf5;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="hw3" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#059669"/><stop offset="1" stop-color="#10b981"/></linearGradient></defs><path d="M5 12l5 5L19 7" stroke="url(#hw3)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="10" stroke="url(#hw3)" stroke-width="1.5" opacity="0.25"/></svg>
+                    </div>
+                    <h3>See recommended next steps</h3>
+                    <p>Get tailored recommendations based on your weakest areas, with links to find peer institutions and explore the full framework.</p>
+                </div>
+            </div>
         </div>
-        <div class="step-indicators">
-            <div class="step-indicator active" data-step="0">Teaching & Learning</div>
-            <div class="step-indicator" data-step="1">Policy & Governance</div>
-            <div class="step-indicator" data-step="2">Ethics & Equity</div>
-            <div class="step-indicator" data-step="3">Research & Innovation</div>
-            <div class="step-indicator" data-step="4">Infrastructure</div>
+    </section>
+
+    <!-- DEVELOPMENTAL LEVELS (moved from readiness page) -->
+    <section class="levels-section" id="levels">
+        <div class="section-inner">
+            <div class="section-header fade-up">
+                <h2>Understanding your results</h2>
+                <p>Your responses map to one of four developmental levels. These levels describe where an institution is in the process, from early conversations to deep integration. They reflect progress, not performance.</p>
+            </div>
+            <div class="levels-grid">
+                <div class="level-card glass-card level-card-exploring fade-up">
+                    <h4>Exploring</h4>
+                    <span class="level-score score-exploring">1.0 &ndash; 2.0</span>
+                    <p>Aware of AI's potential. Early conversations are happening. No formal strategy yet, but curiosity and interest are growing.</p>
+                </div>
+                <div class="level-card glass-card level-card-building fade-up" style="transition-delay: 0.1s">
+                    <h4>Building</h4>
+                    <span class="level-score score-building">2.1 &ndash; 3.0</span>
+                    <p>Pilot initiatives underway. Policies are being drafted. Some faculty are adopting AI tools. A foundation is forming.</p>
+                </div>
+                <div class="level-card glass-card level-card-advancing fade-up" style="transition-delay: 0.15s">
+                    <h4>Advancing</h4>
+                    <span class="level-score score-advancing">3.1 &ndash; 4.0</span>
+                    <p>Coordinated AI strategy in place. Cross-departmental adoption. Dedicated resources and growing institutional support.</p>
+                </div>
+                <div class="level-card glass-card level-card-leading fade-up" style="transition-delay: 0.2s">
+                    <h4>Leading</h4>
+                    <span class="level-score score-leading">4.1 &ndash; 5.0</span>
+                    <p>AI is deeply embedded in institutional operations. Contributing to the broader field. Mentoring peer institutions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PILLARS PREVIEW + START CTA -->
+    <section class="pillars-section" id="pillarsPreview">
+        <div class="section-inner">
+            <div class="section-header fade-up">
+                <h2>What you'll be assessed on</h2>
+                <p>Five pillars that cover the core areas where AI touches institutional life.</p>
+            </div>
+            <div class="pillars-grid">
+                <div class="pillar-preview glass-card fade-up">
+                    <div class="pillar-icon" style="background: #e0e7ff;">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="pp1" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#4338ca"/><stop offset="1" stop-color="#6366f1"/></linearGradient></defs><rect x="5" y="4" width="14" height="12" rx="3" fill="url(#pp1)" opacity="0.35" transform="rotate(-6 12 10)"/><rect x="5" y="8" width="14" height="12" rx="3" fill="url(#pp1)"/></svg>
+                    </div>
+                    <h4>Teaching &amp; Learning</h4>
+                    <p>AI in curriculum, faculty development, and student preparation</p>
+                </div>
+                <div class="pillar-preview glass-card fade-up" style="transition-delay: 0.05s">
+                    <div class="pillar-icon" style="background: #ede9fe;">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="pp2" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#6d28d9"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs><path d="M12 2.5L21 7.5V16.5L12 21.5L3 16.5V7.5L12 2.5Z" fill="url(#pp2)"/></svg>
+                    </div>
+                    <h4>Policy &amp; Governance</h4>
+                    <p>Strategy, policies, leadership, and procurement</p>
+                </div>
+                <div class="pillar-preview glass-card fade-up" style="transition-delay: 0.1s">
+                    <div class="pillar-icon" style="background: #ecfdf5;">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="pp3" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#059669"/><stop offset="1" stop-color="#10b981"/></linearGradient></defs><circle cx="12" cy="12" r="10" fill="url(#pp3)" opacity="0.2"/><path d="M7 12a5 5 0 0 1 10 0" fill="url(#pp3)" opacity="0.6"/><circle cx="12" cy="12" r="3" fill="url(#pp3)"/></svg>
+                    </div>
+                    <h4>Ethics &amp; Equity</h4>
+                    <p>Fairness, bias, transparency, and equitable access</p>
+                </div>
+                <div class="pillar-preview glass-card fade-up" style="transition-delay: 0.15s">
+                    <div class="pillar-icon" style="background: #fffbeb;">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="pp4" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#d97706"/><stop offset="1" stop-color="#f59e0b"/></linearGradient></defs><path d="M12 3L15 10H21L16 14.5L18 22L12 17.5L6 22L8 14.5L3 10H9L12 3Z" fill="url(#pp4)" opacity="0.3"/><path d="M12 7L14 12H18L14.5 15L16 19L12 16L8 19L9.5 15L6 12H10L12 7Z" fill="url(#pp4)"/></svg>
+                    </div>
+                    <h4>Research &amp; Innovation</h4>
+                    <p>AI research, partnerships, and community engagement</p>
+                </div>
+                <div class="pillar-preview glass-card fade-up" style="transition-delay: 0.2s">
+                    <div class="pillar-icon" style="background: #fef2f2;">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="pp5" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#dc2626"/><stop offset="1" stop-color="#ef4444"/></linearGradient></defs><rect x="3" y="6" width="18" height="8" rx="2" fill="url(#pp5)" opacity="0.3"/><rect x="3" y="10" width="18" height="8" rx="2" fill="url(#pp5)"/><rect x="6" y="14" width="4" height="2" rx="0.5" fill="white" opacity="0.7"/><rect x="12" y="14" width="4" height="2" rx="0.5" fill="white" opacity="0.5"/></svg>
+                    </div>
+                    <h4>Infrastructure</h4>
+                    <p>Computing, data, connectivity, and technical capacity</p>
+                </div>
+            </div>
+            <div class="start-cta fade-up">
+                <button class="btn-start" onclick="startAssessment()">
+                    Begin Assessment
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
+                <p class="start-subtext">Want to learn more first? <a href="/readiness">Explore the AI Readiness framework</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ASSESSMENT TOOL (hidden until "Begin Assessment") -->
+    <div class="assessment-wrapper" id="assessmentWrapper">
+        <!-- Progress -->
+        <div class="progress-container" id="progressContainer">
+            <div class="progress-bar-wrapper">
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text" id="progressText">0 / 25</div>
+            </div>
+            <div class="step-indicators">
+                <div class="step-indicator active" data-step="0">Teaching &amp; Learning</div>
+                <div class="step-indicator" data-step="1">Policy &amp; Governance</div>
+                <div class="step-indicator" data-step="2">Ethics &amp; Equity</div>
+                <div class="step-indicator" data-step="3">Research &amp; Innovation</div>
+                <div class="step-indicator" data-step="4">Infrastructure</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div id="assessmentSections"></div>
+
+            <!-- Results (hidden until complete) -->
+            <div class="results-container" id="resultsContainer">
+                <div class="results-header">
+                    <h2>Your AI Readiness Profile</h2>
+                    <p>Here is where your institution stands on its AI integration journey</p>
+                </div>
+
+                <div class="overall-score-card">
+                    <div class="overall-score-label">Overall AI Readiness</div>
+                    <div class="overall-score-number" id="overallScore">-</div>
+                    <div class="overall-score-max">out of 5</div>
+                    <div class="overall-journey-label" id="journeyLabel">-</div>
+                </div>
+
+                <div class="results-levels-ref" id="resultsLevelsRef">
+                    <span class="results-level-chip" style="background: #fffbeb; color: #b45309;">Exploring 1.0-2.0</span>
+                    <span class="results-level-chip" style="background: #eef2ff; color: #4338ca;">Building 2.1-3.0</span>
+                    <span class="results-level-chip" style="background: #ecfdf5; color: #047857;">Advancing 3.1-4.0</span>
+                    <span class="results-level-chip" style="background: #f5f3ff; color: #6d28d9;">Leading 4.1-5.0</span>
+                </div>
+
+                <div class="pillar-results" id="pillarResults"></div>
+
+                <div class="recommendations" id="recommendations">
+                    <h3>Recommended Next Steps</h3>
+                    <div id="recList"></div>
+                </div>
+
+                <div class="results-actions">
+                    <a href="/atlas" class="btn btn-primary">Find peer institutions on the Atlas</a>
+                    <a href="/readiness" class="btn btn-secondary">Explore the AI Readiness Framework</a>
+                    <button class="btn btn-secondary" onclick="resetAssessment()">Retake Assessment</button>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <!-- Assessment Sections will be rendered by JS -->
-        <div id="assessmentSections"></div>
-
-        <!-- Results (hidden until complete) -->
-        <div class="results-container" id="resultsContainer">
-            <div class="results-header">
-                <h2>Your AI Readiness Profile</h2>
-                <p>Here is where your institution stands on its AI integration journey</p>
-            </div>
-
-            <div class="overall-score-card">
-                <div class="overall-score-label">Overall AI Readiness</div>
-                <div class="overall-score-number" id="overallScore">-</div>
-                <div class="overall-score-max">out of 5</div>
-                <div class="overall-journey-label" id="journeyLabel">-</div>
-            </div>
-
-            <div class="pillar-results" id="pillarResults"></div>
-
-            <div class="recommendations" id="recommendations">
-                <h3>Recommended Next Steps</h3>
-                <div id="recList"></div>
-            </div>
-
-            <div class="results-actions">
-                <a href="/atlas" class="btn btn-primary">Find institutions at your level on the Atlas</a>
-                <a href="/readiness" class="btn btn-secondary">Explore the AI Readiness Framework</a>
-                <button class="btn btn-secondary" onclick="resetAssessment()">Retake Assessment</button>
-            </div>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">AIREX &middot; AI Readiness Explorer</div>
+            <nav class="footer-nav">
+                <a href="/">Home</a>
+                <a href="/readiness">AI Readiness</a>
+                <a href="/atlas">Atlas</a>
+                <a href="/repository">Repository</a>
+                <a href="/news">News</a>
+            </nav>
         </div>
-    </div>
+    </footer>
 
     <script>
         // ============================================================
@@ -542,8 +1340,9 @@
             {
                 id: 'teaching',
                 name: 'Teaching & Learning',
-                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>',
-                color: '#3b82f6',
+                icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="st1" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#4338ca"/><stop offset="1" stop-color="#6366f1"/></linearGradient></defs><rect x="5" y="4" width="14" height="12" rx="3" fill="url(#st1)" opacity="0.35" transform="rotate(-6 12 10)"/><rect x="5" y="8" width="14" height="12" rx="3" fill="url(#st1)"/></svg>',
+                iconBg: '#e0e7ff',
+                color: '#4338ca',
                 description: 'How is your institution integrating AI into teaching practices, curriculum, and student learning experiences?',
                 questions: [
                     {
@@ -601,8 +1400,9 @@
             {
                 id: 'policy',
                 name: 'Policy & Governance',
-                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>',
-                color: '#8b5cf6',
+                icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="st2" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#6d28d9"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs><path d="M12 2.5L21 7.5V16.5L12 21.5L3 16.5V7.5L12 2.5Z" fill="url(#st2)"/></svg>',
+                iconBg: '#ede9fe',
+                color: '#6d28d9',
                 description: 'How is your institution governing AI use, establishing policies, and planning strategically for AI adoption?',
                 questions: [
                     {
@@ -660,8 +1460,9 @@
             {
                 id: 'ethics',
                 name: 'Ethics & Equity',
-                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"></path><path d="M3 7l3 5h6L9 7"></path><path d="M15 7l3 5h-6l3-5"></path><circle cx="12" cy="3" r="1"></circle></svg>',
-                color: '#10b981',
+                icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="st3" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#059669"/><stop offset="1" stop-color="#10b981"/></linearGradient></defs><circle cx="12" cy="12" r="10" fill="url(#st3)" opacity="0.2"/><path d="M7 12a5 5 0 0 1 10 0" fill="url(#st3)" opacity="0.6"/><circle cx="12" cy="12" r="3" fill="url(#st3)"/></svg>',
+                iconBg: '#ecfdf5',
+                color: '#059669',
                 description: 'How does your institution address fairness, bias, transparency, and equitable access in AI adoption?',
                 questions: [
                     {
@@ -719,8 +1520,9 @@
             {
                 id: 'research',
                 name: 'Research & Innovation',
-                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6"></path><path d="M10 3v7.4a2 2 0 0 1-.6 1.4L4 17.2A2 2 0 0 0 5.5 21h13a2 2 0 0 0 1.5-3.8l-5.4-5.4a2 2 0 0 1-.6-1.4V3"></path></svg>',
-                color: '#f59e0b',
+                icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="st4" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#d97706"/><stop offset="1" stop-color="#f59e0b"/></linearGradient></defs><path d="M12 3L15 10H21L16 14.5L18 22L12 17.5L6 22L8 14.5L3 10H9L12 3Z" fill="url(#st4)" opacity="0.3"/><path d="M12 7L14 12H18L14.5 15L16 19L12 16L8 19L9.5 15L6 12H10L12 7Z" fill="url(#st4)"/></svg>',
+                iconBg: '#fffbeb',
+                color: '#d97706',
                 description: 'How active is your institution in AI research, scholarly work, and innovation partnerships?',
                 questions: [
                     {
@@ -778,8 +1580,9 @@
             {
                 id: 'infrastructure',
                 name: 'Infrastructure',
-                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>',
-                color: '#ef4444',
+                icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="st5" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#dc2626"/><stop offset="1" stop-color="#ef4444"/></linearGradient></defs><rect x="3" y="6" width="18" height="8" rx="2" fill="url(#st5)" opacity="0.3"/><rect x="3" y="10" width="18" height="8" rx="2" fill="url(#st5)"/><rect x="6" y="14" width="4" height="2" rx="0.5" fill="white" opacity="0.7"/><rect x="12" y="14" width="4" height="2" rx="0.5" fill="white" opacity="0.5"/></svg>',
+                iconBg: '#fef2f2',
+                color: '#dc2626',
                 description: 'Does your institution have the computing, data, and human resources to support AI adoption?',
                 questions: [
                     {
@@ -841,6 +1644,20 @@
         let answers = {};
 
         // ============================================================
+        // Start Assessment
+        // ============================================================
+        function startAssessment() {
+            document.getElementById('assessmentWrapper').classList.add('active');
+            // Hide intro sections
+            document.getElementById('howItWorks').style.display = 'none';
+            document.getElementById('levels').style.display = 'none';
+            document.getElementById('pillarsPreview').style.display = 'none';
+            // Scroll to top of assessment
+            document.getElementById('assessmentWrapper').scrollIntoView({ behavior: 'smooth' });
+            renderSections();
+        }
+
+        // ============================================================
         // Render
         // ============================================================
         function renderSections() {
@@ -876,8 +1693,8 @@
                 });
 
                 section.innerHTML = `
-                    <div class="section-header">
-                        <div class="section-icon" style="background: ${pillar.color}15; color: ${pillar.color};">${pillar.icon}</div>
+                    <div class="section-icon-row">
+                        <div class="section-icon" style="background: ${pillar.iconBg};">${pillar.icon}</div>
                         <h2>${pillar.name}</h2>
                     </div>
                     <p class="section-description">${pillar.description}</p>
@@ -904,8 +1721,7 @@
             answers[questionIdx] = optionIdx;
             answers[`score_${questionIdx}`] = score;
 
-            // Update visual
-            const section = document.querySelector(`.assessment-section.active`);
+            const section = document.querySelector('.assessment-section.active');
             const questions = section.querySelectorAll('.question');
             const localIdx = questionIdx % 5;
             const options = questions[localIdx].querySelectorAll('.option');
@@ -922,7 +1738,7 @@
                 currentStep++;
                 document.getElementById(`section-${currentStep}`).classList.add('active');
                 updateStepIndicators();
-                window.scrollTo({ top: 200, behavior: 'smooth' });
+                window.scrollTo({ top: document.getElementById('progressContainer').offsetTop - 64, behavior: 'smooth' });
             }
         }
 
@@ -932,7 +1748,7 @@
                 currentStep--;
                 document.getElementById(`section-${currentStep}`).classList.add('active');
                 updateStepIndicators();
-                window.scrollTo({ top: 200, behavior: 'smooth' });
+                window.scrollTo({ top: document.getElementById('progressContainer').offsetTop - 64, behavior: 'smooth' });
             }
         }
 
@@ -955,7 +1771,6 @@
         // Results
         // ============================================================
         function showResults() {
-            // Calculate pillar scores
             const pillarScores = pillars.map((pillar, pIdx) => {
                 let total = 0;
                 let count = 0;
@@ -971,37 +1786,41 @@
                     id: pillar.id,
                     name: pillar.name,
                     color: pillar.color,
+                    iconBg: pillar.iconBg,
+                    icon: pillar.icon,
                     score: count > 0 ? Math.round(total / count) : 1,
                     avg: count > 0 ? (total / count).toFixed(1) : '1.0'
                 };
             });
 
-            // Overall score
             const overallAvg = pillarScores.reduce((s, p) => s + parseFloat(p.avg), 0) / pillarScores.length;
-            const overallScore = Math.round(overallAvg);
 
-            // Journey label based on average score ranges
             function getJourneyLabel(avg) {
-                if (avg >= 4.1) return { label: 'Leading (4.1–5.0)', color: '#10b981', bg: '#ecfdf5' };
-                if (avg >= 3.1) return { label: 'Advancing (3.1–4.0)', color: '#34d399', bg: '#f0fdf4' };
-                if (avg >= 2.1) return { label: 'Building (2.1–3.0)', color: '#f59e0b', bg: '#fffbeb' };
-                return { label: 'Exploring (1.0–2.0)', color: '#fb923c', bg: '#fff7ed' };
+                if (avg >= 4.1) return { label: 'Leading', range: '4.1-5.0', color: '#6d28d9', bg: '#f5f3ff' };
+                if (avg >= 3.1) return { label: 'Advancing', range: '3.1-4.0', color: '#047857', bg: '#ecfdf5' };
+                if (avg >= 2.1) return { label: 'Building', range: '2.1-3.0', color: '#4338ca', bg: '#eef2ff' };
+                return { label: 'Exploring', range: '1.0-2.0', color: '#b45309', bg: '#fffbeb' };
             }
 
             const journey = getJourneyLabel(overallAvg);
 
-            // Update overall score
             document.getElementById('overallScore').textContent = overallAvg.toFixed(1);
             document.getElementById('overallScore').style.color = journey.color;
             const journeyEl = document.getElementById('journeyLabel');
-            journeyEl.textContent = journey.label;
+            journeyEl.textContent = `${journey.label} (${journey.range})`;
             journeyEl.style.background = journey.bg;
             journeyEl.style.color = journey.color;
 
-            // Render pillar results
+            // Highlight current level in reference chips
+            const levelMap = { 'Exploring': 0, 'Building': 1, 'Advancing': 2, 'Leading': 3 };
+            document.querySelectorAll('.results-level-chip').forEach((chip, i) => {
+                chip.classList.toggle('current', i === levelMap[journey.label]);
+            });
+
             const pillarResultsEl = document.getElementById('pillarResults');
             pillarResultsEl.innerHTML = pillarScores.map(p => `
                 <div class="pillar-result">
+                    <div class="pillar-result-icon" style="background: ${p.iconBg};">${p.icon}</div>
                     <div class="pillar-result-score" style="color: ${p.color}">${p.avg}</div>
                     <div class="pillar-result-max">/ 5</div>
                     <div class="pillar-result-name">${p.name}</div>
@@ -1011,7 +1830,6 @@
                 </div>
             `).join('');
 
-            // Recommendations based on weakest pillars
             const sorted = [...pillarScores].sort((a, b) => parseFloat(a.avg) - parseFloat(b.avg));
             const recs = generateRecommendations(sorted);
             document.getElementById('recList').innerHTML = recs.map(r => `
@@ -1024,53 +1842,55 @@
                 </div>
             `).join('');
 
-            // Show results, hide assessment
             document.querySelectorAll('.assessment-section').forEach(s => s.classList.remove('active'));
             document.getElementById('progressContainer').style.display = 'none';
             document.getElementById('resultsContainer').classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({ top: document.getElementById('assessmentWrapper').offsetTop - 64, behavior: 'smooth' });
         }
 
         function generateRecommendations(sortedPillars) {
             const recs = [];
-
             const recMap = {
                 'teaching': {
-                    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>', bg: '#eff6ff',
+                    icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="rc1" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#4338ca"/><stop offset="1" stop-color="#6366f1"/></linearGradient></defs><rect x="5" y="4" width="14" height="12" rx="3" fill="url(#rc1)" opacity="0.35" transform="rotate(-6 12 10)"/><rect x="5" y="8" width="14" height="12" rx="3" fill="url(#rc1)"/></svg>',
+                    bg: '#e0e7ff',
                     title: 'Strengthen AI in Teaching & Learning',
                     desc: 'Start with faculty workshops on AI tools, develop course integration guidelines, and explore AI tutoring platforms for students.'
                 },
                 'policy': {
-                    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>', bg: '#f5f3ff',
+                    icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="rc2" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#6d28d9"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs><path d="M12 2.5L21 7.5V16.5L12 21.5L3 16.5V7.5L12 2.5Z" fill="url(#rc2)"/></svg>',
+                    bg: '#ede9fe',
                     title: 'Build AI Governance Foundations',
                     desc: 'Form an AI task force, draft institutional AI use policies, and integrate AI into your strategic plan.'
                 },
                 'ethics': {
-                    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"></path><path d="M3 7l3 5h6L9 7"></path><path d="M15 7l3 5h-6l3-5"></path><circle cx="12" cy="3" r="1"></circle></svg>', bg: '#ecfdf5',
+                    icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="rc3" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#059669"/><stop offset="1" stop-color="#10b981"/></linearGradient></defs><circle cx="12" cy="12" r="10" fill="url(#rc3)" opacity="0.2"/><path d="M7 12a5 5 0 0 1 10 0" fill="url(#rc3)" opacity="0.6"/><circle cx="12" cy="12" r="3" fill="url(#rc3)"/></svg>',
+                    bg: '#ecfdf5',
                     title: 'Center Ethics & Equity in AI',
                     desc: 'Develop responsible AI guidelines, conduct bias reviews before deploying tools, and ensure equitable AI access for all students.'
                 },
                 'research': {
-                    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6"></path><path d="M10 3v7.4a2 2 0 0 1-.6 1.4L4 17.2A2 2 0 0 0 5.5 21h13a2 2 0 0 0 1.5-3.8l-5.4-5.4a2 2 0 0 1-.6-1.4V3"></path></svg>', bg: '#fffbeb',
+                    icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="rc4" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#d97706"/><stop offset="1" stop-color="#f59e0b"/></linearGradient></defs><path d="M12 3L15 10H21L16 14.5L18 22L12 17.5L6 22L8 14.5L3 10H9L12 3Z" fill="url(#rc4)" opacity="0.3"/><path d="M12 7L14 12H18L14.5 15L16 19L12 16L8 19L9.5 15L6 12H10L12 7Z" fill="url(#rc4)"/></svg>',
+                    bg: '#fffbeb',
                     title: 'Grow Research & Innovation',
                     desc: 'Join consortium AI initiatives, pursue collaborative grants with partner institutions, and create student AI research opportunities.'
                 },
                 'infrastructure': {
-                    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>', bg: '#fef2f2',
+                    icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="rc5" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#dc2626"/><stop offset="1" stop-color="#ef4444"/></linearGradient></defs><rect x="3" y="6" width="18" height="8" rx="2" fill="url(#rc5)" opacity="0.3"/><rect x="3" y="10" width="18" height="8" rx="2" fill="url(#rc5)"/></svg>',
+                    bg: '#fef2f2',
                     title: 'Invest in AI Infrastructure',
                     desc: 'Assess computing needs, explore cloud partnerships for GPU access, and build data governance for AI-ready analytics.'
                 }
             };
 
-            // Add recs for the two weakest pillars
             for (let i = 0; i < Math.min(2, sortedPillars.length); i++) {
                 const p = sortedPillars[i];
                 if (recMap[p.id]) recs.push(recMap[p.id]);
             }
 
-            // Always add collaboration recommendation
             recs.push({
-                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>', bg: '#f0f9ff',
+                icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="rc6" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs><circle cx="8" cy="10" r="5" fill="url(#rc6)" opacity="0.5"/><circle cx="16" cy="10" r="5" fill="url(#rc6)" opacity="0.35"/><circle cx="12" cy="16" r="5" fill="url(#rc6)" opacity="0.25"/></svg>',
+                bg: '#e0e7ff',
                 title: 'Connect with Peer Institutions',
                 desc: 'Use the Atlas to find institutions at a similar stage or with complementary strengths. Shared learning accelerates everyone\'s AI journey.'
             });
@@ -1083,6 +1903,11 @@
             currentStep = 0;
             document.getElementById('resultsContainer').classList.remove('active');
             document.getElementById('progressContainer').style.display = 'block';
+            // Show intro sections again
+            document.getElementById('howItWorks').style.display = '';
+            document.getElementById('levels').style.display = '';
+            document.getElementById('pillarsPreview').style.display = '';
+            document.getElementById('assessmentWrapper').classList.remove('active');
             renderSections();
             updateProgress();
             updateStepIndicators();
@@ -1100,8 +1925,18 @@
             });
         });
 
-        // Init
-        renderSections();
+        // ============================================================
+        // Scroll Animations (IntersectionObserver)
+        // ============================================================
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
