@@ -8,20 +8,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #060611;
-            --bg-secondary: #0a0b1e;
-            --bg-tertiary: #0f1029;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-hover: rgba(255, 255, 255, 0.06);
-            --border-subtle: rgba(255, 255, 255, 0.06);
-            --border-hover: rgba(139, 92, 246, 0.3);
-            --text-primary: #f0f0ff;
-            --text-secondary: rgba(255, 255, 255, 0.65);
-            --text-muted: rgba(255, 255, 255, 0.4);
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f7ff;
+            --bg-tertiary: #f1f0fb;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --card-hover: rgba(255, 255, 255, 0.95);
+            --border-subtle: rgba(99, 102, 241, 0.1);
+            --border-hover: rgba(139, 92, 246, 0.35);
+            --text-primary: #1e1b4b;
+            --text-secondary: #4b5563;
+            --text-muted: #6b7280;
             --accent-purple: #8b5cf6;
             --accent-indigo: #6366f1;
             --accent-violet: #7c3aed;
-            --accent-cyan: #22d3ee;
+            --accent-cyan: #06b6d4;
             --success: #10b981;
             --warning: #f59e0b;
             --danger: #ef4444;
@@ -31,7 +31,7 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary);
+            background: #ffffff;
             color: var(--text-primary);
             line-height: 1.6;
         }
@@ -40,10 +40,10 @@
            HEADER
            ============================================================ */
         .header {
-            background: rgba(6, 6, 17, 0.8);
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-subtle);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.08);
             padding: 1rem 2rem;
             display: flex;
             align-items: center;
@@ -55,13 +55,13 @@
         }
 
         .header-brand { display: flex; align-items: center; gap: 1rem; }
-        .header-brand h1 { font-size: 1.25rem; font-weight: 700; color: #ffffff; letter-spacing: -0.01em; }
+        .header-brand h1 { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); letter-spacing: -0.01em; }
         .header-brand h1 a { color: inherit; text-decoration: none; }
         .header-brand .badge {
             font-size: 0.65rem;
-            color: #c4b5fd;
-            background: rgba(139, 92, 246, 0.15);
-            border: 1px solid rgba(139, 92, 246, 0.25);
+            color: #7c3aed;
+            background: #f5f3ff;
+            border: 1px solid #e9d5ff;
             padding: 0.2rem 0.5rem;
             border-radius: 4px;
             font-weight: 600;
@@ -71,14 +71,14 @@
 
         .header-nav { display: flex; gap: 1.5rem; align-items: center; }
         .header-nav a {
-            color: rgba(255, 255, 255, 0.5);
+            color: var(--text-muted);
             text-decoration: none;
             font-size: 0.875rem;
             font-weight: 500;
             transition: color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        .header-nav a:hover { color: #ffffff; }
-        .header-nav a.active { color: #ffffff; font-weight: 600; }
+        .header-nav a:hover { color: var(--accent-indigo); }
+        .header-nav a.active { color: var(--accent-indigo); font-weight: 600; }
 
         .mobile-menu-btn {
             display: none;
@@ -86,7 +86,7 @@
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-secondary);
             padding: 0.25rem;
         }
 
@@ -238,12 +238,11 @@
         .section-header h2 {
             font-size: 2.1rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #8b5cf6, #22d3ee);
+            background: linear-gradient(135deg, #4f46e5, #7c3aed, #06b6d4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 0.75rem;
-            text-shadow: none;
         }
 
         .section-header p {
@@ -269,7 +268,7 @@
             position: absolute;
             top: -40%; right: -15%;
             width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.12), transparent 70%);
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.08), transparent 70%);
             pointer-events: none;
             animation: aurora-pulse 10s ease-in-out infinite;
         }
@@ -291,21 +290,19 @@
             display: block;
             width: 48px;
             height: 3px;
-            background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
+            background: linear-gradient(90deg, #4f46e5, #06b6d4);
             border-radius: 2px;
             margin: 0 auto 2rem;
-            box-shadow: 0 0 12px rgba(139, 92, 246, 0.4);
         }
 
         .definition h2 {
             font-size: 2rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #8b5cf6, #22d3ee);
+            background: linear-gradient(135deg, #4f46e5, #7c3aed, #06b6d4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 1.25rem;
-            filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.2));
         }
 
         .definition p {
@@ -329,7 +326,7 @@
             position: absolute;
             bottom: -30%; left: -15%;
             width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.1), transparent 70%);
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.06), transparent 70%);
             pointer-events: none;
             animation: aurora-pulse 12s ease-in-out infinite;
         }
@@ -353,7 +350,7 @@
 
         .pillar-card:hover {
             transform: translateY(-8px) scale(1.01);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(139, 92, 246, 0.1);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1), 0 8px 16px rgba(0, 0, 0, 0.04);
             border-color: var(--border-hover);
             background: var(--card-hover);
         }
@@ -422,12 +419,12 @@
             position: relative;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .level-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3), 0 0 30px rgba(139, 92, 246, 0.1);
+            box-shadow: 0 24px 48px rgba(99, 102, 241, 0.1), 0 8px 16px rgba(0, 0, 0, 0.04);
             border-color: var(--border-hover);
             background: var(--card-hover);
         }
@@ -442,10 +439,10 @@
         }
         .level-card:hover::before { height: 6px; }
 
-        .level-card.level-exploring::before { background: var(--warning); box-shadow: 0 0 12px rgba(245, 158, 11, 0.4); }
-        .level-card.level-building::before { background: var(--accent-indigo); box-shadow: 0 0 12px rgba(99, 102, 241, 0.4); }
-        .level-card.level-advancing::before { background: var(--success); box-shadow: 0 0 12px rgba(16, 185, 129, 0.4); }
-        .level-card.level-leading::before { background: var(--accent-purple); box-shadow: 0 0 12px rgba(139, 92, 246, 0.4); }
+        .level-card.level-exploring::before { background: var(--warning); }
+        .level-card.level-building::before { background: var(--accent-indigo); }
+        .level-card.level-advancing::before { background: var(--success); }
+        .level-card.level-leading::before { background: var(--accent-purple); }
 
         .level-icon {
             font-size: 2.5rem;
@@ -471,23 +468,23 @@
         }
 
         .level-exploring .level-score {
-            background: rgba(245, 158, 11, 0.15);
-            color: #fbbf24;
+            background: #fef3c7;
+            color: #92400e;
         }
 
         .level-building .level-score {
-            background: rgba(99, 102, 241, 0.15);
-            color: #818cf8;
+            background: #e0e7ff;
+            color: #3730a3;
         }
 
         .level-advancing .level-score {
-            background: rgba(16, 185, 129, 0.15);
-            color: #34d399;
+            background: #d1fae5;
+            color: #065f46;
         }
 
         .level-leading .level-score {
-            background: rgba(139, 92, 246, 0.15);
-            color: #c4b5fd;
+            background: #ede9fe;
+            color: #5b21b6;
         }
 
         .level-card p {
@@ -525,11 +522,11 @@
             max-width: 700px;
             margin: 0 auto;
             padding: 1.25rem 1.5rem;
-            background: rgba(245, 158, 11, 0.08);
-            border: 1px solid rgba(245, 158, 11, 0.2);
+            background: #fffbeb;
+            border: 1px solid #fde68a;
             border-radius: 12px;
             font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: #92400e;
             line-height: 1.7;
         }
 
@@ -539,7 +536,7 @@
         .personas-section .section-header { text-align: center; margin-bottom: 3rem; }
         .personas-section .section-header h2 {
             font-size: 2rem; font-weight: 800;
-            background: linear-gradient(135deg, #8b5cf6, #22d3ee);
+            background: linear-gradient(135deg, #4f46e5, #7c3aed, #06b6d4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -568,15 +565,14 @@
             position: absolute;
             bottom: 0; left: 0; right: 0;
             height: 3px;
-            background: linear-gradient(90deg, #8b5cf6, #22d3ee);
+            background: linear-gradient(90deg, #4f46e5, #7c3aed, #06b6d4);
             transform: scaleX(0);
             transition: transform 0.4s;
             transform-origin: left;
-            box-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
         }
         .persona-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3), 0 0 30px rgba(139, 92, 246, 0.1);
+            box-shadow: 0 24px 48px rgba(99, 102, 241, 0.1), 0 8px 16px rgba(0, 0, 0, 0.04);
             border-color: var(--border-hover);
             background: var(--card-hover);
         }
@@ -587,7 +583,7 @@
             display: flex; align-items: center; justify-content: center;
             font-size: 1.6rem;
             margin-bottom: 1.5rem;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
         }
         .persona-card h3 {
             font-size: 1.1rem; font-weight: 700;
@@ -610,7 +606,7 @@
             position: absolute;
             top: -20%; right: -10%;
             width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(34, 211, 238, 0.08), transparent 70%);
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.06), transparent 70%);
             pointer-events: none;
             animation: aurora-pulse 11s ease-in-out infinite;
         }
@@ -618,7 +614,7 @@
         .methodology-section .section-header { text-align: center; margin-bottom: 3rem; }
         .methodology-section .section-header h2 {
             font-size: 2rem; font-weight: 800;
-            background: linear-gradient(135deg, #8b5cf6, #22d3ee);
+            background: linear-gradient(135deg, #4f46e5, #7c3aed, #06b6d4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -633,10 +629,10 @@
             margin-bottom: 3rem;
         }
         .method-card {
-            background: rgba(139, 92, 246, 0.05);
+            background: linear-gradient(135deg, #faf5ff, #f0f0ff);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.12);
             border-radius: 20px;
             padding: 2rem 1.5rem;
             text-align: center;
@@ -644,20 +640,19 @@
         }
         .method-card:hover {
             transform: translateY(-6px);
-            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3), 0 0 20px rgba(139, 92, 246, 0.08);
+            box-shadow: 0 16px 32px rgba(99, 102, 241, 0.1), 0 8px 16px rgba(0, 0, 0, 0.04);
             border-color: var(--border-hover);
-            background: rgba(139, 92, 246, 0.08);
+            background: linear-gradient(135deg, #f5f3ff, #eef2ff);
         }
         .method-number {
             font-size: 2.75rem;
             font-weight: 900;
-            background: linear-gradient(135deg, #8b5cf6, #22d3ee);
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             line-height: 1;
             margin-bottom: 0.375rem;
-            filter: drop-shadow(0 0 12px rgba(139, 92, 246, 0.3));
         }
         .method-label {
             font-size: 0.7rem; font-weight: 600;
@@ -676,21 +671,18 @@
             display: grid; gap: 1.25rem;
         }
         .method-detail-item {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--border-subtle);
+            background: white;
+            border: 1px solid rgba(99, 102, 241, 0.1);
             border-left: 4px solid;
-            border-image: linear-gradient(180deg, #8b5cf6, #22d3ee) 1;
+            border-image: linear-gradient(180deg, #4f46e5, #06b6d4) 1;
             border-radius: 0 16px 16px 0;
             padding: 1.75rem 2rem;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         .method-detail-item:hover {
-            background: var(--card-hover);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 16px rgba(139, 92, 246, 0.08);
+            background: #faf5ff;
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.08);
             transform: translateX(6px);
-            border-color: var(--border-hover);
         }
         .method-detail-item h4 {
             font-size: 0.95rem; font-weight: 700;
@@ -712,7 +704,7 @@
             position: absolute;
             bottom: -30%; right: -10%;
             width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.1), transparent 70%);
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.06), transparent 70%);
             pointer-events: none;
             animation: aurora-pulse 9s ease-in-out infinite;
         }
@@ -720,7 +712,7 @@
         .results-guidance .section-header { text-align: center; margin-bottom: 3rem; }
         .results-guidance .section-header h2 {
             font-size: 2rem; font-weight: 800;
-            background: linear-gradient(135deg, #8b5cf6, #22d3ee);
+            background: linear-gradient(135deg, #4f46e5, #7c3aed, #06b6d4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -743,11 +735,11 @@
             border-radius: 16px;
             padding: 1.75rem;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
         .guidance-step:hover {
             transform: translateY(-4px) translateX(4px);
-            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3), 0 0 20px rgba(139, 92, 246, 0.08);
+            box-shadow: 0 16px 32px rgba(99, 102, 241, 0.1), 0 8px 16px rgba(0, 0, 0, 0.04);
             border-color: var(--border-hover);
             background: var(--card-hover);
         }
@@ -757,7 +749,7 @@
             display: flex; align-items: center; justify-content: center;
             font-size: 1.35rem;
             flex-shrink: 0;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
         }
         .guidance-text h4 {
             font-size: 0.95rem; font-weight: 700;
@@ -774,12 +766,10 @@
             margin: 0 auto;
             text-align: center;
             padding: 3.5rem;
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--border-subtle);
+            background: linear-gradient(135deg, #faf5ff, #f5f3ff);
+            border: 1px solid rgba(99, 102, 241, 0.1);
             border-radius: 24px;
-            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 16px 48px rgba(99, 102, 241, 0.06), 0 4px 12px rgba(0, 0, 0, 0.03);
             position: relative;
             overflow: hidden;
         }
@@ -789,8 +779,7 @@
             position: absolute;
             top: 0; left: 0; right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #8b5cf6, #6366f1, #22d3ee, #8b5cf6);
-            box-shadow: 0 0 16px rgba(139, 92, 246, 0.4);
+            background: linear-gradient(90deg, #4f46e5, #7c3aed, #06b6d4, #4f46e5);
         }
         .design-note-icon {
             font-size: 2.5rem;
@@ -832,7 +821,7 @@
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
             background-size: 32px 32px;
             pointer-events: none;
             opacity: 0.5;
@@ -916,8 +905,8 @@
            ============================================================ */
         .footer {
             padding: 3rem 2rem;
-            background: #030308;
-            color: rgba(255, 255, 255, 0.4);
+            background: #1e1b4b;
+            color: rgba(255, 255, 255, 0.5);
         }
 
         .footer-inner {
@@ -949,7 +938,7 @@
             transition: color 0.3s;
         }
 
-        .footer-links a:hover { color: var(--accent-purple); }
+        .footer-links a:hover { color: #c4b5fd; }
 
         /* ── Scroll Animations ── */
         .fade-up {
@@ -982,13 +971,13 @@
                 position: absolute;
                 top: 64px;
                 left: 0; right: 0;
-                background: rgba(6, 6, 17, 0.95);
+                background: rgba(255, 255, 255, 0.97);
                 backdrop-filter: blur(20px);
                 -webkit-backdrop-filter: blur(20px);
                 padding: 1rem 2rem;
-                border-bottom: 1px solid var(--border-subtle);
+                border-bottom: 1px solid rgba(99, 102, 241, 0.08);
                 gap: 0.75rem;
-                box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+                box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
             }
 
             .hero { padding: 4rem 1.5rem 3rem; }
@@ -1022,28 +1011,28 @@
             .section-header h2 {
                 -webkit-text-fill-color: unset;
                 background: none;
-                color: #c4b5fd;
+                color: #4f46e5;
                 font-size: 1.5rem;
             }
             .definition h2 {
                 -webkit-text-fill-color: unset;
                 background: none;
-                color: #c4b5fd;
+                color: #4f46e5;
             }
             .personas-section .section-header h2 {
                 -webkit-text-fill-color: unset;
                 background: none;
-                color: #c4b5fd;
+                color: #4f46e5;
             }
             .methodology-section .section-header h2 {
                 -webkit-text-fill-color: unset;
                 background: none;
-                color: #c4b5fd;
+                color: #4f46e5;
             }
             .results-guidance .section-header h2 {
                 -webkit-text-fill-color: unset;
                 background: none;
-                color: #c4b5fd;
+                color: #4f46e5;
             }
 
             .footer-inner {
@@ -1114,19 +1103,19 @@
 
             <div class="personas-grid">
                 <div class="persona-card fade-up">
-                    <div class="persona-icon" style="background: rgba(139, 92, 246, 0.12);">&#127891;</div>
+                    <div class="persona-icon" style="background: #ede9fe;">&#127891;</div>
                     <h3>Institutional Leadership</h3>
                     <p>Presidents, provosts, and deans use the framework to understand institutional positioning, set strategic priorities, and make informed decisions about AI investment. The five-pillar structure offers a clear lens for board-level conversations and cross-institutional comparison.</p>
                 </div>
 
                 <div class="persona-card fade-up" style="transition-delay: 0.1s">
-                    <div class="persona-icon" style="background: rgba(99, 102, 241, 0.12);">&#128218;</div>
+                    <div class="persona-icon" style="background: #e0e7ff;">&#128218;</div>
                     <h3>Faculty</h3>
                     <p>Faculty use the framework to situate their own teaching and research within a broader institutional context. Whether exploring AI-assisted pedagogy or rethinking curriculum design, the pillars help identify where support and collaboration opportunities exist.</p>
                 </div>
 
                 <div class="persona-card fade-up" style="transition-delay: 0.2s">
-                    <div class="persona-icon" style="background: rgba(34, 211, 238, 0.08);">&#9881;&#65039;</div>
+                    <div class="persona-icon" style="background: #cffafe;">&#9881;&#65039;</div>
                     <h3>Staff and Administrators</h3>
                     <p>IT directors, academic advisors, and operations staff use the framework to evaluate infrastructure needs, plan training programs, and advocate for resources. The assessment translates daily observations into structured evidence for decision-makers.</p>
                 </div>
@@ -1147,21 +1136,21 @@
             <div class="pillars-grid">
                 <!-- Pillar 1 -->
                 <div class="pillar-card fade-up">
-                    <div class="pillar-icon" style="background: rgba(99, 102, 241, 0.12);">&#128218;</div>
+                    <div class="pillar-icon" style="background: #e0e7ff;">&#128218;</div>
                     <h3>Teaching &amp; Learning</h3>
                     <p>AI in curriculum design, faculty development, student preparation, and classroom integration. How is AI shaping what and how students learn?</p>
                 </div>
 
                 <!-- Pillar 2 -->
                 <div class="pillar-card fade-up" style="transition-delay: 0.1s">
-                    <div class="pillar-icon" style="background: rgba(139, 92, 246, 0.12);">&#128203;</div>
+                    <div class="pillar-icon" style="background: #ede9fe;">&#128203;</div>
                     <h3>Policy &amp; Governance</h3>
                     <p>Institutional AI strategy, acceptable use policies, data governance, and leadership support. Does your institution have a clear AI direction?</p>
                 </div>
 
                 <!-- Pillar 3 -->
                 <div class="pillar-card fade-up" style="transition-delay: 0.2s">
-                    <div class="pillar-icon" style="background: rgba(34, 211, 238, 0.1);">&#9878;&#65039;</div>
+                    <div class="pillar-icon" style="background: #cffafe;">&#9878;&#65039;</div>
                     <h3>Ethics &amp; Equity</h3>
                     <p>Responsible AI practices, bias awareness, equitable access, and inclusive adoption. Are AI benefits reaching all students and staff?</p>
                 </div>
@@ -1170,14 +1159,14 @@
             <div class="pillars-bottom-row">
                 <!-- Pillar 4 -->
                 <div class="pillar-card fade-up" style="transition-delay: 0.3s">
-                    <div class="pillar-icon" style="background: rgba(245, 158, 11, 0.1);">&#128300;</div>
+                    <div class="pillar-icon" style="background: #fef3c7;">&#128300;</div>
                     <h3>Research &amp; Innovation</h3>
                     <p>AI-assisted research, faculty adoption, partnerships, and community impact. How is AI advancing your institution's research mission?</p>
                 </div>
 
                 <!-- Pillar 5 -->
                 <div class="pillar-card fade-up" style="transition-delay: 0.4s">
-                    <div class="pillar-icon" style="background: rgba(239, 68, 68, 0.1);">&#128421;&#65039;</div>
+                    <div class="pillar-icon" style="background: #fee2e2;">&#128421;&#65039;</div>
                     <h3>Infrastructure</h3>
                     <p>Computing resources, data systems, technical staffing, security, and support services. Does your institution have the technical foundation for AI?</p>
                 </div>
@@ -1197,13 +1186,13 @@
 
             <!-- Visual progress bar -->
             <div class="levels-progress">
-                <div class="levels-progress-dot" style="background: #f59e0b; box-shadow: 0 0 12px rgba(245, 158, 11, 0.5);"></div>
+                <div class="levels-progress-dot" style="background: #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);"></div>
                 <div class="levels-progress-line" style="background: linear-gradient(90deg, #f59e0b, #6366f1);"></div>
-                <div class="levels-progress-dot" style="background: #6366f1; box-shadow: 0 0 12px rgba(99, 102, 241, 0.5);"></div>
+                <div class="levels-progress-dot" style="background: #6366f1; box-shadow: 0 0 8px rgba(99, 102, 241, 0.4);"></div>
                 <div class="levels-progress-line" style="background: linear-gradient(90deg, #6366f1, #10b981);"></div>
-                <div class="levels-progress-dot" style="background: #10b981; box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);"></div>
+                <div class="levels-progress-dot" style="background: #10b981; box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);"></div>
                 <div class="levels-progress-line" style="background: linear-gradient(90deg, #10b981, #8b5cf6);"></div>
-                <div class="levels-progress-dot" style="background: #8b5cf6; box-shadow: 0 0 12px rgba(139, 92, 246, 0.5);"></div>
+                <div class="levels-progress-dot" style="background: #8b5cf6; box-shadow: 0 0 8px rgba(139, 92, 246, 0.4);"></div>
             </div>
 
             <div class="levels-grid">
@@ -1311,7 +1300,7 @@
 
             <div class="guidance-steps">
                 <div class="guidance-step fade-up">
-                    <div class="guidance-icon" style="background: rgba(99, 102, 241, 0.12);">&#128269;</div>
+                    <div class="guidance-icon" style="background: #e0e7ff;">&#128269;</div>
                     <div class="guidance-text">
                         <h4>Identify your pillar gaps</h4>
                         <p>Look at which pillars scored lower relative to others. These are areas where targeted investment or conversation could make a meaningful difference.</p>
@@ -1319,7 +1308,7 @@
                 </div>
 
                 <div class="guidance-step fade-up" style="transition-delay: 0.1s">
-                    <div class="guidance-icon" style="background: rgba(139, 92, 246, 0.12);">&#127758;</div>
+                    <div class="guidance-icon" style="background: #ede9fe;">&#127758;</div>
                     <div class="guidance-text">
                         <h4>Find peer institutions on the Atlas</h4>
                         <p>Use the Atlas to find institutions at a similar readiness level or with strengths in your weaker areas. Their profiles may reveal initiatives worth adapting.</p>
@@ -1327,7 +1316,7 @@
                 </div>
 
                 <div class="guidance-step fade-up" style="transition-delay: 0.2s">
-                    <div class="guidance-icon" style="background: rgba(34, 211, 238, 0.08);">&#128172;</div>
+                    <div class="guidance-icon" style="background: #cffafe;">&#128172;</div>
                     <div class="guidance-text">
                         <h4>Explore the Repository</h4>
                         <p>Search for curated resources filtered by pillar. Syllabi, policy templates, and guides contributed by the network are available to support your next steps.</p>
@@ -1335,7 +1324,7 @@
                 </div>
 
                 <div class="guidance-step fade-up" style="transition-delay: 0.3s">
-                    <div class="guidance-icon" style="background: rgba(245, 158, 11, 0.1);">&#128257;</div>
+                    <div class="guidance-icon" style="background: #fef3c7;">&#128257;</div>
                     <div class="guidance-text">
                         <h4>Reassess periodically</h4>
                         <p>AI readiness is not static. As your institution evolves, take the assessment again to track progress and surface new areas for development.</p>
