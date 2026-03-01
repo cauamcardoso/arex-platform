@@ -1282,13 +1282,6 @@
                     <p>Computing, data, connectivity, and technical capacity</p>
                 </div>
             </div>
-            <div class="start-cta fade-up">
-                <button class="btn-start" onclick="startAssessment()">
-                    Begin Assessment
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </button>
-                <p class="start-subtext">Want to learn more first? <a href="/readiness">Explore the AI Readiness framework</a></p>
-            </div>
         </div>
     </section>
 
@@ -1350,6 +1343,19 @@
                     <span class="level-score score-leading">4.1 &ndash; 5.0</span>
                     <p>AI is deeply embedded in institutional operations. Contributing to the broader field. Mentoring peer institutions.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BEGIN ASSESSMENT CTA -->
+    <section class="start-cta-section" id="startCtaSection">
+        <div class="section-inner">
+            <div class="start-cta fade-up">
+                <button class="btn-start" onclick="startAssessment()">
+                    Begin Assessment
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
+                <p class="start-subtext">Want to learn more first? <a href="/readiness">Explore the AI Readiness framework</a></p>
             </div>
         </div>
     </section>
@@ -1774,6 +1780,7 @@
             document.getElementById('levels').style.display = 'none';
             document.getElementById('scoringExplained').style.display = 'none';
             document.getElementById('pillarsPreview').style.display = 'none';
+            document.getElementById('startCtaSection').style.display = 'none';
             // Apply first pillar color and scroll
             applyPillarColor(0);
             document.getElementById('assessmentWrapper').scrollIntoView({ behavior: 'smooth' });
@@ -2031,7 +2038,9 @@
             // Show intro sections again
             document.getElementById('howItWorks').style.display = '';
             document.getElementById('levels').style.display = '';
+            document.getElementById('scoringExplained').style.display = '';
             document.getElementById('pillarsPreview').style.display = '';
+            document.getElementById('startCtaSection').style.display = '';
             document.getElementById('assessmentWrapper').classList.remove('active');
             renderSections();
             updateProgress();
