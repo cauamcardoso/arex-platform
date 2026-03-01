@@ -65,6 +65,7 @@
             font-weight: 600;
             letter-spacing: 0.02em;
         }
+        .badge a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 
         .header-nav { display: flex; gap: 1.5rem; align-items: center; }
         .header-nav a {
@@ -278,7 +279,7 @@
            ============================================================ */
         .pillars-section {
             padding: 5rem 2rem;
-            background: var(--gray-50);
+            background: white;
         }
 
         .pillars-grid {
@@ -342,7 +343,7 @@
            ============================================================ */
         .levels-section {
             padding: 5rem 2rem;
-            background: white;
+            background: var(--gray-50);
         }
 
         .levels-grid {
@@ -465,6 +466,160 @@
             color: #92400e;
             line-height: 1.7;
         }
+
+        /* ── Personas ── */
+        .personas-section { padding: 5rem 2rem; background: var(--gray-50); }
+        .personas-section .section-inner { max-width: 1060px; margin: 0 auto; }
+        .personas-section .section-header { text-align: center; margin-bottom: 3rem; }
+        .personas-section .section-header h2 { font-size: 2rem; font-weight: 800; color: var(--gray-900); margin-bottom: 0.75rem; }
+        .personas-section .section-header p { font-size: 1rem; color: var(--gray-500); max-width: 620px; margin: 0 auto; line-height: 1.7; }
+
+        .personas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .persona-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+        .persona-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
+        .persona-icon {
+            width: 56px; height: 56px;
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+        .persona-card h3 {
+            font-size: 1.1rem; font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 0.625rem;
+        }
+        .persona-card p {
+            font-size: 0.9rem; color: var(--gray-500); line-height: 1.7;
+        }
+
+        /* ── Methodology ── */
+        .methodology-section { padding: 5rem 2rem; background: white; }
+        .methodology-section .section-inner { max-width: 1060px; margin: 0 auto; }
+        .methodology-section .section-header { text-align: center; margin-bottom: 3rem; }
+        .methodology-section .section-header h2 { font-size: 2rem; font-weight: 800; color: var(--gray-900); margin-bottom: 0.75rem; }
+        .methodology-section .section-header p { font-size: 1rem; color: var(--gray-500); max-width: 580px; margin: 0 auto; line-height: 1.7; }
+
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+            margin-bottom: 3rem;
+        }
+        .method-card {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 16px;
+            padding: 1.75rem 1.5rem;
+            text-align: center;
+        }
+        .method-number {
+            font-size: 2.25rem; font-weight: 800;
+            color: #4f46e5;
+            line-height: 1; margin-bottom: 0.25rem;
+        }
+        .method-label {
+            font-size: 0.7rem; font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--gray-400);
+            margin-bottom: 1rem;
+        }
+        .method-card p {
+            font-size: 0.825rem; color: var(--gray-500);
+            line-height: 1.65; text-align: left;
+        }
+
+        .methodology-details {
+            max-width: 800px; margin: 0 auto;
+            display: grid; gap: 1.25rem;
+        }
+        .method-detail-item {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+        }
+        .method-detail-item h4 {
+            font-size: 0.95rem; font-weight: 700;
+            color: var(--gray-800); margin-bottom: 0.5rem;
+        }
+        .method-detail-item p {
+            font-size: 0.875rem; color: var(--gray-500); line-height: 1.7;
+        }
+
+        /* ── Results Guidance ── */
+        .results-guidance { padding: 5rem 2rem; background: var(--gray-50); }
+        .results-guidance .section-inner { max-width: 1060px; margin: 0 auto; }
+        .results-guidance .section-header { text-align: center; margin-bottom: 3rem; }
+        .results-guidance .section-header h2 { font-size: 2rem; font-weight: 800; color: var(--gray-900); margin-bottom: 0.75rem; }
+        .results-guidance .section-header p { font-size: 1rem; color: var(--gray-500); max-width: 580px; margin: 0 auto; line-height: 1.7; }
+
+        .guidance-steps {
+            max-width: 760px; margin: 0 auto;
+            display: grid; gap: 1.25rem;
+        }
+        .guidance-step {
+            display: flex; gap: 1.25rem;
+            align-items: flex-start;
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 14px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+        .guidance-step:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        }
+        .guidance-icon {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+        .guidance-text h4 {
+            font-size: 0.95rem; font-weight: 700;
+            color: var(--gray-800); margin-bottom: 0.375rem;
+        }
+        .guidance-text p {
+            font-size: 0.875rem; color: var(--gray-500); line-height: 1.7;
+        }
+
+        /* ── Design Note ── */
+        .design-note-section { padding: 4rem 2rem; background: white; }
+        .design-note-inner {
+            max-width: 700px; margin: 0 auto;
+            text-align: center;
+            padding: 2.5rem;
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 20px;
+        }
+        .design-note-icon { font-size: 2rem; margin-bottom: 1rem; }
+        .design-note-inner h3 {
+            font-size: 1.25rem; font-weight: 700;
+            color: var(--gray-900); margin-bottom: 1rem;
+        }
+        .design-note-inner p {
+            font-size: 0.9rem; color: var(--gray-500);
+            line-height: 1.8; margin-bottom: 1rem;
+        }
+        .design-note-inner p:last-child { margin-bottom: 0; }
 
         /* ============================================================
            CTA SECTION
@@ -617,6 +772,14 @@
             .levels-grid { grid-template-columns: 1fr; }
             .levels-progress { display: none; }
 
+            .personas-grid { grid-template-columns: 1fr; }
+            .personas-section { padding: 3.5rem 1.5rem; }
+            .methodology-grid { grid-template-columns: repeat(2, 1fr); }
+            .methodology-section { padding: 3.5rem 1.5rem; }
+            .results-guidance { padding: 3.5rem 1.5rem; }
+            .design-note-section { padding: 3rem 1.5rem; }
+            .design-note-inner { padding: 2rem 1.5rem; }
+
             .section-header h2 { font-size: 1.5rem; }
             .cta h2 { font-size: 1.75rem; }
             .cta { padding: 3.5rem 1.5rem; }
@@ -636,7 +799,7 @@
     <header class="header">
         <div class="header-brand">
             <h1><a href="/">AIREX</a></h1>
-            <span class="badge">HACU Pilot</span>
+            <span class="badge">Powered by <a href="https://www.utep.edu/aaii/" target="_blank" rel="noopener">AAII</a> + <a href="https://cahsi.utep.edu/" target="_blank" rel="noopener">CAHSI</a></span>
         </div>
         <button class="mobile-menu-btn" onclick="document.querySelector('.header-nav').classList.toggle('open')" aria-label="Toggle navigation">&#9776;</button>
         <nav class="header-nav">
@@ -674,6 +837,38 @@
             <p>
                 AI is changing how institutions teach, research, govern, and serve students. But without a common framework, it is difficult to know where to start or how to measure progress. AIREX defines AI readiness across five pillars and four developmental levels, giving institutions a structured way to understand their current state and plan their next steps.
             </p>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         WHO THIS IS FOR
+         ============================================================ -->
+    <section class="personas-section">
+        <div class="section-inner">
+            <div class="section-header">
+                <h2>Who this is for</h2>
+                <p>AI readiness is not a single conversation. It touches different roles in different ways. This framework is designed to meet each audience where they are.</p>
+            </div>
+
+            <div class="personas-grid">
+                <div class="persona-card">
+                    <div class="persona-icon" style="background: #dbeafe;">&#127891;</div>
+                    <h3>Institutional Leadership</h3>
+                    <p>Presidents, provosts, and deans use the framework to understand institutional positioning, set strategic priorities, and make informed decisions about AI investment. The five-pillar structure offers a clear lens for board-level conversations and cross-institutional comparison.</p>
+                </div>
+
+                <div class="persona-card">
+                    <div class="persona-icon" style="background: #ede9fe;">&#128218;</div>
+                    <h3>Faculty</h3>
+                    <p>Faculty use the framework to situate their own teaching and research within a broader institutional context. Whether exploring AI-assisted pedagogy or rethinking curriculum design, the pillars help identify where support and collaboration opportunities exist.</p>
+                </div>
+
+                <div class="persona-card">
+                    <div class="persona-icon" style="background: #d1fae5;">&#9881;&#65039;</div>
+                    <h3>Staff and Administrators</h3>
+                    <p>IT directors, academic advisors, and operations staff use the framework to evaluate infrastructure needs, plan training programs, and advocate for resources. The assessment translates daily observations into structured evidence for decision-makers.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -790,6 +985,121 @@
     </section>
 
     <!-- ============================================================
+         HOW THE SCORE WORKS
+         ============================================================ -->
+    <section class="methodology-section">
+        <div class="section-inner">
+            <div class="section-header">
+                <h2>How the score works</h2>
+                <p>The assessment is designed to be transparent, accessible, and consistent across institution types.</p>
+            </div>
+
+            <div class="methodology-grid">
+                <div class="method-card">
+                    <div class="method-number">25</div>
+                    <div class="method-label">Questions</div>
+                    <p>Five questions for each of the five pillars. Every question maps directly to a pillar, so your results reflect specific areas of strength and growth.</p>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-number">1 to 5</div>
+                    <div class="method-label">Response Scale</div>
+                    <p>Each question is answered on a 1-to-5 scale. Responses describe observable practices and behaviors rather than aspirational goals.</p>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-number">5</div>
+                    <div class="method-label">Pillar Scores</div>
+                    <p>Each pillar score is the average of its five questions. A pillar score of 3.4 means your responses averaged 3.4 across that area.</p>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-number">1</div>
+                    <div class="method-label">Overall Score</div>
+                    <p>Your overall readiness score is the average of all five pillar scores. Every pillar carries equal weight in the calculation.</p>
+                </div>
+            </div>
+
+            <div class="methodology-details">
+                <div class="method-detail-item">
+                    <h4>Equal Weighting</h4>
+                    <p>All five pillars contribute equally to the overall score. This reflects the principle that AI readiness requires balanced progress across teaching, policy, ethics, research, and infrastructure.</p>
+                </div>
+                <div class="method-detail-item">
+                    <h4>Anonymous and Accessible</h4>
+                    <p>No login required. No data is stored on any server. The assessment takes roughly 10 minutes. All responses stay in your browser and are not transmitted or saved.</p>
+                </div>
+                <div class="method-detail-item">
+                    <h4>Growth-Oriented Design</h4>
+                    <p>The 1-to-5 scale uses descriptive language that reflects a progression of practice, not a judgment of quality. A score of 1 means "early stage," not "falling behind." The language is designed to encourage honest self-reflection.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         HOW TO USE YOUR RESULTS
+         ============================================================ -->
+    <section class="results-guidance">
+        <div class="section-inner">
+            <div class="section-header">
+                <h2>How to use your results</h2>
+                <p>A readiness score is a starting point, not a conclusion. Here is how to translate your results into action.</p>
+            </div>
+
+            <div class="guidance-steps">
+                <div class="guidance-step">
+                    <div class="guidance-icon" style="background: #dbeafe;">&#128269;</div>
+                    <div class="guidance-text">
+                        <h4>Identify your pillar gaps</h4>
+                        <p>Look at which pillars scored lower relative to others. These are areas where targeted investment or conversation could make a meaningful difference.</p>
+                    </div>
+                </div>
+
+                <div class="guidance-step">
+                    <div class="guidance-icon" style="background: #ede9fe;">&#127758;</div>
+                    <div class="guidance-text">
+                        <h4>Find peer institutions on the Atlas</h4>
+                        <p>Use the Atlas to find institutions at a similar readiness level or with strengths in your weaker areas. Their profiles may reveal initiatives worth adapting.</p>
+                    </div>
+                </div>
+
+                <div class="guidance-step">
+                    <div class="guidance-icon" style="background: #d1fae5;">&#128172;</div>
+                    <div class="guidance-text">
+                        <h4>Explore the Repository</h4>
+                        <p>Search for curated resources filtered by pillar. Syllabi, policy templates, and guides contributed by the network are available to support your next steps.</p>
+                    </div>
+                </div>
+
+                <div class="guidance-step">
+                    <div class="guidance-icon" style="background: #fef3c7;">&#128257;</div>
+                    <div class="guidance-text">
+                        <h4>Reassess periodically</h4>
+                        <p>AI readiness is not static. As your institution evolves, take the assessment again to track progress and surface new areas for development.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         DESIGN PHILOSOPHY
+         ============================================================ -->
+    <section class="design-note-section">
+        <div class="design-note-inner">
+            <div class="design-note-icon">&#128161;</div>
+            <h3>A note on our approach</h3>
+            <p>
+                The AIREX framework uses growth-oriented language deliberately. Terms like "Exploring" and "Building" replace evaluative labels because institutions at different stages are doing different kinds of important work. A score is not a grade. There are no rankings, no leaderboards, and no public comparisons. The purpose of this tool is self-reflection and peer learning, not competition.
+            </p>
+            <p>
+                This design choice reflects a core belief: institutions are more likely to engage honestly and make meaningful progress when the process feels supportive rather than punitive.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================================================
          CTA SECTION
          ============================================================ -->
     <section class="cta">
@@ -810,7 +1120,7 @@
         <div class="footer-inner">
             <div class="footer-brand">
                 <h3>AIREX</h3>
-                <p>AI Readiness Explorer &middot; HACU Pilot</p>
+                <p>AI Readiness Explorer &middot; Powered by AAII + CAHSI</p>
             </div>
             <div class="footer-links">
                 <a href="/readiness">AI Readiness</a>

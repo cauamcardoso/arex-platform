@@ -76,6 +76,12 @@
             letter-spacing: 0.02em;
         }
 
+        .header-badge a {
+            color: inherit;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
         .header-nav {
             display: flex;
             gap: 1.5rem;
@@ -328,12 +334,13 @@
         }
 
         .hero-stats-title {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.15em;
             color: rgba(255, 255, 255, 0.5);
             font-weight: 600;
             margin-bottom: 1.5rem;
+            line-height: 1.4;
         }
 
         .hero-stats-grid {
@@ -368,21 +375,6 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
-        .hero-stats-bottom {
-            grid-column: 1 / -1;
-            text-align: center;
-        }
-
-        .hero-stats-bottom .hero-stat-number {
-            font-size: 2rem;
-            background: linear-gradient(135deg, #60a5fa, #34d399, #a78bfa, #60a5fa);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradient-shift 6s ease-in-out infinite;
-        }
-
         /* ============================================================
            SHARED SECTION STYLES
            ============================================================ */
@@ -411,166 +403,312 @@
         }
 
         /* ============================================================
-           FEATURES
+           JOURNEY
            ============================================================ */
-        .features {
-            padding: 5rem 2rem;
-            background: var(--gray-50);
-        }
+        /* -- Journey -- */
+        .journey { padding: 6rem 2rem; background: var(--gray-50); }
+        .journey-inner { max-width: 1100px; margin: 0 auto; }
+        .journey .section-header { text-align: center; margin-bottom: 4rem; }
+        .journey .section-header h2 { font-size: 2.25rem; font-weight: 800; color: var(--gray-900); margin-bottom: 0.75rem; }
+        .journey .section-header p { font-size: 1.05rem; color: var(--gray-500); max-width: 540px; margin: 0 auto; }
 
-        .features-grid {
+        .journey-path { position: relative; }
+
+        .journey-step {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        .feature-card {
-            background: white;
-            border: 1px solid var(--gray-200);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: all 0.3s;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .feature-card:hover {
-            border-color: var(--primary);
-            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.1);
-            transform: translateY(-4px);
-        }
-
-        .feature-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 14px;
-            display: flex;
+            grid-template-columns: 1fr 1fr;
+            gap: 3.5rem;
             align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 1.25rem;
+            padding: 1.5rem 0;
+            opacity: 0;
+            transform: translateX(-50px) translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
-        .feature-card h3 {
-            font-size: 1.125rem;
-            font-weight: 700;
-            color: var(--gray-900);
-            margin-bottom: 0.5rem;
+        .journey-step.journey-step-reverse {
+            transform: translateX(50px) translateY(20px);
+        }
+        .journey-step.journey-step-reverse { direction: rtl; }
+        .journey-step.journey-step-reverse > * { direction: ltr; }
+
+        .journey-step.visible {
+            opacity: 1;
+            transform: translateX(0) translateY(0);
         }
 
-        .feature-card p {
-            font-size: 0.875rem;
-            color: var(--gray-500);
-            line-height: 1.6;
-            margin-bottom: 1.25rem;
+        /* Connector */
+        .journey-connector {
+            width: 3px;
+            height: 56px;
+            margin: 0 auto;
+            background: linear-gradient(180deg, var(--primary), rgba(37, 99, 235, 0.15));
+            border-radius: 2px;
+            opacity: 0;
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: opacity 0.6s ease-out, transform 0.8s ease-out;
+        }
+        .journey-connector.visible {
+            opacity: 1;
+            transform: scaleY(1);
         }
 
-        .feature-link {
+        /* Journey content */
+        .journey-number {
             font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.08em;
+            margin-bottom: 0.75rem;
+            opacity: 0.5;
+        }
+        .journey-content h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 0.75rem;
+            line-height: 1.25;
+        }
+        .journey-content p {
+            font-size: 0.95rem;
+            color: var(--gray-500);
+            line-height: 1.75;
+            margin-bottom: 1.25rem;
+            max-width: 440px;
+        }
+        .journey-link {
+            font-size: 0.9rem;
             font-weight: 600;
             color: var(--primary);
-            display: flex;
+            text-decoration: none;
+            display: inline-flex;
             align-items: center;
             gap: 0.375rem;
+            transition: gap 0.25s;
         }
+        .journey-link:hover { gap: 0.75rem; }
 
-        /* ============================================================
-           PILLARS
-           ============================================================ */
-        .pillars {
-            padding: 5rem 2rem;
-            background: white;
-        }
-
-        .pillars-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 1rem;
-        }
-
-        .pillar-card {
-            background: var(--gray-50);
-            border: 1px solid var(--gray-200);
-            border-radius: 14px;
-            padding: 1.5rem;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .pillar-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-        }
-
-        .pillar-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
+        /* -- Journey Illustrations -- */
+        .journey-visual {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.25rem;
-            margin: 0 auto 1rem;
         }
-
-        .pillar-card h3 {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--gray-800);
-            margin-bottom: 0.375rem;
-        }
-
-        .pillar-card p {
-            font-size: 0.7rem;
-            color: var(--gray-500);
-            line-height: 1.5;
-        }
-
-        /* ============================================================
-           HOW IT WORKS
-           ============================================================ */
-        .how-it-works {
-            padding: 5rem 2rem;
-            background: var(--gray-50);
-        }
-
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-
-        .step {
-            text-align: center;
+        .journey-illustration {
+            width: 300px;
+            height: 230px;
+            border-radius: 20px;
             position: relative;
+            overflow: hidden;
         }
 
-        .step-number {
-            width: 48px;
-            height: 48px;
+        /* Step 1: Understand - Concentric rings */
+        .understand-art {
+            background: linear-gradient(135deg, #eff6ff, #e0e7ff);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .understand-art .ring {
+            position: absolute;
             border-radius: 50%;
+            border: 2px solid;
+            opacity: 0;
+            animation: ring-expand 3s ease-out infinite;
+        }
+        .ring-1 { width: 40px; height: 40px; border-color: #3b82f6; animation-delay: 0s; }
+        .ring-2 { width: 80px; height: 80px; border-color: #8b5cf6; animation-delay: 0.4s; }
+        .ring-3 { width: 120px; height: 120px; border-color: #10b981; animation-delay: 0.8s; }
+        .ring-4 { width: 160px; height: 160px; border-color: #f59e0b; animation-delay: 1.2s; }
+        .ring-5 { width: 200px; height: 200px; border-color: #ef4444; animation-delay: 1.6s; }
+        .ring-center {
+            width: 12px; height: 12px;
             background: var(--primary);
-            color: white;
-            font-size: 1.25rem;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
+            border-radius: 50%;
+            position: absolute;
+            z-index: 1;
+        }
+        @keyframes ring-expand {
+            0% { opacity: 0.6; transform: scale(0.85); }
+            100% { opacity: 0; transform: scale(1.3); }
+        }
+
+        /* Step 2: Assess - Animated bars */
+        .assess-art {
+            background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+            display: flex; align-items: flex-end; justify-content: center;
+            padding: 0 2rem 2rem;
+        }
+        .bar-group {
+            display: flex; align-items: flex-end; gap: 14px; position: relative; z-index: 1;
+            height: 160px; width: 100%;
             justify-content: center;
-            margin: 0 auto 1rem;
+        }
+        .score-bar {
+            width: 34px;
+            height: var(--h);
+            background: var(--c);
+            border-radius: 6px 6px 0 0;
+            opacity: 0.75;
+            transform-origin: bottom;
+            animation: bar-grow 1.2s ease-out forwards;
+            animation-delay: var(--d);
+            transform: scaleY(0);
+        }
+        .bar-baseline {
+            position: absolute; bottom: 2rem; left: 2rem; right: 2rem;
+            height: 2px; background: rgba(0,0,0,0.06);
+        }
+        @keyframes bar-grow {
+            to { transform: scaleY(1); }
         }
 
-        .step h3 {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--gray-800);
-            margin-bottom: 0.5rem;
+        /* Step 3: Discover - Map dots */
+        .discover-art {
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+        }
+        .map-grid-bg {
+            position: absolute; inset: 20px;
+            background-image:
+                linear-gradient(rgba(59,130,246,0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59,130,246,0.06) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+        .map-dot {
+            position: absolute;
+            width: 8px; height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.4;
+            transform: translate(-50%, -50%);
+        }
+        .map-dot.active-dot {
+            width: 12px; height: 12px;
+            opacity: 1;
+            background: #1d4ed8;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.25);
+        }
+        .map-pulse {
+            position: absolute;
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            transform: translate(-50%, -50%);
+            animation: map-ping 2s ease-out infinite;
+        }
+        @keyframes map-ping {
+            0% { opacity: 0.8; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(3.5); }
         }
 
-        .step p {
-            font-size: 0.8rem;
-            color: var(--gray-500);
-            line-height: 1.6;
+        /* Step 4: Connect - Network nodes */
+        .connect-art {
+            background: linear-gradient(135deg, #fefce8, #fef3c7);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .profile-node {
+            position: absolute;
+            border-radius: 50%;
+            border: 3px solid;
+        }
+        .profile-node.n1 {
+            width: 56px; height: 56px;
+            border-color: #3b82f6;
+            background: rgba(59,130,246,0.1);
+            top: 50%; left: 35%;
+            transform: translate(-50%, -50%);
+        }
+        .profile-node.n2 {
+            width: 44px; height: 44px;
+            border-color: #10b981;
+            background: rgba(16,185,129,0.1);
+            top: 30%; left: 60%;
+            transform: translate(-50%, -50%);
+        }
+        .profile-node.n3 {
+            width: 48px; height: 48px;
+            border-color: #f59e0b;
+            background: rgba(245,158,11,0.1);
+            top: 68%; left: 58%;
+            transform: translate(-50%, -50%);
+        }
+        .connect-line {
+            position: absolute;
+            height: 2px;
+            background: rgba(0,0,0,0.08);
+            transform-origin: left center;
+        }
+        .connect-line.l1 {
+            width: 80px; top: 43%; left: 38%;
+            transform: rotate(-18deg);
+        }
+        .connect-line.l2 {
+            width: 70px; top: 55%; left: 40%;
+            transform: rotate(25deg);
+        }
+        .connect-line.l3 {
+            width: 50px; top: 47%; left: 57%;
+            transform: rotate(70deg);
+        }
+
+        /* Step 5: Learn - Stacked docs */
+        .learn-art {
+            background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .doc-card {
+            position: absolute;
+            width: 120px; height: 150px;
+            background: white;
+            border-radius: 10px;
+            border: 1px solid rgba(0,0,0,0.08);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .dc1 { transform: rotate(-8deg) translateX(-30px); z-index: 1; }
+        .dc2 { transform: rotate(0deg); z-index: 2; }
+        .dc3 { transform: rotate(6deg) translateX(30px); z-index: 3; }
+        .doc-lines {
+            position: absolute; z-index: 4;
+            display: flex; flex-direction: column; gap: 6px;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .doc-line {
+            width: 60px; height: 3px;
+            background: rgba(16,185,129,0.3);
+            border-radius: 2px;
+        }
+        .doc-line.short { width: 40px; }
+
+        /* Step 6: News - Feed lines */
+        .news-art {
+            background: linear-gradient(135deg, #fff7ed, #ffedd5);
+            display: flex; flex-direction: column;
+            justify-content: center;
+            padding: 2.5rem;
+            gap: 14px;
+        }
+        .news-line {
+            height: 10px;
+            background: rgba(245,158,11,0.15);
+            border-radius: 5px;
+            animation: news-shimmer 2.5s ease-in-out infinite;
+        }
+        .nl1 { width: 90%; animation-delay: 0s; }
+        .nl2 { width: 70%; animation-delay: 0.3s; }
+        .nl3 { width: 85%; animation-delay: 0.6s; }
+        .nl4 { width: 60%; animation-delay: 0.9s; }
+        .news-dot {
+            position: absolute;
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: #f59e0b;
+            opacity: 0.5;
+        }
+        .nd1 { top: 2.5rem; right: 2rem; }
+        .nd2 { top: calc(2.5rem + 24px); right: 2.5rem; }
+        .nd3 { top: calc(2.5rem + 48px); right: 1.8rem; }
+        @keyframes news-shimmer {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
         }
 
         /* ============================================================
@@ -701,9 +839,12 @@
         @media (max-width: 1024px) {
             .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
             .hero h1 { font-size: 2.75rem; }
-            .features-grid { grid-template-columns: repeat(2, 1fr); }
-            .pillars-grid { grid-template-columns: repeat(3, 1fr); }
-            .steps-grid { grid-template-columns: repeat(2, 1fr); }
+            .journey-step,
+            .journey-step.journey-step-reverse {
+                grid-template-columns: 1fr 1fr;
+                gap: 2.5rem;
+            }
+            .journey-illustration { width: 260px; height: 200px; }
         }
 
         @media (max-width: 768px) {
@@ -735,9 +876,24 @@
             .hero h1 { font-size: 2.25rem; }
             .hero-orb { display: none; }
             .hero-stats-card { display: none; }
-            .features-grid { grid-template-columns: 1fr; }
-            .pillars-grid { grid-template-columns: repeat(2, 1fr); }
-            .steps-grid { grid-template-columns: 1fr; }
+            .journey { padding: 4rem 1.5rem; }
+            .journey-step,
+            .journey-step.journey-step-reverse {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                direction: ltr;
+            }
+            .journey-step,
+            .journey-step.journey-step-reverse {
+                transform: translateY(30px);
+                /* override both left and right slide to just vertical */
+            }
+            .journey-visual { order: -1; }
+            .journey-illustration { width: 100%; max-width: 300px; height: 180px; }
+            .journey-connector { height: 36px; }
+            .journey-content h3 { font-size: 1.25rem; }
+            .journey-content p { font-size: 0.875rem; max-width: 100%; }
+            .journey .section-header h2 { font-size: 1.75rem; }
             .network-bar-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
             .footer-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
         }
@@ -745,7 +901,6 @@
         @media (max-width: 480px) {
             .hero h1 { font-size: 1.85rem; }
             .hero-desc { font-size: 1rem; }
-            .pillars-grid { grid-template-columns: 1fr; }
             .network-bar-logos { flex-wrap: wrap; justify-content: center; gap: 1rem; }
             .cta h2 { font-size: 1.75rem; }
         }
@@ -758,7 +913,7 @@
     <header class="header">
         <div class="header-brand">
             <a href="/">AIREX</a>
-            <span class="header-badge">HACU Pilot</span>
+            <span class="header-badge">Powered by <a href="https://www.utep.edu/aaii/" target="_blank" rel="noopener">AAII</a> + <a href="https://cahsi.utep.edu/" target="_blank" rel="noopener">CAHSI</a></span>
         </div>
         <button class="mobile-menu-toggle" onclick="document.querySelector('.header-nav').classList.toggle('open')" aria-label="Toggle menu">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -803,7 +958,7 @@
             </div>
 
             <div class="hero-stats-card">
-                <div class="hero-stats-title">Network at a Glance</div>
+                <div class="hero-stats-title">Phase I: the CAHSI-HACU HSI AI Readiness Consortium</div>
                 <div class="hero-stats-grid">
                     <div class="hero-stat">
                         <div class="hero-stat-number">{{ total_institutions }}</div>
@@ -822,142 +977,158 @@
                         <div class="hero-stat-number">5</div>
                         <div class="hero-stat-label">Readiness Pillars</div>
                     </div>
-                    <div class="hero-stats-divider"></div>
-                    <div class="hero-stats-bottom">
-                        <div class="hero-stat-number">{{ avg_readiness }}/5</div>
-                        <div class="hero-stat-label">Network Avg Readiness</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         JOURNEY
+         ============================================================ -->
+    <section class="journey">
+        <div class="journey-inner">
+            <div class="section-header">
+                <h2>Your AI readiness path</h2>
+                <p>Six connected tools, one intentional journey. Each step builds on the last.</p>
+            </div>
+
+            <div class="journey-path">
+                <!-- Step 1: Understand -->
+                <div class="journey-step" data-animate>
+                    <div class="journey-visual">
+                        <div class="journey-illustration understand-art">
+                            <div class="ring ring-1"></div>
+                            <div class="ring ring-2"></div>
+                            <div class="ring ring-3"></div>
+                            <div class="ring ring-4"></div>
+                            <div class="ring ring-5"></div>
+                            <div class="ring-center"></div>
+                        </div>
+                    </div>
+                    <div class="journey-content">
+                        <div class="journey-number">01</div>
+                        <h3>Understand the Framework</h3>
+                        <p>Start here. Learn what AI readiness means across five core pillars and four developmental levels. Build a shared vocabulary before you measure anything.</p>
+                        <a href="/readiness" class="journey-link">Explore AI Readiness <span>&rarr;</span></a>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- ============================================================
-         FEATURES
-         ============================================================ -->
-    <section class="features">
-        <div class="section-inner">
-            <div class="section-header">
-                <h2>One platform, six connected tools</h2>
-                <p>Everything your institution needs to understand, benchmark, and strengthen its AI integration.</p>
-            </div>
+                <div class="journey-connector" data-animate></div>
 
-            <div class="features-grid">
-                <a href="/readiness" class="feature-card">
-                    <div class="feature-icon" style="background: #f0fdf4;">&#x1F4D6;</div>
-                    <h3>Understand AI Readiness</h3>
-                    <p>Learn what AI readiness means for academic institutions and how the five-pillar framework helps you evaluate your progress.</p>
-                    <div class="feature-link">Learn the framework <span>&rarr;</span></div>
-                </a>
-
-                <a href="/assessment" class="feature-card">
-                    <div class="feature-icon" style="background: #f5f3ff;">&#x1F4CA;</div>
-                    <h3>Self-Assessment</h3>
-                    <p>Answer 25 questions across 5 pillars to see where your institution stands. Get a personalized readiness profile with actionable recommendations.</p>
-                    <div class="feature-link">Start the assessment <span>&rarr;</span></div>
-                </a>
-
-                <a href="/atlas" class="feature-card">
-                    <div class="feature-icon" style="background: #eff6ff;">&#x1F5FA;&#xFE0F;</div>
-                    <h3>Interactive Atlas</h3>
-                    <p>Explore an interactive map of institutions with AI readiness data. Filter by state, readiness level, and capabilities to find collaboration partners.</p>
-                    <div class="feature-link">Explore the map <span>&rarr;</span></div>
-                </a>
-
-                <a href="/atlas" class="feature-card">
-                    <div class="feature-icon" style="background: #fefce8;">&#x1F3DB;&#xFE0F;</div>
-                    <h3>Institution Profiles</h3>
-                    <p>See detailed profiles with readiness breakdowns, active initiatives, key contacts, and resources shared by peer institutions.</p>
-                    <div class="feature-link">View profiles <span>&rarr;</span></div>
-                </a>
-
-                <a href="/repository" class="feature-card">
-                    <div class="feature-icon" style="background: #ecfdf5;">&#x1F4AC;</div>
-                    <h3>Conversational Repository</h3>
-                    <p>Search curated resources across all five pillars. Ask questions and get results drawn from syllabi, policy templates, and guides contributed by the network.</p>
-                    <div class="feature-link">Start a conversation <span>&rarr;</span></div>
-                </a>
-
-                <a href="/news" class="feature-card">
-                    <div class="feature-icon" style="background: #fff7ed;">&#x1F4F0;</div>
-                    <h3>AI News and Discovery</h3>
-                    <p>Stay current with curated, scored AI news relevant to higher education. Filtered by pillar and updated regularly.</p>
-                    <div class="feature-link">Read the news <span>&rarr;</span></div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-         5 PILLARS
-         ============================================================ -->
-    <section class="pillars">
-        <div class="section-inner">
-            <div class="section-header">
-                <h2>AI readiness across five pillars</h2>
-                <p>A comprehensive framework for evaluating institutional preparedness for AI integration.</p>
-            </div>
-
-            <div class="pillars-grid">
-                <div class="pillar-card">
-                    <div class="pillar-icon" style="background: #eff6ff;">&#x1F4DA;</div>
-                    <h3>Teaching &amp; Learning</h3>
-                    <p>AI in curriculum, faculty development, and student preparation</p>
+                <!-- Step 2: Assess -->
+                <div class="journey-step journey-step-reverse" data-animate>
+                    <div class="journey-visual">
+                        <div class="journey-illustration assess-art">
+                            <div class="bar-group">
+                                <div class="score-bar" style="--h: 55%; --c: #3b82f6; --d: 0.1s;"></div>
+                                <div class="score-bar" style="--h: 72%; --c: #8b5cf6; --d: 0.25s;"></div>
+                                <div class="score-bar" style="--h: 40%; --c: #10b981; --d: 0.4s;"></div>
+                                <div class="score-bar" style="--h: 82%; --c: #f59e0b; --d: 0.55s;"></div>
+                                <div class="score-bar" style="--h: 60%; --c: #ef4444; --d: 0.7s;"></div>
+                            </div>
+                            <div class="bar-baseline"></div>
+                        </div>
+                    </div>
+                    <div class="journey-content">
+                        <div class="journey-number">02</div>
+                        <h3>Assess Where You Stand</h3>
+                        <p>Answer 25 questions across 5 pillars. The anonymous self-assessment takes about 10 minutes and produces a personalized readiness profile with recommendations.</p>
+                        <a href="/assessment" class="journey-link">Start the Assessment <span>&rarr;</span></a>
+                    </div>
                 </div>
-                <div class="pillar-card">
-                    <div class="pillar-icon" style="background: #f5f3ff;">&#x1F4CB;</div>
-                    <h3>Policy &amp; Governance</h3>
-                    <p>Institutional strategy, AI policies, and leadership support</p>
-                </div>
-                <div class="pillar-card">
-                    <div class="pillar-icon" style="background: #ecfdf5;">&#x2696;&#xFE0F;</div>
-                    <h3>Ethics &amp; Equity</h3>
-                    <p>Responsible AI, bias mitigation, and equitable access</p>
-                </div>
-                <div class="pillar-card">
-                    <div class="pillar-icon" style="background: #fffbeb;">&#x1F52C;</div>
-                    <h3>Research &amp; Innovation</h3>
-                    <p>AI research activity, partnerships, and community impact</p>
-                </div>
-                <div class="pillar-card">
-                    <div class="pillar-icon" style="background: #fef2f2;">&#x1F5A5;&#xFE0F;</div>
-                    <h3>Infrastructure</h3>
-                    <p>Computing resources, data governance, and technical capacity</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- ============================================================
-         HOW IT WORKS
-         ============================================================ -->
-    <section class="how-it-works">
-        <div class="section-inner">
-            <div class="section-header">
-                <h2>How it works</h2>
-                <p>From understanding to action, at your own pace.</p>
-            </div>
+                <div class="journey-connector" data-animate></div>
 
-            <div class="steps-grid">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Understand</h3>
-                    <p>Start with the AI Readiness page to learn the framework and see what readiness looks like across different levels.</p>
+                <!-- Step 3: Discover -->
+                <div class="journey-step" data-animate>
+                    <div class="journey-visual">
+                        <div class="journey-illustration discover-art">
+                            <div class="map-grid-bg"></div>
+                            <div class="map-dot" style="top: 22%; left: 28%;"></div>
+                            <div class="map-dot" style="top: 38%; left: 58%;"></div>
+                            <div class="map-dot" style="top: 62%; left: 22%;"></div>
+                            <div class="map-dot" style="top: 48%; left: 72%;"></div>
+                            <div class="map-dot" style="top: 72%; left: 52%;"></div>
+                            <div class="map-dot active-dot" style="top: 45%; left: 42%;"></div>
+                            <div class="map-pulse" style="top: 45%; left: 42%;"></div>
+                        </div>
+                    </div>
+                    <div class="journey-content">
+                        <div class="journey-number">03</div>
+                        <h3>Discover Peer Institutions</h3>
+                        <p>Explore an interactive map of institutions with AI readiness data. Filter by state, readiness level, and pillar strengths to find collaboration partners on a similar path.</p>
+                        <a href="/atlas" class="journey-link">Explore the Atlas <span>&rarr;</span></a>
+                    </div>
                 </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Assess</h3>
-                    <p>Take the anonymous self-assessment to see where your institution stands across all five pillars.</p>
+
+                <div class="journey-connector" data-animate></div>
+
+                <!-- Step 4: Connect -->
+                <div class="journey-step journey-step-reverse" data-animate>
+                    <div class="journey-visual">
+                        <div class="journey-illustration connect-art">
+                            <div class="profile-node n1"></div>
+                            <div class="profile-node n2"></div>
+                            <div class="profile-node n3"></div>
+                            <div class="connect-line l1"></div>
+                            <div class="connect-line l2"></div>
+                            <div class="connect-line l3"></div>
+                        </div>
+                    </div>
+                    <div class="journey-content">
+                        <div class="journey-number">04</div>
+                        <h3>Connect with Institutions</h3>
+                        <p>See detailed profiles with readiness breakdowns, active initiatives, key contacts, and resources shared. Find who is working on what you need.</p>
+                        <a href="/atlas" class="journey-link">View Profiles <span>&rarr;</span></a>
+                    </div>
                 </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Discover</h3>
-                    <p>Use the Atlas to find institutions at a similar stage. Explore their profiles to see what they are working on.</p>
+
+                <div class="journey-connector" data-animate></div>
+
+                <!-- Step 5: Learn -->
+                <div class="journey-step" data-animate>
+                    <div class="journey-visual">
+                        <div class="journey-illustration learn-art">
+                            <div class="doc-card dc1"></div>
+                            <div class="doc-card dc2"></div>
+                            <div class="doc-card dc3"></div>
+                            <div class="doc-lines">
+                                <div class="doc-line"></div>
+                                <div class="doc-line short"></div>
+                                <div class="doc-line"></div>
+                                <div class="doc-line short"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="journey-content">
+                        <div class="journey-number">05</div>
+                        <h3>Learn from the Network</h3>
+                        <p>Search curated resources across all five pillars. Ask questions and get results drawn from syllabi, policy templates, and guides contributed by the network.</p>
+                        <a href="/repository" class="journey-link">Browse the Repository <span>&rarr;</span></a>
+                    </div>
                 </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h3>Engage</h3>
-                    <p>Search the Repository for curated resources, connect with peers, and stay current through the news feed.</p>
+
+                <div class="journey-connector" data-animate></div>
+
+                <!-- Step 6: Stay Current -->
+                <div class="journey-step journey-step-reverse" data-animate>
+                    <div class="journey-visual">
+                        <div class="journey-illustration news-art">
+                            <div class="news-line nl1"></div>
+                            <div class="news-line nl2"></div>
+                            <div class="news-line nl3"></div>
+                            <div class="news-line nl4"></div>
+                            <div class="news-dot nd1"></div>
+                            <div class="news-dot nd2"></div>
+                            <div class="news-dot nd3"></div>
+                        </div>
+                    </div>
+                    <div class="journey-content">
+                        <div class="journey-number">06</div>
+                        <h3>Stay Current</h3>
+                        <p>Keep up with curated AI news relevant to higher education. Articles are scored for relevance and filtered by pillar so you see what matters to your priorities.</p>
+                        <a href="/news" class="journey-link">Read AI News <span>&rarr;</span></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1013,5 +1184,22 @@
             </div>
         </div>
     </footer>
+    <script>
+    // Scroll-triggered journey animations
+    const journeyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                journeyObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -60px 0px'
+    });
+    document.querySelectorAll('[data-animate]').forEach(el => {
+        journeyObserver.observe(el);
+    });
+    </script>
 </body>
 </html>
