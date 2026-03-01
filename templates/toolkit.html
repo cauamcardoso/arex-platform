@@ -1952,46 +1952,44 @@
         const chatSend = document.getElementById('chatSend');
 
         let demoMode = true;
-        let demoRunning = false;
-        let demoTimeouts = [];
 
         addBotMessage("Welcome to the AIREX Repository. I can help you find resources across all five AI readiness pillars. Try asking something like: <em>'What readings are faculty using to discuss ethics and AI in academic assessments?'</em> or <em>'How should we structure an AI governance committee?'</em>");
 
         /* ----------------------------------------------------------
-           AUTO-DEMO: scroll-triggered preview conversation
+           AUTO-DEMO: looping conversational preview
            ---------------------------------------------------------- */
-        const DEMO_QUERY = 'What ethics readings are institutions using in intro CS courses?';
+        const DEMO_CONVERSATIONS = [
+            {
+                query: "We're forming an AI governance committee. Where should we start?",
+                response: `Great question. Several institutions in the network have shared their governance frameworks, and a few patterns stand out.<br><br>`
+                    + `Most committees that gained traction started small: 5 to 7 members representing academic affairs, IT, legal, and at least one faculty member actively using AI in their teaching. Florida International and UTEP both took that approach.<br><br>`
+                    + `I'd suggest looking at the <strong>AI Governance Starter Kit</strong> from UTSA, which includes a sample charter, meeting cadence, and a first-90-days checklist. The <strong>Institutional AI Policy Template</strong> from FIU is also a strong starting point for drafting your committee's scope.`
+            },
+            {
+                query: "How are other HSIs handling AI detection and academic integrity?",
+                response: `This is one of the most actively discussed topics in the network right now. The short answer: most institutions are moving away from relying on detection tools alone.<br><br>`
+                    + `The more effective approaches focus on <strong>redesigning assignments</strong> so that AI use becomes part of the learning process rather than something to police. UTEP's CS department, for example, shifted several courses to require students to document their AI interactions as part of the submission.<br><br>`
+                    + `The <strong>AI Ethics in Academic Assessment</strong> syllabus has a particularly good framework for this. It treats AI literacy as a learning outcome rather than a compliance issue. I'd also recommend the <strong>Assessment Integrity Guidelines</strong>, which give faculty practical strategies they can adopt right away.`
+            },
+            {
+                query: "What does AI readiness actually look like for a small institution with limited IT staff?",
+                response: `You're not alone in asking this. A lot of the conversation around AI readiness assumes large R1 resources, but many institutions in the HACU network are working with very lean teams.<br><br>`
+                    + `The good news: readiness at early stages is less about infrastructure and more about <strong>people and process</strong>. It's about having the conversations, identifying champions, and creating space for experimentation.<br><br>`
+                    + `A few concrete starting points that have worked for similar institutions:<br>`
+                    + `<strong>1.</strong> Run a faculty learning circle using the <strong>AI Teaching Integration Guide</strong>, which is designed for facilitated discussion rather than individual reading.<br>`
+                    + `<strong>2.</strong> Use the AIREX self-assessment to identify which of the five pillars your institution is naturally strongest in, and build momentum there first.<br>`
+                    + `<strong>3.</strong> Look at the <strong>Cloud-First AI Infrastructure Roadmap</strong>, which was specifically written for institutions that can't invest in on-premise GPU clusters.`
+            }
+        ];
 
-        const DEMO_RESPONSE = `<strong>4 resources found.</strong> Here are the top matches:`
-            + `<div class="chat-result-card">`
-            + `<div class="chat-result-header">`
-            + `<span class="chat-result-type resource-type-tag type-syllabus">Syllabus</span>`
-            + `<span class="chat-result-title">AI Ethics in Academic Assessment: Course Syllabus</span>`
-            + `</div>`
-            + `<div class="chat-result-institution">University of Texas at El Paso</div>`
-            + `<div class="chat-result-matches"><strong>Matched readings:</strong>`
-            + `<li>Weapons of Math Destruction (Cathy O'Neil)</li>`
-            + `<li>Ethics of Artificial Intelligence and Robotics (Stanford Encyclopedia)</li>`
-            + `</div>`
-            + `<a class="chat-result-link" onclick="document.getElementById('resourceBrowser').scrollIntoView({behavior:'smooth'})">View in browser <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>`
-            + `</div>`
-            + `<div class="chat-result-card">`
-            + `<div class="chat-result-header">`
-            + `<span class="chat-result-type resource-type-tag type-syllabus">Syllabus</span>`
-            + `<span class="chat-result-title">Responsible AI Curriculum: Graduate Seminar Syllabus</span>`
-            + `</div>`
-            + `<div class="chat-result-institution">University of Houston</div>`
-            + `<div class="chat-result-matches"><strong>Matched readings:</strong>`
-            + `<li>Algorithmic Accountability (ACM Conference on Fairness)</li>`
-            + `<li>Race After Technology (Ruha Benjamin)</li>`
-            + `</div>`
-            + `<a class="chat-result-link" onclick="document.getElementById('resourceBrowser').scrollIntoView({behavior:'smooth'})">View in browser <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>`
-            + `</div>`;
+        let demoConvoIndex = 0;
+        let demoPhase = 'idle';
+        let demoTimeouts = [];
 
         function cancelDemo() {
             if (!demoMode) return;
             demoMode = false;
-            demoRunning = false;
+            demoPhase = 'idle';
             demoTimeouts.forEach(t => clearTimeout(t));
             demoTimeouts = [];
             chatInput.value = '';
@@ -2004,32 +2002,56 @@
             chatInput.value = '';
         }
 
-        function startDemo() {
-            if (!demoMode || demoRunning) return;
-            demoRunning = true;
+        function scheduleDemo(delay) {
+            demoTimeouts.push(setTimeout(() => {
+                if (!demoMode) return;
+                runDemoConversation(DEMO_CONVERSATIONS[demoConvoIndex]);
+            }, delay));
+        }
 
+        function runDemoConversation(convo) {
+            if (!demoMode) return;
+            demoPhase = 'typing';
+
+            // Clear previous demo messages with a fade
+            const oldMsgs = document.querySelectorAll('.chat-message.demo-msg');
+            if (oldMsgs.length > 0) {
+                oldMsgs.forEach(el => {
+                    el.style.transition = 'opacity 0.4s ease';
+                    el.style.opacity = '0';
+                });
+                demoTimeouts.push(setTimeout(() => {
+                    oldMsgs.forEach(el => el.remove());
+                    if (demoMode) beginTyping(convo);
+                }, 500));
+            } else {
+                beginTyping(convo);
+            }
+        }
+
+        function beginTyping(convo) {
+            if (!demoMode) return;
             let charIndex = 0;
             chatInput.placeholder = '';
 
-            // Phase 1: Type the query character by character
             function typeNextChar() {
                 if (!demoMode) return;
-                if (charIndex < DEMO_QUERY.length) {
-                    chatInput.value = DEMO_QUERY.substring(0, charIndex + 1);
+                if (charIndex < convo.query.length) {
+                    chatInput.value = convo.query.substring(0, charIndex + 1);
                     charIndex++;
-                    const delay = 25 + Math.random() * 35;
+                    const delay = 20 + Math.random() * 30;
                     demoTimeouts.push(setTimeout(typeNextChar, delay));
                 } else {
-                    // Phase 2: "Send" the message
-                    demoTimeouts.push(setTimeout(sendDemoMessage, 600));
+                    demoTimeouts.push(setTimeout(() => sendDemoConvo(convo), 500));
                 }
             }
 
-            demoTimeouts.push(setTimeout(typeNextChar, 800));
+            demoTimeouts.push(setTimeout(typeNextChar, 600));
         }
 
-        function sendDemoMessage() {
+        function sendDemoConvo(convo) {
             if (!demoMode) return;
+            demoPhase = 'responding';
 
             // Add user message
             const userWrapper = document.createElement('div');
@@ -2041,19 +2063,19 @@
                         <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="#6b7280" opacity="0.5"/>
                     </svg>
                 </div>
-                <div class="chat-bubble">${escapeHtml(DEMO_QUERY)}</div>
+                <div class="chat-bubble">${escapeHtml(convo.query)}</div>
             `;
             chatMessages.appendChild(userWrapper);
             chatMessages.scrollTop = chatMessages.scrollHeight;
             chatInput.value = '';
 
-            // Phase 3: Show typing indicator
+            // Show typing indicator
             demoTimeouts.push(setTimeout(() => {
                 if (!demoMode) return;
                 showTypingIndicator();
                 chatMessages.scrollTop = chatMessages.scrollHeight;
 
-                // Phase 4: Show response
+                // Show response
                 demoTimeouts.push(setTimeout(() => {
                     if (!demoMode) return;
                     removeTypingIndicator();
@@ -2067,20 +2089,33 @@
                                 <rect x="4" y="7" width="16" height="14" rx="3" fill="rgba(255,255,255,0.9)"/>
                             </svg>
                         </div>
-                        <div class="chat-bubble">${DEMO_RESPONSE}</div>
+                        <div class="chat-bubble">${convo.response}</div>
                     `;
                     chatMessages.appendChild(botWrapper);
                     chatMessages.scrollTop = chatMessages.scrollHeight;
-                    demoRunning = false;
-                }, 1800));
-            }, 400));
+
+                    demoPhase = 'idle';
+
+                    // Cycle to next conversation
+                    demoConvoIndex = (demoConvoIndex + 1) % DEMO_CONVERSATIONS.length;
+                    scheduleDemo(6000);
+                }, 2200));
+            }, 500));
         }
 
         // Trigger demo when chat section scrolls into view
+        // Use requestAnimationFrame to skip the initial observer callback
+        // that fires during page layout before the user has actually scrolled
+        let demoObserverReady = false;
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => { demoObserverReady = true; });
+        });
+
         const chatDemoObserver = new IntersectionObserver((entries) => {
+            if (!demoObserverReady) return;
             entries.forEach(entry => {
-                if (entry.isIntersecting && demoMode && !demoRunning) {
-                    startDemo();
+                if (entry.isIntersecting && demoMode && demoPhase === 'idle') {
+                    scheduleDemo(800);
                     chatDemoObserver.unobserve(entry.target);
                 }
             });
@@ -2090,17 +2125,10 @@
 
         // Cancel demo on any real user interaction
         chatInput.addEventListener('focus', () => {
-            if (demoMode) {
-                cancelDemo();
-                clearDemoMessages();
-            }
+            if (demoMode) { cancelDemo(); clearDemoMessages(); }
         });
-
         chatInput.addEventListener('click', () => {
-            if (demoMode) {
-                cancelDemo();
-                clearDemoMessages();
-            }
+            if (demoMode) { cancelDemo(); clearDemoMessages(); }
         });
 
         function addBotMessage(html) {
