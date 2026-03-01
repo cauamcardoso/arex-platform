@@ -3,14 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conversational Repository | AIREX</title>
+    <title>AI Readiness Repository | AIREX</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --primary-light: rgba(37, 99, 235, 0.08);
+            --bg-primary: #ffffff;
+            --bg-secondary: #fffbf5;
+            --bg-tertiary: #fff7ed;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --card-hover: rgba(255, 255, 255, 0.95);
+            --border-subtle: rgba(217, 119, 6, 0.1);
+            --border-hover: rgba(180, 83, 9, 0.35);
+            --text-primary: #451a03;
+            --text-secondary: #4b5563;
+            --text-muted: #6b7280;
+            --accent: #d97706;
+            --accent-dark: #b45309;
+            --accent-deep: #92400e;
+            --accent-light: #f59e0b;
+            --accent-rgb: 217, 119, 6;
             --success: #10b981;
             --warning: #f59e0b;
             --danger: #ef4444;
@@ -24,37 +36,25 @@
             --gray-700: #374151;
             --gray-800: #1f2937;
             --gray-900: #111827;
-            --emerald-50: #ecfdf5;
-            --emerald-100: #d1fae5;
-            --emerald-200: #a7f3d0;
-            --emerald-400: #34d399;
-            --emerald-500: #10b981;
-            --emerald-600: #059669;
-            --emerald-700: #047857;
-            --emerald-800: #065f46;
-            --emerald-900: #064e3b;
-            --teal-400: #2dd4bf;
-            --teal-500: #14b8a6;
-            --teal-600: #0d9488;
-            --teal-700: #0f766e;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--gray-50);
-            color: var(--gray-800);
+            background: #ffffff;
+            color: var(--text-primary);
             line-height: 1.6;
         }
 
         /* ============================================================
-           HEADER
+           HEADER (matches assessment + readiness + home)
            ============================================================ */
         .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--gray-200);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(217, 119, 6, 0.08);
             padding: 1rem 2rem;
             display: flex;
             align-items: center;
@@ -65,129 +65,130 @@
             height: 64px;
         }
 
-        .header-brand { display: flex; align-items: center; gap: 1rem; text-decoration: none; }
-        .header-brand h1 { font-size: 1.25rem; font-weight: 700; color: var(--gray-900); }
-        .header-brand span { font-size: 0.75rem; color: var(--gray-500); background: var(--gray-100); padding: 0.25rem 0.5rem; border-radius: 4px; }
+        .header-brand { display: flex; align-items: center; gap: 1rem; }
+        .header-brand h1 { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); letter-spacing: -0.01em; }
+        .header-brand h1 a { color: inherit; text-decoration: none; }
+        .header-brand .badge {
+            font-size: 0.65rem;
+            color: #92400e;
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+        .badge a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 
         .header-nav { display: flex; gap: 1.5rem; align-items: center; }
-        .header-nav a { color: var(--gray-600); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
-        .header-nav a:hover { color: var(--primary); }
-        .header-nav a.active { color: var(--emerald-600); font-weight: 600; }
+        .header-nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .header-nav a:hover { color: var(--accent); }
+        .header-nav a.active { color: var(--accent); font-weight: 600; }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            padding: 0.25rem;
+        }
 
         /* ============================================================
            HERO
            ============================================================ */
         .hero {
             margin-top: 64px;
-            background: linear-gradient(160deg, #042f2e 0%, #064e3b 30%, #047857 60%, #0d9488 100%);
-            padding: 6rem 2rem 5rem;
+            background: linear-gradient(160deg, #1c0f00 0%, #3d1f00 35%, #78350f 65%, #92400e 100%);
+            padding: 5rem 2rem 4.5rem;
             position: relative;
             overflow: hidden;
-            text-align: center;
         }
 
         .hero-orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
+            filter: blur(60px);
             pointer-events: none;
             will-change: transform;
         }
 
         .hero-orb-1 {
             width: 500px; height: 500px;
-            background: rgba(16, 185, 129, 0.35);
-            top: -10%; left: -5%;
-            animation: float-orb-1 12s ease-in-out infinite;
+            background: rgba(217, 119, 6, 0.5);
+            top: -15%; left: -5%;
+            animation: float-1 14s ease-in-out infinite;
         }
 
         .hero-orb-2 {
             width: 400px; height: 400px;
-            background: rgba(45, 212, 191, 0.25);
-            top: 30%; right: -10%;
-            animation: float-orb-2 15s ease-in-out infinite;
+            background: rgba(245, 158, 11, 0.3);
+            top: 20%; right: -10%;
+            animation: float-2 18s ease-in-out infinite;
         }
 
         .hero-orb-3 {
-            width: 350px; height: 350px;
-            background: rgba(52, 211, 153, 0.2);
-            bottom: -15%; left: 30%;
-            animation: float-orb-3 18s ease-in-out infinite;
+            width: 300px; height: 300px;
+            background: rgba(251, 191, 36, 0.2);
+            bottom: -10%; left: 30%;
+            animation: float-3 11s ease-in-out infinite;
         }
 
-        .hero-orb-4 {
-            width: 200px; height: 200px;
-            background: rgba(167, 243, 208, 0.15);
-            top: 60%; left: 15%;
-            animation: float-orb-4 10s ease-in-out infinite;
-        }
-
-        @keyframes float-orb-1 {
+        @keyframes float-1 {
             0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(40px, 30px) scale(1.05); }
-            50% { transform: translate(20px, -40px) scale(0.95); }
-            75% { transform: translate(-30px, 20px) scale(1.02); }
+            50% { transform: translate(40px, 30px) scale(1.1); }
         }
-
-        @keyframes float-orb-2 {
+        @keyframes float-2 {
             0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(-50px, 30px) scale(1.08); }
-            66% { transform: translate(30px, -50px) scale(0.92); }
+            33% { transform: translate(-40px, 20px) scale(1.05); }
+            66% { transform: translate(20px, -30px) scale(0.95); }
         }
-
-        @keyframes float-orb-3 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(60px, -30px) scale(1.1); }
-        }
-
-        @keyframes float-orb-4 {
+        @keyframes float-3 {
             0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(-40px, -40px); }
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-            background-size: 60px 60px;
-            pointer-events: none;
-            animation: grid-shimmer 8s ease-in-out infinite;
-        }
-
-        @keyframes grid-shimmer {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
+            50% { transform: translate(-30px, -30px); }
         }
 
         .hero-inner {
-            max-width: 800px;
+            max-width: 1100px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 3rem;
+            align-items: center;
             position: relative;
             z-index: 1;
         }
+
+        .hero-text { max-width: 560px; }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.4rem 1rem;
             background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 0.35rem 0.85rem;
             border-radius: 999px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 1.5rem;
-            backdrop-filter: blur(4px);
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.85);
+            letter-spacing: 0.03em;
+            margin-bottom: 1.25rem;
         }
 
         .hero-badge-dot {
             width: 6px; height: 6px;
             border-radius: 50%;
-            background: var(--emerald-400);
+            background: #fbbf24;
             animation: pulse-dot 2s infinite;
         }
 
@@ -198,102 +199,330 @@
 
         .hero h1 {
             font-size: 2.75rem;
-            font-weight: 900;
+            font-weight: 800;
             color: white;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
             line-height: 1.15;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
         }
 
         .hero h1 .highlight {
-            background: linear-gradient(135deg, #34d399, #2dd4bf, #a7f3d0, #34d399);
-            background-size: 300% 300%;
+            background: linear-gradient(135deg, #fbbf24, #fcd34d, #f59e0b);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: gradient-shift 6s ease-in-out infinite;
-        }
-
-        @keyframes gradient-shift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
         }
 
         .hero-desc {
             font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.8);
-            max-width: 650px;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.7;
+            max-width: 520px;
+        }
+
+        /* Hero glass stats card */
+        .hero-card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            padding: 2rem;
+            min-width: 280px;
+            text-align: center;
+        }
+
+        .hero-card-badge {
+            display: inline-block;
+            background: rgba(251, 191, 36, 0.2);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            color: #fde68a;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.25rem 0.65rem;
+            border-radius: 999px;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-card-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-card-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .hero-card-stat strong {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        .hero-card-stat span {
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* ============================================================
+           SHARED SECTION STYLES
+           ============================================================ */
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, #92400e, #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 640px;
             margin: 0 auto;
             line-height: 1.7;
         }
 
-        /* ============================================================
-           CHATBOT SECTION
-           ============================================================ */
-        .chatbot-section {
-            padding: 4rem 2rem;
-            background: var(--gray-50);
+        /* Glass card base */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 4px 24px rgba(0, 0, 0, 0.03);
+            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        .chatbot-container {
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.6);
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 12px 40px rgba(217, 119, 6, 0.08);
+        }
+
+        /* Scroll animation */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes aurora-pulse {
+            0%, 100% { transform: scale(1); opacity: 0.08; }
+            50% { transform: scale(1.15); opacity: 0.12; }
+        }
+
+        /* ============================================================
+           HOW TO USE (3 cards)
+           ============================================================ */
+        .how-section {
+            padding: 5rem 2rem;
+            background: var(--bg-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .how-section::before {
+            content: '';
+            position: absolute;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(217, 119, 6, 0.06) 0%, transparent 70%);
+            top: -10%; right: -5%;
+            pointer-events: none;
+            animation: aurora-pulse 12s ease-in-out infinite;
+        }
+
+        .how-section::after {
+            content: '';
+            position: absolute;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(180, 83, 9, 0.05) 0%, transparent 70%);
+            bottom: -15%; left: -3%;
+            pointer-events: none;
+            animation: aurora-pulse 15s ease-in-out infinite reverse;
+        }
+
+        .how-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .how-card {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .how-card .how-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.25rem;
+        }
+
+        .how-step-number {
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .how-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .how-card p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+           CONVERSATIONAL REPOSITORY (centerpiece)
+           ============================================================ */
+        .chat-section {
+            padding: 5rem 2rem;
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chat-section::before {
+            content: '';
+            position: absolute;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(217, 119, 6, 0.06) 0%, transparent 70%);
+            top: -15%; left: -8%;
+            pointer-events: none;
+            animation: aurora-pulse 14s ease-in-out infinite;
+        }
+
+        .chat-section::after {
+            content: '';
+            position: absolute;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.05) 0%, transparent 70%);
+            bottom: -10%; right: -5%;
+            pointer-events: none;
+            animation: aurora-pulse 16s ease-in-out infinite reverse;
+        }
+
+        .chat-container {
             max-width: 900px;
             margin: 0 auto;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
-            border: 1px solid var(--gray-200);
-            background: white;
+            position: relative;
+            z-index: 1;
         }
 
-        .chatbot-header {
-            background: linear-gradient(135deg, #064e3b, #047857, #0d9488);
-            padding: 1.25rem 1.5rem;
+        .chat-glass {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 20px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 8px 40px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #78350f, #92400e, #b45309);
+            padding: 1.25rem 1.75rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        .chatbot-header-left {
+        .chat-header-left {
             display: flex;
             align-items: center;
             gap: 0.75rem;
         }
 
-        .chatbot-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.15);
+        .chat-header-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.12);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.1rem;
         }
 
-        .chatbot-header h2 {
+        .chat-header h3 {
             font-size: 1rem;
             font-weight: 700;
             color: white;
         }
 
-        .chatbot-header-badge {
-            font-size: 0.65rem;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.85);
+        .chat-header-subtitle {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.65);
+            margin-top: 0.125rem;
+        }
+
+        .chat-header-badge {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.9);
             background: rgba(255, 255, 255, 0.15);
-            padding: 0.2rem 0.6rem;
+            padding: 0.25rem 0.65rem;
             border-radius: 999px;
-            letter-spacing: 0.03em;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
         }
 
         .chat-messages {
-            height: 420px;
+            height: 480px;
             overflow-y: auto;
             padding: 1.5rem;
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            background: var(--gray-50);
+            background: rgba(255, 251, 245, 0.6);
         }
 
         .chat-message {
@@ -312,42 +541,42 @@
         .chat-message.user { align-self: flex-end; flex-direction: row-reverse; }
 
         .chat-avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.9rem;
             flex-shrink: 0;
         }
 
         .chat-message.bot .chat-avatar {
-            background: linear-gradient(135deg, var(--emerald-600), var(--teal-500));
-            color: white;
+            background: linear-gradient(135deg, #92400e, #d97706);
         }
 
         .chat-message.user .chat-avatar {
             background: var(--gray-200);
-            color: var(--gray-600);
+            border-radius: 10px;
         }
 
         .chat-bubble {
             padding: 0.875rem 1.125rem;
             border-radius: 14px;
             font-size: 0.875rem;
-            line-height: 1.6;
+            line-height: 1.65;
         }
 
         .chat-message.bot .chat-bubble {
-            background: white;
-            color: var(--gray-700);
-            border: 1px solid var(--gray-200);
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.6);
             border-top-left-radius: 4px;
         }
 
         .chat-message.user .chat-bubble {
-            background: linear-gradient(135deg, var(--emerald-600), var(--teal-600));
+            background: linear-gradient(135deg, #92400e, #b45309);
             color: white;
             border-top-right-radius: 4px;
         }
@@ -378,16 +607,27 @@
 
         /* Chat result cards */
         .chat-result-card {
-            background: var(--gray-50);
-            border: 1px solid var(--gray-200);
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
             padding: 0.875rem;
             margin-top: 0.5rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        .chat-result-card + .chat-result-card {
-            margin-top: 0.5rem;
+        .chat-result-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent), var(--accent-light));
+            border-radius: 3px 0 0 3px;
         }
+
+        .chat-result-card + .chat-result-card { margin-top: 0.5rem; }
 
         .chat-result-header {
             display: flex;
@@ -408,7 +648,7 @@
         .chat-result-title {
             font-size: 0.8rem;
             font-weight: 600;
-            color: var(--gray-800);
+            color: var(--text-primary);
         }
 
         .chat-result-institution {
@@ -421,7 +661,7 @@
             font-size: 0.7rem;
             color: var(--gray-600);
             padding-left: 0.75rem;
-            border-left: 2px solid var(--emerald-300);
+            border-left: 2px solid rgba(217, 119, 6, 0.3);
             margin-top: 0.375rem;
         }
 
@@ -431,17 +671,19 @@
         }
 
         .chat-result-link {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
             margin-top: 0.5rem;
             font-size: 0.7rem;
             font-weight: 600;
-            color: var(--emerald-600);
+            color: var(--accent-deep);
             text-decoration: none;
             cursor: pointer;
         }
 
         .chat-result-link:hover {
-            color: var(--emerald-700);
+            color: var(--accent-dark);
             text-decoration: underline;
         }
 
@@ -450,25 +692,26 @@
             align-items: center;
             gap: 0.75rem;
             padding: 1rem 1.5rem;
-            border-top: 1px solid var(--gray-200);
-            background: white;
+            border-top: 1px solid rgba(217, 119, 6, 0.08);
+            background: rgba(255, 255, 255, 0.5);
         }
 
         .chat-input {
             flex: 1;
             padding: 0.75rem 1rem;
-            border: 1px solid var(--gray-300);
+            border: 1px solid rgba(217, 119, 6, 0.15);
             border-radius: 10px;
             font-size: 0.875rem;
             font-family: inherit;
             transition: border-color 0.2s, box-shadow 0.2s;
-            background: var(--gray-50);
+            background: rgba(255, 255, 255, 0.7);
+            color: var(--text-primary);
         }
 
         .chat-input:focus {
             outline: none;
-            border-color: var(--emerald-500);
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
             background: white;
         }
 
@@ -477,7 +720,7 @@
             height: 42px;
             border-radius: 10px;
             border: none;
-            background: linear-gradient(135deg, var(--emerald-600), var(--teal-600));
+            background: linear-gradient(135deg, #92400e, #b45309);
             color: white;
             font-size: 1.1rem;
             cursor: pointer;
@@ -490,112 +733,203 @@
 
         .chat-send-btn:hover {
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+            box-shadow: 0 4px 12px rgba(146, 64, 14, 0.3);
         }
 
-        .chat-send-btn:active {
-            transform: translateY(0);
+        .chat-send-btn:active { transform: translateY(0); }
+        .chat-send-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+
+        /* Suggested prompts */
+        .chat-prompts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem 1rem;
+            background: rgba(255, 255, 255, 0.35);
         }
 
-        .chat-send-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
+        .chat-prompt-chip {
+            padding: 0.4rem 0.85rem;
+            border-radius: 999px;
+            border: 1px solid rgba(217, 119, 6, 0.15);
+            background: rgba(255, 255, 255, 0.6);
+            font-size: 0.7rem;
+            color: var(--accent-deep);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .chat-prompt-chip:hover {
+            background: rgba(217, 119, 6, 0.08);
+            border-color: rgba(217, 119, 6, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .chat-capability-note {
+            text-align: center;
+            padding: 0.75rem 1.5rem 1.25rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            line-height: 1.5;
         }
 
         /* ============================================================
-           RESOURCE BROWSER SECTION
+           RESOURCE BROWSER
            ============================================================ */
         .resources-section {
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
+            background: var(--bg-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resources-section::before {
+            content: '';
+            position: absolute;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(217, 119, 6, 0.05) 0%, transparent 70%);
+            top: -10%; left: -5%;
+            pointer-events: none;
+            animation: aurora-pulse 13s ease-in-out infinite;
+        }
+
+        .resources-section::after {
+            content: '';
+            position: absolute;
+            width: 450px; height: 450px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.04) 0%, transparent 70%);
+            bottom: -12%; right: -3%;
+            pointer-events: none;
+            animation: aurora-pulse 17s ease-in-out infinite reverse;
+        }
+
+        .resources-toolbar {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 0.625rem 1rem;
+            border: 1px solid rgba(217, 119, 6, 0.15);
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.08);
             background: white;
         }
 
-        .resources-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .section-header h2 {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--gray-900);
-            margin-bottom: 0.5rem;
-        }
-
-        .section-header p {
-            font-size: 1rem;
-            color: var(--gray-500);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Pillar filter tabs */
         .filter-bar {
             display: flex;
             gap: 0.5rem;
             flex-wrap: wrap;
             justify-content: center;
-            margin-bottom: 2rem;
-            padding: 0.5rem;
-            background: var(--gray-100);
+            padding: 0.4rem;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
             border-radius: 12px;
+            position: relative;
+            z-index: 1;
         }
 
         .filter-tab {
-            padding: 0.5rem 1.125rem;
+            padding: 0.5rem 1rem;
             border-radius: 8px;
             border: none;
             background: transparent;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 500;
-            color: var(--gray-600);
+            color: var(--text-muted);
             cursor: pointer;
             transition: all 0.2s;
             font-family: inherit;
             white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
         }
 
         .filter-tab:hover {
-            background: var(--gray-200);
-            color: var(--gray-700);
+            background: rgba(255, 255, 255, 0.5);
+            color: var(--text-primary);
         }
 
         .filter-tab.active {
             background: white;
-            color: var(--emerald-700);
+            color: var(--accent-deep);
             font-weight: 600;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
         }
 
-        /* Resource cards grid */
+        .filter-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .filter-count {
+            font-size: 0.6rem;
+            font-weight: 700;
+            background: rgba(217, 119, 6, 0.08);
+            color: var(--accent-deep);
+            padding: 0.1rem 0.35rem;
+            border-radius: 999px;
+        }
+
         .resources-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 1.25rem;
+            position: relative;
+            z-index: 1;
         }
 
         .resource-card {
-            background: white;
-            border: 1px solid var(--gray-200);
-            border-radius: 14px;
             padding: 1.5rem;
-            transition: all 0.25s;
             display: flex;
             flex-direction: column;
+            position: relative;
+            overflow: hidden;
         }
 
-        .resource-card:hover {
-            border-color: var(--emerald-300);
-            box-shadow: 0 8px 24px rgba(5, 150, 105, 0.08);
-            transform: translateY(-2px);
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px;
+            height: 100%;
+            border-radius: 4px 0 0 4px;
         }
+
+        .resource-card-teaching::before { background: linear-gradient(180deg, #4338ca, #6366f1); }
+        .resource-card-policy::before { background: linear-gradient(180deg, #6d28d9, #8b5cf6); }
+        .resource-card-ethics::before { background: linear-gradient(180deg, #059669, #34d399); }
+        .resource-card-research::before { background: linear-gradient(180deg, #d97706, #f59e0b); }
+        .resource-card-infrastructure::before { background: linear-gradient(180deg, #dc2626, #f87171); }
 
         .resource-tags {
             display: flex;
@@ -634,7 +968,7 @@
         .resource-card h3 {
             font-size: 0.95rem;
             font-weight: 700;
-            color: var(--gray-900);
+            color: var(--text-primary);
             margin-bottom: 0.25rem;
             line-height: 1.4;
         }
@@ -647,7 +981,7 @@
 
         .resource-description {
             font-size: 0.8rem;
-            color: var(--gray-600);
+            color: var(--text-secondary);
             line-height: 1.55;
             margin-bottom: 0.75rem;
             display: -webkit-box;
@@ -668,14 +1002,17 @@
             font-size: 0.625rem;
             padding: 0.15rem 0.45rem;
             border-radius: 999px;
-            background: var(--gray-100);
-            color: var(--gray-500);
+            background: rgba(217, 119, 6, 0.06);
+            color: var(--accent-deep);
             font-weight: 500;
         }
 
         .reading-count {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
             font-size: 0.7rem;
-            color: var(--emerald-600);
+            color: var(--accent-dark);
             font-weight: 600;
             margin-bottom: 0.75rem;
         }
@@ -685,19 +1022,12 @@
             justify-content: space-between;
             align-items: center;
             padding-top: 0.75rem;
-            border-top: 1px solid var(--gray-100);
+            border-top: 1px solid rgba(217, 119, 6, 0.06);
             margin-top: auto;
         }
 
-        .resource-contributor {
-            font-size: 0.7rem;
-            color: var(--gray-400);
-        }
-
-        .resource-date {
-            font-size: 0.65rem;
-            color: var(--gray-400);
-        }
+        .resource-contributor { font-size: 0.7rem; color: var(--gray-400); }
+        .resource-date { font-size: 0.65rem; color: var(--gray-400); }
 
         .resources-empty {
             grid-column: 1 / -1;
@@ -708,47 +1038,217 @@
         }
 
         /* ============================================================
-           CONTRIBUTE SECTION
+           WHAT'S INSIDE (resource types)
+           ============================================================ */
+        .types-section {
+            padding: 5rem 2rem;
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .types-section::before {
+            content: '';
+            position: absolute;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(217, 119, 6, 0.05) 0%, transparent 70%);
+            bottom: -10%; left: -5%;
+            pointer-events: none;
+            animation: aurora-pulse 12s ease-in-out infinite;
+        }
+
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .type-card {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .type-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+
+        .type-card h4 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.375rem;
+        }
+
+        .type-card p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .types-callouts {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .types-callout {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1.25rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .types-callout-framework {
+            background: rgba(217, 119, 6, 0.06);
+            color: var(--accent-deep);
+            border: 1px solid rgba(217, 119, 6, 0.12);
+        }
+
+        .types-callout-framework:hover {
+            background: rgba(217, 119, 6, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .types-callout-assessment {
+            background: rgba(37, 99, 235, 0.06);
+            color: #1d4ed8;
+            border: 1px solid rgba(37, 99, 235, 0.12);
+        }
+
+        .types-callout-assessment:hover {
+            background: rgba(37, 99, 235, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* ============================================================
+           CONTRIBUTE (dark section)
            ============================================================ */
         .contribute-section {
             padding: 5rem 2rem;
-            background: var(--gray-50);
+            background: linear-gradient(160deg, #1c0f00 0%, #2d1600 40%, #451a03 100%);
+            position: relative;
+            overflow: hidden;
+            color: white;
         }
 
-        .contribute-inner {
-            max-width: 800px;
-            margin: 0 auto;
+        .contribute-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 32px 32px;
+            pointer-events: none;
+            opacity: 0.6;
         }
 
-        .contribute-header {
-            text-align: center;
-            margin-bottom: 2.5rem;
+        .contribute-section::after {
+            content: '';
+            position: absolute;
+            top: -20%; right: -10%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(217, 119, 6, 0.12), transparent 70%);
+            pointer-events: none;
         }
 
-        .contribute-header h2 {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--gray-900);
-            margin-bottom: 0.5rem;
+        .contribute-section .section-header h2 {
+            color: white;
+            -webkit-text-fill-color: white;
+            background: none;
         }
 
-        .contribute-header p {
-            font-size: 1rem;
-            color: var(--gray-500);
-            max-width: 550px;
-            margin: 0 auto;
+        .contribute-section .section-header p {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .contribute-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contribute-info h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .contribute-info p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.75;
+            margin-bottom: 1.5rem;
+        }
+
+        .review-pipeline {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .review-step {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+        }
+
+        .review-step-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .review-step-text {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .review-step-text strong {
+            color: white;
+            display: block;
+            font-size: 0.78rem;
+            margin-bottom: 0.1rem;
         }
 
         .contribute-form {
-            background: white;
-            border: 1px solid var(--gray-200);
-            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
             padding: 2rem;
         }
 
         .form-row {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 1rem;
             margin-bottom: 1rem;
         }
@@ -759,48 +1259,49 @@
             gap: 0.375rem;
         }
 
-        .form-group.full-width {
-            grid-column: 1 / -1;
-        }
+        .form-group.full-width { grid-column: 1 / -1; }
 
         .form-group label {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 600;
-            color: var(--gray-700);
+            color: rgba(255, 255, 255, 0.6);
             text-transform: uppercase;
-            letter-spacing: 0.03em;
+            letter-spacing: 0.04em;
         }
 
         .form-group input,
         .form-group select,
         .form-group textarea {
             padding: 0.625rem 0.875rem;
-            border: 1px solid var(--gray-300);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 8px;
-            font-size: 0.875rem;
+            font-size: 0.85rem;
             font-family: inherit;
-            color: var(--gray-700);
+            color: white;
+            background: rgba(255, 255, 255, 0.06);
             transition: border-color 0.2s, box-shadow 0.2s;
-            background: white;
         }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder { color: rgba(255, 255, 255, 0.3); }
+
+        .form-group select { color: rgba(255, 255, 255, 0.7); }
+        .form-group select option { background: #451a03; color: white; }
 
         .form-group input:focus,
         .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: var(--emerald-500);
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+            border-color: rgba(217, 119, 6, 0.5);
+            box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.12);
         }
 
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
+        .form-group textarea { resize: vertical; min-height: 90px; }
 
         .file-upload-area {
-            border: 2px dashed var(--gray-300);
+            border: 2px dashed rgba(255, 255, 255, 0.15);
             border-radius: 10px;
-            padding: 2rem;
+            padding: 1.5rem;
             text-align: center;
             cursor: pointer;
             transition: all 0.2s;
@@ -808,34 +1309,22 @@
         }
 
         .file-upload-area:hover {
-            border-color: var(--emerald-400);
-            background: var(--emerald-50);
+            border-color: rgba(217, 119, 6, 0.4);
+            background: rgba(217, 119, 6, 0.06);
         }
 
-        .file-upload-area input[type="file"] {
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            cursor: pointer;
-        }
-
-        .file-upload-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
+        .file-upload-area input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
 
         .file-upload-text {
-            font-size: 0.85rem;
-            color: var(--gray-500);
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
         }
 
-        .file-upload-text strong {
-            color: var(--emerald-600);
-        }
+        .file-upload-text strong { color: #fbbf24; }
 
         .file-upload-hint {
-            font-size: 0.7rem;
-            color: var(--gray-400);
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.3);
             margin-top: 0.25rem;
         }
 
@@ -844,44 +1333,22 @@
             padding: 0.875rem;
             border: none;
             border-radius: 10px;
-            background: linear-gradient(135deg, var(--emerald-600), var(--teal-600));
+            background: linear-gradient(135deg, #d97706, #b45309);
             color: white;
             font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
             font-family: inherit;
             transition: transform 0.15s, box-shadow 0.15s;
-            margin-top: 1.5rem;
+            margin-top: 1.25rem;
         }
 
         .btn-submit:hover {
             transform: translateY(-1px);
-            box-shadow: 0 4px 16px rgba(5, 150, 105, 0.3);
+            box-shadow: 0 4px 16px rgba(217, 119, 6, 0.35);
         }
 
-        .btn-submit:active {
-            transform: translateY(0);
-        }
-
-        .review-process {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
-            font-size: 0.75rem;
-            color: var(--gray-400);
-        }
-
-        .review-step {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-
-        .review-arrow {
-            color: var(--gray-300);
-        }
+        .btn-submit:active { transform: translateY(0); }
 
         /* ============================================================
            TOAST
@@ -890,7 +1357,7 @@
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            background: var(--emerald-700);
+            background: #92400e;
             color: white;
             padding: 1rem 1.5rem;
             border-radius: 10px;
@@ -904,10 +1371,7 @@
             max-width: 400px;
         }
 
-        .toast.visible {
-            transform: translateY(0);
-            opacity: 1;
-        }
+        .toast.visible { transform: translateY(0); opacity: 1; }
 
         /* ============================================================
            FOOTER
@@ -926,53 +1390,88 @@
             align-items: center;
         }
 
-        .footer-brand h3 {
-            font-size: 1rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 0.25rem;
-        }
-
+        .footer-brand h3 { font-size: 1rem; font-weight: 700; color: white; margin-bottom: 0.25rem; }
         .footer-brand p { font-size: 0.75rem; }
 
-        .footer-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
+        .footer-links { display: flex; gap: 1.5rem; }
         .footer-links a {
             color: rgba(255, 255, 255, 0.6);
             text-decoration: none;
             font-size: 0.8rem;
             transition: color 0.2s;
         }
-
         .footer-links a:hover { color: white; }
 
         /* ============================================================
            RESPONSIVE
            ============================================================ */
+        @media (max-width: 1024px) {
+            .hero-inner { grid-template-columns: 1fr; }
+            .hero-card { max-width: 360px; margin: 0 auto; }
+            .hero-text { max-width: 100%; text-align: center; margin: 0 auto; }
+            .hero-desc { margin: 0 auto; }
+            .hero-badge { margin: 0 auto 1.25rem; }
+            .types-grid { grid-template-columns: repeat(2, 1fr); }
+            .contribute-layout { grid-template-columns: 1fr; }
+        }
+
         @media (max-width: 768px) {
-            .hero { padding: 4rem 1.5rem 3rem; }
+            .header { padding: 1rem; }
+            .header-nav {
+                display: none;
+                position: absolute;
+                top: 64px; left: 0; right: 0;
+                background: rgba(255, 255, 255, 0.96);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                padding: 1rem 2rem;
+                flex-direction: column;
+                gap: 0.75rem;
+                border-bottom: 1px solid var(--border-subtle);
+            }
+            .header-nav.open { display: flex; }
+            .mobile-menu-btn { display: block; }
+
+            .hero { padding: 3.5rem 1.5rem 3rem; }
             .hero h1 { font-size: 2rem; }
-            .hero-orb { display: none; }
             .hero-desc { font-size: 0.95rem; }
-            .header-nav { gap: 0.75rem; }
-            .header-nav a { font-size: 0.75rem; }
-            .chat-messages { height: 350px; }
+
+            .how-grid { grid-template-columns: 1fr; gap: 1rem; }
+
+            .chat-messages { height: 380px; }
             .chat-message { max-width: 92%; }
+
             .filter-bar { gap: 0.25rem; }
             .filter-tab { padding: 0.4rem 0.75rem; font-size: 0.7rem; }
             .resources-grid { grid-template-columns: 1fr; }
+
+            .types-grid { grid-template-columns: 1fr 1fr; }
+            .types-callouts { flex-direction: column; align-items: center; }
+
             .form-row { grid-template-columns: 1fr; }
+
+            .section-header h2 {
+                font-size: 1.5rem;
+                -webkit-text-fill-color: unset;
+                background: none;
+                color: #92400e;
+            }
+
+            .contribute-section .section-header h2 {
+                -webkit-text-fill-color: white;
+                color: white;
+            }
+
             .footer-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
-            .chatbot-section, .resources-section, .contribute-section { padding: 2.5rem 1rem; }
+
+            .how-section, .chat-section, .resources-section, .types-section, .contribute-section { padding: 3rem 1.25rem; }
         }
 
         @media (max-width: 480px) {
-            .header { padding: 1rem; }
-            .header-nav { display: none; }
             .hero h1 { font-size: 1.75rem; }
+            .hero-card-stats { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+            .types-grid { grid-template-columns: 1fr; }
+            .chat-prompts { flex-direction: column; }
         }
     </style>
 </head>
@@ -981,10 +1480,11 @@
          HEADER
          ============================================================ -->
     <header class="header">
-        <a href="/" class="header-brand" style="text-decoration: none;">
-            <h1>AIREX</h1>
-            <span>Powered by <a href="https://www.utep.edu/aaii/" target="_blank" rel="noopener">AAII</a> + <a href="https://cahsi.utep.edu/" target="_blank" rel="noopener">CAHSI</a></span>
-        </a>
+        <div class="header-brand">
+            <h1><a href="/">AIREX</a></h1>
+            <span class="badge">Powered by <a href="https://www.utep.edu/aaii/" target="_blank" rel="noopener">AAII</a> + <a href="https://cahsi.utep.edu/" target="_blank" rel="noopener">CAHSI</a></span>
+        </div>
+        <button class="mobile-menu-btn" onclick="document.querySelector('.header-nav').classList.toggle('open')" aria-label="Toggle navigation">&#9776;</button>
         <nav class="header-nav">
             <a href="/">Home</a>
             <a href="/readiness">AI Readiness</a>
@@ -1002,164 +1502,361 @@
         <div class="hero-orb hero-orb-1"></div>
         <div class="hero-orb hero-orb-2"></div>
         <div class="hero-orb hero-orb-3"></div>
-        <div class="hero-orb hero-orb-4"></div>
         <div class="hero-inner">
-            <div class="hero-badge">
-                <div class="hero-badge-dot"></div>
-                18 curated resources &middot; 5 pillars &middot; AI-powered search
-            </div>
-            <h1>Conversational <span class="highlight">Repository</span></h1>
-            <p class="hero-desc">
-                Search curated resources across all five AI readiness pillars. Ask questions in natural language and get specific answers drawn from syllabi, policy templates, guides, and case studies contributed by the network.
-            </p>
-        </div>
-    </section>
-
-    <!-- ============================================================
-         SECTION 1: CHATBOT / SEARCH
-         ============================================================ -->
-    <section class="chatbot-section">
-        <div class="chatbot-container">
-            <div class="chatbot-header">
-                <div class="chatbot-header-left">
-                    <div class="chatbot-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg></div>
-                    <h2>AIREX Repository Assistant</h2>
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <div class="hero-badge-dot"></div>
+                    Curated Resources &middot; 5 Pillars &middot; AI-Powered Search
                 </div>
-                <div class="chatbot-header-badge">Beta</div>
+                <h1>AI Readiness <span class="highlight">Repository</span></h1>
+                <p class="hero-desc">
+                    Ask questions in plain language and discover practical resources shared by peer institutions. The repository searches across syllabi, policy templates, guides, and case studies contributed by the network.
+                </p>
             </div>
-
-            <div class="chat-messages" id="chatMessages">
-                <!-- Initial bot message injected by JS -->
-            </div>
-
-            <div class="chat-input-area">
-                <input
-                    type="text"
-                    class="chat-input"
-                    id="chatInput"
-                    placeholder="Ask a question about AI readiness..."
-                    autocomplete="off"
-                >
-                <button class="chat-send-btn" id="chatSend" title="Send message"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></button>
+            <div class="hero-card">
+                <div class="hero-card-badge">Shared Knowledge Base</div>
+                <h3>What's inside</h3>
+                <div class="hero-card-divider"></div>
+                <div class="hero-card-stats" id="heroStats">
+                    <div class="hero-card-stat">
+                        <strong id="statResources">--</strong>
+                        <span>Resources</span>
+                    </div>
+                    <div class="hero-card-stat">
+                        <strong>5</strong>
+                        <span>Pillars</span>
+                    </div>
+                    <div class="hero-card-stat">
+                        <strong id="statInstitutions">--</strong>
+                        <span>Institutions</span>
+                    </div>
+                    <div class="hero-card-stat">
+                        <strong id="statTypes">--</strong>
+                        <span>Resource Types</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- ============================================================
-         SECTION 2: RESOURCE BROWSER
+         HOW TO USE (3 cards)
+         ============================================================ -->
+    <section class="how-section">
+        <div class="section-inner">
+            <div class="section-header fade-up">
+                <h2>How to Use the Repository</h2>
+                <p>Three ways to find the resources that matter most to your institution's AI journey.</p>
+            </div>
+            <div class="how-grid">
+                <div class="how-card glass-card fade-up">
+                    <div class="how-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs><linearGradient id="hw1" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#92400e"/><stop offset="1" stop-color="#d97706"/></linearGradient></defs>
+                            <circle cx="12" cy="12" r="9" fill="url(#hw1)" opacity="0.25"/>
+                            <circle cx="12" cy="12" r="5" fill="url(#hw1)"/>
+                        </svg>
+                    </div>
+                    <div class="how-step-number">Step 01</div>
+                    <h3>Ask a Question</h3>
+                    <p>Use the conversational search to ask questions in natural language. The assistant finds relevant materials and highlights specific content within them.</p>
+                </div>
+                <div class="how-card glass-card fade-up" style="transition-delay: 0.1s;">
+                    <div class="how-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs><linearGradient id="hw2" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#b45309"/><stop offset="1" stop-color="#f59e0b"/></linearGradient></defs>
+                            <rect x="3" y="3" width="18" height="18" rx="4" fill="url(#hw2)" opacity="0.25"/>
+                            <rect x="7" y="7" width="10" height="10" rx="2" fill="url(#hw2)"/>
+                        </svg>
+                    </div>
+                    <div class="how-step-number">Step 02</div>
+                    <h3>Browse by Pillar</h3>
+                    <p>Filter resources by the five AI readiness pillars to find materials that align with your institution's priorities and current development stage.</p>
+                </div>
+                <div class="how-card glass-card fade-up" style="transition-delay: 0.2s;">
+                    <div class="how-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs><linearGradient id="hw3" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#78350f"/><stop offset="1" stop-color="#d97706"/></linearGradient></defs>
+                            <path d="M12 2L22 8.5V15.5L12 22L2 15.5V8.5L12 2Z" fill="url(#hw3)" opacity="0.25"/>
+                            <path d="M12 6L18 9.5V14.5L12 18L6 14.5V9.5L12 6Z" fill="url(#hw3)"/>
+                        </svg>
+                    </div>
+                    <div class="how-step-number">Step 03</div>
+                    <h3>Contribute Back</h3>
+                    <p>Share your institution's AI resources with the network. Every contribution strengthens the shared knowledge base and helps peer institutions learn from your experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         CONVERSATIONAL REPOSITORY (centerpiece)
+         ============================================================ -->
+    <section class="chat-section">
+        <div class="section-inner">
+            <div class="section-header fade-up">
+                <h2>Ask the Repository</h2>
+                <p>Type a question and the assistant will search across all curated materials, including content within syllabi, readings, policy frameworks, and case studies.</p>
+            </div>
+            <div class="chat-container fade-up" style="transition-delay: 0.1s;">
+                <div class="chat-glass">
+                    <div class="chat-header">
+                        <div class="chat-header-left">
+                            <div class="chat-header-icon">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <defs><linearGradient id="ci" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#fbbf24"/><stop offset="1" stop-color="#fde68a"/></linearGradient></defs>
+                                    <rect x="4" y="3" width="16" height="14" rx="3" fill="url(#ci)" opacity="0.35" transform="rotate(-4 12 10)"/>
+                                    <rect x="4" y="7" width="16" height="14" rx="3" fill="url(#ci)"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3>Repository Assistant</h3>
+                                <div class="chat-header-subtitle">Search across all curated materials</div>
+                            </div>
+                        </div>
+                        <div class="chat-header-badge">Beta</div>
+                    </div>
+
+                    <div class="chat-messages" id="chatMessages"></div>
+
+                    <div class="chat-input-area">
+                        <input type="text" class="chat-input" id="chatInput" placeholder="Ask about AI readiness resources..." autocomplete="off">
+                        <button class="chat-send-btn" id="chatSend" title="Send message">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22 2L11 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M22 2L15 22L11 13L2 9L22 2Z" fill="white" opacity="0.9"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="chat-prompts" id="chatPrompts">
+                        <button class="chat-prompt-chip" data-prompt="What ethics readings are institutions using in intro CS courses?">Ethics readings for CS courses</button>
+                        <button class="chat-prompt-chip" data-prompt="How should we structure an AI governance committee?">AI governance committee structure</button>
+                        <button class="chat-prompt-chip" data-prompt="What policy templates exist for responsible AI use?">Policy templates for AI use</button>
+                        <button class="chat-prompt-chip" data-prompt="What resources are available for AI in research methodology?">AI in research methodology</button>
+                    </div>
+
+                    <div class="chat-capability-note">
+                        The assistant searches across all curated resources, including content within syllabi, readings, and frameworks shared by peer institutions.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         RESOURCE BROWSER
          ============================================================ -->
     <section class="resources-section" id="resourceBrowser">
-        <div class="resources-inner">
-            <div class="section-header">
+        <div class="section-inner">
+            <div class="section-header fade-up">
                 <h2>Browse Resources</h2>
-                <p>Filter by pillar to find resources relevant to your institution's priorities.</p>
+                <p>Filter by pillar or search by keyword to find resources relevant to your institution's priorities.</p>
             </div>
 
-            <div class="filter-bar" id="filterBar">
-                <button class="filter-tab active" data-pillar="">All</button>
-                <button class="filter-tab" data-pillar="teaching">Teaching &amp; Learning</button>
-                <button class="filter-tab" data-pillar="policy">Policy &amp; Governance</button>
-                <button class="filter-tab" data-pillar="ethics">Ethics &amp; Equity</button>
-                <button class="filter-tab" data-pillar="research">Research &amp; Innovation</button>
-                <button class="filter-tab" data-pillar="infrastructure">Infrastructure</button>
+            <div class="resources-toolbar fade-up" style="transition-delay: 0.1s;">
+                <div class="search-bar">
+                    <input type="text" id="resourceSearch" placeholder="Search resources by title, topic, or keyword...">
+                </div>
+                <div class="filter-bar" id="filterBar">
+                    <button class="filter-tab active" data-pillar="">All <span class="filter-count" id="countAll"></span></button>
+                    <button class="filter-tab" data-pillar="teaching"><span class="filter-dot" style="background: #4338ca;"></span> Teaching &amp; Learning <span class="filter-count" id="countTeaching"></span></button>
+                    <button class="filter-tab" data-pillar="policy"><span class="filter-dot" style="background: #6d28d9;"></span> Policy &amp; Governance <span class="filter-count" id="countPolicy"></span></button>
+                    <button class="filter-tab" data-pillar="ethics"><span class="filter-dot" style="background: #059669;"></span> Ethics &amp; Equity <span class="filter-count" id="countEthics"></span></button>
+                    <button class="filter-tab" data-pillar="research"><span class="filter-dot" style="background: #d97706;"></span> Research &amp; Innovation <span class="filter-count" id="countResearch"></span></button>
+                    <button class="filter-tab" data-pillar="infrastructure"><span class="filter-dot" style="background: #dc2626;"></span> Infrastructure <span class="filter-count" id="countInfrastructure"></span></button>
+                </div>
             </div>
 
-            <div class="resources-grid" id="resourcesGrid">
+            <div class="resources-grid fade-up" id="resourcesGrid" style="transition-delay: 0.2s;">
                 <div class="resources-empty">Loading resources...</div>
             </div>
         </div>
     </section>
 
     <!-- ============================================================
-         SECTION 3: CONTRIBUTE / SUBMIT
+         WHAT'S INSIDE (resource types)
+         ============================================================ -->
+    <section class="types-section">
+        <div class="section-inner">
+            <div class="section-header fade-up">
+                <h2>What You'll Find</h2>
+                <p>Resources are organized around the five pillars of the AI Readiness Framework and cover a range of practical formats.</p>
+            </div>
+            <div class="types-grid">
+                <div class="type-card glass-card fade-up">
+                    <div class="type-card-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs><linearGradient id="tc1" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#1e40af"/><stop offset="1" stop-color="#3b82f6"/></linearGradient></defs>
+                            <rect x="5" y="3" width="14" height="18" rx="3" fill="url(#tc1)" opacity="0.3"/>
+                            <rect x="7" y="6" width="10" height="12" rx="2" fill="url(#tc1)"/>
+                        </svg>
+                    </div>
+                    <h4>Syllabi</h4>
+                    <p>Course syllabi that integrate AI topics, from ethics modules to full AI-focused courses</p>
+                </div>
+                <div class="type-card glass-card fade-up" style="transition-delay: 0.1s;">
+                    <div class="type-card-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs><linearGradient id="tc2" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#6d28d9"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
+                            <path d="M12 2.5L21 7.5V16.5L12 21.5L3 16.5V7.5L12 2.5Z" fill="url(#tc2)" opacity="0.3"/>
+                            <path d="M12 6L18 9.5V14.5L12 18L6 14.5V9.5L12 6Z" fill="url(#tc2)"/>
+                        </svg>
+                    </div>
+                    <h4>Policy Templates</h4>
+                    <p>Ready-to-adapt templates for AI governance, acceptable use, and institutional AI strategy</p>
+                </div>
+                <div class="type-card glass-card fade-up" style="transition-delay: 0.2s;">
+                    <div class="type-card-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs><linearGradient id="tc3" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#059669"/><stop offset="1" stop-color="#34d399"/></linearGradient></defs>
+                            <path d="M12 3a9 9 0 0 1 0 18V3z" fill="url(#tc3)"/>
+                            <path d="M12 3a9 9 0 0 0 0 18V3z" fill="url(#tc3)" opacity="0.3"/>
+                        </svg>
+                    </div>
+                    <h4>Guides &amp; Frameworks</h4>
+                    <p>Step-by-step guides, implementation frameworks, and workshop materials for faculty and staff</p>
+                </div>
+                <div class="type-card glass-card fade-up" style="transition-delay: 0.3s;">
+                    <div class="type-card-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs><linearGradient id="tc4" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#b45309"/><stop offset="1" stop-color="#f59e0b"/></linearGradient></defs>
+                            <path d="M12 2L22 12L12 22L2 12L12 2Z" fill="url(#tc4)" opacity="0.3"/>
+                            <path d="M12 6L18 12L12 18L6 12L12 6Z" fill="url(#tc4)"/>
+                        </svg>
+                    </div>
+                    <h4>Case Studies</h4>
+                    <p>Real examples of how institutions have approached AI integration, from pilots to campus-wide rollouts</p>
+                </div>
+            </div>
+            <div class="types-callouts fade-up" style="transition-delay: 0.35s;">
+                <a href="/readiness" class="types-callout types-callout-framework">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cl1" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#92400e"/><stop offset="1" stop-color="#d97706"/></linearGradient></defs><circle cx="12" cy="12" r="8" fill="url(#cl1)"/></svg>
+                    Resources map to the five pillars of the AI Readiness Framework &rarr;
+                </a>
+                <a href="/assessment" class="types-callout types-callout-assessment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cl2" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#1d4ed8"/><stop offset="1" stop-color="#3b82f6"/></linearGradient></defs><rect x="4" y="4" width="16" height="16" rx="4" fill="url(#cl2)"/></svg>
+                    Take the assessment to discover which pillars to prioritize &rarr;
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         CONTRIBUTE (dark section)
          ============================================================ -->
     <section class="contribute-section">
-        <div class="contribute-inner">
-            <div class="contribute-header">
-                <h2>Contribute to the Repository</h2>
-                <p>Share your institution's AI resources with the network. All submissions go through a quality review process before being published.</p>
+        <div class="section-inner">
+            <div class="section-header fade-up">
+                <h2>Grow the Shared Knowledge Base</h2>
+                <p>Every resource you share helps peer institutions learn from your experience. Contributions go through a quality review before being published.</p>
             </div>
 
-            <form class="contribute-form" id="contributeForm">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="contribName">Your Name</label>
-                        <input type="text" id="contribName" placeholder="Dr. Jane Smith" required>
+            <div class="contribute-layout">
+                <div class="contribute-info fade-up">
+                    <h3>How contributions work</h3>
+                    <p>The repository grows through peer contributions. Whether it's a course syllabus, a policy template, a workshop guide, or a case study, your materials help other institutions build on proven approaches rather than starting from scratch.</p>
+                    <div class="review-pipeline">
+                        <div class="review-step">
+                            <div class="review-step-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="rs1" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#fbbf24"/><stop offset="1" stop-color="#fde68a"/></linearGradient></defs><path d="M12 2L18 8.5V15.5L12 22L6 15.5V8.5L12 2Z" fill="url(#rs1)"/></svg>
+                            </div>
+                            <div class="review-step-text">
+                                <strong>Submit</strong>
+                                Upload your resource with details about pillar, type, and context
+                            </div>
+                        </div>
+                        <div class="review-step">
+                            <div class="review-step-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="rs2" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#d97706"/><stop offset="1" stop-color="#f59e0b"/></linearGradient></defs><rect x="4" y="4" width="16" height="16" rx="4" fill="url(#rs2)" opacity="0.4"/><rect x="7" y="7" width="10" height="10" rx="2" fill="url(#rs2)"/></svg>
+                            </div>
+                            <div class="review-step-text">
+                                <strong>AI Screening</strong>
+                                Automated check for relevance, quality, and pillar alignment
+                            </div>
+                        </div>
+                        <div class="review-step">
+                            <div class="review-step-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="rs3" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#b45309"/><stop offset="1" stop-color="#d97706"/></linearGradient></defs><circle cx="9" cy="10" r="5" fill="url(#rs3)"/><circle cx="16" cy="10" r="5" fill="url(#rs3)" opacity="0.4"/></svg>
+                            </div>
+                            <div class="review-step-text">
+                                <strong>Human Review</strong>
+                                Expert curation team reviews for accuracy and usefulness
+                            </div>
+                        </div>
+                        <div class="review-step">
+                            <div class="review-step-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="rs4" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#92400e"/><stop offset="1" stop-color="#fbbf24"/></linearGradient></defs><path d="M12 2L22 12L12 22L2 12L12 2Z" fill="url(#rs4)"/></svg>
+                            </div>
+                            <div class="review-step-text">
+                                <strong>Published</strong>
+                                Resource becomes searchable and available to the full network
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="contribEmail">Email</label>
-                        <input type="email" id="contribEmail" placeholder="jane@university.edu" required>
+                </div>
+
+                <form class="contribute-form fade-up" id="contributeForm" style="transition-delay: 0.15s;">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contribName">Your Name</label>
+                            <input type="text" id="contribName" placeholder="Dr. Jane Smith" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contribEmail">Email</label>
+                            <input type="email" id="contribEmail" placeholder="jane@university.edu" required>
+                        </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group full-width" style="margin-bottom: 1rem;">
                         <label for="contribInstitution">Institution</label>
                         <input type="text" id="contribInstitution" placeholder="University name" required>
                     </div>
-                </div>
-
-                <div class="form-group full-width" style="margin-bottom: 1rem;">
-                    <label for="contribTitle">Resource Title</label>
-                    <input type="text" id="contribTitle" placeholder="e.g., AI Ethics in Academic Assessment: Course Syllabus" required>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="contribPillar">Pillar</label>
-                        <select id="contribPillar" required>
-                            <option value="">Select a pillar</option>
-                            <option value="teaching">Teaching &amp; Learning</option>
-                            <option value="policy">Policy &amp; Governance</option>
-                            <option value="ethics">Ethics &amp; Equity</option>
-                            <option value="research">Research &amp; Innovation</option>
-                            <option value="infrastructure">Infrastructure</option>
-                        </select>
+                    <div class="form-group full-width" style="margin-bottom: 1rem;">
+                        <label for="contribTitle">Resource Title</label>
+                        <input type="text" id="contribTitle" placeholder="e.g., AI Ethics in Academic Assessment: Course Syllabus" required>
                     </div>
-                    <div class="form-group">
-                        <label for="contribType">Resource Type</label>
-                        <select id="contribType" required>
-                            <option value="">Select a type</option>
-                            <option value="syllabus">Syllabus</option>
-                            <option value="guide">Guide</option>
-                            <option value="template">Template</option>
-                            <option value="checklist">Checklist</option>
-                            <option value="case_study">Case Study</option>
-                            <option value="framework">Framework</option>
-                            <option value="workshop_guide">Workshop Guide</option>
-                            <option value="curriculum_module">Curriculum Module</option>
-                            <option value="policy_template">Policy Template</option>
-                        </select>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contribPillar">Pillar</label>
+                            <select id="contribPillar" required>
+                                <option value="">Select a pillar</option>
+                                <option value="teaching">Teaching &amp; Learning</option>
+                                <option value="policy">Policy &amp; Governance</option>
+                                <option value="ethics">Ethics &amp; Equity</option>
+                                <option value="research">Research &amp; Innovation</option>
+                                <option value="infrastructure">Infrastructure</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="contribType">Resource Type</label>
+                            <select id="contribType" required>
+                                <option value="">Select a type</option>
+                                <option value="syllabus">Syllabus</option>
+                                <option value="guide">Guide</option>
+                                <option value="template">Template</option>
+                                <option value="checklist">Checklist</option>
+                                <option value="case_study">Case Study</option>
+                                <option value="framework">Framework</option>
+                                <option value="workshop_guide">Workshop Guide</option>
+                                <option value="curriculum_module">Curriculum Module</option>
+                                <option value="policy_template">Policy Template</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="form-group" style="visibility: hidden;">
-                        <label>&nbsp;</label>
-                        <input type="text" disabled>
+                    <div class="form-group full-width" style="margin-bottom: 1rem;">
+                        <label for="contribDesc">Description</label>
+                        <textarea id="contribDesc" placeholder="Describe the resource, its purpose, and how other institutions can use it..." required></textarea>
                     </div>
-                </div>
-
-                <div class="form-group full-width" style="margin-bottom: 1rem;">
-                    <label for="contribDesc">Description</label>
-                    <textarea id="contribDesc" placeholder="Describe the resource, its purpose, and how other institutions can use it..." required></textarea>
-                </div>
-
-                <div class="form-group full-width" style="margin-bottom: 0;">
-                    <label>Attach File</label>
-                    <div class="file-upload-area" id="fileUploadArea">
-                        <input type="file" id="contribFile" accept=".pdf,.doc,.docx,.pptx,.xlsx,.txt">
-                        <div class="file-upload-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.49"></path></svg></div>
-                        <div class="file-upload-text"><strong>Click to upload</strong> or drag and drop</div>
-                        <div class="file-upload-hint">PDF, DOC, DOCX, PPTX, or TXT (max 10MB)</div>
+                    <div class="form-group full-width" style="margin-bottom: 0;">
+                        <label>Attach File</label>
+                        <div class="file-upload-area" id="fileUploadArea">
+                            <input type="file" id="contribFile" accept=".pdf,.doc,.docx,.pptx,.xlsx,.txt">
+                            <div class="file-upload-text"><strong>Click to upload</strong> or drag and drop</div>
+                            <div class="file-upload-hint">PDF, DOC, DOCX, PPTX, or TXT (max 10MB)</div>
+                        </div>
                     </div>
-                </div>
-
-                <button type="submit" class="btn-submit">Submit Resource for Review</button>
-            </form>
-
-            <div class="review-process">
-                <span class="review-step"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 16 12 12 8 16"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path></svg> Submit</span>
-                <span class="review-arrow">&#8594;</span>
-                <span class="review-step"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg> AI Screening</span>
-                <span class="review-arrow">&#8594;</span>
-                <span class="review-step"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> Human Review</span>
-                <span class="review-arrow">&#8594;</span>
-                <span class="review-step"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> Published</span>
+                    <button type="submit" class="btn-submit">Submit Resource for Review</button>
+                </form>
             </div>
         </div>
     </section>
@@ -1175,9 +1872,10 @@
             </div>
             <div class="footer-links">
                 <a href="/">Home</a>
+                <a href="/readiness">AI Readiness</a>
+                <a href="/assessment">Assessment</a>
                 <a href="/atlas">Atlas</a>
                 <a href="/repository">Repository</a>
-                <a href="/assessment">Assessment</a>
                 <a href="/news">News</a>
             </div>
         </div>
@@ -1233,20 +1931,38 @@
         }
 
         /* ==========================================================
+           FADE-UP SCROLL ANIMATIONS
+           ========================================================== */
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    fadeObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+
+        /* ==========================================================
            CHATBOT
            ========================================================== */
         const chatMessages = document.getElementById('chatMessages');
         const chatInput = document.getElementById('chatInput');
         const chatSend = document.getElementById('chatSend');
 
-        // Initial welcome message
         addBotMessage("Welcome to the AIREX Repository. I can help you find resources across all five AI readiness pillars. Try asking something like: <em>'What readings are faculty using to discuss ethics and AI in academic assessments?'</em> or <em>'How should we structure an AI governance committee?'</em>");
 
         function addBotMessage(html) {
             const wrapper = document.createElement('div');
             wrapper.className = 'chat-message bot';
             wrapper.innerHTML = `
-                <div class="chat-avatar"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg></div>
+                <div class="chat-avatar">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="4" y="3" width="16" height="14" rx="3" fill="rgba(255,255,255,0.4)" transform="rotate(-4 12 10)"/>
+                        <rect x="4" y="7" width="16" height="14" rx="3" fill="rgba(255,255,255,0.9)"/>
+                    </svg>
+                </div>
                 <div class="chat-bubble">${html}</div>
             `;
             chatMessages.appendChild(wrapper);
@@ -1257,7 +1973,12 @@
             const wrapper = document.createElement('div');
             wrapper.className = 'chat-message user';
             wrapper.innerHTML = `
-                <div class="chat-avatar"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
+                <div class="chat-avatar">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="8" r="4" fill="#6b7280"/>
+                        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="#6b7280" opacity="0.5"/>
+                    </svg>
+                </div>
                 <div class="chat-bubble">${escapeHtml(text)}</div>
             `;
             chatMessages.appendChild(wrapper);
@@ -1269,12 +1990,13 @@
             wrapper.className = 'chat-message bot';
             wrapper.id = 'typingIndicator';
             wrapper.innerHTML = `
-                <div class="chat-avatar"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg></div>
-                <div class="chat-bubble">
-                    <div class="typing-indicator">
-                        <span></span><span></span><span></span>
-                    </div>
+                <div class="chat-avatar">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="4" y="3" width="16" height="14" rx="3" fill="rgba(255,255,255,0.4)" transform="rotate(-4 12 10)"/>
+                        <rect x="4" y="7" width="16" height="14" rx="3" fill="rgba(255,255,255,0.9)"/>
+                    </svg>
                 </div>
+                <div class="chat-bubble"><div class="typing-indicator"><span></span><span></span><span></span></div></div>
             `;
             chatMessages.appendChild(wrapper);
             chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -1287,11 +2009,10 @@
 
         function buildSearchResponse(data) {
             if (!data.results || data.results.length === 0) {
-                return "I could not find resources matching that query. Try searching by pillar or topic, such as <em>'AI policy template'</em> or <em>'ethics curriculum.'</em>";
+                return "I couldn't find resources matching that query. Try searching by pillar or topic, such as <em>'AI policy template'</em> or <em>'ethics curriculum.'</em>";
             }
 
             const count = data.count;
-            const showing = Math.min(data.results.length, 5);
             let html = `<strong>${count} resource${count !== 1 ? 's' : ''} found.</strong> Here are the top matches:`;
 
             const topResults = data.results.slice(0, 5);
@@ -1307,7 +2028,6 @@
                 html += `</div>`;
                 html += `<div class="chat-result-institution">${escapeHtml(r.institution || '')}</div>`;
 
-                // Matched readings
                 if (item.matched_readings && item.matched_readings.length > 0) {
                     html += `<div class="chat-result-matches"><strong>Matched readings:</strong>`;
                     for (const rd of item.matched_readings.slice(0, 3)) {
@@ -1316,7 +2036,6 @@
                     html += `</div>`;
                 }
 
-                // Matched sections
                 if (item.matched_sections && item.matched_sections.length > 0) {
                     html += `<div class="chat-result-matches"><strong>Relevant sections:</strong>`;
                     for (const sec of item.matched_sections.slice(0, 3)) {
@@ -1327,7 +2046,6 @@
                     html += `</div>`;
                 }
 
-                // Matched sessions
                 if (item.matched_sessions && item.matched_sessions.length > 0) {
                     html += `<div class="chat-result-matches"><strong>Matched sessions:</strong>`;
                     for (const sess of item.matched_sessions.slice(0, 3)) {
@@ -1336,7 +2054,7 @@
                     html += `</div>`;
                 }
 
-                html += `<a class="chat-result-link" onclick="document.getElementById('resourceBrowser').scrollIntoView({behavior:'smooth'})">View full resource <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>`;
+                html += `<a class="chat-result-link" onclick="document.getElementById('resourceBrowser').scrollIntoView({behavior:'smooth'})">View in browser <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>`;
                 html += `</div>`;
             }
 
@@ -1351,10 +2069,13 @@
             chatSend.disabled = true;
             showTypingIndicator();
 
+            // Hide prompts after first query
+            const prompts = document.getElementById('chatPrompts');
+            if (prompts) prompts.style.display = 'none';
+
             try {
                 const response = await fetch(`/api/resources/search?q=${encodeURIComponent(query)}`);
                 const data = await response.json();
-
                 removeTypingIndicator();
                 addBotMessage(buildSearchResponse(data));
             } catch (err) {
@@ -1367,10 +2088,7 @@
             chatInput.focus();
         }
 
-        chatSend.addEventListener('click', () => {
-            handleUserQuery(chatInput.value);
-        });
-
+        chatSend.addEventListener('click', () => handleUserQuery(chatInput.value));
         chatInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
@@ -1378,17 +2096,27 @@
             }
         });
 
+        // Suggested prompt chips
+        document.getElementById('chatPrompts').addEventListener('click', (e) => {
+            const chip = e.target.closest('.chat-prompt-chip');
+            if (!chip) return;
+            handleUserQuery(chip.dataset.prompt);
+        });
+
         /* ==========================================================
            RESOURCE BROWSER
            ========================================================== */
         let allResources = [];
         let activeFilter = '';
+        let searchQuery = '';
 
         async function loadResources() {
             try {
                 const response = await fetch('/api/resources');
                 const data = await response.json();
                 allResources = data.resources || [];
+                updateHeroStats();
+                updateFilterCounts();
                 renderResources();
             } catch (err) {
                 console.error('Error loading resources:', err);
@@ -1397,22 +2125,54 @@
             }
         }
 
+        function updateHeroStats() {
+            document.getElementById('statResources').textContent = allResources.length;
+            const institutions = new Set(allResources.map(r => r.institution)).size;
+            document.getElementById('statInstitutions').textContent = institutions;
+            const types = new Set(allResources.map(r => r.type)).size;
+            document.getElementById('statTypes').textContent = types;
+        }
+
+        function updateFilterCounts() {
+            document.getElementById('countAll').textContent = allResources.length;
+            const pillars = ['teaching', 'policy', 'ethics', 'research', 'infrastructure'];
+            pillars.forEach(p => {
+                const count = allResources.filter(r => r.pillar === p).length;
+                const el = document.getElementById('count' + p.charAt(0).toUpperCase() + p.slice(1));
+                if (el) el.textContent = count;
+            });
+        }
+
+        function getFilteredResources() {
+            let filtered = allResources;
+            if (activeFilter) {
+                filtered = filtered.filter(r => r.pillar === activeFilter);
+            }
+            if (searchQuery) {
+                const q = searchQuery.toLowerCase();
+                filtered = filtered.filter(r =>
+                    (r.title || '').toLowerCase().includes(q) ||
+                    (r.description || '').toLowerCase().includes(q) ||
+                    (r.institution || '').toLowerCase().includes(q) ||
+                    (r.topics || []).some(t => t.toLowerCase().includes(q))
+                );
+            }
+            return filtered;
+        }
+
         function renderResources() {
             const grid = document.getElementById('resourcesGrid');
-            let filtered = allResources;
-
-            if (activeFilter) {
-                filtered = allResources.filter(r => r.pillar === activeFilter);
-            }
+            const filtered = getFilteredResources();
 
             if (filtered.length === 0) {
-                grid.innerHTML = '<div class="resources-empty">No resources found for this pillar.</div>';
+                grid.innerHTML = '<div class="resources-empty">No resources found matching your criteria.</div>';
                 return;
             }
 
             grid.innerHTML = filtered.map(r => {
                 const typeClass = 'type-' + (r.type || '').replace(/ /g, '_');
                 const pillarClass = 'pillar-' + (r.pillar || '');
+                const cardClass = 'resource-card-' + (r.pillar || '');
                 const typeLabel = TYPE_LABELS[r.type] || r.type || 'Resource';
                 const pillarLabel = PILLAR_LABELS[r.pillar] || r.pillar || '';
                 const readingCount = r.readings ? r.readings.length : 0;
@@ -1421,7 +2181,7 @@
                 const dateAdded = formatDate(r.date_added);
 
                 return `
-                    <div class="resource-card">
+                    <div class="resource-card glass-card ${cardClass}">
                         <div class="resource-tags">
                             <span class="resource-type-tag ${typeClass}">${escapeHtml(typeLabel)}</span>
                             <span class="resource-type-tag ${pillarClass}">${escapeHtml(pillarLabel)}</span>
@@ -1434,7 +2194,7 @@
                                 ${topics.slice(0, 5).map(t => `<span class="topic-pill">${escapeHtml(t)}</span>`).join('')}
                             </div>
                         ` : ''}
-                        ${readingCount > 0 ? `<div class="reading-count"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> ${readingCount} reading${readingCount !== 1 ? 's' : ''}</div>` : ''}
+                        ${readingCount > 0 ? `<div class="reading-count"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="rc${Math.random().toString(36).substr(2, 4)}" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#92400e"/><stop offset="1" stop-color="#d97706"/></linearGradient></defs><rect x="5" y="3" width="14" height="18" rx="3" fill="url(#rc${Math.random().toString(36).substr(2, 4)})" opacity="0.4"/><rect x="7" y="6" width="10" height="12" rx="2" fill="currentColor"/></svg> ${readingCount} reading${readingCount !== 1 ? 's' : ''}</div>` : ''}
                         <div class="resource-footer">
                             <span class="resource-contributor">${escapeHtml(contributor)}</span>
                             <span class="resource-date">${dateAdded}</span>
@@ -1444,18 +2204,22 @@
             }).join('');
         }
 
-        // Filter tab clicks
+        // Filter tabs
         document.getElementById('filterBar').addEventListener('click', (e) => {
             const tab = e.target.closest('.filter-tab');
             if (!tab) return;
-
             document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
             activeFilter = tab.dataset.pillar || '';
             renderResources();
         });
 
-        // Load resources on page load
+        // Search input
+        document.getElementById('resourceSearch').addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            renderResources();
+        });
+
         loadResources();
 
         /* ==========================================================
@@ -1465,34 +2229,17 @@
         const fileUploadArea = document.getElementById('fileUploadArea');
         const fileInput = document.getElementById('contribFile');
 
-        // File name display
         fileInput.addEventListener('change', () => {
             if (fileInput.files.length > 0) {
                 const fileName = fileInput.files[0].name;
                 fileUploadArea.querySelector('.file-upload-text').innerHTML = `<strong>${escapeHtml(fileName)}</strong> selected`;
-                fileUploadArea.querySelector('.file-upload-icon').textContent = '\u2705';
             }
         });
 
         contributeForm.addEventListener('submit', (e) => {
             e.preventDefault();
-
-            // Gather form data (for future API integration)
-            const formData = {
-                name: document.getElementById('contribName').value,
-                email: document.getElementById('contribEmail').value,
-                institution: document.getElementById('contribInstitution').value,
-                title: document.getElementById('contribTitle').value,
-                pillar: document.getElementById('contribPillar').value,
-                type: document.getElementById('contribType').value,
-                description: document.getElementById('contribDesc').value
-            };
-
-            // Reset form
             contributeForm.reset();
             fileUploadArea.querySelector('.file-upload-text').innerHTML = '<strong>Click to upload</strong> or drag and drop';
-            fileUploadArea.querySelector('.file-upload-icon').textContent = '\u{1F4CE}';
-
             showToast('Thank you for your submission. Our review team will evaluate it within 5 business days.');
         });
     </script>
