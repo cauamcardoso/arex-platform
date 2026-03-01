@@ -335,6 +335,7 @@
                 0 8px 32px rgba(0, 0, 0, 0.12),
                 inset 0 1px 0 rgba(255, 255, 255, 0.08);
             color: white;
+            text-align: center;
         }
 
         .hero-stats-badge {
@@ -349,23 +350,24 @@
             border-radius: 999px;
             color: #93c5fd;
             margin-bottom: 1.25rem;
+            text-align: center;
         }
 
         .hero-stats-heading {
             font-size: 1.35rem;
             font-weight: 800;
             line-height: 1.25;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             letter-spacing: -0.01em;
+            text-align: center;
         }
 
         .hero-stats-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.25rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
         }
 
         .hero-stat {
@@ -1056,6 +1058,7 @@
             .hero-orb { display: none; }
             .hero-stats-card { padding: 2rem 1.5rem; }
             .hero-stats-heading { font-size: 1.15rem; }
+            .hero-stats-grid { grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
             .hero-stat-number { font-size: 1.85rem; }
             .journey { padding: 4rem 1.5rem; }
             .journey-step,
@@ -1125,7 +1128,7 @@
                 <h1>AIREX: The <span class="highlight">AI Readiness</span> Explorer</h1>
 
                 <p class="hero-desc">
-                    A platform where universities assess where they stand on AI adoption, find peer institutions navigating similar challenges, and learn from what's working across the network.
+                    A benchmarking platform for university AI readiness.
                 </p>
 
                 <div class="hero-actions">
@@ -1148,10 +1151,6 @@
                     <div class="hero-stat">
                         <div class="hero-stat-number">{{ total_enrollment_display }}</div>
                         <div class="hero-stat-label">Students Enrolled</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-number">5</div>
-                        <div class="hero-stat-label">Readiness Pillars</div>
                     </div>
                 </div>
             </div>
