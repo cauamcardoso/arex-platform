@@ -14,16 +14,16 @@
             --bg-tertiary: #fafafa;
             --card-bg: rgba(255, 255, 255, 0.8);
             --card-hover: rgba(255, 255, 255, 0.95);
-            --border-subtle: rgba(225, 29, 72, 0.1);
-            --border-hover: rgba(190, 18, 60, 0.35);
-            --text-primary: #4a0519;
+            --border-subtle: rgba(180, 83, 9, 0.1);
+            --border-hover: rgba(146, 64, 14, 0.35);
+            --text-primary: #78350f;
             --text-secondary: #4b5563;
             --text-muted: #6b7280;
-            --accent: #e11d48;
-            --accent-dark: #be123c;
-            --accent-deep: #9f1239;
-            --accent-light: #fb7185;
-            --accent-rgb: 225, 29, 72;
+            --accent: #b45309;
+            --accent-dark: #92400e;
+            --accent-deep: #78350f;
+            --accent-light: #d97706;
+            --accent-rgb: 180, 83, 9;
             --success: #10b981;
             --warning: #f59e0b;
             --danger: #ef4444;
@@ -55,7 +55,7 @@
             background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(225, 29, 72, 0.08);
+            border-bottom: 1px solid rgba(180, 83, 9, 0.08);
             padding: 1rem 2rem;
             display: flex;
             align-items: center;
@@ -83,9 +83,9 @@
 
         .header-brand .badge {
             font-size: 0.65rem;
-            color: #9f1239;
-            background: #fff1f2;
-            border: 1px solid #fecdd3;
+            color: #78350f;
+            background: #fffbeb;
+            border: 1px solid #fbbf24;
             padding: 0.2rem 0.5rem;
             border-radius: 4px;
             font-weight: 600;
@@ -130,7 +130,7 @@
            ============================================================ */
         .hero {
             margin-top: 64px;
-            background: linear-gradient(160deg, #1a0610 0%, #2d0a1a 35%, #6b1331 65%, #9f1239 100%);
+            background: linear-gradient(160deg, #1c0f00 0%, #3d1f00 35%, #78350f 65%, #92400e 100%);
             padding: 5rem 2rem 4.5rem;
             position: relative;
             overflow: hidden;
@@ -146,21 +146,21 @@
 
         .hero-orb-1 {
             width: 500px; height: 500px;
-            background: rgba(225, 29, 72, 0.5);
+            background: rgba(180, 83, 9, 0.5);
             top: -15%; left: -5%;
             animation: float-1 14s ease-in-out infinite;
         }
 
         .hero-orb-2 {
             width: 400px; height: 400px;
-            background: rgba(251, 113, 133, 0.3);
+            background: rgba(217, 119, 6, 0.3);
             top: 20%; right: -10%;
             animation: float-2 18s ease-in-out infinite;
         }
 
         .hero-orb-3 {
             width: 300px; height: 300px;
-            background: rgba(253, 164, 175, 0.2);
+            background: rgba(245, 158, 11, 0.2);
             bottom: -10%; left: 30%;
             animation: float-3 11s ease-in-out infinite;
         }
@@ -212,7 +212,7 @@
         .hero-badge-dot {
             width: 6px; height: 6px;
             border-radius: 50%;
-            background: #fda4af;
+            background: #f59e0b;
             animation: pulse-dot 2s infinite;
         }
 
@@ -231,7 +231,7 @@
         }
 
         .hero h1 .highlight {
-            background: linear-gradient(135deg, #fda4af, #fecdd3, #fb7185);
+            background: linear-gradient(135deg, #f59e0b, #fbbf24, #d97706);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -257,9 +257,9 @@
 
         .hero-card-badge {
             display: inline-block;
-            background: rgba(253, 164, 175, 0.2);
-            border: 1px solid rgba(253, 164, 175, 0.3);
-            color: #fecdd3;
+            background: rgba(245, 158, 11, 0.2);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            color: #fbbf24;
             font-size: 0.65rem;
             font-weight: 700;
             letter-spacing: 0.08em;
@@ -317,7 +317,7 @@
             content: '';
             position: absolute;
             width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(225, 29, 72, 0.06) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(180, 83, 9, 0.06) 0%, transparent 70%);
             top: -10%; right: -5%;
             pointer-events: none;
             animation: aurora-pulse 12s ease-in-out infinite;
@@ -327,7 +327,7 @@
             content: '';
             position: absolute;
             width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(190, 18, 60, 0.05) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(146, 64, 14, 0.05) 0%, transparent 70%);
             bottom: -15%; left: -3%;
             pointer-events: none;
             animation: aurora-pulse 15s ease-in-out infinite reverse;
@@ -353,7 +353,7 @@
             font-weight: 800;
             letter-spacing: -0.025em;
             margin-bottom: 0.75rem;
-            background: linear-gradient(135deg, #9f1239, #e11d48);
+            background: linear-gradient(135deg, #78350f, #b45309);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -390,7 +390,7 @@
             background: rgba(255, 255, 255, 0.6);
             border-color: var(--border-hover);
             transform: translateY(-4px);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 12px 40px rgba(225, 29, 72, 0.08);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 12px 40px rgba(180, 83, 9, 0.08);
         }
 
         .how-card-icon {
@@ -444,7 +444,7 @@
             font-weight: 800;
             letter-spacing: -0.025em;
             margin-bottom: 0.75rem;
-            background: linear-gradient(135deg, #9f1239, #e11d48);
+            background: linear-gradient(135deg, #78350f, #b45309);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -475,7 +475,7 @@
         .sidebar {
             width: 380px;
             background: rgba(255, 255, 255, 0.6);
-            border-right: 1px solid rgba(225, 29, 72, 0.08);
+            border-right: 1px solid rgba(180, 83, 9, 0.08);
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -484,13 +484,13 @@
 
         .sidebar-search {
             padding: 1rem 1.25rem;
-            border-bottom: 1px solid rgba(225, 29, 72, 0.06);
+            border-bottom: 1px solid rgba(180, 83, 9, 0.06);
         }
 
         .search-input {
             width: 100%;
             padding: 0.625rem 1rem 0.625rem 2.5rem;
-            border: 1px solid rgba(225, 29, 72, 0.15);
+            border: 1px solid rgba(180, 83, 9, 0.15);
             border-radius: 10px;
             font-size: 0.85rem;
             font-family: inherit;
@@ -506,7 +506,7 @@
         .search-input:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.1);
+            box-shadow: 0 0 0 3px rgba(180, 83, 9, 0.1);
             background-color: white;
         }
 
@@ -515,7 +515,7 @@
         /* Filters */
         .filters {
             padding: 0.875rem 1.25rem;
-            border-bottom: 1px solid rgba(225, 29, 72, 0.06);
+            border-bottom: 1px solid rgba(180, 83, 9, 0.06);
             overflow-y: auto;
             max-height: 280px;
         }
@@ -539,7 +539,7 @@
         .filter-select {
             width: 100%;
             padding: 0.45rem 0.75rem;
-            border: 1px solid rgba(225, 29, 72, 0.12);
+            border: 1px solid rgba(180, 83, 9, 0.12);
             border-radius: 8px;
             font-size: 0.8rem;
             font-family: inherit;
@@ -552,7 +552,7 @@
         .filter-select:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.08);
+            box-shadow: 0 0 0 3px rgba(180, 83, 9, 0.08);
         }
 
         .filter-chips {
@@ -564,7 +564,7 @@
         .filter-chip {
             padding: 0.3rem 0.65rem;
             background: rgba(255, 255, 255, 0.6);
-            border: 1px solid rgba(225, 29, 72, 0.1);
+            border: 1px solid rgba(180, 83, 9, 0.1);
             border-radius: 999px;
             font-size: 0.7rem;
             color: var(--text-muted);
@@ -603,7 +603,7 @@
             padding: 0.5rem 1.25rem;
             font-size: 0.7rem;
             color: var(--text-muted);
-            border-bottom: 1px solid rgba(225, 29, 72, 0.06);
+            border-bottom: 1px solid rgba(180, 83, 9, 0.06);
             background: rgba(255, 255, 255, 0.3);
             font-weight: 500;
         }
@@ -617,7 +617,7 @@
 
         .institution-card {
             padding: 0.875rem;
-            border: 1px solid rgba(225, 29, 72, 0.06);
+            border: 1px solid rgba(180, 83, 9, 0.06);
             border-radius: 12px;
             margin-bottom: 0.375rem;
             background: rgba(255, 255, 255, 0.5);
@@ -628,13 +628,13 @@
         .institution-card:hover {
             background: rgba(255, 255, 255, 0.8);
             border-color: var(--border-hover);
-            box-shadow: 0 2px 8px rgba(225, 29, 72, 0.06);
+            box-shadow: 0 2px 8px rgba(180, 83, 9, 0.06);
         }
 
         .institution-card.selected {
             border-color: var(--accent);
-            background: rgba(225, 29, 72, 0.04);
-            box-shadow: 0 2px 12px rgba(225, 29, 72, 0.1);
+            background: rgba(180, 83, 9, 0.04);
+            box-shadow: 0 2px 12px rgba(180, 83, 9, 0.1);
         }
 
         .institution-name {
@@ -672,7 +672,7 @@
         }
 
         .inst-badge-cahsi {
-            background: rgba(225, 29, 72, 0.08);
+            background: rgba(180, 83, 9, 0.08);
             color: var(--accent-deep);
         }
 
@@ -698,14 +698,14 @@
             border-radius: 50%;
         }
 
-        .journey-exploring { background: rgba(253, 164, 175, 0.2); color: #9f1239; }
-        .journey-exploring .journey-pill-dot { background: #fda4af; }
-        .journey-building { background: rgba(251, 113, 133, 0.2); color: #9f1239; }
-        .journey-building .journey-pill-dot { background: #fb7185; }
-        .journey-advancing { background: rgba(225, 29, 72, 0.15); color: #9f1239; }
-        .journey-advancing .journey-pill-dot { background: #e11d48; }
-        .journey-leading { background: rgba(159, 18, 57, 0.2); color: #9f1239; }
-        .journey-leading .journey-pill-dot { background: #9f1239; }
+        .journey-exploring { background: rgba(245, 158, 11, 0.2); color: #78350f; }
+        .journey-exploring .journey-pill-dot { background: #f59e0b; }
+        .journey-building { background: rgba(217, 119, 6, 0.2); color: #78350f; }
+        .journey-building .journey-pill-dot { background: #d97706; }
+        .journey-advancing { background: rgba(180, 83, 9, 0.15); color: #78350f; }
+        .journey-advancing .journey-pill-dot { background: #b45309; }
+        .journey-leading { background: rgba(120, 53, 15, 0.2); color: #78350f; }
+        .journey-leading .journey-pill-dot { background: #78350f; }
 
         /* ============================================================
            MAP
@@ -762,10 +762,10 @@
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
         }
 
-        .legend-dot.level-leading { background: #9f1239; }
-        .legend-dot.level-advancing { background: #e11d48; }
-        .legend-dot.level-building { background: #fb7185; }
-        .legend-dot.level-exploring { background: #fda4af; }
+        .legend-dot.level-leading { background: #78350f; }
+        .legend-dot.level-advancing { background: #b45309; }
+        .legend-dot.level-building { background: #d97706; }
+        .legend-dot.level-exploring { background: #f59e0b; }
 
         .legend-item span {
             color: var(--gray-600);
@@ -774,7 +774,7 @@
 
         .legend-divider {
             height: 1px;
-            background: rgba(225, 29, 72, 0.08);
+            background: rgba(180, 83, 9, 0.08);
             margin: 0.5rem 0;
         }
 
@@ -860,7 +860,7 @@
         }
 
         .popup-badge-hsi { background: rgba(16, 185, 129, 0.1); color: #059669; }
-        .popup-badge-cahsi { background: rgba(225, 29, 72, 0.08); color: #9f1239; }
+        .popup-badge-cahsi { background: rgba(180, 83, 9, 0.08); color: #78350f; }
 
         .popup-content .popup-stats {
             display: grid;
@@ -922,7 +922,7 @@
 
         .popup-view-btn:hover {
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(225, 29, 72, 0.25);
+            box-shadow: 0 4px 12px rgba(180, 83, 9, 0.25);
         }
 
         .popup-policy-btn {
@@ -953,7 +953,7 @@
         .loading-spinner {
             width: 20px;
             height: 20px;
-            border: 3px solid rgba(225, 29, 72, 0.15);
+            border: 3px solid rgba(180, 83, 9, 0.15);
             border-top-color: var(--accent);
             border-radius: 50%;
             animation: spin 1s linear infinite;
@@ -1064,7 +1064,7 @@
                 width: 100%;
                 max-height: 350px;
                 border-right: none;
-                border-bottom: 1px solid rgba(225, 29, 72, 0.08);
+                border-bottom: 1px solid rgba(180, 83, 9, 0.08);
             }
             .map-container {
                 height: 50vh;
@@ -1156,7 +1156,7 @@
                 <div class="how-card fade-up">
                     <div class="how-card-icon">
                         <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs><linearGradient id="atlas-hw1" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse"><stop stop-color="#9f1239"/><stop offset="1" stop-color="#e11d48"/></linearGradient></defs>
+                            <defs><linearGradient id="atlas-hw1" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse"><stop stop-color="#78350f"/><stop offset="1" stop-color="#b45309"/></linearGradient></defs>
                             <rect x="4" y="4" width="40" height="40" rx="12" fill="url(#atlas-hw1)" opacity="0.15"/>
                             <circle cx="21" cy="21" r="8" fill="url(#atlas-hw1)" opacity="0.4"/>
                             <circle cx="21" cy="21" r="5" fill="url(#atlas-hw1)"/>
@@ -1170,7 +1170,7 @@
                 <div class="how-card fade-up">
                     <div class="how-card-icon">
                         <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs><linearGradient id="atlas-hw2" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse"><stop stop-color="#9f1239"/><stop offset="1" stop-color="#e11d48"/></linearGradient></defs>
+                            <defs><linearGradient id="atlas-hw2" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse"><stop stop-color="#78350f"/><stop offset="1" stop-color="#b45309"/></linearGradient></defs>
                             <rect x="4" y="4" width="40" height="40" rx="12" fill="url(#atlas-hw2)" opacity="0.15"/>
                             <circle cx="24" cy="20" r="4" fill="url(#atlas-hw2)"/>
                             <path d="M24 24C24 24 14 30 14 36H34C34 30 24 24 24 24Z" fill="url(#atlas-hw2)" opacity="0.4"/>
@@ -1186,7 +1186,7 @@
                 <div class="how-card fade-up">
                     <div class="how-card-icon">
                         <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs><linearGradient id="atlas-hw3" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse"><stop stop-color="#9f1239"/><stop offset="1" stop-color="#e11d48"/></linearGradient></defs>
+                            <defs><linearGradient id="atlas-hw3" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse"><stop stop-color="#78350f"/><stop offset="1" stop-color="#b45309"/></linearGradient></defs>
                             <rect x="4" y="4" width="40" height="40" rx="12" fill="url(#atlas-hw3)" opacity="0.15"/>
                             <circle cx="18" cy="20" r="5" fill="url(#atlas-hw3)" opacity="0.5"/>
                             <circle cx="30" cy="20" r="5" fill="url(#atlas-hw3)" opacity="0.5"/>
@@ -1341,11 +1341,11 @@
 
         function getMarkerColor(score) {
             const colors = {
-                5: '#9f1239',
-                4: '#e11d48',
-                3: '#fb7185',
-                2: '#fda4af',
-                1: '#fecdd3'
+                5: '#78350f',
+                4: '#b45309',
+                3: '#d97706',
+                2: '#f59e0b',
+                1: '#fbbf24'
             };
             return colors[score] || '#d1d5db';
         }

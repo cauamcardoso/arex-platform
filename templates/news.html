@@ -9,20 +9,20 @@
     <style>
         :root {
             --bg-primary: #ffffff;
-            --bg-secondary: #f0fdfa;
-            --bg-tertiary: #ccfbf1;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
             --card-bg: rgba(255, 255, 255, 0.8);
             --card-hover: rgba(255, 255, 255, 0.95);
-            --border-subtle: rgba(13, 148, 136, 0.1);
-            --border-hover: rgba(15, 118, 110, 0.35);
-            --text-primary: #042f2e;
+            --border-subtle: rgba(71, 85, 105, 0.1);
+            --border-hover: rgba(71, 85, 105, 0.35);
+            --text-primary: #0f172a;
             --text-secondary: #4b5563;
             --text-muted: #6b7280;
-            --accent: #0d9488;
-            --accent-dark: #0f766e;
-            --accent-deep: #115e59;
-            --accent-light: #14b8a6;
-            --accent-rgb: 13, 148, 136;
+            --accent: #475569;
+            --accent-dark: #334155;
+            --accent-deep: #1e293b;
+            --accent-light: #64748b;
+            --accent-rgb: 71, 85, 105;
             --success: #10b981;
             --warning: #f59e0b;
             --danger: #ef4444;
@@ -65,7 +65,7 @@
             background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(13, 148, 136, 0.08);
+            border-bottom: 1px solid rgba(71, 85, 105, 0.08);
             padding: 1rem 2rem;
             display: flex;
             align-items: center;
@@ -81,9 +81,9 @@
         .header-brand h1 a { color: inherit; text-decoration: none; }
         .header-brand .badge {
             font-size: 0.65rem;
-            color: #115e59;
-            background: #f0fdfa;
-            border: 1px solid #99f6e4;
+            color: #1e293b;
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
             padding: 0.2rem 0.5rem;
             border-radius: 4px;
             font-weight: 600;
@@ -117,7 +117,7 @@
            ============================================================ */
         .hero {
             margin-top: 64px;
-            background: linear-gradient(160deg, #022c22 0%, #064e3b 35%, #065f46 65%, #115e59 100%);
+            background: linear-gradient(160deg, #020617 0%, #0f172a 35%, #1e293b 65%, #334155 100%);
             padding: 5rem 2rem 4.5rem;
             position: relative;
             overflow: hidden;
@@ -145,21 +145,21 @@
 
         .hero-orb-1 {
             width: 500px; height: 500px;
-            background: rgba(13, 148, 136, 0.5);
+            background: rgba(71, 85, 105, 0.5);
             top: -15%; left: -5%;
             animation: float-1 14s ease-in-out infinite;
         }
 
         .hero-orb-2 {
             width: 400px; height: 400px;
-            background: rgba(20, 184, 166, 0.3);
+            background: rgba(100, 116, 139, 0.3);
             top: 20%; right: -10%;
             animation: float-2 18s ease-in-out infinite;
         }
 
         .hero-orb-3 {
             width: 300px; height: 300px;
-            background: rgba(94, 234, 212, 0.2);
+            background: rgba(148, 163, 184, 0.2);
             bottom: -10%; left: 30%;
             animation: float-3 11s ease-in-out infinite;
         }
@@ -211,7 +211,7 @@
         .hero-badge-dot {
             width: 6px; height: 6px;
             border-radius: 50%;
-            background: #5eead4;
+            background: #94a3b8;
             animation: pulse-dot 2s infinite;
         }
 
@@ -230,7 +230,7 @@
         }
 
         .hero h1 .highlight {
-            background: linear-gradient(135deg, #5eead4, #99f6e4, #2dd4bf);
+            background: linear-gradient(135deg, #94a3b8, #cbd5e1, #64748b);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -257,9 +257,9 @@
 
         .hero-card-badge {
             display: inline-block;
-            background: rgba(94, 234, 212, 0.2);
-            border: 1px solid rgba(94, 234, 212, 0.3);
-            color: #99f6e4;
+            background: rgba(148, 163, 184, 0.2);
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            color: #cbd5e1;
             font-size: 0.65rem;
             font-weight: 700;
             letter-spacing: 0.08em;
@@ -321,7 +321,7 @@
             font-weight: 800;
             letter-spacing: -0.025em;
             margin-bottom: 0.75rem;
-            background: linear-gradient(135deg, #115e59, #0d9488);
+            background: linear-gradient(135deg, #1e293b, #475569);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -350,7 +350,7 @@
             background: rgba(255, 255, 255, 0.6);
             border-color: var(--border-hover);
             transform: translateY(-4px);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 12px 40px rgba(13, 148, 136, 0.08);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 12px 40px rgba(71, 85, 105, 0.08);
         }
 
         /* Scroll animation */
@@ -383,7 +383,7 @@
             content: '';
             position: absolute;
             width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(13, 148, 136, 0.06) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(71, 85, 105, 0.06) 0%, transparent 70%);
             top: -10%; right: -5%;
             pointer-events: none;
             animation: aurora-pulse 12s ease-in-out infinite;
@@ -393,7 +393,7 @@
             content: '';
             position: absolute;
             width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(15, 118, 110, 0.05) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(51, 65, 85, 0.05) 0%, transparent 70%);
             bottom: -15%; left: -3%;
             pointer-events: none;
             animation: aurora-pulse 15s ease-in-out infinite reverse;
@@ -458,7 +458,7 @@
             content: '';
             position: absolute;
             width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(13, 148, 136, 0.06) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(71, 85, 105, 0.06) 0%, transparent 70%);
             top: -15%; left: -8%;
             pointer-events: none;
             animation: aurora-pulse 14s ease-in-out infinite;
@@ -468,7 +468,7 @@
             content: '';
             position: absolute;
             width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(20, 184, 166, 0.05) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(100, 116, 139, 0.05) 0%, transparent 70%);
             bottom: -10%; right: -5%;
             pointer-events: none;
             animation: aurora-pulse 16s ease-in-out infinite reverse;
@@ -481,7 +481,7 @@
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(13, 148, 136, 0.08);
+            border-bottom: 1px solid rgba(71, 85, 105, 0.08);
             padding: 0.75rem 2rem;
             margin: -5rem -2rem 2.5rem;
         }
@@ -507,7 +507,7 @@
         .filter-chip {
             padding: 0.4rem 0.875rem;
             background: rgba(255, 255, 255, 0.6);
-            border: 1px solid rgba(13, 148, 136, 0.12);
+            border: 1px solid rgba(71, 85, 105, 0.12);
             border-radius: 999px;
             font-size: 0.78rem;
             font-weight: 500;
@@ -518,8 +518,8 @@
         }
 
         .filter-chip:hover {
-            background: rgba(13, 148, 136, 0.06);
-            border-color: rgba(13, 148, 136, 0.25);
+            background: rgba(71, 85, 105, 0.06);
+            border-color: rgba(71, 85, 105, 0.25);
             color: var(--accent-deep);
         }
 
@@ -527,7 +527,7 @@
             background: linear-gradient(135deg, var(--accent-deep), var(--accent));
             border-color: transparent;
             color: white;
-            box-shadow: 0 2px 8px rgba(13, 148, 136, 0.25);
+            box-shadow: 0 2px 8px rgba(71, 85, 105, 0.25);
         }
 
         .filter-chip .filter-dot {
@@ -561,7 +561,7 @@
         .loading-spinner {
             width: 32px;
             height: 32px;
-            border: 3px solid rgba(13, 148, 136, 0.15);
+            border: 3px solid rgba(71, 85, 105, 0.15);
             border-top-color: var(--accent);
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
@@ -618,7 +618,7 @@
             position: absolute;
             bottom: 0; left: 0; right: 0;
             height: 120px;
-            background: linear-gradient(to bottom, transparent, var(--bg-secondary, #f0fdfa));
+            background: linear-gradient(to bottom, transparent, var(--bg-secondary, #f8fafc));
             pointer-events: none;
             z-index: 2;
         }
@@ -632,7 +632,7 @@
         .news-toggle button {
             padding: 0.75rem 2rem;
             border-radius: 999px;
-            border: 1px solid rgba(13, 148, 136, 0.2);
+            border: 1px solid rgba(71, 85, 105, 0.2);
             background: rgba(255,255,255,0.6);
             backdrop-filter: blur(12px);
             color: var(--accent);
@@ -775,7 +775,7 @@
         }
 
         .score-badge.relevance {
-            background: rgba(13, 148, 136, 0.08);
+            background: rgba(71, 85, 105, 0.08);
             color: var(--accent);
         }
 
@@ -799,7 +799,7 @@
             font-size: 0.625rem;
             padding: 0.175rem 0.45rem;
             border-radius: 4px;
-            background: rgba(13, 148, 136, 0.06);
+            background: rgba(71, 85, 105, 0.06);
             color: var(--text-muted);
             font-weight: 500;
         }
@@ -809,7 +809,7 @@
            ============================================================ */
         .digest-section {
             padding: 5rem 2rem;
-            background: linear-gradient(160deg, #022c22 0%, #064e3b 40%, #115e59 100%);
+            background: linear-gradient(160deg, #020617 0%, #0f172a 40%, #334155 100%);
             position: relative;
             overflow: hidden;
             color: white;
@@ -830,7 +830,7 @@
             position: absolute;
             top: -20%; right: -10%;
             width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(13, 148, 136, 0.12), transparent 70%);
+            background: radial-gradient(circle, rgba(71, 85, 105, 0.12), transparent 70%);
             pointer-events: none;
         }
 
@@ -893,8 +893,8 @@
 
         .digest-input:focus {
             outline: none;
-            border-color: rgba(94, 234, 212, 0.5);
-            box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15);
+            border-color: rgba(148, 163, 184, 0.5);
+            box-shadow: 0 0 0 3px rgba(71, 85, 105, 0.15);
             background: rgba(255, 255, 255, 0.08);
         }
 
@@ -904,7 +904,7 @@
 
         .digest-btn {
             padding: 0.75rem 1.5rem;
-            background: linear-gradient(135deg, #0d9488, #0f766e);
+            background: linear-gradient(135deg, #475569, #334155);
             color: white;
             border: none;
             border-radius: 10px;
@@ -918,7 +918,7 @@
 
         .digest-btn:hover {
             transform: translateY(-1px);
-            box-shadow: 0 4px 16px rgba(13, 148, 136, 0.35);
+            box-shadow: 0 4px 16px rgba(71, 85, 105, 0.35);
         }
 
         .digest-btn:active {
@@ -938,7 +938,7 @@
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            background: #115e59;
+            background: #1e293b;
             color: white;
             padding: 1rem 1.5rem;
             border-radius: 10px;
@@ -1027,7 +1027,7 @@
                 font-size: 1.5rem;
                 -webkit-text-fill-color: unset;
                 background: none;
-                color: #115e59;
+                color: #1e293b;
             }
 
             .digest-inner h2 {
@@ -1121,9 +1121,9 @@
 
             <div class="how-grid">
                 <div class="how-card glass-card fade-up">
-                    <div class="how-icon" style="background: rgba(13, 148, 136, 0.08);">
+                    <div class="how-icon" style="background: rgba(71, 85, 105, 0.08);">
                         <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs><linearGradient id="hw1" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#5eead4"/></linearGradient></defs>
+                            <defs><linearGradient id="hw1" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#475569"/><stop offset="1" stop-color="#94a3b8"/></linearGradient></defs>
                             <circle cx="14" cy="14" r="10" fill="url(#hw1)" opacity="0.3"/>
                             <circle cx="14" cy="14" r="5" fill="url(#hw1)"/>
                         </svg>
@@ -1134,9 +1134,9 @@
                 </div>
 
                 <div class="how-card glass-card fade-up" style="transition-delay: 0.1s;">
-                    <div class="how-icon" style="background: rgba(13, 148, 136, 0.08);">
+                    <div class="how-icon" style="background: rgba(71, 85, 105, 0.08);">
                         <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs><linearGradient id="hw2" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#0f766e"/><stop offset="1" stop-color="#14b8a6"/></linearGradient></defs>
+                            <defs><linearGradient id="hw2" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#334155"/><stop offset="1" stop-color="#64748b"/></linearGradient></defs>
                             <rect x="4" y="6" width="20" height="16" rx="4" fill="url(#hw2)" opacity="0.3"/>
                             <rect x="8" y="10" width="12" height="8" rx="2" fill="url(#hw2)"/>
                         </svg>
@@ -1147,9 +1147,9 @@
                 </div>
 
                 <div class="how-card glass-card fade-up" style="transition-delay: 0.2s;">
-                    <div class="how-icon" style="background: rgba(13, 148, 136, 0.08);">
+                    <div class="how-icon" style="background: rgba(71, 85, 105, 0.08);">
                         <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs><linearGradient id="hw3" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#115e59"/><stop offset="1" stop-color="#0d9488"/></linearGradient></defs>
+                            <defs><linearGradient id="hw3" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#1e293b"/><stop offset="1" stop-color="#475569"/></linearGradient></defs>
                             <path d="M14 4L24 10V18L14 24L4 18V10L14 4Z" fill="url(#hw3)" opacity="0.3"/>
                             <path d="M14 8L20 11.5V18.5L14 22L8 18.5V11.5L14 8Z" fill="url(#hw3)"/>
                         </svg>
@@ -1204,7 +1204,7 @@
             <div class="empty-state" id="emptyState" style="display:none;">
                 <div class="empty-state-icon">
                     <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <defs><linearGradient id="emptyIcon" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#5eead4"/></linearGradient></defs>
+                        <defs><linearGradient id="emptyIcon" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse"><stop stop-color="#475569"/><stop offset="1" stop-color="#94a3b8"/></linearGradient></defs>
                         <rect x="8" y="4" width="32" height="40" rx="6" fill="url(#emptyIcon)" opacity="0.15"/>
                         <rect x="14" y="16" width="20" height="3" rx="1.5" fill="url(#emptyIcon)" opacity="0.4"/>
                         <rect x="14" y="23" width="14" height="3" rx="1.5" fill="url(#emptyIcon)" opacity="0.3"/>
@@ -1224,7 +1224,7 @@
         <div class="digest-inner fade-up">
             <div class="digest-icon">
                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <defs><linearGradient id="digestIcn" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#5eead4"/><stop offset="1" stop-color="#99f6e4"/></linearGradient></defs>
+                    <defs><linearGradient id="digestIcn" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#94a3b8"/><stop offset="1" stop-color="#cbd5e1"/></linearGradient></defs>
                     <rect x="3" y="6" width="22" height="16" rx="4" fill="url(#digestIcn)" opacity="0.3"/>
                     <path d="M3 10L14 17L25 10" stroke="url(#digestIcn)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
                 </svg>
