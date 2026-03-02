@@ -604,6 +604,51 @@
         /* ============================================================
            NEWS GRID
            ============================================================ */
+        .news-grid-wrapper {
+            position: relative;
+            max-height: 720px;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        .news-grid-wrapper.expanded {
+            max-height: none;
+        }
+        .news-grid-wrapper:not(.expanded)::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 120px;
+            background: linear-gradient(to bottom, transparent, var(--bg-secondary, #f0fdfa));
+            pointer-events: none;
+            z-index: 2;
+        }
+        .news-toggle {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.5rem;
+            position: relative;
+            z-index: 3;
+        }
+        .news-toggle button {
+            padding: 0.75rem 2rem;
+            border-radius: 999px;
+            border: 1px solid rgba(13, 148, 136, 0.2);
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(12px);
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+        .news-toggle button:hover {
+            background: rgba(255,255,255,0.85);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
         .news-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1148,7 +1193,12 @@
             </div>
 
             <!-- News grid -->
-            <div class="news-grid fade-up" id="newsGrid" style="display:none; transition-delay: 0.2s;"></div>
+            <div class="news-grid-wrapper fade-up" id="newsGridWrapper" style="transition-delay: 0.2s;">
+                <div class="news-grid" id="newsGrid" style="display:none;"></div>
+            </div>
+            <div class="news-toggle" id="newsToggle" style="display:none;">
+                <button onclick="toggleNews()">Show All Articles</button>
+            </div>
 
             <!-- Empty state -->
             <div class="empty-state" id="emptyState" style="display:none;">
@@ -1222,6 +1272,22 @@
          JAVASCRIPT
          ============================================================ -->
     <script>
+        /* ==========================================================
+           NEWS TOGGLE
+           ========================================================== */
+        function toggleNews() {
+            const wrapper = document.getElementById('newsGridWrapper');
+            const btn = document.querySelector('#newsToggle button');
+            if (wrapper.classList.contains('expanded')) {
+                wrapper.classList.remove('expanded');
+                btn.textContent = 'Show All Articles';
+                wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                wrapper.classList.add('expanded');
+                btn.textContent = 'Show Less';
+            }
+        }
+
         /* ==========================================================
            UTILITY HELPERS
            ========================================================== */
@@ -1332,14 +1398,17 @@
 
             newsGrid.innerHTML = '';
 
+            const newsToggle = document.getElementById('newsToggle');
             if (filtered.length === 0) {
                 newsGrid.style.display = 'none';
                 emptyState.style.display = 'block';
+                newsToggle.style.display = 'none';
                 return;
             }
 
             emptyState.style.display = 'none';
             newsGrid.style.display = 'grid';
+            newsToggle.style.display = filtered.length > 4 ? 'flex' : 'none';
 
             filtered.forEach(article => {
                 newsGrid.appendChild(buildCard(article));

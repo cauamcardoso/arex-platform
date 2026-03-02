@@ -900,6 +900,51 @@
             border-radius: 999px;
         }
 
+        .resources-grid-wrapper {
+            position: relative;
+            max-height: 680px;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        .resources-grid-wrapper.expanded {
+            max-height: none;
+        }
+        .resources-grid-wrapper:not(.expanded)::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 120px;
+            background: linear-gradient(to bottom, transparent, var(--bg-secondary, #fffbeb));
+            pointer-events: none;
+            z-index: 2;
+        }
+        .resources-toggle {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.5rem;
+            position: relative;
+            z-index: 3;
+        }
+        .resources-toggle button {
+            padding: 0.75rem 2rem;
+            border-radius: 999px;
+            border: 1px solid var(--border-subtle, rgba(217, 119, 6, 0.2));
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(12px);
+            color: var(--accent, #d97706);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+        .resources-toggle button:hover {
+            background: rgba(255,255,255,0.85);
+            border-color: var(--accent, #d97706);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
         .resources-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -1736,8 +1781,13 @@
                 </div>
             </div>
 
-            <div class="resources-grid fade-up" id="resourcesGrid" style="transition-delay: 0.2s;">
-                <div class="resources-empty">Loading resources...</div>
+            <div class="resources-grid-wrapper fade-up" id="resourcesGridWrapper" style="transition-delay: 0.2s;">
+                <div class="resources-grid" id="resourcesGrid">
+                    <div class="resources-empty">Loading resources...</div>
+                </div>
+            </div>
+            <div class="resources-toggle" id="resourcesTogle">
+                <button onclick="toggleResources()">Show All Resources</button>
             </div>
         </div>
     </section>
@@ -1888,6 +1938,22 @@
          JAVASCRIPT
          ============================================================ -->
     <script>
+        /* ==========================================================
+           RESOURCES TOGGLE
+           ========================================================== */
+        function toggleResources() {
+            const wrapper = document.getElementById('resourcesGridWrapper');
+            const btn = document.querySelector('#resourcesTogle button');
+            if (wrapper.classList.contains('expanded')) {
+                wrapper.classList.remove('expanded');
+                btn.textContent = 'Show All Resources';
+                wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                wrapper.classList.add('expanded');
+                btn.textContent = 'Show Less';
+            }
+        }
+
         /* ==========================================================
            UTILITY HELPERS
            ========================================================== */
