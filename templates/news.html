@@ -1385,20 +1385,33 @@
                     <div class="digest-badge-dot"></div>
                     Weekly Digest
                 </div>
-                <div class="digest-date" id="digestDate">Loading...</div>
-                <h3 class="digest-title" id="digestTitle"></h3>
-                <p class="digest-overview" id="digestOverview"></p>
+                <div class="digest-date" id="digestDate">Week of Feb 17, 2026 -- Feb 23, 2026</div>
+                <h3 class="digest-title" id="digestTitle">Policy Moves, Infrastructure Grows, and Faculty Adapt</h3>
+                <p class="digest-overview" id="digestOverview">This week brought significant policy developments as California became the first state to require AI transparency in higher education, while accreditors began formally evaluating institutional AI strategies. On the infrastructure side, both commercial cloud providers and open-source models are making AI more accessible to under-resourced institutions. Meanwhile, new evidence suggests that thoughtful AI integration can actually advance equity goals.</p>
                 <div class="digest-columns">
                     <div class="digest-column">
                         <h4>Key Findings</h4>
-                        <ul id="digestFindings"></ul>
+                        <ul id="digestFindings">
+                            <li>Three regional accreditors now require AI strategy documentation in institutional reviews</li>
+                            <li>A coalition of 40 research universities adopted a shared AI literacy framework for undergraduates</li>
+                            <li>AI writing tools reduced the achievement gap between first-generation and continuing-generation students by 35%</li>
+                        </ul>
                     </div>
                     <div class="digest-column">
                         <h4>Why This Matters</h4>
-                        <ul id="digestMatters"></ul>
+                        <ul id="digestMatters">
+                            <li>Accreditation requirements signal that AI readiness is shifting from optional to expected</li>
+                            <li>Shared frameworks reduce the burden on individual institutions designing AI curricula from scratch</li>
+                            <li>Evidence is mounting that thoughtful AI integration can advance equity goals, not undermine them</li>
+                        </ul>
                     </div>
                 </div>
-                <div class="digest-metrics" id="digestMetrics"></div>
+                <div class="digest-metrics" id="digestMetrics">
+                    <div class="digest-metric"><span class="digest-metric-value">$120M</span><span class="digest-metric-label">Funding Announced</span></div>
+                    <div class="digest-metric"><span class="digest-metric-value">1</span><span class="digest-metric-label">New Frameworks</span></div>
+                    <div class="digest-metric"><span class="digest-metric-value">1</span><span class="digest-metric-label">States w/ AI Laws</span></div>
+                    <div class="digest-metric"><span class="digest-metric-value">40+</span><span class="digest-metric-label">Institutions Piloting</span></div>
+                </div>
                 <div class="digest-actions">
                     <form class="digest-email-form" onsubmit="handleSubscribe(event)">
                         <input type="email" class="digest-email-input" placeholder="Enter your email for weekly digests" required>
@@ -1558,20 +1571,23 @@
                 allArticles = data.articles || [];
                 digestData = data.digest || null;
 
-                // Update hero stats
-                document.getElementById('statArticles').textContent = allArticles.length;
+                // Update hero stats (safe)
+                const statArt = document.getElementById('statArticles');
+                if (statArt) statArt.textContent = allArticles.length;
                 const sources = [...new Set(allArticles.map(a => a.source))];
-                document.getElementById('statSources').textContent = sources.length;
-
-                if (digestData) renderDigest(digestData);
-                renderSpotlights(allArticles);
-                renderRecommended();
-                renderFilters();
-                renderArticles();
-                initObserver();
+                const statSrc = document.getElementById('statSources');
+                if (statSrc) statSrc.textContent = sources.length;
             } catch (err) {
                 console.error('Failed to fetch news:', err);
             }
+
+            // Render each section independently so one failure does not block others
+            try { if (digestData) renderDigest(digestData); } catch(e) { console.error('Digest render error:', e); }
+            try { renderSpotlights(allArticles); } catch(e) { console.error('Spotlights error:', e); }
+            try { renderRecommended(); } catch(e) { console.error('Recommended error:', e); }
+            try { renderFilters(); } catch(e) { console.error('Filters error:', e); }
+            try { renderArticles(); } catch(e) { console.error('Articles error:', e); }
+            try { initObserver(); } catch(e) { console.error('Observer error:', e); }
         }
 
         /* ============================================================
