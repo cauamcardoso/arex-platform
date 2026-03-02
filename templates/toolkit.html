@@ -452,7 +452,7 @@
         }
 
         .chat-container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
@@ -516,7 +516,7 @@
         }
 
         .chat-messages {
-            height: 480px;
+            height: 560px;
             overflow-y: auto;
             padding: 1.5rem;
             display: flex;
@@ -1590,6 +1590,74 @@
     </section>
 
     <!-- ============================================================
+         WHAT'S INSIDE (resource types)
+         ============================================================ -->
+    <section class="types-section">
+        <div class="section-inner">
+            <div class="section-header fade-up">
+                <h2>What You'll Find</h2>
+                <p>Resources are organized around the five pillars of the AI Readiness Framework and cover a range of practical formats.</p>
+            </div>
+            <div class="types-grid">
+                <div class="type-card glass-card fade-up">
+                    <div class="type-card-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs><linearGradient id="tc1" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#1e40af"/><stop offset="1" stop-color="#3b82f6"/></linearGradient></defs>
+                            <rect x="5" y="3" width="14" height="18" rx="3" fill="url(#tc1)" opacity="0.3"/>
+                            <rect x="7" y="6" width="10" height="12" rx="2" fill="url(#tc1)"/>
+                        </svg>
+                    </div>
+                    <h4>Syllabi</h4>
+                    <p>Course syllabi that integrate AI topics, from ethics modules to full AI-focused courses</p>
+                </div>
+                <div class="type-card glass-card fade-up" style="transition-delay: 0.1s;">
+                    <div class="type-card-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs><linearGradient id="tc2" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#6d28d9"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
+                            <path d="M12 2.5L21 7.5V16.5L12 21.5L3 16.5V7.5L12 2.5Z" fill="url(#tc2)" opacity="0.3"/>
+                            <path d="M12 6L18 9.5V14.5L12 18L6 14.5V9.5L12 6Z" fill="url(#tc2)"/>
+                        </svg>
+                    </div>
+                    <h4>Policy Templates</h4>
+                    <p>Ready-to-adapt templates for AI governance, acceptable use, and institutional AI strategy</p>
+                </div>
+                <div class="type-card glass-card fade-up" style="transition-delay: 0.2s;">
+                    <div class="type-card-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs><linearGradient id="tc3" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#059669"/><stop offset="1" stop-color="#34d399"/></linearGradient></defs>
+                            <path d="M12 3a9 9 0 0 1 0 18V3z" fill="url(#tc3)"/>
+                            <path d="M12 3a9 9 0 0 0 0 18V3z" fill="url(#tc3)" opacity="0.3"/>
+                        </svg>
+                    </div>
+                    <h4>Guides &amp; Frameworks</h4>
+                    <p>Step-by-step guides, implementation frameworks, and workshop materials for faculty and staff</p>
+                </div>
+                <div class="type-card glass-card fade-up" style="transition-delay: 0.3s;">
+                    <div class="type-card-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs><linearGradient id="tc4" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#b45309"/><stop offset="1" stop-color="#f59e0b"/></linearGradient></defs>
+                            <path d="M12 2L22 12L12 22L2 12L12 2Z" fill="url(#tc4)" opacity="0.3"/>
+                            <path d="M12 6L18 12L12 18L6 12L12 6Z" fill="url(#tc4)"/>
+                        </svg>
+                    </div>
+                    <h4>Case Studies</h4>
+                    <p>Real examples of how institutions have approached AI integration, from pilots to campus-wide rollouts</p>
+                </div>
+            </div>
+            <div class="types-callouts fade-up" style="transition-delay: 0.35s;">
+                <a href="/readiness" class="types-callout types-callout-framework">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cl1" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#92400e"/><stop offset="1" stop-color="#d97706"/></linearGradient></defs><circle cx="12" cy="12" r="8" fill="url(#cl1)"/></svg>
+                    Resources map to the five pillars of the AI Readiness Framework &rarr;
+                </a>
+                <a href="/assessment" class="types-callout types-callout-assessment">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cl2" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#1d4ed8"/><stop offset="1" stop-color="#3b82f6"/></linearGradient></defs><rect x="4" y="4" width="16" height="16" rx="4" fill="url(#cl2)"/></svg>
+                    Take the assessment to discover which pillars to prioritize &rarr;
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
          CONVERSATIONAL REPOSITORY (centerpiece)
          ============================================================ -->
     <section class="chat-section">
@@ -1670,74 +1738,6 @@
 
             <div class="resources-grid fade-up" id="resourcesGrid" style="transition-delay: 0.2s;">
                 <div class="resources-empty">Loading resources...</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-         WHAT'S INSIDE (resource types)
-         ============================================================ -->
-    <section class="types-section">
-        <div class="section-inner">
-            <div class="section-header fade-up">
-                <h2>What You'll Find</h2>
-                <p>Resources are organized around the five pillars of the AI Readiness Framework and cover a range of practical formats.</p>
-            </div>
-            <div class="types-grid">
-                <div class="type-card glass-card fade-up">
-                    <div class="type-card-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs><linearGradient id="tc1" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#1e40af"/><stop offset="1" stop-color="#3b82f6"/></linearGradient></defs>
-                            <rect x="5" y="3" width="14" height="18" rx="3" fill="url(#tc1)" opacity="0.3"/>
-                            <rect x="7" y="6" width="10" height="12" rx="2" fill="url(#tc1)"/>
-                        </svg>
-                    </div>
-                    <h4>Syllabi</h4>
-                    <p>Course syllabi that integrate AI topics, from ethics modules to full AI-focused courses</p>
-                </div>
-                <div class="type-card glass-card fade-up" style="transition-delay: 0.1s;">
-                    <div class="type-card-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs><linearGradient id="tc2" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#6d28d9"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
-                            <path d="M12 2.5L21 7.5V16.5L12 21.5L3 16.5V7.5L12 2.5Z" fill="url(#tc2)" opacity="0.3"/>
-                            <path d="M12 6L18 9.5V14.5L12 18L6 14.5V9.5L12 6Z" fill="url(#tc2)"/>
-                        </svg>
-                    </div>
-                    <h4>Policy Templates</h4>
-                    <p>Ready-to-adapt templates for AI governance, acceptable use, and institutional AI strategy</p>
-                </div>
-                <div class="type-card glass-card fade-up" style="transition-delay: 0.2s;">
-                    <div class="type-card-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs><linearGradient id="tc3" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#059669"/><stop offset="1" stop-color="#34d399"/></linearGradient></defs>
-                            <path d="M12 3a9 9 0 0 1 0 18V3z" fill="url(#tc3)"/>
-                            <path d="M12 3a9 9 0 0 0 0 18V3z" fill="url(#tc3)" opacity="0.3"/>
-                        </svg>
-                    </div>
-                    <h4>Guides &amp; Frameworks</h4>
-                    <p>Step-by-step guides, implementation frameworks, and workshop materials for faculty and staff</p>
-                </div>
-                <div class="type-card glass-card fade-up" style="transition-delay: 0.3s;">
-                    <div class="type-card-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs><linearGradient id="tc4" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#b45309"/><stop offset="1" stop-color="#f59e0b"/></linearGradient></defs>
-                            <path d="M12 2L22 12L12 22L2 12L12 2Z" fill="url(#tc4)" opacity="0.3"/>
-                            <path d="M12 6L18 12L12 18L6 12L12 6Z" fill="url(#tc4)"/>
-                        </svg>
-                    </div>
-                    <h4>Case Studies</h4>
-                    <p>Real examples of how institutions have approached AI integration, from pilots to campus-wide rollouts</p>
-                </div>
-            </div>
-            <div class="types-callouts fade-up" style="transition-delay: 0.35s;">
-                <a href="/readiness" class="types-callout types-callout-framework">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cl1" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#92400e"/><stop offset="1" stop-color="#d97706"/></linearGradient></defs><circle cx="12" cy="12" r="8" fill="url(#cl1)"/></svg>
-                    Resources map to the five pillars of the AI Readiness Framework &rarr;
-                </a>
-                <a href="/assessment" class="types-callout types-callout-assessment">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cl2" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#1d4ed8"/><stop offset="1" stop-color="#3b82f6"/></linearGradient></defs><rect x="4" y="4" width="16" height="16" rx="4" fill="url(#cl2)"/></svg>
-                    Take the assessment to discover which pillars to prioritize &rarr;
-                </a>
             </div>
         </div>
     </section>
