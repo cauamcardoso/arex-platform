@@ -8,9 +8,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --primary-light: rgba(37, 99, 235, 0.08);
+            --bg-primary: #ffffff;
+            --bg-secondary: #f0fdfa;
+            --bg-tertiary: #ccfbf1;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --card-hover: rgba(255, 255, 255, 0.95);
+            --border-subtle: rgba(13, 148, 136, 0.1);
+            --border-hover: rgba(15, 118, 110, 0.35);
+            --text-primary: #042f2e;
+            --text-secondary: #4b5563;
+            --text-muted: #6b7280;
+            --accent: #0d9488;
+            --accent-dark: #0f766e;
+            --accent-deep: #115e59;
+            --accent-light: #14b8a6;
+            --accent-rgb: 13, 148, 136;
             --success: #10b981;
             --warning: #f59e0b;
             --danger: #ef4444;
@@ -41,18 +53,19 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--gray-50);
-            color: var(--gray-800);
+            background: #ffffff;
+            color: var(--text-primary);
             line-height: 1.6;
         }
 
         /* ============================================================
-           HEADER
+           HEADER (matches toolkit + assessment + readiness + home)
            ============================================================ */
         .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--gray-200);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(13, 148, 136, 0.08);
             padding: 1rem 2rem;
             display: flex;
             align-items: center;
@@ -63,47 +76,40 @@
             height: 64px;
         }
 
-        .header-brand {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            text-decoration: none;
-        }
-
-        .header-brand h1 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--gray-900);
-        }
-
-        .header-brand .pilot-badge {
-            font-size: 0.675rem;
-            color: var(--primary);
-            background: var(--primary-light);
+        .header-brand { display: flex; align-items: center; gap: 1rem; }
+        .header-brand h1 { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); letter-spacing: -0.01em; }
+        .header-brand h1 a { color: inherit; text-decoration: none; }
+        .header-brand .badge {
+            font-size: 0.65rem;
+            color: #115e59;
+            background: #f0fdfa;
+            border: 1px solid #99f6e4;
             padding: 0.2rem 0.5rem;
             border-radius: 4px;
             font-weight: 600;
             letter-spacing: 0.02em;
-            border: 1px solid rgba(37, 99, 235, 0.15);
         }
+        .badge a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 
-        .header-nav {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
+        .header-nav { display: flex; gap: 1.5rem; align-items: center; }
         .header-nav a {
-            color: var(--gray-600);
+            color: var(--text-muted);
             text-decoration: none;
             font-size: 0.875rem;
             font-weight: 500;
-            transition: color 0.2s;
+            transition: color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
+        .header-nav a:hover { color: var(--accent); }
+        .header-nav a.active { color: var(--accent); font-weight: 600; }
 
-        .header-nav a:hover,
-        .header-nav a.active {
-            color: var(--primary);
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            padding: 0.25rem;
         }
 
         /* ============================================================
@@ -111,56 +117,10 @@
            ============================================================ */
         .hero {
             margin-top: 64px;
-            background: linear-gradient(160deg, #1c1917 0%, #78350f 40%, #d97706 100%);
-            padding: 5rem 2rem 4rem;
-            text-align: center;
-            color: white;
+            background: linear-gradient(160deg, #022c22 0%, #064e3b 35%, #065f46 65%, #115e59 100%);
+            padding: 5rem 2rem 4.5rem;
             position: relative;
             overflow: hidden;
-        }
-
-        .hero-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            pointer-events: none;
-            will-change: transform;
-        }
-
-        .hero-orb-1 {
-            width: 500px; height: 500px;
-            background: rgba(251, 191, 36, 0.3);
-            top: -20%; left: -5%;
-            animation: float-orb-1 14s ease-in-out infinite;
-        }
-
-        .hero-orb-2 {
-            width: 400px; height: 400px;
-            background: rgba(245, 158, 11, 0.25);
-            top: 10%; right: -10%;
-            animation: float-orb-2 18s ease-in-out infinite;
-        }
-
-        .hero-orb-3 {
-            width: 350px; height: 350px;
-            background: rgba(217, 119, 6, 0.2);
-            bottom: -25%; left: 30%;
-            animation: float-orb-3 12s ease-in-out infinite;
-        }
-
-        @keyframes float-orb-1 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(60px, 40px) scale(1.1); }
-        }
-
-        @keyframes float-orb-2 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(-50px, 30px) scale(0.9); }
-        }
-
-        @keyframes float-orb-3 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(40px, -50px) scale(1.15); }
         }
 
         .hero::before {
@@ -175,32 +135,83 @@
             opacity: 0.6;
         }
 
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+            will-change: transform;
+        }
+
+        .hero-orb-1 {
+            width: 500px; height: 500px;
+            background: rgba(13, 148, 136, 0.5);
+            top: -15%; left: -5%;
+            animation: float-1 14s ease-in-out infinite;
+        }
+
+        .hero-orb-2 {
+            width: 400px; height: 400px;
+            background: rgba(20, 184, 166, 0.3);
+            top: 20%; right: -10%;
+            animation: float-2 18s ease-in-out infinite;
+        }
+
+        .hero-orb-3 {
+            width: 300px; height: 300px;
+            background: rgba(94, 234, 212, 0.2);
+            bottom: -10%; left: 30%;
+            animation: float-3 11s ease-in-out infinite;
+        }
+
+        @keyframes float-1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(40px, 30px) scale(1.1); }
+        }
+        @keyframes float-2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-40px, 20px) scale(1.05); }
+            66% { transform: translate(20px, -30px) scale(0.95); }
+        }
+        @keyframes float-3 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-30px, -30px); }
+        }
+
         .hero-inner {
-            max-width: 720px;
+            max-width: 1100px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 3rem;
+            align-items: center;
             position: relative;
             z-index: 1;
         }
+
+        .hero-text { max-width: 560px; }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.4rem 1rem;
             background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 0.35rem 0.85rem;
             border-radius: 999px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 1.5rem;
-            backdrop-filter: blur(4px);
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.85);
+            letter-spacing: 0.03em;
+            margin-bottom: 1.25rem;
         }
 
         .hero-badge-dot {
             width: 6px; height: 6px;
             border-radius: 50%;
-            background: #fbbf24;
+            background: #5eead4;
             animation: pulse-dot 2s infinite;
         }
 
@@ -210,50 +221,273 @@
         }
 
         .hero h1 {
-            font-size: 3rem;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 1.25rem;
-            letter-spacing: -0.02em;
+            font-size: 2.75rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
         }
 
         .hero h1 .highlight {
-            background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706, #fbbf24);
-            background-size: 300% 300%;
+            background: linear-gradient(135deg, #5eead4, #99f6e4, #2dd4bf);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: gradient-shift 6s ease-in-out infinite;
-        }
-
-        @keyframes gradient-shift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
         }
 
         .hero-desc {
             font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.8);
-            max-width: 600px;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.7;
+            max-width: 520px;
+        }
+
+        /* Hero glass stats card */
+        .hero-card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            padding: 2rem;
+            min-width: 260px;
+            text-align: center;
+        }
+
+        .hero-card-badge {
+            display: inline-block;
+            background: rgba(94, 234, 212, 0.2);
+            border: 1px solid rgba(94, 234, 212, 0.3);
+            color: #99f6e4;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.25rem 0.65rem;
+            border-radius: 999px;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-card-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-card-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .hero-card-stat strong {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        .hero-card-stat span {
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* ============================================================
+           SHARED SECTION STYLES
+           ============================================================ */
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, #115e59, #0d9488);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 640px;
             margin: 0 auto;
             line-height: 1.7;
+        }
+
+        /* Glass card base */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 4px 24px rgba(0, 0, 0, 0.03);
+            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.6);
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 12px 40px rgba(13, 148, 136, 0.08);
+        }
+
+        /* Scroll animation */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes aurora-pulse {
+            0%, 100% { transform: scale(1); opacity: 0.08; }
+            50% { transform: scale(1.15); opacity: 0.12; }
+        }
+
+        /* ============================================================
+           HOW IT WORKS (3 cards)
+           ============================================================ */
+        .how-section {
+            padding: 5rem 2rem;
+            background: var(--bg-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .how-section::before {
+            content: '';
+            position: absolute;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(13, 148, 136, 0.06) 0%, transparent 70%);
+            top: -10%; right: -5%;
+            pointer-events: none;
+            animation: aurora-pulse 12s ease-in-out infinite;
+        }
+
+        .how-section::after {
+            content: '';
+            position: absolute;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(15, 118, 110, 0.05) 0%, transparent 70%);
+            bottom: -15%; left: -3%;
+            pointer-events: none;
+            animation: aurora-pulse 15s ease-in-out infinite reverse;
+        }
+
+        .how-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .how-card {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .how-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.25rem;
+        }
+
+        .how-step-number {
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .how-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .how-card p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
         }
 
         /* ============================================================
            FILTER BAR (sticky)
            ============================================================ */
+        .filter-section {
+            padding: 5rem 2rem;
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-section::before {
+            content: '';
+            position: absolute;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(13, 148, 136, 0.06) 0%, transparent 70%);
+            top: -15%; left: -8%;
+            pointer-events: none;
+            animation: aurora-pulse 14s ease-in-out infinite;
+        }
+
+        .filter-section::after {
+            content: '';
+            position: absolute;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(20, 184, 166, 0.05) 0%, transparent 70%);
+            bottom: -10%; right: -5%;
+            pointer-events: none;
+            animation: aurora-pulse 16s ease-in-out infinite reverse;
+        }
+
         .filter-bar {
             position: sticky;
             top: 64px;
             z-index: 900;
-            background: white;
-            border-bottom: 1px solid var(--gray-200);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(13, 148, 136, 0.08);
             padding: 0.75rem 2rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+            margin: -5rem -2rem 2.5rem;
         }
 
         .filter-bar-inner {
-            max-width: 960px;
+            max-width: 1100px;
             margin: 0 auto;
             display: flex;
             align-items: center;
@@ -262,70 +496,73 @@
         }
 
         .filter-label {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 600;
-            color: var(--gray-500);
+            color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.05em;
             margin-right: 0.25rem;
         }
 
         .filter-chip {
-            padding: 0.375rem 0.875rem;
-            background: var(--gray-100);
-            border: 1px solid var(--gray-200);
+            padding: 0.4rem 0.875rem;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(13, 148, 136, 0.12);
             border-radius: 999px;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 500;
-            color: var(--gray-600);
+            color: var(--text-muted);
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             font-family: inherit;
         }
 
         .filter-chip:hover {
-            background: var(--gray-200);
-            color: var(--gray-800);
+            background: rgba(13, 148, 136, 0.06);
+            border-color: rgba(13, 148, 136, 0.25);
+            color: var(--accent-deep);
         }
 
         .filter-chip.active {
-            background: var(--primary);
-            border-color: var(--primary);
+            background: linear-gradient(135deg, var(--accent-deep), var(--accent));
+            border-color: transparent;
             color: white;
+            box-shadow: 0 2px 8px rgba(13, 148, 136, 0.25);
+        }
+
+        .filter-chip .filter-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 0.25rem;
         }
 
         .article-count {
             margin-left: auto;
-            font-size: 0.8rem;
-            color: var(--gray-400);
+            font-size: 0.78rem;
+            color: var(--text-muted);
             font-weight: 500;
         }
 
         /* ============================================================
-           MAIN CONTENT
+           LOADING STATE
            ============================================================ */
-        .main-content {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        /* Loading state */
         .loading-state {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 4rem 2rem;
-            color: var(--gray-500);
+            color: var(--text-muted);
             gap: 1rem;
         }
 
         .loading-spinner {
             width: 32px;
             height: 32px;
-            border: 3px solid var(--gray-200);
-            border-top-color: var(--primary);
+            border: 3px solid rgba(13, 148, 136, 0.15);
+            border-top-color: var(--accent);
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
         }
@@ -339,14 +576,15 @@
             font-weight: 500;
         }
 
-        /* Empty state */
+        /* ============================================================
+           EMPTY STATE
+           ============================================================ */
         .empty-state {
             text-align: center;
             padding: 4rem 2rem;
         }
 
         .empty-state-icon {
-            font-size: 2.5rem;
             margin-bottom: 1rem;
             opacity: 0.5;
         }
@@ -354,13 +592,13 @@
         .empty-state h3 {
             font-size: 1.125rem;
             font-weight: 600;
-            color: var(--gray-700);
+            color: var(--text-primary);
             margin-bottom: 0.5rem;
         }
 
         .empty-state p {
             font-size: 0.875rem;
-            color: var(--gray-500);
+            color: var(--text-muted);
         }
 
         /* ============================================================
@@ -369,24 +607,39 @@
         .news-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1.25rem;
+            gap: 1.5rem;
+            position: relative;
+            z-index: 1;
         }
 
         .news-card {
-            background: white;
-            border: 1px solid var(--gray-200);
-            border-radius: 14px;
-            padding: 1.5rem;
-            transition: all 0.25s ease;
+            padding: 1.75rem;
             display: flex;
             flex-direction: column;
+            position: relative;
+            overflow: hidden;
         }
 
-        .news-card:hover {
-            border-color: var(--gray-300);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-            transform: translateY(-2px);
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px;
+            height: 100%;
+            border-radius: 3px 0 0 3px;
+            opacity: 0;
+            transition: opacity 0.35s;
         }
+
+        .news-card:hover::before {
+            opacity: 1;
+        }
+
+        .news-card[data-pillar="teaching"]::before { background: linear-gradient(180deg, #4338ca, #6366f1); }
+        .news-card[data-pillar="policy"]::before { background: linear-gradient(180deg, #6d28d9, #8b5cf6); }
+        .news-card[data-pillar="ethics"]::before { background: linear-gradient(180deg, #059669, #34d399); }
+        .news-card[data-pillar="research"]::before { background: linear-gradient(180deg, #d97706, #fbbf24); }
+        .news-card[data-pillar="infrastructure"]::before { background: linear-gradient(180deg, #dc2626, #f87171); }
 
         /* Pillar tag pill */
         .pillar-tag {
@@ -394,7 +647,7 @@
             align-items: center;
             padding: 0.25rem 0.625rem;
             border-radius: 999px;
-            font-size: 0.675rem;
+            font-size: 0.65rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.04em;
@@ -430,14 +683,14 @@
         .news-card-title {
             font-size: 1rem;
             font-weight: 700;
-            color: var(--gray-900);
+            color: var(--text-primary);
             line-height: 1.4;
             margin-bottom: 0.5rem;
         }
 
         .news-card-meta {
             font-size: 0.75rem;
-            color: var(--gray-400);
+            color: var(--text-muted);
             margin-bottom: 0.75rem;
             display: flex;
             align-items: center;
@@ -453,7 +706,7 @@
 
         .news-card-summary {
             font-size: 0.85rem;
-            color: var(--gray-600);
+            color: var(--text-secondary);
             line-height: 1.65;
             margin-bottom: 1rem;
             flex: 1;
@@ -472,13 +725,13 @@
             gap: 0.25rem;
             padding: 0.2rem 0.5rem;
             border-radius: 6px;
-            font-size: 0.675rem;
+            font-size: 0.65rem;
             font-weight: 600;
         }
 
         .score-badge.relevance {
-            background: rgba(37, 99, 235, 0.08);
-            color: var(--primary);
+            background: rgba(13, 148, 136, 0.08);
+            color: var(--accent);
         }
 
         .score-badge.actionability {
@@ -498,107 +751,139 @@
         }
 
         .news-tag {
-            font-size: 0.65rem;
-            padding: 0.2rem 0.5rem;
+            font-size: 0.625rem;
+            padding: 0.175rem 0.45rem;
             border-radius: 4px;
-            background: var(--gray-100);
-            color: var(--gray-500);
+            background: rgba(13, 148, 136, 0.06);
+            color: var(--text-muted);
             font-weight: 500;
         }
 
         /* ============================================================
-           WEEKLY DIGEST
+           WEEKLY DIGEST (dark section)
            ============================================================ */
         .digest-section {
-            margin-top: 3rem;
-            background: white;
-            border: 1px solid var(--gray-200);
-            border-radius: 16px;
-            padding: 2.5rem;
-            display: flex;
-            align-items: center;
-            gap: 2.5rem;
+            padding: 5rem 2rem;
+            background: linear-gradient(160deg, #022c22 0%, #064e3b 40%, #115e59 100%);
+            position: relative;
+            overflow: hidden;
+            color: white;
         }
 
-        .digest-content {
-            flex: 1;
+        .digest-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 32px 32px;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .digest-section::after {
+            content: '';
+            position: absolute;
+            top: -20%; right: -10%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(13, 148, 136, 0.12), transparent 70%);
+            pointer-events: none;
+        }
+
+        .digest-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            text-align: center;
         }
 
         .digest-icon {
-            width: 64px;
-            height: 64px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            width: 72px;
+            height: 72px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.75rem;
-            flex-shrink: 0;
+            margin: 0 auto 1.5rem;
         }
 
-        .digest-content h2 {
-            font-size: 1.25rem;
+        .digest-inner h2 {
+            font-size: 2rem;
             font-weight: 800;
-            color: var(--gray-900);
-            margin-bottom: 0.375rem;
+            color: white;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.75rem;
         }
 
-        .digest-content p {
-            font-size: 0.875rem;
-            color: var(--gray-500);
-            line-height: 1.6;
-            margin-bottom: 1rem;
+        .digest-inner > p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.7;
+            max-width: 540px;
+            margin: 0 auto 2rem;
         }
 
         .digest-form {
             display: flex;
-            gap: 0.5rem;
-            max-width: 420px;
+            gap: 0.75rem;
+            max-width: 460px;
+            margin: 0 auto;
         }
 
         .digest-input {
             flex: 1;
-            padding: 0.625rem 0.875rem;
-            border: 1px solid var(--gray-300);
-            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
             font-size: 0.875rem;
             font-family: inherit;
-            color: var(--gray-800);
-            background: var(--gray-50);
+            color: white;
+            background: rgba(255, 255, 255, 0.06);
             transition: border-color 0.2s, box-shadow 0.2s;
         }
 
         .digest-input:focus {
             outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-            background: white;
+            border-color: rgba(94, 234, 212, 0.5);
+            box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15);
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .digest-input::placeholder {
-            color: var(--gray-400);
+            color: rgba(255, 255, 255, 0.35);
         }
 
         .digest-btn {
-            padding: 0.625rem 1.25rem;
-            background: var(--primary);
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #0d9488, #0f766e);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 0.875rem;
             font-weight: 600;
             font-family: inherit;
             cursor: pointer;
-            transition: background 0.2s, transform 0.1s;
+            transition: transform 0.15s, box-shadow 0.15s;
             white-space: nowrap;
         }
 
         .digest-btn:hover {
-            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(13, 148, 136, 0.35);
         }
 
         .digest-btn:active {
-            transform: scale(0.98);
+            transform: translateY(0);
+        }
+
+        .digest-note {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 1rem;
         }
 
         /* ============================================================
@@ -607,25 +892,22 @@
         .toast {
             position: fixed;
             bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: var(--gray-900);
+            right: 2rem;
+            background: #115e59;
             color: white;
-            padding: 0.75rem 1.5rem;
+            padding: 1rem 1.5rem;
             border-radius: 10px;
-            font-size: 0.875rem;
+            font-size: 0.85rem;
             font-weight: 500;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
             z-index: 9999;
+            transform: translateY(120%);
             opacity: 0;
-            transition: all 0.3s ease;
-            pointer-events: none;
+            transition: transform 0.35s ease, opacity 0.35s ease;
+            max-width: 400px;
         }
 
-        .toast.visible {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
+        .toast.visible { transform: translateY(0); opacity: 1; }
 
         /* ============================================================
            FOOTER
@@ -634,7 +916,6 @@
             padding: 3rem 2rem;
             background: var(--gray-900);
             color: rgba(255, 255, 255, 0.6);
-            margin-top: 2rem;
         }
 
         .footer-inner {
@@ -645,69 +926,77 @@
             align-items: center;
         }
 
-        .footer-brand h3 {
-            font-size: 1rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 0.25rem;
-        }
-
+        .footer-brand h3 { font-size: 1rem; font-weight: 700; color: white; margin-bottom: 0.25rem; }
         .footer-brand p { font-size: 0.75rem; }
 
-        .footer-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
+        .footer-links { display: flex; gap: 1.5rem; }
         .footer-links a {
             color: rgba(255, 255, 255, 0.6);
             text-decoration: none;
             font-size: 0.8rem;
             transition: color 0.2s;
         }
-
         .footer-links a:hover { color: white; }
 
         /* ============================================================
            RESPONSIVE
            ============================================================ */
+        @media (max-width: 1024px) {
+            .hero-inner { grid-template-columns: 1fr; }
+            .hero-card { max-width: 340px; margin: 0 auto; }
+            .hero-text { max-width: 100%; text-align: center; margin: 0 auto; }
+            .hero-desc { margin: 0 auto; }
+            .hero-badge { margin: 0 auto 1.25rem; }
+        }
+
         @media (max-width: 768px) {
+            .header { padding: 1rem; }
+            .header-nav {
+                display: none;
+                position: absolute;
+                top: 64px; left: 0; right: 0;
+                background: rgba(255, 255, 255, 0.96);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                padding: 1rem 2rem;
+                flex-direction: column;
+                gap: 0.75rem;
+                border-bottom: 1px solid var(--border-subtle);
+            }
+            .header-nav.open { display: flex; }
+            .mobile-menu-btn { display: block; }
+
             .hero { padding: 3.5rem 1.5rem 3rem; }
-            .hero h1 { font-size: 2.25rem; }
-            .hero-orb { display: none; }
+            .hero h1 { font-size: 2rem; }
+            .hero-desc { font-size: 0.95rem; }
 
-            .filter-bar { padding: 0.75rem 1rem; }
-            .filter-bar-inner { gap: 0.5rem; }
+            .how-grid { grid-template-columns: 1fr; gap: 1rem; }
+
+            .filter-bar { margin: -5rem -1.25rem 2.5rem; padding: 0.75rem 1.25rem; }
             .filter-chip { padding: 0.3rem 0.65rem; font-size: 0.7rem; }
-
-            .main-content { padding: 1.5rem 1rem; }
             .news-grid { grid-template-columns: 1fr; }
 
-            .digest-section {
-                flex-direction: column;
-                text-align: center;
-                padding: 2rem 1.5rem;
-                gap: 1.5rem;
+            .digest-form { flex-direction: column; }
+
+            .section-header h2 {
+                font-size: 1.5rem;
+                -webkit-text-fill-color: unset;
+                background: none;
+                color: #115e59;
             }
 
-            .digest-form {
-                flex-direction: column;
-                max-width: 100%;
+            .digest-inner h2 {
+                font-size: 1.5rem;
             }
 
-            .footer-inner {
-                flex-direction: column;
-                gap: 1.5rem;
-                text-align: center;
-            }
+            .footer-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
+
+            .how-section, .filter-section, .digest-section { padding: 3rem 1.25rem; }
         }
 
         @media (max-width: 480px) {
-            .header { padding: 1rem 1rem; }
-            .header-nav { gap: 1rem; }
-            .header-nav a { font-size: 0.8rem; }
-            .hero h1 { font-size: 1.85rem; }
-            .hero-desc { font-size: 0.95rem; }
+            .hero h1 { font-size: 1.75rem; }
+            .hero-card-stats { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
         }
     </style>
 </head>
@@ -716,10 +1005,11 @@
          HEADER
          ============================================================ -->
     <header class="header">
-        <a href="/" class="header-brand" style="text-decoration:none;">
-            <h1>AIREX</h1>
-            <span class="pilot-badge">Powered by <a href="https://www.utep.edu/aaii/" target="_blank" rel="noopener">AAII</a> + <a href="https://cahsi.utep.edu/" target="_blank" rel="noopener">CAHSI</a></span>
-        </a>
+        <div class="header-brand">
+            <h1><a href="/">AIREX</a></h1>
+            <span class="badge">Powered by <a href="https://www.utep.edu/aaii/" target="_blank" rel="noopener">AAII</a> + <a href="https://cahsi.utep.edu/" target="_blank" rel="noopener">CAHSI</a></span>
+        </div>
+        <button class="mobile-menu-btn" onclick="document.querySelector('.header-nav').classList.toggle('open')" aria-label="Toggle navigation">&#9776;</button>
         <nav class="header-nav">
             <a href="/">Home</a>
             <a href="/readiness">AI Readiness</a>
@@ -738,77 +1028,172 @@
         <div class="hero-orb hero-orb-2"></div>
         <div class="hero-orb hero-orb-3"></div>
         <div class="hero-inner">
-            <div class="hero-badge">
-                <div class="hero-badge-dot"></div>
-                Updated weekly &middot; Curated for higher education
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <div class="hero-badge-dot"></div>
+                    Updated weekly &middot; Curated for higher education
+                </div>
+                <h1>AI News and <span class="highlight">Discovery</span></h1>
+                <p class="hero-desc">
+                    Stay current with AI developments that matter for academic institutions. Every article is scored for relevance and actionability, so you can focus on what is useful.
+                </p>
             </div>
-            <h1>AI News and <span class="highlight">Discovery</span></h1>
-            <p class="hero-desc">
-                Stay current with AI developments that matter for academic institutions. Every article is scored for relevance and actionability, so you can focus on what is useful.
-            </p>
+            <div class="hero-card">
+                <div class="hero-card-badge">News Feed</div>
+                <h3>Curated Intelligence</h3>
+                <div class="hero-card-divider"></div>
+                <div class="hero-card-stats">
+                    <div class="hero-card-stat">
+                        <strong id="statArticles">--</strong>
+                        <span>Articles</span>
+                    </div>
+                    <div class="hero-card-stat">
+                        <strong>5</strong>
+                        <span>Pillars</span>
+                    </div>
+                    <div class="hero-card-stat">
+                        <strong>2</strong>
+                        <span>Scores</span>
+                    </div>
+                    <div class="hero-card-stat">
+                        <strong>Weekly</strong>
+                        <span>Updates</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- ============================================================
-         FILTER BAR
+         HOW IT WORKS
          ============================================================ -->
-    <div class="filter-bar">
-        <div class="filter-bar-inner">
-            <span class="filter-label">Pillar</span>
-            <button class="filter-chip active" data-pillar="all">All</button>
-            <button class="filter-chip" data-pillar="teaching">Teaching &amp; Learning</button>
-            <button class="filter-chip" data-pillar="policy">Policy &amp; Governance</button>
-            <button class="filter-chip" data-pillar="ethics">Ethics &amp; Equity</button>
-            <button class="filter-chip" data-pillar="research">Research &amp; Innovation</button>
-            <button class="filter-chip" data-pillar="infrastructure">Infrastructure</button>
-            <span class="article-count" id="articleCount"></span>
+    <section class="how-section">
+        <div class="section-inner">
+            <div class="section-header fade-up">
+                <h2>How the News Feed Works</h2>
+                <p>Every article goes through a multi-step curation process before it reaches you. The goal is signal, not noise.</p>
+            </div>
+
+            <div class="how-grid">
+                <div class="how-card glass-card fade-up">
+                    <div class="how-icon" style="background: rgba(13, 148, 136, 0.08);">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs><linearGradient id="hw1" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#5eead4"/></linearGradient></defs>
+                            <circle cx="14" cy="14" r="10" fill="url(#hw1)" opacity="0.3"/>
+                            <circle cx="14" cy="14" r="5" fill="url(#hw1)"/>
+                        </svg>
+                    </div>
+                    <div class="how-step-number">Step 1</div>
+                    <h3>Source and Collect</h3>
+                    <p>We track AI developments across education, policy, and technology outlets relevant to higher education institutions.</p>
+                </div>
+
+                <div class="how-card glass-card fade-up" style="transition-delay: 0.1s;">
+                    <div class="how-icon" style="background: rgba(13, 148, 136, 0.08);">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs><linearGradient id="hw2" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#0f766e"/><stop offset="1" stop-color="#14b8a6"/></linearGradient></defs>
+                            <rect x="4" y="6" width="20" height="16" rx="4" fill="url(#hw2)" opacity="0.3"/>
+                            <rect x="8" y="10" width="12" height="8" rx="2" fill="url(#hw2)"/>
+                        </svg>
+                    </div>
+                    <div class="how-step-number">Step 2</div>
+                    <h3>Score and Tag</h3>
+                    <p>Each article is scored on relevance and actionability, then tagged to one of the five AI readiness pillars.</p>
+                </div>
+
+                <div class="how-card glass-card fade-up" style="transition-delay: 0.2s;">
+                    <div class="how-icon" style="background: rgba(13, 148, 136, 0.08);">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs><linearGradient id="hw3" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#115e59"/><stop offset="1" stop-color="#0d9488"/></linearGradient></defs>
+                            <path d="M14 4L24 10V18L14 24L4 18V10L14 4Z" fill="url(#hw3)" opacity="0.3"/>
+                            <path d="M14 8L20 11.5V18.5L14 22L8 18.5V11.5L14 8Z" fill="url(#hw3)"/>
+                        </svg>
+                    </div>
+                    <div class="how-step-number">Step 3</div>
+                    <h3>Filter and Explore</h3>
+                    <p>Browse by pillar or read everything. High scores help surface the articles most likely to inform your next steps.</p>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
     <!-- ============================================================
-         MAIN CONTENT
+         NEWS FEED SECTION
          ============================================================ -->
-    <main class="main-content">
-        <!-- Loading state (shown while fetching) -->
-        <div class="loading-state" id="loadingState">
-            <div class="loading-spinner"></div>
-            <span class="loading-text">Loading articles...</span>
-        </div>
-
-        <!-- News grid (populated by JS) -->
-        <div class="news-grid" id="newsGrid" style="display:none;"></div>
-
-        <!-- Empty state (shown when no articles match filter) -->
-        <div class="empty-state" id="emptyState" style="display:none;">
-            <div class="empty-state-icon"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"></path><path d="M18 14h-8"></path><path d="M15 18h-5"></path><rect x="10" y="6" width="8" height="5" rx="1"></rect></svg></div>
-            <h3>No articles found</h3>
-            <p>No articles match this pillar filter. Try selecting a different pillar or view all articles.</p>
-        </div>
-
-        <!-- ============================================================
-             WEEKLY DIGEST
-             ============================================================ -->
-        <section class="digest-section">
-            <div class="digest-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div>
-            <div class="digest-content">
-                <h2>Weekly Digest</h2>
-                <p>Get a summary of the relevant AI news for higher education delivered to your inbox every Monday.</p>
-                <form class="digest-form" id="digestForm">
-                    <input
-                        type="email"
-                        class="digest-input"
-                        placeholder="you@university.edu"
-                        required
-                        aria-label="Email address"
-                    >
-                    <button type="submit" class="digest-btn">Subscribe</button>
-                </form>
+    <section class="filter-section">
+        <div class="section-inner">
+            <div class="section-header fade-up">
+                <h2>Latest Articles</h2>
+                <p>AI developments relevant to academic institutions, scored for relevance and actionability across the five readiness pillars.</p>
             </div>
-        </section>
-    </main>
 
-    <!-- Toast notification -->
-    <div class="toast" id="toast"></div>
+            <!-- Filter bar (sticky) -->
+            <div class="filter-bar fade-up" style="transition-delay: 0.1s;">
+                <div class="filter-bar-inner">
+                    <span class="filter-label">Pillar</span>
+                    <button class="filter-chip active" data-pillar="all">All</button>
+                    <button class="filter-chip" data-pillar="teaching"><span class="filter-dot" style="background: #4338ca;"></span>Teaching &amp; Learning</button>
+                    <button class="filter-chip" data-pillar="policy"><span class="filter-dot" style="background: #6d28d9;"></span>Policy &amp; Governance</button>
+                    <button class="filter-chip" data-pillar="ethics"><span class="filter-dot" style="background: #059669;"></span>Ethics &amp; Equity</button>
+                    <button class="filter-chip" data-pillar="research"><span class="filter-dot" style="background: #d97706;"></span>Research &amp; Innovation</button>
+                    <button class="filter-chip" data-pillar="infrastructure"><span class="filter-dot" style="background: #dc2626;"></span>Infrastructure</button>
+                    <span class="article-count" id="articleCount"></span>
+                </div>
+            </div>
+
+            <!-- Loading state -->
+            <div class="loading-state" id="loadingState">
+                <div class="loading-spinner"></div>
+                <span class="loading-text">Loading articles...</span>
+            </div>
+
+            <!-- News grid -->
+            <div class="news-grid fade-up" id="newsGrid" style="display:none; transition-delay: 0.2s;"></div>
+
+            <!-- Empty state -->
+            <div class="empty-state" id="emptyState" style="display:none;">
+                <div class="empty-state-icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs><linearGradient id="emptyIcon" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse"><stop stop-color="#0d9488"/><stop offset="1" stop-color="#5eead4"/></linearGradient></defs>
+                        <rect x="8" y="4" width="32" height="40" rx="6" fill="url(#emptyIcon)" opacity="0.15"/>
+                        <rect x="14" y="16" width="20" height="3" rx="1.5" fill="url(#emptyIcon)" opacity="0.4"/>
+                        <rect x="14" y="23" width="14" height="3" rx="1.5" fill="url(#emptyIcon)" opacity="0.3"/>
+                        <rect x="14" y="30" width="17" height="3" rx="1.5" fill="url(#emptyIcon)" opacity="0.2"/>
+                    </svg>
+                </div>
+                <h3>No articles found</h3>
+                <p>No articles match this pillar filter. Try selecting a different pillar or view all articles.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         WEEKLY DIGEST (dark section)
+         ============================================================ -->
+    <section class="digest-section">
+        <div class="digest-inner fade-up">
+            <div class="digest-icon">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs><linearGradient id="digestIcn" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#5eead4"/><stop offset="1" stop-color="#99f6e4"/></linearGradient></defs>
+                    <rect x="3" y="6" width="22" height="16" rx="4" fill="url(#digestIcn)" opacity="0.3"/>
+                    <path d="M3 10L14 17L25 10" stroke="url(#digestIcn)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+            </div>
+            <h2>Weekly Digest</h2>
+            <p>Get a summary of the relevant AI news for higher education delivered to your inbox every Monday.</p>
+            <form class="digest-form" id="digestForm">
+                <input
+                    type="email"
+                    class="digest-input"
+                    placeholder="you@university.edu"
+                    required
+                    aria-label="Email address"
+                >
+                <button type="submit" class="digest-btn">Subscribe</button>
+            </form>
+            <p class="digest-note">No spam. Unsubscribe anytime.</p>
+        </div>
+    </section>
 
     <!-- ============================================================
          FOOTER
@@ -821,30 +1206,25 @@
             </div>
             <div class="footer-links">
                 <a href="/">Home</a>
+                <a href="/readiness">AI Readiness</a>
+                <a href="/assessment">Assessment</a>
                 <a href="/atlas">Atlas</a>
                 <a href="/repository">Repository</a>
-                <a href="/assessment">Assessment</a>
                 <a href="/news">News</a>
             </div>
         </div>
     </footer>
 
+    <!-- Toast notification -->
+    <div class="toast" id="toast"></div>
+
     <!-- ============================================================
          JAVASCRIPT
          ============================================================ -->
     <script>
-        // ---- State ----
-        let allArticles = [];
-        let activePillar = 'all';
-
-        // ---- DOM refs ----
-        const newsGrid = document.getElementById('newsGrid');
-        const loadingState = document.getElementById('loadingState');
-        const emptyState = document.getElementById('emptyState');
-        const articleCount = document.getElementById('articleCount');
-        const toast = document.getElementById('toast');
-
-        // ---- Pillar display names ----
+        /* ==========================================================
+           UTILITY HELPERS
+           ========================================================== */
         const pillarLabels = {
             teaching: 'Teaching & Learning',
             policy: 'Policy & Governance',
@@ -853,7 +1233,13 @@
             infrastructure: 'Infrastructure'
         };
 
-        // ---- Format date ----
+        function escapeHtml(str) {
+            if (!str) return '';
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
         function formatDate(dateStr) {
             try {
                 const d = new Date(dateStr + 'T00:00:00');
@@ -867,7 +1253,38 @@
             }
         }
 
-        // ---- Build a single card ----
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('visible');
+            setTimeout(() => toast.classList.remove('visible'), 5000);
+        }
+
+        /* ==========================================================
+           FADE-UP SCROLL ANIMATIONS
+           ========================================================== */
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    fadeObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+
+        /* ==========================================================
+           NEWS FEED
+           ========================================================== */
+        let allArticles = [];
+        let activePillar = 'all';
+
+        const newsGrid = document.getElementById('newsGrid');
+        const loadingState = document.getElementById('loadingState');
+        const emptyState = document.getElementById('emptyState');
+        const articleCount = document.getElementById('articleCount');
+
         function buildCard(article) {
             const pillar = article.pillar || 'teaching';
             const pillarLabel = pillarLabels[pillar] || pillar;
@@ -876,7 +1293,7 @@
             const tags = article.tags || [];
 
             const card = document.createElement('div');
-            card.className = 'news-card';
+            card.className = 'news-card glass-card';
             card.dataset.pillar = pillar;
 
             card.innerHTML = `
@@ -902,28 +1319,17 @@
             return card;
         }
 
-        // ---- Escape HTML ----
-        function escapeHtml(str) {
-            if (!str) return '';
-            const div = document.createElement('div');
-            div.textContent = str;
-            return div.innerHTML;
-        }
-
-        // ---- Render cards ----
         function renderArticles() {
             const filtered = activePillar === 'all'
                 ? allArticles
                 : allArticles.filter(a => a.pillar === activePillar);
 
-            // Update count
             if (activePillar === 'all') {
                 articleCount.textContent = `${filtered.length} article${filtered.length !== 1 ? 's' : ''}`;
             } else {
                 articleCount.textContent = `${filtered.length} of ${allArticles.length}`;
             }
 
-            // Clear grid
             newsGrid.innerHTML = '';
 
             if (filtered.length === 0) {
@@ -940,7 +1346,6 @@
             });
         }
 
-        // ---- Fetch articles ----
         async function fetchArticles() {
             loadingState.style.display = 'flex';
             newsGrid.style.display = 'none';
@@ -951,6 +1356,10 @@
                 if (!res.ok) throw new Error('Network response was not ok');
                 const data = await res.json();
                 allArticles = data.articles || [];
+
+                // Update hero stat
+                const statEl = document.getElementById('statArticles');
+                if (statEl) statEl.textContent = allArticles.length;
 
                 loadingState.style.display = 'none';
                 renderArticles();
@@ -963,7 +1372,9 @@
             }
         }
 
-        // ---- Filter chip clicks ----
+        /* ==========================================================
+           FILTER CHIP CLICKS
+           ========================================================== */
         document.querySelectorAll('.filter-chip').forEach(chip => {
             chip.addEventListener('click', () => {
                 document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
@@ -973,22 +1384,17 @@
             });
         });
 
-        // ---- Digest form ----
+        /* ==========================================================
+           DIGEST FORM
+           ========================================================== */
         document.getElementById('digestForm').addEventListener('submit', (e) => {
             e.preventDefault();
             showToast('Coming soon. Weekly digest is not yet available.');
         });
 
-        // ---- Toast ----
-        function showToast(message) {
-            toast.textContent = message;
-            toast.classList.add('visible');
-            setTimeout(() => {
-                toast.classList.remove('visible');
-            }, 3000);
-        }
-
-        // ---- Init ----
+        /* ==========================================================
+           INIT
+           ========================================================== */
         fetchArticles();
     </script>
 </body>
