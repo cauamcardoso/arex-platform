@@ -3,7 +3,28 @@
     "version": "1.0",
     "last_updated": "2026-02-28",
     "total_articles": 16,
-    "description": "Curated AI news for higher education from the AIREX discovery engine"
+    "description": "Curated AI news for higher education from the AIREX discovery engine",
+    "digest": {
+      "week_of": "2026-02-17",
+      "title": "Policy Moves, Infrastructure Grows, and Faculty Adapt",
+      "overview": "This week brought significant policy developments as California became the first state to require AI transparency in higher education, while accreditors began formally evaluating institutional AI strategies. On the infrastructure side, both commercial cloud providers and open-source models are making AI more accessible to under-resourced institutions. Meanwhile, new evidence suggests that thoughtful AI integration can actually advance equity goals.",
+      "key_findings": [
+        "Three regional accreditors now require AI strategy documentation in institutional reviews",
+        "A coalition of 40 research universities adopted a shared AI literacy framework for undergraduates",
+        "AI writing tools reduced the achievement gap between first-generation and continuing-generation students by 35%"
+      ],
+      "why_this_matters": [
+        "Accreditation requirements signal that AI readiness is shifting from optional to expected",
+        "Shared frameworks reduce the burden on individual institutions designing AI curricula from scratch",
+        "Evidence is mounting that thoughtful AI integration can advance equity goals, not undermine them"
+      ],
+      "key_metrics": {
+        "funding_announced": "$120M",
+        "new_frameworks": "1",
+        "states_with_ai_legislation": "1",
+        "institutions_piloting": "40+"
+      }
+    }
   },
   "articles": [
     {

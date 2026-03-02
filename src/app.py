@@ -38,6 +38,7 @@ else:
     resources_db = []
 
 # Load news database
+news_data = {}
 news_path = project_root / "data" / "news" / "news.json"
 if news_path.exists():
     with open(news_path, 'r', encoding='utf-8') as f:
@@ -430,7 +431,8 @@ def get_news():
 
     return jsonify({
         "articles": results,
-        "count": len(results)
+        "count": len(results),
+        "digest": news_data.get('metadata', {}).get('digest', None)
     })
 
 
