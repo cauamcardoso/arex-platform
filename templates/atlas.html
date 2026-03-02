@@ -3,16 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIREX | HSI Network</title>
+    <title>AIREX | Atlas</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Leaflet CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #f97316;
+            --bg-primary: #ffffff;
+            --bg-secondary: #fff5f7;
+            --bg-tertiary: #fff1f3;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --card-hover: rgba(255, 255, 255, 0.95);
+            --border-subtle: rgba(225, 29, 72, 0.1);
+            --border-hover: rgba(190, 18, 60, 0.35);
+            --text-primary: #4a0519;
+            --text-secondary: #4b5563;
+            --text-muted: #6b7280;
+            --accent: #e11d48;
+            --accent-dark: #be123c;
+            --accent-deep: #9f1239;
+            --accent-light: #fb7185;
+            --accent-rgb: 225, 29, 72;
             --success: #10b981;
             --warning: #f59e0b;
             --danger: #ef4444;
@@ -28,31 +39,29 @@
             --gray-900: #111827;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--gray-100);
+            background: var(--bg-secondary);
             color: var(--gray-800);
             line-height: 1.5;
         }
 
-        /* Header */
+        /* ============================================================
+           HEADER
+           ============================================================ */
         .header {
-            background: white;
-            border-bottom: 1px solid var(--gray-200);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(225, 29, 72, 0.08);
             padding: 1rem 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             z-index: 1000;
             height: 64px;
         }
@@ -66,212 +75,537 @@
         .header-brand h1 {
             font-size: 1.25rem;
             font-weight: 700;
-            color: var(--gray-900);
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
         }
 
-        .header-brand span {
-            font-size: 0.75rem;
-            color: var(--gray-500);
-            background: var(--gray-100);
-            padding: 0.25rem 0.5rem;
+        .header-brand h1 a { color: inherit; text-decoration: none; }
+
+        .header-brand .badge {
+            font-size: 0.65rem;
+            color: #9f1239;
+            background: #fff1f2;
+            border: 1px solid #fecdd3;
+            padding: 0.2rem 0.5rem;
             border-radius: 4px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .badge a {
+            color: inherit;
+            text-decoration: underline;
+            text-underline-offset: 2px;
         }
 
         .header-nav {
             display: flex;
             gap: 1.5rem;
+            align-items: center;
         }
 
         .header-nav a {
-            color: var(--gray-600);
+            color: var(--text-muted);
             text-decoration: none;
             font-size: 0.875rem;
             font-weight: 500;
-            transition: color 0.2s;
+            transition: color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        .header-nav a:hover,
-        .header-nav a.active {
-            color: var(--primary);
+        .header-nav a:hover { color: var(--accent); }
+        .header-nav a.active { color: var(--accent); font-weight: 600; }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            padding: 0.25rem;
         }
 
-        /* Main Layout */
-        .main-container {
-            display: flex;
+        /* ============================================================
+           HERO
+           ============================================================ */
+        .hero {
             margin-top: 64px;
-            height: calc(100vh - 64px);
+            background: linear-gradient(160deg, #1a0610 0%, #2d0a1a 35%, #6b1331 65%, #9f1239 100%);
+            padding: 5rem 2rem 4.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+            will-change: transform;
+        }
+
+        .hero-orb-1 {
+            width: 500px; height: 500px;
+            background: rgba(225, 29, 72, 0.5);
+            top: -15%; left: -5%;
+            animation: float-1 14s ease-in-out infinite;
+        }
+
+        .hero-orb-2 {
+            width: 400px; height: 400px;
+            background: rgba(251, 113, 133, 0.3);
+            top: 20%; right: -10%;
+            animation: float-2 18s ease-in-out infinite;
+        }
+
+        .hero-orb-3 {
+            width: 300px; height: 300px;
+            background: rgba(253, 164, 175, 0.2);
+            bottom: -10%; left: 30%;
+            animation: float-3 11s ease-in-out infinite;
+        }
+
+        @keyframes float-1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(40px, 30px) scale(1.1); }
+        }
+        @keyframes float-2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-40px, 20px) scale(1.05); }
+            66% { transform: translate(20px, -30px) scale(0.95); }
+        }
+        @keyframes float-3 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-30px, -30px); }
+        }
+
+        .hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text { max-width: 560px; }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 0.35rem 0.85rem;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.85);
+            letter-spacing: 0.03em;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-badge-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: #fda4af;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .hero h1 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, #fda4af, #fecdd3, #fb7185);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.7;
+            max-width: 520px;
+        }
+
+        .hero-card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            padding: 2rem;
+            min-width: 280px;
+            text-align: center;
+        }
+
+        .hero-card-badge {
+            display: inline-block;
+            background: rgba(253, 164, 175, 0.2);
+            border: 1px solid rgba(253, 164, 175, 0.3);
+            color: #fecdd3;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.25rem 0.65rem;
+            border-radius: 999px;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-card-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-card-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .hero-card-stat strong {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        .hero-card-stat span {
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* ============================================================
+           HOW-TO SECTION
+           ============================================================ */
+        .how-section {
+            padding: 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+
+        .how-section::before {
+            content: '';
+            position: absolute;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(225, 29, 72, 0.06) 0%, transparent 70%);
+            top: -10%; right: -5%;
+            pointer-events: none;
+            animation: aurora-pulse 12s ease-in-out infinite;
+        }
+
+        .how-section::after {
+            content: '';
+            position: absolute;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(190, 18, 60, 0.05) 0%, transparent 70%);
+            bottom: -15%; left: -3%;
+            pointer-events: none;
+            animation: aurora-pulse 15s ease-in-out infinite reverse;
+        }
+
+        @keyframes aurora-pulse {
+            0%, 100% { transform: scale(1); opacity: 0.08; }
+            50% { transform: scale(1.15); opacity: 0.12; }
+        }
+
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, #9f1239, #e11d48);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .how-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .how-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 4px 24px rgba(0, 0, 0, 0.03);
+            padding: 2rem 1.5rem;
+            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .how-card:hover {
+            background: rgba(255, 255, 255, 0.6);
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 12px 40px rgba(225, 29, 72, 0.08);
+        }
+
+        .how-card-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1.25rem;
+        }
+
+        .how-card-step {
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .how-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .how-card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+           ATLAS SECTION (MAP + SIDEBAR)
+           ============================================================ */
+        .atlas-section {
+            padding: 0 2rem 5rem;
+            position: relative;
+        }
+
+        .section-inner-wide {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .atlas-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .atlas-header h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, #9f1239, #e11d48);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .atlas-header p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .atlas-container {
+            display: flex;
+            height: 72vh;
+            min-height: 550px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 8px 40px rgba(0, 0, 0, 0.04);
         }
 
         /* Sidebar */
         .sidebar {
             width: 380px;
-            background: white;
-            border-right: 1px solid var(--gray-200);
+            background: rgba(255, 255, 255, 0.6);
+            border-right: 1px solid rgba(225, 29, 72, 0.08);
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            flex-shrink: 0;
         }
 
-        .sidebar-header {
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--gray-200);
-            background: linear-gradient(135deg, #0f172a, #1e3a5f);
-            color: white;
-            position: relative;
-            overflow: hidden;
+        .sidebar-search {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid rgba(225, 29, 72, 0.06);
         }
 
-        .sidebar-header::before {
-            content: '';
-            position: absolute;
-            width: 200px; height: 200px;
-            border-radius: 50%;
-            background: rgba(59, 130, 246, 0.2);
-            top: -50%; right: -20%;
-            filter: blur(40px);
-            animation: sidebar-orb 10s ease-in-out infinite;
+        .search-input {
+            width: 100%;
+            padding: 0.625rem 1rem 0.625rem 2.5rem;
+            border: 1px solid rgba(225, 29, 72, 0.15);
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.7);
+            color: var(--text-primary);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: 0.75rem center;
+            background-size: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
 
-        @keyframes sidebar-orb {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(-20px, 20px); }
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.1);
+            background-color: white;
         }
 
-        .sidebar-header h2 {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .sidebar-header p {
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.7);
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.75rem;
-            padding: 1rem 1.5rem;
-            background: var(--gray-50);
-            border-bottom: 1px solid var(--gray-200);
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: 0.75rem 0.5rem;
-            background: white;
-            border-radius: 8px;
-            border: 1px solid var(--gray-200);
-        }
-
-        .stat-value {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .stat-label {
-            font-size: 0.625rem;
-            color: var(--gray-500);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-top: 0.25rem;
-        }
+        .search-input::placeholder { color: var(--gray-400); }
 
         /* Filters */
         .filters {
-            padding: 1rem 1.5rem;
-            border-bottom: 1px solid var(--gray-200);
+            padding: 0.875rem 1.25rem;
+            border-bottom: 1px solid rgba(225, 29, 72, 0.06);
+            overflow-y: auto;
+            max-height: 280px;
         }
 
         .filter-group {
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
 
-        .filter-group:last-child {
-            margin-bottom: 0;
-        }
+        .filter-group:last-child { margin-bottom: 0; }
 
         .filter-label {
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             font-weight: 600;
-            color: var(--gray-700);
+            color: var(--gray-600);
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.375rem;
             display: block;
         }
 
         .filter-select {
             width: 100%;
-            padding: 0.5rem 0.75rem;
-            border: 1px solid var(--gray-300);
-            border-radius: 6px;
-            font-size: 0.875rem;
+            padding: 0.45rem 0.75rem;
+            border: 1px solid rgba(225, 29, 72, 0.12);
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-family: inherit;
             color: var(--gray-700);
-            background: white;
+            background: rgba(255, 255, 255, 0.7);
             cursor: pointer;
+            transition: border-color 0.2s;
         }
 
         .filter-select:focus {
             outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.08);
         }
 
         .filter-chips {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
+            gap: 0.375rem;
         }
 
         .filter-chip {
-            padding: 0.375rem 0.75rem;
-            background: var(--gray-100);
-            border: 1px solid var(--gray-200);
+            padding: 0.3rem 0.65rem;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(225, 29, 72, 0.1);
             border-radius: 999px;
-            font-size: 0.75rem;
-            color: var(--gray-600);
+            font-size: 0.7rem;
+            color: var(--text-muted);
             cursor: pointer;
             transition: all 0.2s;
+            font-family: inherit;
+            font-weight: 500;
         }
 
         .filter-chip:hover {
-            background: var(--gray-200);
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--text-primary);
         }
 
         .filter-chip.active {
-            background: var(--primary);
-            border-color: var(--primary);
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            border-color: var(--accent);
             color: white;
-        }
-
-        .filter-chips-multi {
-            gap: 0.375rem;
+            font-weight: 600;
         }
 
         .capability-chip {
             display: inline-flex;
             align-items: center;
-            gap: 0.375rem;
-            transition: all 0.2s;
-        }
-
-        .capability-chip .cap-icon {
-            font-size: 0.8rem;
-            line-height: 1;
+            gap: 0.3rem;
         }
 
         .capability-chip.active {
-            background: #059669;
+            background: linear-gradient(135deg, #059669, #047857);
             border-color: #059669;
             color: white;
+        }
+
+        /* Results Count */
+        .results-count {
+            padding: 0.5rem 1.25rem;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            border-bottom: 1px solid rgba(225, 29, 72, 0.06);
+            background: rgba(255, 255, 255, 0.3);
+            font-weight: 500;
         }
 
         /* Institution List */
@@ -282,110 +616,100 @@
         }
 
         .institution-card {
-            padding: 1rem;
-            border: 1px solid var(--gray-200);
-            border-radius: 8px;
-            margin-bottom: 0.5rem;
-            background: white;
+            padding: 0.875rem;
+            border: 1px solid rgba(225, 29, 72, 0.06);
+            border-radius: 12px;
+            margin-bottom: 0.375rem;
+            background: rgba(255, 255, 255, 0.5);
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .institution-card:hover {
-            border-color: var(--primary);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.8);
+            border-color: var(--border-hover);
+            box-shadow: 0 2px 8px rgba(225, 29, 72, 0.06);
         }
 
         .institution-card.selected {
-            border-color: var(--primary);
-            background: rgba(37, 99, 235, 0.05);
+            border-color: var(--accent);
+            background: rgba(225, 29, 72, 0.04);
+            box-shadow: 0 2px 12px rgba(225, 29, 72, 0.1);
         }
 
         .institution-name {
             font-weight: 600;
-            font-size: 0.875rem;
-            color: var(--gray-900);
-            margin-bottom: 0.25rem;
+            font-size: 0.825rem;
+            color: var(--text-primary);
+            margin-bottom: 0.2rem;
         }
 
         .institution-location {
-            font-size: 0.75rem;
-            color: var(--gray-500);
-            margin-bottom: 0.5rem;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
         }
 
         .institution-badges {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.375rem;
             flex-wrap: wrap;
+            margin-bottom: 0.4rem;
         }
 
-        .badge {
-            font-size: 0.625rem;
-            padding: 0.25rem 0.5rem;
+        .inst-badge {
+            font-size: 0.575rem;
+            padding: 0.15rem 0.4rem;
             border-radius: 4px;
-            font-weight: 500;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.04em;
         }
 
-        .badge-hsi {
+        .inst-badge-hsi {
             background: rgba(16, 185, 129, 0.1);
-            color: var(--success);
+            color: #059669;
         }
 
-        .badge-cahsi {
-            background: rgba(37, 99, 235, 0.1);
-            color: var(--primary);
+        .inst-badge-cahsi {
+            background: rgba(225, 29, 72, 0.08);
+            color: var(--accent-deep);
         }
 
-        .badge-readiness {
+        .inst-badge-type {
             background: var(--gray-100);
-            color: var(--gray-600);
-        }
-
-        .readiness-score {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-            margin-top: 0.5rem;
-        }
-
-        .readiness-dots {
-            display: flex;
-            gap: 3px;
-        }
-
-        .readiness-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--gray-200);
-        }
-
-        .readiness-dot.filled {
-            background: var(--primary);
-        }
-
-        .readiness-dot.filled.high {
-            background: var(--success);
-        }
-
-        .readiness-dot.filled.medium {
-            background: var(--warning);
-        }
-
-        .readiness-dot.filled.low {
-            background: var(--danger);
-        }
-
-        .readiness-label {
-            font-size: 0.625rem;
             color: var(--gray-500);
-            margin-left: 0.25rem;
         }
 
-        /* Map Container */
+        /* Journey Level Pills */
+        .journey-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+            font-size: 0.625rem;
+            font-weight: 600;
+        }
+
+        .journey-pill-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+
+        .journey-exploring { background: rgba(253, 164, 175, 0.2); color: #9f1239; }
+        .journey-exploring .journey-pill-dot { background: #fda4af; }
+        .journey-building { background: rgba(251, 113, 133, 0.2); color: #9f1239; }
+        .journey-building .journey-pill-dot { background: #fb7185; }
+        .journey-advancing { background: rgba(225, 29, 72, 0.15); color: #9f1239; }
+        .journey-advancing .journey-pill-dot { background: #e11d48; }
+        .journey-leading { background: rgba(159, 18, 57, 0.2); color: #9f1239; }
+        .journey-leading .journey-pill-dot { background: #9f1239; }
+
+        /* ============================================================
+           MAP
+           ============================================================ */
         .map-container {
             flex: 1;
             position: relative;
@@ -399,252 +723,365 @@
         /* Map Legend */
         .map-legend {
             position: absolute;
-            bottom: 2rem;
-            right: 2rem;
-            background: white;
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            padding: 1rem 1.25rem;
+            border-radius: 14px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             z-index: 500;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
         }
 
         .map-legend h4 {
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            color: var(--gray-700);
+            font-size: 0.65rem;
+            font-weight: 700;
+            margin-bottom: 0.625rem;
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .legend-item {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.375rem;
         }
+
+        .legend-item:last-child { margin-bottom: 0; }
 
         .legend-dot {
             width: 12px;
             height: 12px;
             border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
         }
 
-        .legend-dot.level-5 { background: #10b981; }
-        .legend-dot.level-4 { background: #34d399; }
-        .legend-dot.level-3 { background: #fbbf24; }
-        .legend-dot.level-2 { background: #fb923c; }
-        .legend-dot.level-1 { background: #f87171; }
+        .legend-dot.level-leading { background: #9f1239; }
+        .legend-dot.level-advancing { background: #e11d48; }
+        .legend-dot.level-building { background: #fb7185; }
+        .legend-dot.level-exploring { background: #fda4af; }
+
+        .legend-item span {
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        .legend-divider {
+            height: 1px;
+            background: rgba(225, 29, 72, 0.08);
+            margin: 0.5rem 0;
+        }
+
+        .legend-cahsi {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.25rem;
+        }
+
+        .legend-cahsi-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 2px solid var(--accent-deep);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+        }
 
         /* Custom Markers */
         .custom-marker {
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
-            border: 3px solid white;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            border: 2.5px solid white;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
             cursor: pointer;
             transition: transform 0.2s;
         }
 
-        .custom-marker:hover {
-            transform: scale(1.2);
-        }
-
-        .custom-marker.level-5 { background: #10b981; }
-        .custom-marker.level-4 { background: #34d399; }
-        .custom-marker.level-3 { background: #fbbf24; }
-        .custom-marker.level-2 { background: #fb923c; }
-        .custom-marker.level-1 { background: #f87171; }
+        .custom-marker:hover { transform: scale(1.25); }
 
         .custom-marker.cahsi {
-            border-color: var(--primary);
+            border-color: var(--accent-deep);
+            border-width: 3px;
         }
+
+        .custom-marker-container { background: transparent !important; border: none !important; }
 
         /* Popup Styles */
         .leaflet-popup-content-wrapper {
-            border-radius: 8px;
+            border-radius: 14px;
             padding: 0;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
         }
 
         .leaflet-popup-content {
             margin: 0;
-            min-width: 250px;
+            min-width: 260px;
         }
 
         .popup-content {
-            padding: 1rem;
+            padding: 1.125rem;
         }
 
         .popup-content h3 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+            color: var(--text-primary);
         }
 
         .popup-content .location {
-            font-size: 0.875rem;
-            color: var(--gray-500);
-            margin-bottom: 0.75rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.625rem;
         }
 
-        .popup-content .badges {
+        .popup-content .popup-badges {
             display: flex;
-            gap: 0.5rem;
-            margin-bottom: 0.75rem;
+            gap: 0.375rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.625rem;
         }
 
-        .popup-content .stats {
+        .popup-content .popup-badge {
+            font-size: 0.575rem;
+            padding: 0.15rem 0.45rem;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .popup-badge-hsi { background: rgba(16, 185, 129, 0.1); color: #059669; }
+        .popup-badge-cahsi { background: rgba(225, 29, 72, 0.08); color: #9f1239; }
+
+        .popup-content .popup-stats {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 0.5rem;
-            font-size: 0.75rem;
             margin-bottom: 0.75rem;
         }
 
-        .popup-content .stat {
+        .popup-stat {
             background: var(--gray-50);
-            padding: 0.5rem;
-            border-radius: 4px;
+            padding: 0.5rem 0.625rem;
+            border-radius: 8px;
         }
 
-        .popup-content .stat-label {
-            color: var(--gray-500);
+        .popup-stat-label {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
             margin-bottom: 0.125rem;
         }
 
-        .popup-content .stat-value {
-            font-weight: 600;
-            color: var(--gray-800);
+        .popup-stat-value {
+            font-size: 0.825rem;
+            font-weight: 700;
+            color: var(--text-primary);
         }
 
-        .popup-content .highlight-preview {
+        .popup-highlight {
             font-size: 0.75rem;
             color: var(--gray-600);
             background: var(--gray-50);
             padding: 0.5rem 0.75rem;
-            border-radius: 6px;
+            border-radius: 8px;
             margin-bottom: 0.75rem;
             line-height: 1.5;
-            border-left: 3px solid var(--success);
+            border-left: 3px solid var(--accent-light);
         }
 
-        .popup-content .popup-btns {
+        .popup-btns {
             display: flex;
             gap: 0.5rem;
         }
 
-        .popup-content .view-btn {
+        .popup-view-btn {
             display: block;
             flex: 1;
             padding: 0.5rem;
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--accent-deep), var(--accent-dark));
             color: white;
             text-align: center;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: 500;
-            transition: background 0.2s;
-        }
-
-        .popup-content .view-btn:hover {
-            background: var(--primary-dark);
-        }
-
-        .popup-content .policy-btn {
-            display: block;
-            padding: 0.5rem;
-            background: var(--success);
-            color: white;
-            text-align: center;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: 500;
-            transition: background 0.2s;
-        }
-
-        .popup-content .policy-btn:hover {
-            background: #059669;
-        }
-
-        /* Search */
-        .search-box {
-            padding: 1rem 1.5rem;
-            border-bottom: 1px solid var(--gray-200);
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 0.625rem 1rem;
-            padding-left: 2.5rem;
-            border: 1px solid var(--gray-300);
             border-radius: 8px;
-            font-size: 0.875rem;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: 0.75rem center;
-            background-size: 1rem;
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 600;
+            transition: transform 0.15s, box-shadow 0.15s;
         }
 
-        .search-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        .popup-view-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(225, 29, 72, 0.25);
         }
 
-        /* Results count */
-        .results-count {
-            padding: 0.75rem 1.5rem;
-            font-size: 0.75rem;
-            color: var(--gray-500);
-            border-bottom: 1px solid var(--gray-200);
-            background: var(--gray-50);
+        .popup-policy-btn {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            background: #059669;
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 600;
+            transition: background 0.2s;
         }
 
-        /* Loading state */
+        .popup-policy-btn:hover { background: #047857; }
+
+        /* Loading State */
         .loading {
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 2rem;
-            color: var(--gray-500);
+            color: var(--text-muted);
+            font-size: 0.85rem;
         }
 
         .loading-spinner {
-            width: 24px;
-            height: 24px;
-            border: 3px solid var(--gray-200);
-            border-top-color: var(--primary);
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(225, 29, 72, 0.15);
+            border-top-color: var(--accent);
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin-right: 0.5rem;
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .footer {
+            padding: 3rem 2rem;
+            background: var(--gray-900);
+            color: rgba(255, 255, 255, 0.6);
         }
 
-        /* Responsive */
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-brand h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.25rem;
+        }
+
+        .footer-brand p { font-size: 0.75rem; }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: white; }
+
+        /* ============================================================
+           ANIMATIONS
+           ============================================================ */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
         @media (max-width: 1024px) {
-            .sidebar {
-                width: 320px;
-            }
+            .hero-inner { grid-template-columns: 1fr; }
+            .hero-card { max-width: 360px; margin: 0 auto; }
+            .hero-text { max-width: 100%; text-align: center; margin: 0 auto; }
+            .hero-desc { margin: 0 auto; }
+            .hero-badge { margin: 0 auto 1.25rem; }
+
+            .how-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+
+            .sidebar { width: 320px; }
         }
 
         @media (max-width: 768px) {
-            .main-container {
+            .header { padding: 1rem; }
+            .header-nav {
+                display: none;
+                position: absolute;
+                top: 64px; left: 0; right: 0;
+                background: rgba(255, 255, 255, 0.96);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                padding: 1rem 2rem;
                 flex-direction: column;
+                gap: 0.75rem;
+                border-bottom: 1px solid var(--border-subtle);
             }
+            .header-nav.open { display: flex; }
+            .mobile-menu-btn { display: block; }
 
+            .hero { padding: 3.5rem 1.5rem 3rem; }
+            .hero h1 { font-size: 2rem; }
+            .hero-desc { font-size: 0.95rem; }
+
+            .how-section { padding: 3rem 1.25rem; }
+
+            .atlas-section { padding: 0 1rem 3rem; }
+            .atlas-container {
+                flex-direction: column;
+                height: auto;
+                min-height: 0;
+            }
             .sidebar {
                 width: 100%;
-                height: 50%;
+                max-height: 350px;
+                border-right: none;
+                border-bottom: 1px solid rgba(225, 29, 72, 0.08);
+            }
+            .map-container {
+                height: 50vh;
+                min-height: 350px;
             }
 
-            .map-container {
-                height: 50%;
+            .footer-inner {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
             }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.75rem; }
+            .hero-card-stats { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+            .map-legend { bottom: 0.75rem; right: 0.75rem; padding: 0.75rem; }
         }
     </style>
 </head>
@@ -652,9 +1089,10 @@
     <!-- Header -->
     <header class="header">
         <div class="header-brand">
-            <h1>AIREX</h1>
-            <span>Powered by <a href="https://www.utep.edu/aaii/" target="_blank" rel="noopener">AAII</a> + <a href="https://cahsi.utep.edu/" target="_blank" rel="noopener">CAHSI</a></span>
+            <h1><a href="/">AIREX</a></h1>
+            <span class="badge">Powered by <a href="https://www.utep.edu/aaii/" target="_blank" rel="noopener">AAII</a> + <a href="https://cahsi.utep.edu/" target="_blank" rel="noopener">CAHSI</a></span>
         </div>
+        <button class="mobile-menu-btn" onclick="document.querySelector('.header-nav').classList.toggle('open')" aria-label="Toggle navigation">&#9776;</button>
         <nav class="header-nav">
             <a href="/">Home</a>
             <a href="/readiness">AI Readiness</a>
@@ -665,138 +1103,256 @@
         </nav>
     </header>
 
-    <!-- Main Content -->
-    <div class="main-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <h2>Explore Institutions</h2>
-                <p>Discover AI readiness data and find collaboration partners across institutions</p>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+        <div class="hero-inner">
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <div class="hero-badge-dot"></div>
+                    Interactive Atlas &middot; Discovery Tool &middot; {{ total_institutions }} Institutions
+                </div>
+                <h1>Discover Peer <span class="highlight">Institutions</span></h1>
+                <p class="hero-desc">
+                    Explore an interactive map of institutions with AI readiness data. Filter by state, journey level, and focus areas to find collaboration partners on a similar path.
+                </p>
             </div>
-
-            <!-- Stats -->
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-value">{{ total_institutions }}</div>
-                    <div class="stat-label">Institutions</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">{{ states_count }}</div>
-                    <div class="stat-label">States</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">{{ avg_readiness }}/5</div>
-                    <div class="stat-label">Avg Score</div>
-                </div>
-            </div>
-
-            <!-- Search -->
-            <div class="search-box">
-                <input type="text" class="search-input" placeholder="Search institutions..." id="searchInput">
-            </div>
-
-            <!-- Filters -->
-            <div class="filters">
-                <div class="filter-group">
-                    <label class="filter-label">State</label>
-                    <select class="filter-select" id="stateFilter">
-                        <option value="">All States</option>
-                    </select>
-                </div>
-
-                <div class="filter-group">
-                    <label class="filter-label">Capabilities</label>
-                    <div class="filter-chips filter-chips-multi" id="capabilityFilter">
-                        <button class="filter-chip capability-chip" data-capability="policy" title="Has published AI policy">
-                            <span class="cap-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg></span> AI Policy
-                        </button>
-                        <button class="filter-chip capability-chip" data-capability="programs" title="Has AI programs or centers">
-                            <span class="cap-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5"></path></svg></span> Programs
-                        </button>
-                        <button class="filter-chip capability-chip" data-capability="research" title="Has research centers or labs">
-                            <span class="cap-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6"></path><path d="M10 3v7.4a2 2 0 0 1-.6 1.4L4 17.2A2 2 0 0 0 5.5 21h13a2 2 0 0 0 1.5-3.8l-5.4-5.4a2 2 0 0 1-.6-1.4V3"></path></svg></span> Research
-                        </button>
-                        <button class="filter-chip capability-chip" data-capability="initiatives" title="Has active AI initiatives">
-                            <span class="cap-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></span> Initiatives
-                        </button>
+            <div class="hero-card">
+                <div class="hero-card-badge">Network Overview</div>
+                <h3>The AIREX Network</h3>
+                <div class="hero-card-divider"></div>
+                <div class="hero-card-stats">
+                    <div class="hero-card-stat">
+                        <strong>{{ total_institutions }}</strong>
+                        <span>Institutions</span>
                     </div>
-                </div>
-
-                <div class="filter-group">
-                    <label class="filter-label">Membership</label>
-                    <div class="filter-chips" id="membershipFilter">
-                        <button class="filter-chip active" data-value="">All</button>
-                        <button class="filter-chip" data-value="cahsi">CAHSI Members</button>
-                        <button class="filter-chip" data-value="hsi">All HSIs</button>
+                    <div class="hero-card-stat">
+                        <strong>{{ states_count }}</strong>
+                        <span>States & Territories</span>
                     </div>
-                </div>
-            </div>
-
-            <!-- Results Count -->
-            <div class="results-count" id="resultsCount">
-                Loading institutions...
-            </div>
-
-            <!-- Institution List -->
-            <div class="institution-list" id="institutionList">
-                <div class="loading">
-                    <div class="loading-spinner"></div>
-                    Loading...
-                </div>
-            </div>
-        </aside>
-
-        <!-- Map -->
-        <div class="map-container">
-            <div id="map"></div>
-
-            <!-- Legend -->
-            <div class="map-legend">
-                <h4>Readiness Score</h4>
-                <div class="legend-item">
-                    <div class="legend-dot level-5"></div>
-                    <span>5 - Leading</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-dot level-4"></div>
-                    <span>4 - Advancing</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-dot level-3"></div>
-                    <span>3 - Building</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-dot level-2"></div>
-                    <span>2 - Exploring</span>
-                </div>
-                <h4 style="margin-top: 0.5rem;">Filter by Capabilities</h4>
-                <div class="legend-item" style="font-size: 0.65rem;">
-                    <span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg></span> <span>AI Policy Available</span>
-                </div>
-                <div class="legend-item" style="font-size: 0.65rem;">
-                    <span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5"></path></svg></span> <span>Programs & Centers</span>
-                </div>
-                <div class="legend-item" style="font-size: 0.65rem;">
-                    <span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6"></path><path d="M10 3v7.4a2 2 0 0 1-.6 1.4L4 17.2A2 2 0 0 0 5.5 21h13a2 2 0 0 0 1.5-3.8l-5.4-5.4a2 2 0 0 1-.6-1.4V3"></path></svg></span> <span>Research Labs</span>
-                </div>
-                <div class="legend-item" style="font-size: 0.65rem;">
-                    <span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></span> <span>Active Initiatives</span>
+                    <div class="hero-card-stat">
+                        <strong>{{ hsi_count }}</strong>
+                        <span>HSIs</span>
+                    </div>
+                    <div class="hero-card-stat">
+                        <strong>{{ cahsi_count }}</strong>
+                        <span>CAHSI Members</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- How to Use -->
+    <section class="how-section">
+        <div class="section-inner">
+            <div class="section-header fade-up">
+                <h2>How to Use the Atlas</h2>
+                <p>Find institutions on a similar path and discover opportunities for collaboration and shared learning.</p>
+            </div>
+            <div class="how-grid">
+                <div class="how-card fade-up">
+                    <div class="how-card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs><linearGradient id="atlas-hw1" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse"><stop stop-color="#9f1239"/><stop offset="1" stop-color="#e11d48"/></linearGradient></defs>
+                            <rect x="4" y="4" width="40" height="40" rx="12" fill="url(#atlas-hw1)" opacity="0.15"/>
+                            <circle cx="21" cy="21" r="8" fill="url(#atlas-hw1)" opacity="0.4"/>
+                            <circle cx="21" cy="21" r="5" fill="url(#atlas-hw1)"/>
+                            <rect x="27" y="29" width="12" height="4" rx="2" transform="rotate(-45 27 29)" fill="url(#atlas-hw1)"/>
+                        </svg>
+                    </div>
+                    <div class="how-card-step">Step 1</div>
+                    <h3>Search and Filter</h3>
+                    <p>Search by institution name, or use filters to narrow by state, journey level, focus areas, and membership.</p>
+                </div>
+                <div class="how-card fade-up">
+                    <div class="how-card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs><linearGradient id="atlas-hw2" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse"><stop stop-color="#9f1239"/><stop offset="1" stop-color="#e11d48"/></linearGradient></defs>
+                            <rect x="4" y="4" width="40" height="40" rx="12" fill="url(#atlas-hw2)" opacity="0.15"/>
+                            <circle cx="24" cy="20" r="4" fill="url(#atlas-hw2)"/>
+                            <path d="M24 24C24 24 14 30 14 36H34C34 30 24 24 24 24Z" fill="url(#atlas-hw2)" opacity="0.4"/>
+                            <circle cx="16" cy="16" r="2.5" fill="url(#atlas-hw2)" opacity="0.5"/>
+                            <circle cx="34" cy="18" r="2" fill="url(#atlas-hw2)" opacity="0.5"/>
+                            <circle cx="36" cy="28" r="1.5" fill="url(#atlas-hw2)" opacity="0.5"/>
+                        </svg>
+                    </div>
+                    <div class="how-card-step">Step 2</div>
+                    <h3>Explore the Map</h3>
+                    <p>See institutions across the country. Each marker represents an institution on its own AI readiness journey.</p>
+                </div>
+                <div class="how-card fade-up">
+                    <div class="how-card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs><linearGradient id="atlas-hw3" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse"><stop stop-color="#9f1239"/><stop offset="1" stop-color="#e11d48"/></linearGradient></defs>
+                            <rect x="4" y="4" width="40" height="40" rx="12" fill="url(#atlas-hw3)" opacity="0.15"/>
+                            <circle cx="18" cy="20" r="5" fill="url(#atlas-hw3)" opacity="0.5"/>
+                            <circle cx="30" cy="20" r="5" fill="url(#atlas-hw3)" opacity="0.5"/>
+                            <path d="M18 28C18 28 20 32 24 32C28 32 30 28 30 28" stroke="url(#atlas-hw3)" stroke-width="3" stroke-linecap="round" fill="none"/>
+                            <rect x="21" y="17" width="6" height="6" rx="3" fill="url(#atlas-hw3)"/>
+                        </svg>
+                    </div>
+                    <div class="how-card-step">Step 3</div>
+                    <h3>Connect and Collaborate</h3>
+                    <p>Click any institution to learn more. Visit their profile to see initiatives, programs, and shared interests.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Atlas Map Section -->
+    <section class="atlas-section">
+        <div class="section-inner-wide">
+            <div class="atlas-header fade-up">
+                <h2>Explore the Network</h2>
+                <p>Search, filter, and discover institutions across {{ states_count }} states and territories.</p>
+            </div>
+            <div class="atlas-container fade-up">
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <div class="sidebar-search">
+                        <input type="text" class="search-input" placeholder="Search institutions..." id="searchInput">
+                    </div>
+
+                    <div class="filters">
+                        <div class="filter-group">
+                            <label class="filter-label">Journey Level</label>
+                            <div class="filter-chips" id="journeyFilter">
+                                <button class="filter-chip active" data-level="">All Levels</button>
+                                <button class="filter-chip" data-level="exploring">Exploring</button>
+                                <button class="filter-chip" data-level="building">Building</button>
+                                <button class="filter-chip" data-level="advancing">Advancing</button>
+                                <button class="filter-chip" data-level="leading">Leading</button>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <label class="filter-label">State</label>
+                            <select class="filter-select" id="stateFilter">
+                                <option value="">All States</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label class="filter-label">Focus Areas</label>
+                            <div class="filter-chips filter-chips-multi" id="capabilityFilter">
+                                <button class="filter-chip capability-chip" data-capability="policy">AI Policy</button>
+                                <button class="filter-chip capability-chip" data-capability="programs">Programs</button>
+                                <button class="filter-chip capability-chip" data-capability="research">Research</button>
+                                <button class="filter-chip capability-chip" data-capability="initiatives">Initiatives</button>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <label class="filter-label">Membership</label>
+                            <div class="filter-chips" id="membershipFilter">
+                                <button class="filter-chip active" data-value="">All</button>
+                                <button class="filter-chip" data-value="cahsi">CAHSI Members</button>
+                                <button class="filter-chip" data-value="hsi">All HSIs</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="results-count" id="resultsCount">
+                        Loading institutions...
+                    </div>
+
+                    <div class="institution-list" id="institutionList">
+                        <div class="loading">
+                            <div class="loading-spinner"></div>
+                            Loading...
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Map -->
+                <div class="map-container">
+                    <div id="map"></div>
+                    <div class="map-legend">
+                        <h4>Journey Level</h4>
+                        <div class="legend-item">
+                            <div class="legend-dot level-leading"></div>
+                            <span>Leading</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot level-advancing"></div>
+                            <span>Advancing</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot level-building"></div>
+                            <span>Building</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot level-exploring"></div>
+                            <span>Exploring</span>
+                        </div>
+                        <div class="legend-divider"></div>
+                        <div class="legend-cahsi">
+                            <div class="legend-cahsi-dot"></div>
+                            <span>CAHSI Member</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h3>AIREX</h3>
+                <p>AI Readiness Explorer &middot; Powered by AAII + CAHSI</p>
+            </div>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/readiness">AI Readiness</a>
+                <a href="/assessment">Assessment</a>
+                <a href="/atlas">Atlas</a>
+                <a href="/repository">Repository</a>
+                <a href="/news">News</a>
+            </div>
+        </div>
+    </footer>
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <script>
-        // State data
+        // ============================================================
+        // STATE
+        // ============================================================
         let allInstitutions = [];
         let filteredInstitutions = [];
         let markers = {};
         let map;
 
-        // Initialize map
+        // ============================================================
+        // HELPERS
+        // ============================================================
+        function getJourneyLevel(score) {
+            if (score >= 5) return 'Leading';
+            if (score >= 4) return 'Advancing';
+            if (score >= 3) return 'Building';
+            return 'Exploring';
+        }
+
+        function getMarkerColor(score) {
+            const colors = {
+                5: '#9f1239',
+                4: '#e11d48',
+                3: '#fb7185',
+                2: '#fda4af',
+                1: '#fecdd3'
+            };
+            return colors[score] || '#d1d5db';
+        }
+
+        // ============================================================
+        // MAP INITIALIZATION
+        // ============================================================
         function initMap() {
             map = L.map('map').setView([39.8283, -98.5795], 4);
 
@@ -807,25 +1363,16 @@
             }).addTo(map);
         }
 
-        // Get marker color based on readiness score
-        function getMarkerColor(score) {
-            const colors = {
-                5: '#10b981',
-                4: '#34d399',
-                3: '#fbbf24',
-                2: '#fb923c',
-                1: '#f87171'
-            };
-            return colors[score] || '#9ca3af';
-        }
-
-        // Create custom marker
+        // ============================================================
+        // MARKER CREATION
+        // ============================================================
         function createMarker(institution) {
             const color = getMarkerColor(institution.overall_score);
             const isCahsi = institution.is_cahsi_member;
+            const level = getJourneyLevel(institution.overall_score);
 
             const markerHtml = `
-                <div class="custom-marker level-${institution.overall_score} ${isCahsi ? 'cahsi' : ''}"
+                <div class="custom-marker ${isCahsi ? 'cahsi' : ''}"
                      style="background: ${color};">
                 </div>
             `;
@@ -833,55 +1380,53 @@
             const icon = L.divIcon({
                 html: markerHtml,
                 className: 'custom-marker-container',
-                iconSize: [24, 24],
-                iconAnchor: [12, 12]
+                iconSize: [22, 22],
+                iconAnchor: [11, 11]
             });
 
             const marker = L.marker([institution.lat, institution.lng], { icon: icon });
 
-            // Build highlight preview
             const highlightHtml = institution.ai_highlights && institution.ai_highlights.length > 0
-                ? `<div class="highlight-preview">${institution.ai_highlights[0]}</div>`
+                ? `<div class="popup-highlight">${institution.ai_highlights[0]}</div>`
                 : '';
 
-            // Build policy button
             const policyHtml = institution.ai_policy_url
-                ? `<a href="${institution.ai_policy_url}" target="_blank" rel="noopener noreferrer" class="policy-btn">AI Policy</a>`
+                ? `<a href="${institution.ai_policy_url}" target="_blank" rel="noopener noreferrer" class="popup-policy-btn">AI Policy</a>`
                 : '';
 
-            // Popup content
             const popupContent = `
                 <div class="popup-content">
                     <h3>${institution.name}</h3>
                     <div class="location">${institution.city}, ${institution.state}</div>
-                    <div class="badges">
-                        ${institution.is_hsi ? '<span class="badge badge-hsi">HSI</span>' : ''}
-                        ${institution.is_cahsi_member ? '<span class="badge badge-cahsi">CAHSI</span>' : ''}
+                    <div class="popup-badges">
+                        ${institution.is_hsi ? '<span class="popup-badge popup-badge-hsi">HSI</span>' : ''}
+                        ${institution.is_cahsi_member ? '<span class="popup-badge popup-badge-cahsi">CAHSI</span>' : ''}
                     </div>
-                    <div class="stats">
-                        <div class="stat">
-                            <div class="stat-label">Readiness</div>
-                            <div class="stat-value">${institution.overall_score}/5</div>
+                    <div class="popup-stats">
+                        <div class="popup-stat">
+                            <div class="popup-stat-label">Journey Level</div>
+                            <div class="popup-stat-value">${level}</div>
                         </div>
-                        <div class="stat">
-                            <div class="stat-label">Enrollment</div>
-                            <div class="stat-value">${institution.total_enrollment ? institution.total_enrollment.toLocaleString() : 'N/A'}</div>
+                        <div class="popup-stat">
+                            <div class="popup-stat-label">Enrollment</div>
+                            <div class="popup-stat-value">${institution.total_enrollment ? institution.total_enrollment.toLocaleString() : 'N/A'}</div>
                         </div>
                     </div>
                     ${highlightHtml}
                     <div class="popup-btns">
-                        <a href="/institution/${institution.id}" class="view-btn">View Profile</a>
+                        <a href="/institution/${institution.id}" class="popup-view-btn">View Profile</a>
                         ${policyHtml}
                     </div>
                 </div>
             `;
 
             marker.bindPopup(popupContent);
-
             return marker;
         }
 
-        // Load institutions from API
+        // ============================================================
+        // DATA LOADING
+        // ============================================================
         async function loadInstitutions() {
             try {
                 const response = await fetch('/api/institutions/map');
@@ -889,21 +1434,14 @@
                 allInstitutions = data.institutions;
                 filteredInstitutions = [...allInstitutions];
 
-                // Add markers to map
                 updateMap();
-
-                // Populate state filter
                 populateStateFilter();
-
-                // Render list
                 renderInstitutionList();
-
             } catch (error) {
                 console.error('Error loading institutions:', error);
             }
         }
 
-        // Populate state filter dropdown
         async function populateStateFilter() {
             try {
                 const response = await fetch('/api/institutions/states');
@@ -921,13 +1459,13 @@
             }
         }
 
-        // Update map markers
+        // ============================================================
+        // MAP UPDATE
+        // ============================================================
         function updateMap() {
-            // Clear existing markers
             Object.values(markers).forEach(marker => map.removeLayer(marker));
             markers = {};
 
-            // Add new markers
             filteredInstitutions.forEach(inst => {
                 if (inst.lat && inst.lng) {
                     const marker = createMarker(inst);
@@ -936,18 +1474,18 @@
                 }
             });
 
-            // Fit bounds if we have markers
             if (filteredInstitutions.length > 0) {
-                const bounds = L.latLngBounds(
-                    filteredInstitutions
-                        .filter(i => i.lat && i.lng)
-                        .map(i => [i.lat, i.lng])
-                );
-                map.fitBounds(bounds, { padding: [50, 50] });
+                const validInsts = filteredInstitutions.filter(i => i.lat && i.lng);
+                if (validInsts.length > 0) {
+                    const bounds = L.latLngBounds(validInsts.map(i => [i.lat, i.lng]));
+                    map.fitBounds(bounds, { padding: [50, 50] });
+                }
             }
         }
 
-        // Render institution list
+        // ============================================================
+        // INSTITUTION LIST
+        // ============================================================
         function renderInstitutionList() {
             const list = document.getElementById('institutionList');
             const count = document.getElementById('resultsCount');
@@ -959,43 +1497,46 @@
                 return;
             }
 
-            list.innerHTML = filteredInstitutions.map(inst => `
-                <div class="institution-card" data-id="${inst.id}" onclick="selectInstitution('${inst.id}')">
-                    <div class="institution-name">${inst.short_name || inst.name}</div>
-                    <div class="institution-location">${inst.city}, ${inst.state}</div>
-                    <div class="institution-badges">
-                        ${inst.is_hsi ? '<span class="badge badge-hsi">HSI</span>' : ''}
-                        ${inst.is_cahsi_member ? '<span class="badge badge-cahsi">CAHSI</span>' : ''}
-                        <span class="badge badge-readiness">${inst.type.replace(/_/g, ' ')}</span>
-                    </div>
-                    <div class="readiness-score">
-                        <div class="readiness-dots">
-                            ${[1,2,3,4,5].map(i => `
-                                <div class="readiness-dot ${i <= inst.overall_score ? 'filled' : ''} ${inst.overall_score >= 4 ? 'high' : inst.overall_score >= 3 ? 'medium' : 'low'}"></div>
-                            `).join('')}
+            list.innerHTML = filteredInstitutions.map(inst => {
+                const level = getJourneyLevel(inst.overall_score);
+                const levelClass = level.toLowerCase();
+
+                return `
+                    <div class="institution-card" data-id="${inst.id}" onclick="selectInstitution('${inst.id}')">
+                        <div class="institution-name">${inst.short_name || inst.name}</div>
+                        <div class="institution-location">${inst.city}, ${inst.state}</div>
+                        <div class="institution-badges">
+                            ${inst.is_hsi ? '<span class="inst-badge inst-badge-hsi">HSI</span>' : ''}
+                            ${inst.is_cahsi_member ? '<span class="inst-badge inst-badge-cahsi">CAHSI</span>' : ''}
+                            <span class="inst-badge inst-badge-type">${inst.type.replace(/_/g, ' ')}</span>
                         </div>
-                        <span class="readiness-label">Readiness: ${inst.overall_score}/5</span>
+                        <div class="journey-pill journey-${levelClass}">
+                            <div class="journey-pill-dot"></div>
+                            ${level}
+                        </div>
                     </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
-        // Select institution
+        // ============================================================
+        // INTERACTION
+        // ============================================================
         function selectInstitution(id) {
-            // Update card selection
             document.querySelectorAll('.institution-card').forEach(card => {
                 card.classList.remove('selected');
             });
             document.querySelector(`.institution-card[data-id="${id}"]`)?.classList.add('selected');
 
-            // Open popup on map
             if (markers[id]) {
                 map.setView(markers[id].getLatLng(), 8);
                 markers[id].openPopup();
             }
         }
 
-        // Filter functions
+        // ============================================================
+        // FILTERS
+        // ============================================================
         function getActiveCapabilities() {
             const active = [];
             document.querySelectorAll('#capabilityFilter .capability-chip.active').forEach(chip => {
@@ -1009,18 +1550,25 @@
             const stateFilter = document.getElementById('stateFilter').value;
             const activeCapabilities = getActiveCapabilities();
             const membershipFilter = document.querySelector('#membershipFilter .filter-chip.active')?.dataset.value;
+            const journeyLevel = document.querySelector('#journeyFilter .filter-chip.active')?.dataset.level;
 
             filteredInstitutions = allInstitutions.filter(inst => {
                 // Search filter
                 if (searchQuery) {
-                    const searchable = `${inst.name} ${inst.short_name} ${inst.city} ${inst.state}`.toLowerCase();
+                    const searchable = `${inst.name} ${inst.short_name || ''} ${inst.city} ${inst.state}`.toLowerCase();
                     if (!searchable.includes(searchQuery)) return false;
                 }
 
                 // State filter
                 if (stateFilter && inst.state !== stateFilter) return false;
 
-                // Capability filters (AND logic, must have all selected)
+                // Journey level filter
+                if (journeyLevel) {
+                    const level = getJourneyLevel(inst.overall_score).toLowerCase();
+                    if (level !== journeyLevel) return false;
+                }
+
+                // Capability filters (AND logic)
                 for (const cap of activeCapabilities) {
                     if (cap === 'policy' && !inst.ai_policy_url) return false;
                     if (cap === 'programs' && (!inst.key_programs || inst.key_programs.length === 0)) return false;
@@ -1041,11 +1589,24 @@
             renderInstitutionList();
         }
 
-        // Event listeners
+        // ============================================================
+        // EVENT LISTENERS
+        // ============================================================
         document.getElementById('searchInput').addEventListener('input', applyFilters);
         document.getElementById('stateFilter').addEventListener('change', applyFilters);
 
-        // Capability filter chips, toggle on/off (multi-select)
+        // Journey level filter (single-select)
+        document.getElementById('journeyFilter').addEventListener('click', (e) => {
+            if (e.target.classList.contains('filter-chip')) {
+                document.querySelectorAll('#journeyFilter .filter-chip').forEach(chip => {
+                    chip.classList.remove('active');
+                });
+                e.target.classList.add('active');
+                applyFilters();
+            }
+        });
+
+        // Capability filter (multi-select toggle)
         document.getElementById('capabilityFilter').addEventListener('click', (e) => {
             const chip = e.target.closest('.capability-chip');
             if (!chip) return;
@@ -1053,7 +1614,7 @@
             applyFilters();
         });
 
-        // Membership filter, single-select
+        // Membership filter (single-select)
         document.getElementById('membershipFilter').addEventListener('click', (e) => {
             if (e.target.classList.contains('filter-chip')) {
                 document.querySelectorAll('#membershipFilter .filter-chip').forEach(chip => {
@@ -1064,7 +1625,23 @@
             }
         });
 
-        // Initialize
+        // ============================================================
+        // SCROLL ANIMATIONS
+        // ============================================================
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    fadeObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+
+        // ============================================================
+        // INITIALIZE
+        // ============================================================
         initMap();
         loadInstitutions();
     </script>
